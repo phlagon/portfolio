@@ -104,8 +104,11 @@ export default {
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         'cat-peek': {
-          '0%, 70%, 100%': { transform: 'translateY(30%)' },
-          '80%, 90%': { transform: 'translateY(0)' },
+          '0%, 15%, 100%': { transform: 'translateY(40%)', opacity: '0' },
+          '30%': { transform: 'translateY(0)', opacity: '1' },
+          '40%': { transform: 'translateY(0) rotate(-8deg)' },
+          '50%': { transform: 'translateY(0) rotate(8deg)' },
+          '60%, 85%': { transform: 'translateY(0) rotate(0deg)' },
         }
       },
       animation: {
@@ -113,7 +116,7 @@ export default {
         'accordion-up': 'accordion-up 0.2s ease-out',
         'fade-in-down': 'fade-in-down 0.5s ease-out forwards',
         'fade-in-up': 'fade-in-up 0.5s ease-out forwards',
-        'cat-peek': 'cat-peek 5s ease-in-out infinite',
+        'cat-peek': 'cat-peek 7s ease-in-out infinite',
       },
     },
   },
