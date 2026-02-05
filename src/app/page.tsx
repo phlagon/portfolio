@@ -1,33 +1,51 @@
-import { CatModel } from '@/components/cat/cat-model';
 import { Header } from '@/components/layout/header';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
 import { Footer } from '@/components/layout/footer';
+import Image from 'next/image';
+import { placeholderImages } from '@/lib/placeholder-images';
 
 export default function Home() {
+  const catImage = placeholderImages.find(p => p.id === 'portfolio-hero-cat');
+
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <Header />
-      <main className="flex-1 flex items-center justify-center">
-        <div className="relative w-full h-full flex flex-col items-center justify-center text-center p-4 -mt-14">
-          <div className="absolute inset-0 opacity-30">
-            <CatModel />
-          </div>
-          <div className="relative z-10 flex flex-col items-center justify-center">
-            <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-4 font-headline animate-fade-in-down">
-              Hi, I'm PurrfectDev
-            </h1>
-            <p className="text-lg md:text-2xl text-foreground/80 max-w-2xl mb-8 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-              I design & build delightful, whisker-twitching experiences for the web. Welcome to my playground.
-            </p>
-            <Link href="/about" passHref>
-              <Button size="lg" className="animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-                Explore My Work <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-          </div>
+      <main className="flex-1 flex flex-col items-center justify-center text-white p-4 overflow-hidden">
+        <div className="grid grid-cols-[auto_1fr] items-center gap-4 md:gap-8 max-w-6xl w-full">
+            <div className="hidden md:block justify-self-center">
+                <h2 style={{ writingMode: 'vertical-rl' }} className="transform rotate-180 uppercase tracking-widest text-lg text-white/70">
+                UI &amp; UX
+                </h2>
+            </div>
+
+            <div>
+                <div className="text-center md:text-left">
+                    <p className="text-xl md:text-2xl text-white/90 tracking-widest">Graphic Designer</p>
+                    <hr className="border-t border-white/80 mt-1 max-w-sm mx-auto md:mx-0" />
+                </div>
+
+                <div className="relative mt-4 flex items-center justify-center md:justify-start">
+                    <h1 className="text-7xl sm:text-8xl md:text-[120px] lg:text-[160px] font-extrabold tracking-tighter leading-none whitespace-nowrap">
+                        <span className="text-transparent" style={{ WebkitTextStroke: '1.5px white' }}>PORTF</span>
+                        OLIO
+                    </h1>
+                    {catImage && (
+                        <div className="relative w-[100px] h-[150px] sm:w-[150px] sm:h-[225px] md:w-[200px] md:h-[300px] -ml-8 -mb-4">
+                        <Image
+                            src={catImage.imageUrl}
+                            alt={catImage.description}
+                            fill
+                            className="object-contain"
+                            data-ai-hint={catImage.imageHint}
+                        />
+                        </div>
+                    )}
+                </div>
+            </div>
         </div>
+
+        <h2 className="md:hidden text-lg uppercase tracking-widest text-white/70 mt-16">
+          UI &amp; UX
+        </h2>
       </main>
       <Footer />
     </div>

@@ -1,6 +1,12 @@
 {
   "placeholderImages": [
     {
+      "id": "portfolio-hero-cat",
+      "description": "A tabby cat looking sideways, as if peeking from behind something.",
+      "imageUrl": "https://images.unsplash.com/photo-1596854407944-bf87f6fdd49e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0YWJieSUyMGNhdCUyMHBlZWtpbmd8ZW58MHx8fHwxNzcwMjkxMDU0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "tabby cat"
+    },
+    {
       "id": "profile",
       "description": "A portrait of a person.",
       "imageUrl": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NzAyNDg3MTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
