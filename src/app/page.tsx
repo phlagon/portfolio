@@ -19,26 +19,32 @@ export default function Home() {
 
             <div>
                 <div className="text-center md:text-left">
-                    <p className="text-xl md:text-2xl text-white/90 tracking-widest">Graphic Designer</p>
+                    <p className="text-lg md:text-xl text-white/90 max-w-md mx-auto md:mx-0 text-center md:text-left">
+                      I'm PurrfectDev, welcome to my whisker-twitching portfolio.
+                    </p>
                     <hr className="border-t border-white/80 mt-1 max-w-sm mx-auto md:mx-0" />
                 </div>
 
                 <div className="relative mt-4 flex items-center justify-center md:justify-start">
-                    <h1 className="text-7xl sm:text-8xl md:text-[120px] lg:text-[160px] font-extrabold tracking-tighter leading-none whitespace-nowrap">
+                    <h1 className="text-7xl sm:text-8xl md:text-[120px] lg:text-[160px] font-extrabold tracking-tighter leading-none whitespace-nowrap flex items-center">
                         <span className="text-transparent" style={{ WebkitTextStroke: '1.5px white' }}>PORTF</span>
-                        OLIO
+                        <span className="relative">
+                            O
+                            {catImage && (
+                                <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-[80px] h-[60px] sm:w-[120px] sm:h-[90px] md:w-[160px] md:h-[120px] animate-cat-peek">
+                                    <Image
+                                        src={catImage.imageUrl}
+                                        alt={catImage.description}
+                                        fill
+                                        className="object-contain"
+                                        data-ai-hint={catImage.imageHint}
+                                        priority
+                                    />
+                                </div>
+                            )}
+                        </span>
+                        LIO
                     </h1>
-                    {catImage && (
-                        <div className="relative w-[100px] h-[150px] sm:w-[150px] sm:h-[225px] md:w-[200px] md:h-[300px] -ml-8 -mb-4">
-                        <Image
-                            src={catImage.imageUrl}
-                            alt={catImage.description}
-                            fill
-                            className="object-contain"
-                            data-ai-hint={catImage.imageHint}
-                        />
-                        </div>
-                    )}
                 </div>
             </div>
         </div>
