@@ -1,5 +1,6 @@
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { TravelingCat } from "@/components/layout/traveling-cat";
 
 export default function MainLayout({
   children,
@@ -8,6 +9,7 @@ export default function MainLayout({
 }) {
   return (
     <div className="flex flex-col min-h-screen bg-background">
+      <TravelingCat />
       <Header />
       <div className="flex-1">{children}</div>
       <Footer />
