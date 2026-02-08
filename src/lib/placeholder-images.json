@@ -1,34 +1,64 @@
 {
   "placeholderImages": [
     {
-      "id": "project-1",
+      "id": "project-1-thumb",
       "description": "UI/UX redesign for Rapido, a bike taxi app.",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/3b5ade78949bc7e2bb844b4f36532c942e7245dd/Project-1.png",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/main/Project-1.png",
       "imageHint": "app mockup"
     },
     {
-      "id": "project-2",
+      "id": "project-2-thumb",
       "description": "Logo design for a luxury perfume brand.",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/3b5ade78949bc7e2bb844b4f36532c942e7245dd/project-2.png",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/main/project-2.png",
       "imageHint": "luxury branding"
     },
     {
-      "id": "project-3",
+      "id": "project-3-thumb",
       "description": "Logo redesign.",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/3b5ade78949bc7e2bb844b4f36532c942e7245dd/project-3.png",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/main/project-3.png",
       "imageHint": "logo design"
     },
     {
-      "id": "project-5",
+      "id": "project-5-thumb",
       "description": "Package design for a product.",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/3b5ade78949bc7e2bb844b4f36532c942e7245dd/project-4.png",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/main/project-4.png",
       "imageHint": "package design"
     },
     {
-      "id": "project-6",
+      "id": "project-6-thumb",
       "description": "Type specimen for a font.",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/3b5ade78949bc7e2bb844b4f36532c942e7245dd/project-5.png",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/main/project-5.png",
       "imageHint": "typography design"
+    },
+    {
+      "id": "rapido-1",
+      "description": "Rapido project image 1",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/d0df336fd1d46ca2d09a030838c498356d514c1d/WhatsApp%20Image%202026-02-08%20at%2019.33.00%20(1).jpeg",
+      "imageHint": "mobile ui"
+    },
+    {
+      "id": "rapido-2",
+      "description": "Rapido project image 2",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/d0df336fd1d46ca2d09a030838c498356d514c1d/WhatsApp%20Image%202026-02-08%20at%2019.33.00%20(2).jpeg",
+      "imageHint": "app screen"
+    },
+    {
+      "id": "rapido-3",
+      "description": "Rapido project image 3",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/d0df336fd1d46ca2d09a030838c498356d514c1d/WhatsApp%20Image%202026-02-08%20at%2019.33.00%20(3).jpeg",
+      "imageHint": "app interface"
+    },
+    {
+      "id": "rapido-4",
+      "description": "Rapido project image 4",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/d0df336fd1d46ca2d09a030838c498356d514c1d/WhatsApp%20Image%202026-02-08%20at%2019.33.00.jpeg",
+      "imageHint": "mobile design"
+    },
+    {
+      "id": "rapido-5",
+      "description": "Rapido project image 5",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/d0df336fd1d46ca2d09a030838c498356d514c1d/WhatsApp%20Image%202026-02-08%20at%2019.33.01.jpeg",
+      "imageHint": "user experience"
     }
   ]
 }
