@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Loading } from "@/components/layout/loading";
 import { AboutSection } from "@/components/home/about-section";
 import { ProjectsSection } from "@/components/home/projects-section";
+import { CatEars } from "@/components/home/cat-ears";
 
 export default function Home() {
   const [progress, setProgress] = useState(0);
@@ -50,13 +51,14 @@ export default function Home() {
                     <hr className="border-t border-white/80 mt-1 max-w-sm mx-auto md:mx-0" />
                 </div>
 
-                <div className="relative mt-4 flex items-center justify-center md:justify-start">
+                <div className="relative mt-4 flex items-center justify-center">
                     <h1 className="text-7xl sm:text-8xl md:text-[120px] lg:text-[160px] font-extrabold tracking-tighter leading-none whitespace-nowrap flex items-center">
                         <span className="text-transparent" style={{ WebkitTextStroke: '1.5px white' }}>PORTF</span>
                         <span className="relative">
                             O
+                            <CatEars />
                         </span>
-                        LIO
+                        <span className="text-transparent" style={{ WebkitTextStroke: '1.5px white' }}>LIO</span>
                     </h1>
                 </div>
             </div>
