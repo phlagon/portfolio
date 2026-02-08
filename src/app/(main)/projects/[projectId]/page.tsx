@@ -1,6 +1,6 @@
 'use client';
 
-import { useParams, notFound } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, Plane, MapPin, Luggage, Gem, Sparkles, Crown } from 'lucide-react';
@@ -17,9 +17,15 @@ import {
 } from "@/components/ui/carousel";
 import { Card, CardContent } from '@/components/ui/card';
 
-export default function ProjectDetailPage() {
-  const params = useParams();
-  const projectId = params.projectId as string;
+// This function tells Next.js which IDs to build at compile time
+export async function generateStaticParams() {
+  return projects.map((project) => ({
+    projectId: project.id,
+  }));
+}
+
+export default function ProjectDetailPage({ params }: { params: { projectId: string } }) {
+  const projectId = params.projectId;
   const project = projects.find((p) => p.id === projectId);
 
   if (!project) {
