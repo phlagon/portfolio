@@ -45,9 +45,9 @@ const projects = [
   },
   {
     id: "project-6",
-    title: "Project Zeta",
-    description: "An AI-powered chatbot for customer support, integrated with multiple messaging platforms.",
-    tags: ["Genkit", "Dialogflow", "Next.js"],
+    title: "Type specimen",
+    description: "Exploring the art of typography with a detailed type specimen, showcasing the beauty and versatility of a chosen typeface.",
+    tags: ["Typography", "Graphic Design"],
     link: "#",
   },
 ];

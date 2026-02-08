@@ -27,6 +27,27 @@ const projects = [
     tags: ["Logo Design", "Branding"],
     link: "#",
   },
+  {
+    id: "project-4",
+    title: "Project Delta",
+    description: "A data visualization dashboard for tracking real-time analytics and KPIs.",
+    tags: ["D3.js", "React", "Node.js"],
+    link: "#",
+  },
+  {
+    id: "project-5",
+    title: "Package design and redesign",
+    description: "Crafting memorable unboxing experiences with stunning package designs and redesigns that capture brand essence.",
+    tags: ["Packaging", "Branding", "Product Design"],
+    link: "#",
+  },
+  {
+    id: "project-6",
+    title: "Type specimen",
+    description: "Exploring the art of typography with a detailed type specimen, showcasing the beauty and versatility of a chosen typeface.",
+    tags: ["Typography", "Graphic Design"],
+    link: "#",
+  },
 ];
 
 export default function ProjectsPage() {

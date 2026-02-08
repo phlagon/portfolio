@@ -32,9 +32,9 @@
     },
     {
       "id": "project-6",
-      "description": "AI chatbot interface.",
-      "imageUrl": "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGFpJTIwY2hhdGJvdHxlbnwwfHx8fDE3NzA3NzkzNjl8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "ai chatbot"
+      "description": "Type specimen for a font.",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/3b5ade78949bc7e2bb844b4f36532c942e7245dd/project-5.png",
+      "imageHint": "typography design"
     }
   ]
 }
