@@ -91,15 +91,14 @@ export default function ProjectDetailPage() {
                         {projectImages.map((image, index) => (
                         <CarouselItem key={index}>
                             <Card className="border-none shadow-none bg-transparent">
-                            <CardContent className="relative aspect-video flex items-center justify-center p-0">
+                            <CardContent className="relative aspect-video flex items-center justify-center p-0 rounded-lg overflow-hidden">
                                 {image && (
                                 <Image
                                     src={image.imageUrl}
                                     alt={`${project.title} image ${index + 1}`}
                                     fill
-                                    style={{ objectFit: 'contain' }}
                                     data-ai-hint={image.imageHint}
-                                    className="rounded-lg object-contain"
+                                    className="object-cover"
                                 />
                                 )}
                             </CardContent>
