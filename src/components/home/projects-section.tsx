@@ -54,7 +54,7 @@ const projects = [
 
 export function ProjectsSection() {
   return (
-    <section id="projects" className="bg-background py-16 md:py-24">
+    <section id="projects" className="bg-transparent py-16 md:py-24">
       <div className="container animate-fade-in-up" style={{ animationDuration: '1s' }}>
         <div className="space-y-8">
           <h1 className="text-4xl font-bold font-headline text-center">My Work</h1>

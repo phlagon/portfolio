@@ -2,10 +2,7 @@
 
 export function AboutSection() {
   return (
-    <section id="about" className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-background py-16 md:py-24">
-      {/* Background pattern */}
-      <div className="absolute inset-0 z-0 opacity-5" style={{backgroundImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\' viewBox=\'0 0 40 40\'%3E%3Cg fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.1\'%3E%3Cpath d=\'M20 0v20H0v-2.28c7.23-1.72 12.05-5.22 14.5-8.12C16.95 6.72 18.28 4.09 20 0zm0 40V20h20v2.28c-7.23 1.72-12.05 5.22-14.5 8.12C23.05 33.28 21.72 35.91 20 40zM0 20h20L0 0v20zm40 0H20l20 20V20z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")'}} />
-
+    <section id="about" className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-transparent py-16 md:py-24">
       <div className="container z-10 grid grid-cols-1 items-center gap-12 animate-fade-in-up">
         <div className="space-y-8 text-center">
           <div className="relative inline-block animate-fade-in-down">

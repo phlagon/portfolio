@@ -73,8 +73,16 @@ export default function Home() {
           UI &amp; UX
         </h2>
       </section>
-      <AboutSection />
-      <ProjectsSection />
+      <div className="relative isolate">
+        <video autoPlay loop muted playsInline className="absolute inset-0 -z-10 h-full w-full object-cover">
+            <source src="https://raw.githubusercontent.com/phlagon/purr-folio/main/web-bg1.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+        </video>
+        <div className="relative z-10">
+          <AboutSection />
+          <ProjectsSection />
+        </div>
+      </div>
     </main>
   );
 }
