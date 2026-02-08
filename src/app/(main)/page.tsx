@@ -40,16 +40,16 @@ export default function Home() {
         <div className="grid grid-cols-[auto_1fr] items-center gap-4 md:gap-8 max-w-6xl w-full">
             <div className="hidden md:block justify-self-center">
                 <h2 style={{ writingMode: 'vertical-rl' }} className="transform rotate-180 uppercase tracking-widest text-lg text-white/70">
-                UI &amp; UX
+                Design &amp; Creativity
                 </h2>
             </div>
 
             <div>
                 <div className="text-center md:text-left">
-                    <p className="text-lg md:text-xl text-white/90 max-w-md mx-auto md:mx-0 text-center md:text-left">
-                      I'm PurrfectDev, welcome to my whisker-twitching portfolio.
+                    <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto md:mx-0 text-center md:text-left">
+                      Welcome to my world of graphic design. I focus on creating engaging experiences through UI/UX, branding, logo & package design, and typography.
                     </p>
-                    <hr className="border-t border-white/80 mt-1 max-w-sm mx-auto md:mx-0" />
+                    <hr className="border-t border-white/80 mt-1 max-w-lg mx-auto md:mx-0" />
                 </div>
 
                 <div className="relative mt-4 flex items-center justify-center">
@@ -69,9 +69,12 @@ export default function Home() {
             </div>
         </div>
 
-        <h2 className="md:hidden text-lg uppercase tracking-widest text-white/70 mt-16">
-          UI &amp; UX
-        </h2>
+        <div className="md:hidden text-lg uppercase tracking-widest text-white/70 mt-16 flex flex-wrap justify-center gap-x-4 gap-y-2">
+          <span>UI/UX</span>
+          <span>Branding</span>
+          <span>Logos</span>
+          <span>Packaging</span>
+        </div>
       </section>
       <div className="relative isolate">
         <video autoPlay loop muted playsInline className="absolute inset-0 -z-10 h-full w-full object-cover">
