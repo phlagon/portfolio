@@ -8,7 +8,7 @@ import { Cat } from 'lucide-react';
 const navLinks = [
   { href: "/#about", label: "About" },
   { href: "/#projects", label: "Projects" },
-  { href: "/contact", label: "Contact" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export function Header() {
@@ -28,7 +28,7 @@ export function Header() {
               href={link.href}
               className={cn(
                 "transition-colors hover:text-primary",
-                pathname === link.href ? "text-primary font-medium" : "text-foreground/60"
+                (pathname === link.href || (link.href.startsWith('/#') && pathname === '/')) ? "text-primary font-medium" : "text-foreground/60"
               )}
             >
               {link.label}

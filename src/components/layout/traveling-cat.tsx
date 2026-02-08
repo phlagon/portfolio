@@ -3,13 +3,13 @@
 export function TravelingCat() {
   return (
     <>
-      <div className="fixed inset-0 -z-20 overflow-hidden pointer-events-none">
+      <div className="fixed inset-0 -z-1 overflow-hidden pointer-events-none">
         <div className="cat-animation-container">
           <svg
             viewBox="0 0 42 74"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="w-28 h-auto text-primary opacity-20"
+            className="w-28 h-auto text-primary opacity-30"
           >
             <path
               d="M40.5 72.5C40.5 44.5 15.5 52.5 1.5 56C19.5 35.5 30.5 20.5 35.5 1"
