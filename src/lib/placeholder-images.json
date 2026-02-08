@@ -3,13 +3,13 @@
     {
       "id": "project-1",
       "description": "UI/UX redesign for Rapido, a bike taxi app.",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/main/Project-1.png",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/3b5ade78949bc7e2bb844b4f36532c942e7245dd/Project-1.png",
       "imageHint": "app mockup"
     },
     {
       "id": "project-2",
       "description": "Logo design for a luxury perfume brand.",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/main/losmo-thumbnail.png",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/3b5ade78949bc7e2bb844b4f36532c942e7245dd/losmo-thumbnail.png",
       "imageHint": "luxury branding"
     },
     {
