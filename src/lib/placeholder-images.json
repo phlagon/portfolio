@@ -1,24 +1,6 @@
 {
   "placeholderImages": [
     {
-      "id": "portfolio-hero-cat",
-      "description": "A black cat with bright yellow eyes peeking up from the bottom of the frame.",
-      "imageUrl": "https://images.unsplash.com/photo-1574144611937-0df059b5ef3e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxibGFjayUyMGNhdCUyMHBlZWtpbmd8ZW58MHx8fHwxNzcxMjM4NzYyfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "black cat peeking"
-    },
-    {
-      "id": "profile",
-      "description": "A portrait of a woman.",
-      "imageUrl": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3b21hbiUyMHBvcnRyYWl0fGVufDB8fHx8MTY5OTU2MDQwN3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "woman portrait"
-    },
-    {
-      "id": "hello-cat",
-      "description": "A cat wearing sunglasses peeking over something.",
-      "imageUrl": "https://images.unsplash.com/photo-1721622560183-4172c8ef8934?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjYXQlMjBzdW5nbGFzc2VzfGVufDB8fHx8MTc3MDU1MTczNHww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "cat sunglasses"
-    },
-    {
       "id": "project-1",
       "description": "Abstract project image.",
       "imageUrl": "https://images.unsplash.com/photo-1562575214-da9fcf59b907?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxhYnN0cmFjdCUyMHRlY2hub2xvZ3l8ZW58MHx8fHwxNzcwMjg0ODI0fDA&ixlib=rb-4.1.0&q=80&w=1080",
