@@ -23,7 +23,7 @@ const projects = [
   {
     id: "project-3",
     title: "Logo Re-Design",
-    description: "Logo redesign.",
+    description: "Breathing new life into a brand's identity with a modern, impactful, and versatile logo redesign.",
     tags: ["Logo Design", "Branding"],
     link: "#",
   },
