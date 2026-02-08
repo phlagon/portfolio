@@ -8,14 +8,20 @@ export function HeroGraphic() {
           .graphic-path {
             stroke-dasharray: 500;
             stroke-dashoffset: 500;
-            animation: draw-in 3s ease-out forwards;
+            animation: draw-in-out 6s ease-in-out infinite;
           }
           .graphic-glow {
             animation: pulse-glow 4s ease-in-out infinite;
           }
-          @keyframes draw-in {
-            to {
+          @keyframes draw-in-out {
+            0% {
+              stroke-dashoffset: 500;
+            }
+            50% {
               stroke-dashoffset: 0;
+            }
+            100% {
+              stroke-dashoffset: 500;
             }
           }
           @keyframes pulse-glow {
