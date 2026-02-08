@@ -8,9 +8,9 @@ import { ArrowUpRight } from "lucide-react";
 const projects = [
   {
     id: "project-1",
-    title: "Project Alpha",
-    description: "An innovative web application that redefines productivity with a slick, futuristic interface.",
-    tags: ["Next.js", "Tailwind CSS", "AI"],
+    title: "Rapido UI/UX Redesign",
+    description: "A complete UI/UX overhaul for the popular bike taxi app, focusing on a modern and user-friendly experience.",
+    tags: ["UI/UX Design", "Mobile App", "Figma"],
     link: "#",
   },
   {

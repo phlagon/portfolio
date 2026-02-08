@@ -2,9 +2,9 @@
   "placeholderImages": [
     {
       "id": "project-1",
-      "description": "Abstract project image.",
-      "imageUrl": "https://images.unsplash.com/photo-1562575214-da9fcf59b907?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxhYnN0cmFjdCUyMHRlY2hub2xvZ3l8ZW58MHx8fHwxNzcwMjg0ODI0fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "abstract technology"
+      "description": "UI/UX redesign for Rapido, a bike taxi app.",
+      "imageUrl": "https://images.unsplash.com/photo-1589149098258-3e9102cd63d3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhcHAlMjBzY3JlZW4lMjBtb2NrdXB8ZW58MHx8fHwxNzE5OTU0NTE3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "app mockup"
     },
     {
       "id": "project-2",
