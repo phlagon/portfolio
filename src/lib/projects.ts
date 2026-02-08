@@ -24,7 +24,7 @@ export const projects = [
     longDescription: "This project involved taking an existing brand identity and breathing new life into it. The redesign focused on modernizing the visual language while honoring the brand's core values. The result is an impactful and versatile logo that works beautifully across all digital and print applications, giving the brand a fresh platform for future growth.",
     tags: ["Logo Design", "Branding"],
     thumbnailId: "project-3-thumb",
-    imageIds: [],
+    imageIds: ["project-3-thumb"],
   },
   {
     id: "project-5",
@@ -33,7 +33,7 @@ export const projects = [
     longDescription: "Packaging is the first physical touchpoint a customer has with a brand. This project focused on creating a memorable unboxing experience through stunning package design. We worked to ensure the packaging not only protected the product but also captured the brand's essence, turning a simple box into a powerful marketing tool and a delightful customer experience.",
     tags: ["Packaging", "Branding", "Product Design"],
     thumbnailId: "project-5-thumb",
-    imageIds: [],
+    imageIds: ["project-5-thumb"],
   },
   {
     id: "project-6",
@@ -42,6 +42,6 @@ export const projects = [
     longDescription: "Typography is the cornerstone of good design. This project is a deep exploration into the art of the letterform through a detailed type specimen. It showcases the beauty, versatility, and unique character of a chosen typeface, demonstrating its potential to communicate tone, hierarchy, and emotion in visual design.",
     tags: ["Typography", "Graphic Design"],
     thumbnailId: "project-6-thumb",
-    imageIds: [],
+    imageIds: ["project-6-thumb", "typespec-1"],
   },
 ];

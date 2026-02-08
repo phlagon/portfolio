@@ -107,6 +107,12 @@
       "description": "LOSMO project image 8",
       "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/2c06991479cbeec83a8ce51081d6ac8e12440495/WhatsApp%20Image%202026-02-08%20at%2019.44.00.jpeg",
       "imageHint": "brand guide"
+    },
+    {
+      "id": "typespec-1",
+      "description": "Type specimen details",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/a96e78f037e29b13997b3aa3cb5433327f5be201/Screenshot%202026-02-08%20at%2021.30.37.png?raw=true",
+      "imageHint": "typography example"
     }
   ]
 }
