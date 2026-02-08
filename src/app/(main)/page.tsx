@@ -77,7 +77,7 @@ export default function Home() {
         }
         return oldProgress + 1;
       });
-    }, 30);
+    }, 15);
 
     return () => {
       clearInterval(timer);
