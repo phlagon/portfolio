@@ -29,13 +29,6 @@ const projects = [
     tags: ["Logo Design", "Branding"],
     link: "#",
   },
-    {
-    id: "project-4",
-    title: "Project Delta",
-    description: "A data visualization dashboard for tracking real-time analytics and KPIs.",
-    tags: ["D3.js", "React", "Node.js"],
-    link: "#",
-  },
   {
     id: "project-5",
     title: "Package design and redesign",
