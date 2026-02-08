@@ -32,7 +32,7 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'raw.githubusercontent.com',
         port: '',
-        pathname: '/phlagon/purr-folio/main/**',
+        pathname: '/phlagon/purr-folio/**',
       },
     ],
   },
