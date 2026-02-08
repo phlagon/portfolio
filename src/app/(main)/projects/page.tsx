@@ -15,9 +15,9 @@ const projects = [
   },
   {
     id: "project-2",
-    title: "Project Beta",
-    description: "A mobile-first social platform connecting users through shared interests and real-time events.",
-    tags: ["React Native", "Firebase", "UX/UI"],
+    title: "LOSMO Logo Design",
+    description: "A refined emblem of luxury for a perfume brand, crafted to express elegance, artistry, and timeless sophistication.",
+    tags: ["Logo Design", "Branding", "Luxury"],
     link: "#",
   },
   {
