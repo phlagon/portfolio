@@ -38,9 +38,9 @@ const projects = [
   },
   {
     id: "project-5",
-    title: "Project Epsilon",
-    description: "A collaborative design tool for teams to create and iterate on user interfaces.",
-    tags: ["Figma Plugin", "TypeScript", "GraphQL"],
+    title: "Package design and redesign",
+    description: "Crafting memorable unboxing experiences with stunning package designs and redesigns that capture brand essence.",
+    tags: ["Packaging", "Branding", "Product Design"],
     link: "#",
   },
   {

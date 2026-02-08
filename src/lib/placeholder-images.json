@@ -26,9 +26,9 @@
     },
     {
       "id": "project-5",
-      "description": "Collaborative design workspace.",
-      "imageUrl": "https://images.unsplash.com/photo-1587440871875-191322ee64b0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGRlc2lnbiUyMHRvb2xzfGVufDB8fHx8MTc3MDc3OTM0MXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "design tools"
+      "description": "Package design for a product.",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/3b5ade78949bc7e2bb844b4f36532c942e7245dd/project-4.png",
+      "imageHint": "package design"
     },
     {
       "id": "project-6",
