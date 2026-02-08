@@ -6,15 +6,20 @@ export function AboutSection() {
     <section id="about" className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-transparent py-16 md:py-24">
       <div className="container z-10 grid grid-cols-1 md:grid-cols-5 items-center gap-8 md:gap-16">
         <div className="relative animate-fade-in-up [animation-delay:400ms] order-last md:order-first md:col-span-2">
-           <Image 
-            src="https://raw.githubusercontent.com/phlagon/purr-folio/3863ba822557d640e0d73661c34f9cfc16c53baf/trail%204%403x%403x.png"
-            alt="Benzitta"
-            width={800}
-            height={800}
-            className="mx-auto w-full h-auto drop-shadow-[0_20px_30px_hsl(var(--primary)/0.2)]"
-            data-ai-hint="portrait"
-            priority
-           />
+           <div 
+             className="drop-shadow-[0_20px_30px_hsl(var(--primary)/0.2)]"
+             style={{ maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)' }}
+           >
+             <Image 
+              src="https://raw.githubusercontent.com/phlagon/purr-folio/3863ba822557d640e0d73661c34f9cfc16c53baf/trail%204%403x%403x.png"
+              alt="Benzitta"
+              width={800}
+              height={800}
+              className="mx-auto w-full h-auto"
+              data-ai-hint="portrait"
+              priority
+             />
+           </div>
         </div>
         <div className="space-y-8 text-center md:text-left md:col-span-3">
           <div className="relative inline-block md:inline-block animate-fade-in-down">
