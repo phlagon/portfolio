@@ -14,19 +14,19 @@
     },
     {
       "id": "project-3-thumb",
-      "description": "Logo redesign.",
+      "description": "Breathing new life into a brand's identity with a modern, impactful, and versatile logo redesign.",
       "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/3b5ade78949bc7e2bb844b4f36532c942e7245dd/project-3.png",
       "imageHint": "logo design"
     },
     {
       "id": "project-5-thumb",
-      "description": "Package design for a product.",
+      "description": "Crafting memorable unboxing experiences with stunning package designs and redesigns that capture brand essence.",
       "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/3b5ade78949bc7e2bb844b4f36532c942e7245dd/project-4.png",
       "imageHint": "package design"
     },
     {
       "id": "project-6-thumb",
-      "description": "Type specimen for a font.",
+      "description": "Exploring the art of typography with a detailed type specimen, showcasing the beauty and versatility of a chosen typeface.",
       "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/3b5ade78949bc7e2bb844b4f36532c942e7245dd/project-5.png",
       "imageHint": "typography design"
     },
@@ -111,8 +111,8 @@
     {
       "id": "losmo-gallery-bg",
       "description": "Luxury gallery room background for LOSMO project",
-      "imageUrl": "https://i.imgur.com/8m5n3xN.jpg",
-      "imageHint": "gallery room"
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/887c58b40d154100a28bf69503ad84b85af151cb/Gemini_Generated_Image_am3368am3368am33.png",
+      "imageHint": "gallery frame"
     }
   ]
 }

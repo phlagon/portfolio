@@ -118,7 +118,7 @@ export default function ProjectDetailPage() {
                 </div>
             </div>
           ) : isLosmoProject ? (
-             <div className="relative w-full aspect-[1.77] max-w-4xl mx-auto rounded-xl overflow-hidden shadow-2xl shadow-primary/10">
+             <div className="relative w-full aspect-[1.75] max-w-5xl mx-auto rounded-xl overflow-hidden shadow-2xl shadow-primary/10">
               {losmoBgImage && (
                 <Image
                   src={losmoBgImage.imageUrl}
@@ -132,10 +132,10 @@ export default function ProjectDetailPage() {
               <div
                 className="absolute"
                 style={{
-                  left: '38.6%',
-                  top: '20.5%',
-                  width: '50.2%',
-                  height: '65.7%',
+                  left: '24%',
+                  top: '24.4%',
+                  width: '51.9%',
+                  height: '53.7%',
                 }}
               >
                 <Carousel className="w-full h-full group">
@@ -159,8 +159,8 @@ export default function ProjectDetailPage() {
                       </CarouselItem>
                     ))}
                   </CarouselContent>
-                  <CarouselPrevious className="left-[-40px] text-primary bg-transparent border-primary/50 hover:bg-primary/20" />
-                  <CarouselNext className="right-[-40px] text-primary bg-transparent border-primary/50 hover:bg-primary/20" />
+                  <CarouselPrevious className="left-4 text-white bg-black/20 hover:bg-black/50 border-none opacity-50 group-hover:opacity-100 transition-opacity" />
+                  <CarouselNext className="right-4 text-white bg-black/20 hover:bg-black/50 border-none opacity-50 group-hover:opacity-100 transition-opacity" />
                 </Carousel>
               </div>
             </div>
