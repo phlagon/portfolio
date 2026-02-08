@@ -5,6 +5,7 @@ import { Loading } from "@/components/layout/loading";
 import { AboutSection } from "@/components/home/about-section";
 import { ProjectsSection } from "@/components/home/projects-section";
 import { CatEars } from "@/components/home/cat-ears";
+import { CatHead } from "@/components/home/cat-head";
 
 export default function Home() {
   const [progress, setProgress] = useState(0);
@@ -58,7 +59,11 @@ export default function Home() {
                             O
                             <CatEars />
                         </span>
-                        <span className="text-transparent" style={{ WebkitTextStroke: '1.5px white' }}>LIO</span>
+                        <span>LI</span>
+                        <span className="relative">
+                            O
+                            <CatHead />
+                        </span>
                     </h1>
                 </div>
             </div>
