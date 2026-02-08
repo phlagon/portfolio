@@ -58,26 +58,24 @@ export default function ProjectDetailPage() {
                 <div className="h-[64px] w-[3px] bg-gray-800 absolute -right-[17px] top-[142px] rounded-r-lg"></div>
                 <div className="rounded-[2rem] overflow-hidden w-full h-full bg-background">
                     <Carousel className="w-full h-full">
-                      <CarouselContent>
+                      <CarouselContent className="ml-0">
                         {projectImages.map((image, index) => (
-                          <CarouselItem key={index}>
-                            <div className="p-1 h-full">
-                              <Card className="border-none shadow-none h-full">
-                                <CardContent className="p-0 h-[572px] overflow-y-auto">
-                                  {image && (
-                                    <Image
-                                      src={image.imageUrl}
-                                      alt={`${project.title} screenshot ${index + 1}`}
-                                      width={272}
-                                      height={1200}
-                                      className="w-full h-auto"
-                                      data-ai-hint={image.imageHint}
-                                      priority={index === 0}
-                                    />
-                                  )}
-                                </CardContent>
-                              </Card>
-                            </div>
+                          <CarouselItem key={index} className="pl-0">
+                            <Card className="border-none shadow-none h-full w-full bg-transparent">
+                              <CardContent className="p-0 h-full overflow-y-auto">
+                                {image && (
+                                  <Image
+                                    src={image.imageUrl}
+                                    alt={`${project.title} screenshot ${index + 1}`}
+                                    width={272}
+                                    height={1200}
+                                    className="w-full h-auto"
+                                    data-ai-hint={image.imageHint}
+                                    priority={index === 0}
+                                  />
+                                )}
+                              </CardContent>
+                            </Card>
                           </CarouselItem>
                         ))}
                       </CarouselContent>
