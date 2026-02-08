@@ -1,10 +1,36 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
-import Image from 'next/image';
-import { placeholderImages } from '@/lib/placeholder-images';
+import { Loading } from "@/components/layout/loading";
 
 export default function Home() {
-  const catImage = placeholderImages.find(p => p.id === 'portfolio-hero-cat');
+  const [progress, setProgress] = useState(0);
+  const [showLoader, setShowLoader] = useState(true);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setProgress((oldProgress) => {
+        if (oldProgress >= 100) {
+          clearInterval(timer);
+          setTimeout(() => {
+            setShowLoader(false);
+          }, 500); // Wait half a second after 100%
+          return 100;
+        }
+        return oldProgress + 1;
+      });
+    }, 30);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
+  if (showLoader) {
+    return <Loading progress={progress} />;
+  }
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
@@ -30,18 +56,6 @@ export default function Home() {
                         <span className="text-transparent" style={{ WebkitTextStroke: '1.5px white' }}>PORTF</span>
                         <span className="relative">
                             O
-                            {catImage && (
-                                <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-[80px] h-[60px] sm:w-[120px] sm:h-[90px] md:w-[160px] md:h-[120px] animate-cat-peek">
-                                    <Image
-                                        src={catImage.imageUrl}
-                                        alt={catImage.description}
-                                        fill
-                                        className="object-contain"
-                                        data-ai-hint={catImage.imageHint}
-                                        priority
-                                    />
-                                </div>
-                            )}
                         </span>
                         LIO
                     </h1>
