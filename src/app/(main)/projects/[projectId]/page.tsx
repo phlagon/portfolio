@@ -29,6 +29,7 @@ export default function ProjectDetailPage() {
   const projectImages = (project.imageIds || []).map(id => placeholderImages.find(img => img.id === id)).filter(Boolean) as any[];
   const isAppProject = project.tags.includes("Mobile App");
   const isLosmoProject = project.id === 'project-2';
+  const losmoBgImage = placeholderImages.find(img => img.id === 'losmo-gallery-bg');
 
   return (
     <div className="container py-12 md:py-16">
@@ -117,36 +118,50 @@ export default function ProjectDetailPage() {
                 </div>
             </div>
           ) : isLosmoProject ? (
-            <div className="relative w-full max-w-4xl mx-auto bg-black/20 rounded-xl overflow-hidden border-2 border-primary/20 shadow-2xl shadow-primary/10 p-4">
-              <div className="relative bg-neutral-900/50 p-6 rounded-lg shadow-inner">
-                <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-red-800 via-red-600 to-red-800 shadow-[8px_0_15px_-5px_rgba(0,0,0,0.5)]"></div>
-                <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-red-800 via-red-600 to-red-800 shadow-[-8px_0_15px_-5px_rgba(0,0,0,0.5)]"></div>
-                <div className="relative z-10 px-20">
-                  <Carousel className="w-full max-w-xl mx-auto group">
-                    <CarouselContent>
-                      {projectImages.map((image, index) => (
-                        <CarouselItem key={index}>
-                          <Card className="border-2 border-primary/70 shadow-lg shadow-primary/20 bg-black/30">
-                            <CardContent className="relative aspect-video flex items-center justify-center p-0">
-                              {image && (
-                                <Image
-                                  src={image.imageUrl}
-                                  alt={`${project.title} image ${index + 1}`}
-                                  fill
-                                  style={{ objectFit: 'contain' }}
-                                  data-ai-hint={image.imageHint}
-                                  className="object-contain"
-                                />
-                              )}
-                            </CardContent>
-                          </Card>
-                        </CarouselItem>
-                      ))}
-                    </CarouselContent>
-                    <CarouselPrevious className="left-0 text-primary bg-background/50 hover:bg-background/80" />
-                    <CarouselNext className="right-0 text-primary bg-background/50 hover:bg-background/80" />
-                  </Carousel>
-                </div>
+             <div className="relative w-full aspect-[1.77] max-w-4xl mx-auto rounded-xl overflow-hidden shadow-2xl shadow-primary/10">
+              {losmoBgImage && (
+                <Image
+                  src={losmoBgImage.imageUrl}
+                  alt="Luxury gallery setting"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  data-ai-hint={losmoBgImage.imageHint}
+                  priority
+                />
+              )}
+              <div
+                className="absolute"
+                style={{
+                  left: '38.6%',
+                  top: '20.5%',
+                  width: '50.2%',
+                  height: '65.7%',
+                }}
+              >
+                <Carousel className="w-full h-full group">
+                  <CarouselContent className="h-full">
+                    {projectImages.map((image, index) => (
+                      <CarouselItem key={index} className="h-full">
+                        <Card className="h-full border-none bg-transparent shadow-none">
+                          <CardContent className="relative h-full flex items-center justify-center p-0">
+                            {image && (
+                              <Image
+                                src={image.imageUrl}
+                                alt={`${project.title} image ${index + 1}`}
+                                fill
+                                style={{ objectFit: 'contain' }}
+                                data-ai-hint={image.imageHint}
+                                className="object-contain"
+                              />
+                            )}
+                          </CardContent>
+                        </Card>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="left-[-40px] text-primary bg-transparent border-primary/50 hover:bg-primary/20" />
+                  <CarouselNext className="right-[-40px] text-primary bg-transparent border-primary/50 hover:bg-primary/20" />
+                </Carousel>
               </div>
             </div>
           ) : (
