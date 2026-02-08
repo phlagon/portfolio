@@ -48,48 +48,8 @@ export default function ProjectDetailPage() {
         </div>
       </header>
       
-      <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-start">
-        <div className="space-y-6 animate-fade-in-up" style={{ animationDelay: '400ms' }}>
-            <h2 className="text-2xl font-bold font-headline">The Vision</h2>
-            <p className="text-lg text-foreground/80 leading-relaxed">
-              {project.longDescription}
-            </p>
-            <div className="flex flex-wrap items-center gap-6 pt-4 text-primary">
-                {isAppProject ? (
-                    <>
-                        <div className="flex items-center gap-2">
-                            <Plane className="h-6 w-6"/>
-                            <span className="font-semibold">Seamless Journeys</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <MapPin className="h-6 w-6"/>
-                            <span className="font-semibold">Intuitive Navigation</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <Luggage className="h-6 w-6"/>
-                            <span className="font-semibold">Luxury Experience</span>
-                        </div>
-                    </>
-                ) : (
-                    <>
-                        <div className="flex items-center gap-2">
-                            <Gem className="h-6 w-6"/>
-                            <span className="font-semibold">Timeless Elegance</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <Sparkles className="h-6 w-6"/>
-                            <span className="font-semibold">Modern Craft</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <Crown className="h-6 w-6"/>
-                            <span className="font-semibold">Signature Luxury</span>
-                        </div>
-                    </>
-                )}
-            </div>
-        </div>
-        
-        <div className="animate-fade-in-up" style={{ animationDelay: '600ms' }}>
+      <div className="flex flex-col gap-16 items-center">
+        <div className="animate-fade-in-up w-full" style={{ animationDelay: '400ms' }}>
           {isAppProject ? (
             <div className="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[14px] rounded-[2.5rem] h-[600px] w-[300px] shadow-xl">
                 <div className="w-[148px] h-[18px] bg-gray-800 top-0 rounded-b-[1rem] left-1/2 -translate-x-1/2 absolute"></div>
@@ -118,7 +78,7 @@ export default function ProjectDetailPage() {
             </div>
           ) : isLosmoProject ? (
              <div className="p-4 rounded-xl bg-gradient-to-br from-card to-background/80 border border-primary/20 shadow-2xl shadow-primary/10">
-                <Carousel className="w-full max-w-xl mx-auto group">
+                <Carousel className="w-full max-w-3xl mx-auto group">
                     <CarouselContent>
                         {projectImages.map((image, index) => (
                         <CarouselItem key={index}>
@@ -169,6 +129,46 @@ export default function ProjectDetailPage() {
               <CarouselNext className="right-[-50px] opacity-0 group-hover:opacity-100 transition-opacity" />
             </Carousel>
           )}
+        </div>
+        
+        <div className="space-y-6 animate-fade-in-up max-w-3xl mx-auto text-center" style={{ animationDelay: '600ms' }}>
+            <h2 className="text-2xl font-bold font-headline">The Vision</h2>
+            <p className="text-lg text-foreground/80 leading-relaxed">
+              {project.longDescription}
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-6 pt-4 text-primary">
+                {isAppProject ? (
+                    <>
+                        <div className="flex items-center gap-2">
+                            <Plane className="h-6 w-6"/>
+                            <span className="font-semibold">Seamless Journeys</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <MapPin className="h-6 w-6"/>
+                            <span className="font-semibold">Intuitive Navigation</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <Luggage className="h-6 w-6"/>
+                            <span className="font-semibold">Luxury Experience</span>
+                        </div>
+                    </>
+                ) : (
+                    <>
+                        <div className="flex items-center gap-2">
+                            <Gem className="h-6 w-6"/>
+                            <span className="font-semibold">Timeless Elegance</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <Sparkles className="h-6 w-6"/>
+                            <span className="font-semibold">Modern Craft</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <Crown className="h-6 w-6"/>
+                            <span className="font-semibold">Signature Luxury</span>
+                        </div>
+                    </>
+                )}
+            </div>
         </div>
       </div>
     </div>
