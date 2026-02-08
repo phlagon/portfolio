@@ -31,46 +31,48 @@ const projects = [
 
 export default function ProjectsPage() {
   return (
-    <div className="space-y-8">
-      <h1 className="text-4xl font-bold font-headline">My Work</h1>
-      <p className="text-lg text-foreground/80">
-        Here are some of the projects I'm proud of. Each one was a unique challenge and a learning experience.
-      </p>
-      <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-6">
-        {projects.map((project) => {
-          const projectImage = placeholderImages.find(p => p.id === project.id);
-          return (
-            <Card key={project.id} className="flex flex-col hover:border-primary/50 transition-colors">
-              <CardHeader>
-                {projectImage && (
-                  <div className="aspect-video relative mb-4">
-                     <Image
-                        src={projectImage.imageUrl}
-                        alt={project.title}
-                        fill
-                        className="rounded-t-lg object-cover"
-                        data-ai-hint={projectImage.imageHint}
-                     />
+    <div className="container py-8">
+      <div className="space-y-8">
+        <h1 className="text-4xl font-bold font-headline">My Work</h1>
+        <p className="text-lg text-foreground/80">
+          Here are some of the projects I'm proud of. Each one was a unique challenge and a learning experience.
+        </p>
+        <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-6">
+          {projects.map((project) => {
+            const projectImage = placeholderImages.find(p => p.id === project.id);
+            return (
+              <Card key={project.id} className="flex flex-col hover:border-primary/50 transition-colors">
+                <CardHeader>
+                  {projectImage && (
+                    <div className="aspect-video relative mb-4">
+                       <Image
+                          src={projectImage.imageUrl}
+                          alt={project.title}
+                          fill
+                          className="rounded-t-lg object-cover"
+                          data-ai-hint={projectImage.imageHint}
+                       />
+                    </div>
+                  )}
+                  <CardTitle>{project.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="flex-1">
+                  <p className="text-foreground/80">{project.description}</p>
+                </CardContent>
+                <CardFooter className="flex flex-col items-start gap-4">
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map(tag => (
+                      <Badge key={tag} variant="secondary">{tag}</Badge>
+                    ))}
                   </div>
-                )}
-                <CardTitle>{project.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="flex-1">
-                <p className="text-foreground/80">{project.description}</p>
-              </CardContent>
-              <CardFooter className="flex flex-col items-start gap-4">
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map(tag => (
-                    <Badge key={tag} variant="secondary">{tag}</Badge>
-                  ))}
-                </div>
-                <Link href={project.link} target="_blank" className="flex items-center text-sm text-primary hover:underline">
-                  View Project <ArrowUpRight className="h-4 w-4 ml-1" />
-                </Link>
-              </CardFooter>
-            </Card>
-          )
-        })}
+                  <Link href={project.link} target="_blank" className="flex items-center text-sm text-primary hover:underline">
+                    View Project <ArrowUpRight className="h-4 w-4 ml-1" />
+                  </Link>
+                </CardFooter>
+              </Card>
+            )
+          })}
+        </div>
       </div>
     </div>
   );

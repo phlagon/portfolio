@@ -8,9 +8,15 @@
     },
     {
       "id": "profile",
-      "description": "A portrait of a person.",
-      "imageUrl": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NzAyNDg3MTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "person portrait"
+      "description": "A portrait of a woman.",
+      "imageUrl": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3b21hbiUyMHBvcnRyYWl0fGVufDB8fHx8MTY5OTU2MDQwN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman portrait"
+    },
+    {
+      "id": "hello-cat",
+      "description": "A cat wearing sunglasses peeking over something.",
+      "imageUrl": "https://images.unsplash.com/photo-1721622560183-4172c8ef8934?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjYXQlMjBzdW5nbGFzc2VzfGVufDB8fHx8MTc3MDU1MTczNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cat sunglasses"
     },
     {
       "id": "project-1",

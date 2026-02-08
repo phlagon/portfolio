@@ -1,9 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Header } from '@/components/layout/header';
-import { Footer } from '@/components/layout/footer';
 import { Loading } from "@/components/layout/loading";
+import { AboutSection } from "@/components/home/about-section";
 
 export default function Home() {
   const [progress, setProgress] = useState(0);
@@ -33,9 +32,8 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-background">
-      <Header />
-      <main className="flex-1 flex flex-col items-center justify-center text-white p-4 overflow-hidden">
+    <main>
+      <section id="home" className="flex flex-1 flex-col items-center justify-center text-white p-4 overflow-hidden min-h-screen">
         <div className="grid grid-cols-[auto_1fr] items-center gap-4 md:gap-8 max-w-6xl w-full">
             <div className="hidden md:block justify-self-center">
                 <h2 style={{ writingMode: 'vertical-rl' }} className="transform rotate-180 uppercase tracking-widest text-lg text-white/70">
@@ -66,8 +64,8 @@ export default function Home() {
         <h2 className="md:hidden text-lg uppercase tracking-widest text-white/70 mt-16">
           UI &amp; UX
         </h2>
-      </main>
-      <Footer />
-    </div>
+      </section>
+      <AboutSection />
+    </main>
   );
 }

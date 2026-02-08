@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { Cat } from 'lucide-react';
 
 const navLinks = [
-  { href: "/about", label: "About" },
+  { href: "/#about", label: "About" },
   { href: "/projects", label: "Projects" },
   { href: "/contact", label: "Contact" },
 ];
@@ -28,7 +28,7 @@ export function Header() {
               href={link.href}
               className={cn(
                 "transition-colors hover:text-foreground/80",
-                pathname.startsWith(link.href) ? "text-foreground font-medium" : "text-foreground/60"
+                pathname === link.href ? "text-foreground font-medium" : "text-foreground/60"
               )}
             >
               {link.label}
