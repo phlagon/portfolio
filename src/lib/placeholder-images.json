@@ -17,6 +17,24 @@
       "description": "Abstract project image.",
       "imageUrl": "https://images.unsplash.com/photo-1555680510-34daedadbdb1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxhYnN0cmFjdCUyMGNvZGV8ZW58MHx8fHwxNzcwMjE0MTQwfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "abstract code"
+    },
+    {
+      "id": "project-4",
+      "description": "Abstract data visualization.",
+      "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGRhdGElMjB2aXN1YWxpemF0aW9ufGVufDB8fHx8MTc3MDc3OTMwOXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "data visualization"
+    },
+    {
+      "id": "project-5",
+      "description": "Collaborative design workspace.",
+      "imageUrl": "https://images.unsplash.com/photo-1587440871875-191322ee64b0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGRlc2lnbiUyMHRvb2xzfGVufDB8fHx8MTc3MDc3OTM0MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "design tools"
+    },
+    {
+      "id": "project-6",
+      "description": "AI chatbot interface.",
+      "imageUrl": "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGFpJTIwY2hhdGJvdHxlbnwwfHx8fDE3NzA3NzkzNjl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ai chatbot"
     }
   ]
 }

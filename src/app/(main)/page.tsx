@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Loading } from "@/components/layout/loading";
 import { AboutSection } from "@/components/home/about-section";
+import { ProjectsSection } from "@/components/home/projects-section";
 
 export default function Home() {
   const [progress, setProgress] = useState(0);
@@ -66,6 +67,7 @@ export default function Home() {
         </h2>
       </section>
       <AboutSection />
+      <ProjectsSection />
     </main>
   );
 }
