@@ -36,11 +36,11 @@ body {
   }
 
   .dark {
-    --background: 216 34% 17%;
+    --background: 220 20% 8%;
     --foreground: 210 40% 98%;
-    --card: 216 34% 22%;
+    --card: 220 20% 12%;
     --card-foreground: 210 40% 98%;
-    --popover: 216 34% 22%;
+    --popover: 220 20% 12%;
     --popover-foreground: 210 40% 98%;
     --primary: 45 80% 60%;
     --primary-foreground: 216 34% 10%;
@@ -52,8 +52,8 @@ body {
     --accent-foreground: 216 34% 10%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    --border: 216 34% 30%;
-    --input: 216 34% 30%;
+    --border: 220 20% 20%;
+    --input: 220 20% 20%;
     --ring: 45 80% 60%;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;

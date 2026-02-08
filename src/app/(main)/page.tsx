@@ -4,8 +4,7 @@ import { useState, useEffect } from "react";
 import { Loading } from "@/components/layout/loading";
 import { AboutSection } from "@/components/home/about-section";
 import { ProjectsSection } from "@/components/home/projects-section";
-import { CatEars } from "@/components/home/cat-ears";
-import { CatHead } from "@/components/home/cat-head";
+import { HeroGraphic } from "@/components/home/hero-graphic";
 
 export default function Home() {
   const [progress, setProgress] = useState(0);
@@ -37,39 +36,33 @@ export default function Home() {
   return (
     <main>
       <section id="home" className="flex flex-1 flex-col items-center justify-center text-white p-4 overflow-hidden min-h-screen">
-        <div className="grid grid-cols-[auto_1fr] items-center gap-4 md:gap-8 max-w-6xl w-full">
-            <div className="hidden md:block justify-self-center">
-                <h2 style={{ writingMode: 'vertical-rl' }} className="transform rotate-180 uppercase tracking-widest text-lg text-white/70">
-                Design &amp; Creativity
+        <div className="grid md:grid-cols-[1fr_auto_1fr] items-center gap-8 max-w-6xl w-full">
+            <div className="hidden md:block">
+                <h2 style={{ writingMode: 'vertical-rl' }} className="transform rotate-180 uppercase tracking-widest text-lg text-foreground/70 justify-self-start">
+                    Branding & Identity
                 </h2>
             </div>
-
-            <div>
-                <div className="text-center md:text-left">
-                    <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto md:mx-0 text-center md:text-left">
-                      Welcome to my world of graphic design. I focus on creating engaging experiences through UI/UX, branding, logo & package design, and typography.
-                    </p>
-                    <hr className="border-t border-white/80 mt-1 max-w-lg mx-auto md:mx-0" />
+            
+            <div className="flex flex-col items-center text-center w-full">
+                 <div className="relative flex items-center justify-center w-full max-w-sm mx-auto aspect-square my-8">
+                    <HeroGraphic />
                 </div>
+                <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight">
+                    Creative Digital Design
+                </h1>
+                <p className="mt-4 text-lg md:text-xl text-foreground/80 max-w-2xl">
+                    Specializing in UI/UX, branding, and packaging that combines elegance with purpose.
+                </p>
+            </div>
 
-                <div className="relative mt-4 flex items-center justify-center">
-                    <h1 className="text-7xl sm:text-8xl md:text-[120px] lg:text-[160px] font-extrabold tracking-tighter leading-none whitespace-nowrap flex items-center">
-                        <span className="text-transparent" style={{ WebkitTextStroke: '1.5px white' }}>PORTF</span>
-                        <span className="relative">
-                            O
-                            <CatEars />
-                        </span>
-                        <span>LI</span>
-                        <span className="relative">
-                            O
-                            <CatHead />
-                        </span>
-                    </h1>
-                </div>
+            <div className="hidden md:block">
+                <h2 style={{ writingMode: 'vertical-rl' }} className="uppercase tracking-widest text-lg text-foreground/70 justify-self-end">
+                    UI/UX & Interaction
+                </h2>
             </div>
         </div>
 
-        <div className="md:hidden text-lg uppercase tracking-widest text-white/70 mt-16 flex flex-wrap justify-center gap-x-4 gap-y-2">
+        <div className="md:hidden text-lg uppercase tracking-widest text-foreground/70 mt-16 flex flex-wrap justify-center gap-x-4 gap-y-2">
           <span>UI/UX</span>
           <span>Branding</span>
           <span>Logos</span>
