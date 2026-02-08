@@ -24,7 +24,7 @@ const projects = [
   },
   {
     id: "project-3",
-    title: "Project Gamma",
+    title: "Logo Re-Design",
     description: "Logo redesign.",
     tags: ["Logo Design", "Branding"],
     link: "#",
