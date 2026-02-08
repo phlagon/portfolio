@@ -85,21 +85,20 @@ export default function ProjectDetailPage() {
                 </div>
             </div>
           ) : isLosmoProject ? (
-             <div className="p-4 rounded-xl bg-gradient-to-br from-card to-background/80 border border-primary/20 shadow-2xl shadow-primary/10">
-                <Carousel className="w-full max-w-3xl mx-auto group">
+             <div className="p-4 rounded-xl bg-gradient-to-br from-card to-background/80 border border-primary/20 shadow-2xl shadow-primary/10 w-full max-w-3xl mx-auto">
+                <Carousel className="w-full group">
                     <CarouselContent>
                         {projectImages.map((image, index) => (
                         <CarouselItem key={index}>
                             <Card className="border-none shadow-none bg-transparent">
-                            <CardContent className="relative aspect-video p-0 rounded-lg overflow-y-auto">
+                            <CardContent className="relative aspect-video p-0 rounded-lg overflow-y-auto h-[480px]">
                                 {image && (
                                 <Image
                                     src={image.imageUrl}
                                     alt={`${project.title} image ${index + 1}`}
-                                    width={1080}
-                                    height={1080}
+                                    fill
                                     data-ai-hint={image.imageHint}
-                                    className="w-full h-auto"
+                                    className="w-full h-auto object-cover"
                                 />
                                 )}
                             </CardContent>
@@ -178,6 +177,61 @@ export default function ProjectDetailPage() {
                 )}
             </div>
         </div>
+
+        {isLosmoProject && (
+          <div className="w-full max-w-5xl mx-auto text-center space-y-8 pt-16 animate-fade-in-up" style={{ animationDelay: '800ms' }}>
+            <h2 className="text-3xl font-bold font-headline">Brand in Action</h2>
+            <p className="text-lg text-foreground/80 leading-relaxed max-w-3xl mx-auto">
+                Here's a glimpse of how the LOSMO brand extends into digital applications and other brand assets.
+            </p>
+            <div className="grid md:grid-cols-2 gap-8 items-start pt-8">
+              <div className="space-y-8">
+                <h3 className="text-2xl font-bold text-left font-headline text-primary/80">App Concept</h3>
+                <div className="space-y-8">
+                  <Card className="overflow-hidden border-2 border-primary/20 shadow-lg hover:shadow-primary/20 transition-shadow duration-300">
+                    <CardContent className="p-0">
+                      <Image
+                        src="https://raw.githubusercontent.com/phlagon/purr-folio/71c54d64fd51dfb14c2157d784043438c397591f/Screenshot%202026-02-08%20at%2021.23.20.png?raw=true"
+                        alt="LOSMO App Screenshot 1"
+                        width={800}
+                        height={600}
+                        className="w-full h-auto object-cover"
+                        data-ai-hint="app mockup"
+                      />
+                    </CardContent>
+                  </Card>
+                  <Card className="overflow-hidden border-2 border-primary/20 shadow-lg hover:shadow-primary/20 transition-shadow duration-300">
+                    <CardContent className="p-0">
+                      <Image
+                        src="https://raw.githubusercontent.com/phlagon/purr-folio/71c54d64fd51dfb14c2157d784043438c397591f/Screenshot%202026-02-08%20at%2021.22.21.png?raw=true"
+                        alt="LOSMO App Screenshot 2"
+                        width={800}
+                        height={600}
+                        className="w-full h-auto object-cover"
+                        data-ai-hint="app screen"
+                      />
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+              <div className="space-y-8">
+                <h3 className="text-2xl font-bold text-left font-headline text-primary/80">Logo Variation</h3>
+                <Card className="overflow-hidden border-2 border-primary/20 shadow-lg hover:shadow-primary/20 transition-shadow duration-300">
+                  <CardContent className="p-0">
+                    <Image
+                      src="https://raw.githubusercontent.com/phlagon/purr-folio/71c54d64fd51dfb14c2157d784043438c397591f/Screenshot%202026-02-08%20at%2021.23.50.png?raw=true"
+                      alt="LOSMO Logo Variation"
+                      width={800}
+                      height={600}
+                      className="w-full h-auto object-cover"
+                      data-ai-hint="logo variation"
+                    />
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
