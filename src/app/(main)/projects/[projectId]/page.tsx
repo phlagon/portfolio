@@ -61,10 +61,20 @@ export default function ProjectDetailPage() {
                       <CarouselContent>
                         {projectImages.map((image, index) => (
                           <CarouselItem key={index}>
-                            <div className="p-1">
-                              <Card className="border-none shadow-none">
-                                <CardContent className="flex aspect-auto items-center justify-center p-0 relative h-[572px]">
-                                  {image && <Image src={image.imageUrl} alt={`${project.title} screenshot ${index + 1}`} fill style={{ objectFit: 'cover' }} data-ai-hint={image.imageHint} />}
+                            <div className="p-1 h-full">
+                              <Card className="border-none shadow-none h-full">
+                                <CardContent className="p-0 h-[572px] overflow-y-auto">
+                                  {image && (
+                                    <Image
+                                      src={image.imageUrl}
+                                      alt={`${project.title} screenshot ${index + 1}`}
+                                      width={272}
+                                      height={1200}
+                                      className="w-full h-auto"
+                                      data-ai-hint={image.imageHint}
+                                      priority={index === 0}
+                                    />
+                                  )}
                                 </CardContent>
                               </Card>
                             </div>
