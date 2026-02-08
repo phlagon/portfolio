@@ -29,7 +29,6 @@ export default function ProjectDetailPage() {
   const projectImages = (project.imageIds || []).map(id => placeholderImages.find(img => img.id === id)).filter(Boolean) as any[];
   const isAppProject = project.tags.includes("Mobile App");
   const isLosmoProject = project.id === 'project-2';
-  const losmoBgImage = placeholderImages.find(img => img.id === 'losmo-gallery-bg');
 
   return (
     <div className="container py-12 md:py-16">
@@ -118,52 +117,32 @@ export default function ProjectDetailPage() {
                 </div>
             </div>
           ) : isLosmoProject ? (
-             <div className="relative w-full aspect-[1.75] max-w-5xl mx-auto rounded-xl overflow-hidden shadow-2xl shadow-primary/10">
-              {losmoBgImage && (
-                <Image
-                  src={losmoBgImage.imageUrl}
-                  alt="Luxury gallery setting"
-                  fill
-                  style={{ objectFit: 'cover' }}
-                  data-ai-hint={losmoBgImage.imageHint}
-                  priority
-                />
-              )}
-              <div
-                className="absolute"
-                style={{
-                  left: '24%',
-                  top: '24.4%',
-                  width: '51.9%',
-                  height: '53.7%',
-                }}
-              >
-                <Carousel className="w-full h-full group">
-                  <CarouselContent className="h-full">
-                    {projectImages.map((image, index) => (
-                      <CarouselItem key={index} className="h-full">
-                        <Card className="h-full border-none bg-transparent shadow-none">
-                          <CardContent className="relative h-full flex items-center justify-center p-0">
-                            {image && (
-                              <Image
-                                src={image.imageUrl}
-                                alt={`${project.title} image ${index + 1}`}
-                                fill
-                                style={{ objectFit: 'contain' }}
-                                data-ai-hint={image.imageHint}
-                                className="object-contain"
-                              />
-                            )}
-                          </CardContent>
-                        </Card>
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                  <CarouselPrevious className="left-4 text-white bg-black/20 hover:bg-black/50 border-none opacity-50 group-hover:opacity-100 transition-opacity" />
-                  <CarouselNext className="right-4 text-white bg-black/20 hover:bg-black/50 border-none opacity-50 group-hover:opacity-100 transition-opacity" />
+             <div className="p-4 rounded-xl bg-gradient-to-br from-card to-background/80 border border-primary/20 shadow-2xl shadow-primary/10">
+                <Carousel className="w-full max-w-xl mx-auto group">
+                    <CarouselContent>
+                        {projectImages.map((image, index) => (
+                        <CarouselItem key={index}>
+                            <Card className="border-none shadow-none bg-transparent">
+                            <CardContent className="relative aspect-video flex items-center justify-center p-0">
+                                {image && (
+                                <Image
+                                    src={image.imageUrl}
+                                    alt={`${project.title} image ${index + 1}`}
+                                    fill
+                                    style={{ objectFit: 'contain' }}
+                                    data-ai-hint={image.imageHint}
+                                    className="rounded-lg object-contain"
+                                />
+                                )}
+                            </CardContent>
+                            </Card>
+                        </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="left-[-50px] opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <CarouselNext className="right-[-50px] opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Carousel>
-              </div>
-            </div>
+             </div>
           ) : (
              <Carousel className="w-full max-w-xl mx-auto group">
               <CarouselContent>

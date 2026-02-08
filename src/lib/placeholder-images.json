@@ -107,12 +107,6 @@
       "description": "LOSMO project image 8",
       "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/2c06991479cbeec83a8ce51081d6ac8e12440495/WhatsApp%20Image%202026-02-08%20at%2019.44.00.jpeg",
       "imageHint": "brand guide"
-    },
-    {
-      "id": "losmo-gallery-bg",
-      "description": "Luxury gallery room background for LOSMO project",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/887c58b40d154100a28bf69503ad84b85af151cb/Gemini_Generated_Image_am3368am3368am33.png",
-      "imageHint": "gallery frame"
     }
   ]
 }
