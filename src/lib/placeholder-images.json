@@ -14,9 +14,9 @@
     },
     {
       "id": "project-3",
-      "description": "Abstract project image.",
-      "imageUrl": "https://images.unsplash.com/photo-1555680510-34daedadbdb1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxhYnN0cmFjdCUyMGNvZGV8ZW58MHx8fHwxNzcwMjE0MTQwfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "abstract code"
+      "description": "Logo redesign.",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/3b5ade78949bc7e2bb844b4f36532c942e7245dd/project-3.png",
+      "imageHint": "logo design"
     },
     {
       "id": "project-4",

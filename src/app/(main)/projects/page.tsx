@@ -23,8 +23,8 @@ const projects = [
   {
     id: "project-3",
     title: "Project Gamma",
-    description: "An e-commerce site with a focus on 3D product visualization and augmented reality try-on features.",
-    tags: ["Three.js", "Shopify", "Blender"],
+    description: "Logo redesign.",
+    tags: ["Logo Design", "Branding"],
     link: "#",
   },
 ];
