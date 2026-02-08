@@ -60,7 +60,7 @@ export default function ProjectDetailPage() {
                     <Carousel className="w-full h-full">
                       <CarouselContent className="ml-0">
                         {projectImages.map((image, index) => (
-                          <CarouselItem key={index} className="pl-0">
+                          <CarouselItem key={index} className="p-0">
                             <Card className="border-none shadow-none h-full w-full bg-transparent">
                               <CardContent className="p-0 h-full overflow-y-auto">
                                 {image && (
@@ -68,7 +68,7 @@ export default function ProjectDetailPage() {
                                     src={image.imageUrl}
                                     alt={`${project.title} screenshot ${index + 1}`}
                                     width={272}
-                                    height={1200}
+                                    height={598}
                                     className="w-full h-auto"
                                     data-ai-hint={image.imageHint}
                                     priority={index === 0}
@@ -91,14 +91,15 @@ export default function ProjectDetailPage() {
                         {projectImages.map((image, index) => (
                         <CarouselItem key={index}>
                             <Card className="border-none shadow-none bg-transparent">
-                            <CardContent className="relative aspect-video p-0 rounded-lg overflow-y-auto h-[480px]">
+                            <CardContent className="relative p-0 rounded-lg overflow-y-auto h-[480px]">
                                 {image && (
                                 <Image
                                     src={image.imageUrl}
                                     alt={`${project.title} image ${index + 1}`}
-                                    fill
+                                    width={800}
+                                    height={1200}
                                     data-ai-hint={image.imageHint}
-                                    className="w-full h-auto object-cover"
+                                    className="w-full h-auto"
                                 />
                                 )}
                             </CardContent>
