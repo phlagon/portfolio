@@ -22,35 +22,37 @@ export function ProjectsSection() {
               const projectImage = placeholderImages.find(p => p.id === project.thumbnailId);
               return (
                 <div key={project.id} className="animate-fade-in-up" style={{ animationDelay: `${index * 150}ms`, animationDuration: '1s' }}>
-                  <Card className="flex flex-col h-full hover:border-primary/50 transition-colors">
-                    <CardHeader>
-                      {projectImage && (
-                        <div className="aspect-video relative mb-4 overflow-hidden rounded-t-lg">
-                           <Image
-                              src={projectImage.imageUrl}
-                              alt={project.title}
-                              fill
-                              className="object-cover transition-transform duration-500 hover:scale-105"
-                              data-ai-hint={projectImage.imageHint}
-                           />
+                  <Link href={`/projects/${project.id}`} className="block h-full group">
+                    <Card className="flex flex-col h-full group-hover:border-primary/50 transition-colors">
+                      <CardHeader>
+                        {projectImage && (
+                          <div className="aspect-video relative mb-4 overflow-hidden rounded-t-lg">
+                            <Image
+                                src={projectImage.imageUrl}
+                                alt={project.title}
+                                fill
+                                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                data-ai-hint={projectImage.imageHint}
+                            />
+                          </div>
+                        )}
+                        <CardTitle>{project.title}</CardTitle>
+                      </CardHeader>
+                      <CardContent className="flex-1">
+                        <p className="text-foreground/80">{project.description}</p>
+                      </CardContent>
+                      <CardFooter className="flex flex-col items-start gap-4">
+                        <div className="flex flex-wrap gap-2">
+                          {project.tags.map(tag => (
+                            <Badge key={tag} variant="secondary">{tag}</Badge>
+                          ))}
                         </div>
-                      )}
-                      <CardTitle>{project.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent className="flex-1">
-                      <p className="text-foreground/80">{project.description}</p>
-                    </CardContent>
-                    <CardFooter className="flex flex-col items-start gap-4">
-                      <div className="flex flex-wrap gap-2">
-                        {project.tags.map(tag => (
-                          <Badge key={tag} variant="secondary">{tag}</Badge>
-                        ))}
-                      </div>
-                      <Link href={`/projects/${project.id}`} className="flex items-center text-sm text-primary hover:underline">
-                        View Project <ArrowUpRight className="h-4 w-4 ml-1" />
-                      </Link>
-                    </CardFooter>
-                  </Card>
+                        <div className="flex items-center text-sm text-primary group-hover:underline mt-auto pt-2">
+                          View Project <ArrowUpRight className="h-4 w-4 ml-1" />
+                        </div>
+                      </CardFooter>
+                    </Card>
+                  </Link>
                 </div>
               )
             })}
