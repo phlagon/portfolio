@@ -11,7 +11,7 @@ export function AboutSection() {
             alt="Benzitta"
             width={800}
             height={800}
-            className="mx-auto w-full h-auto drop-shadow-[0_20px_20px_rgba(0,0,0,0.5)]"
+            className="mx-auto w-full h-auto drop-shadow-[0_20px_30px_hsl(var(--primary)/0.2)]"
             data-ai-hint="portrait"
             priority
            />
