@@ -10,7 +10,6 @@ import { Github, Linkedin, Twitter, Mail } from "lucide-react";
 import { Loading } from "@/components/layout/loading";
 import { AboutSection } from "@/components/home/about-section";
 import { ProjectsSection } from "@/components/home/projects-section";
-import { HeroGraphic } from "@/components/home/hero-graphic";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -93,7 +92,16 @@ export default function Home() {
       <section id="home" className="flex flex-1 flex-col items-center justify-center text-white p-4 overflow-hidden min-h-screen">
         <div className="grid md:grid-cols-2 items-center gap-8 md:gap-16 max-w-6xl w-full">
             <div className="relative flex items-center justify-center w-full max-w-lg mx-auto aspect-square order-1 md:order-2">
-                <HeroGraphic />
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-auto rounded-lg shadow-2xl shadow-primary/20"
+                  src="https://raw.githubusercontent.com/phlagon/purr-folio/d25ba5df001779aebe0796e887711a5284d9ca05/cat%20purrfolio.mp4"
+                >
+                  Your browser does not support the video tag.
+                </video>
             </div>
             
             <div className="flex flex-col items-center md:items-start text-center md:text-left w-full order-2 md:order-1">
