@@ -78,7 +78,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                 </div>
             </div>
           ) : isLosmoProject ? (
-             <div className="p-4 rounded-xl bg-gradient-to-br from-card to-background/80 border border-primary/20 shadow-2xl shadow-primary/10 w-full max-w-3xl mx-auto">
+             <div className="p-4 rounded-xl bg-gradient-to-br from-card to-background/80 border border-primary/20 shadow-2xl shadow-primary/10 w-full max-w-6xl mx-auto">
                 <Carousel className="w-full group">
                     <CarouselContent>
                         {projectImages.map((image, index) => (
@@ -134,7 +134,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
         
         <div className="space-y-6 animate-fade-in-up max-w-3xl mx-auto text-center" style={{ animationDelay: '600ms' }}>
             <h2 className="text-2xl font-bold font-headline">The Vision</h2>
-            <p className="text-lg text-foreground/80 leading-relaxed">
+            <p className="text-base text-foreground/80 leading-relaxed">
               {project.longDescription}
             </p>
             <div className="flex flex-wrap items-center justify-center gap-6 pt-4 text-primary">
