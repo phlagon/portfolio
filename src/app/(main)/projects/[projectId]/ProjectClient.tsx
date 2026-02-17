@@ -105,30 +105,32 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                 </Carousel>
              </div>
           ) : (
-             <Carousel className="w-full max-w-xl mx-auto group">
-              <CarouselContent>
-                {projectImages.map((image, index) => (
-                  <CarouselItem key={index}>
-                    <Card className="border-none shadow-none bg-transparent">
-                      <CardContent className="relative aspect-video flex items-center justify-center p-0">
-                        {image && (
-                          <Image
-                            src={image.imageUrl}
-                            alt={`${project.title} image ${index + 1}`}
-                            fill
-                            style={{ objectFit: 'contain' }}
-                            data-ai-hint={image.imageHint}
-                            className="rounded-lg object-contain"
-                          />
-                        )}
-                      </CardContent>
-                    </Card>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="left-[-50px] opacity-0 group-hover:opacity-100 transition-opacity" />
-              <CarouselNext className="right-[-50px] opacity-0 group-hover:opacity-100 transition-opacity" />
-            </Carousel>
+            <div className="p-4 rounded-xl bg-gradient-to-br from-card to-background/80 border border-primary/20 shadow-2xl shadow-primary/10 w-full max-w-6xl mx-auto">
+              <Carousel className="w-full group">
+                <CarouselContent>
+                  {projectImages.map((image, index) => (
+                    <CarouselItem key={index}>
+                      <Card className="border-none shadow-none bg-transparent">
+                        <CardContent className="relative h-[90vh] flex items-center justify-center p-0">
+                          {image && (
+                            <Image
+                              src={image.imageUrl}
+                              alt={`${project.title} image ${index + 1}`}
+                              fill
+                              style={{ objectFit: 'contain' }}
+                              data-ai-hint={image.imageHint}
+                              className="rounded-lg object-contain"
+                            />
+                          )}
+                        </CardContent>
+                      </Card>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="left-[-50px] opacity-0 group-hover:opacity-100 transition-opacity" />
+                <CarouselNext className="right-[-50px] opacity-0 group-hover:opacity-100 transition-opacity" />
+              </Carousel>
+            </div>
           )}
         </div>
         
