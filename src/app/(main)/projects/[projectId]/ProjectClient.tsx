@@ -173,7 +173,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
         </div>
 
         {isLosmoProject && (
-          <div className="w-full max-w-5xl mx-auto text-center space-y-8 pt-16 animate-fade-in-up" style={{ animationDelay: '800ms' }}>
+          <div className="w-full max-w-6xl mx-auto text-center space-y-8 pt-16 animate-fade-in-up" style={{ animationDelay: '800ms' }}>
             <h2 className="text-3xl font-bold font-headline">Brand in Action</h2>
             <p className="text-lg text-foreground/80 leading-relaxed max-w-3xl mx-auto">
                 Here's a glimpse of how the LOSMO brand extends into digital applications and other brand assets.
