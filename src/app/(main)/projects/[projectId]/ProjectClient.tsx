@@ -135,38 +135,38 @@ export default function ProjectClient({ project, placeholderImages }: { project:
         </div>
         
         <div className="space-y-6 animate-fade-in-up max-w-3xl mx-auto text-center" style={{ animationDelay: '600ms' }}>
-            <h2 className="text-2xl font-bold font-headline">The Vision</h2>
-            <p className="text-base text-foreground/80 leading-relaxed">
+            <h2 className="text-xl font-bold font-headline">The Vision</h2>
+            <p className="text-sm text-foreground/80 leading-relaxed">
               {project.longDescription}
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-6 pt-4 text-primary">
+            <div className="flex flex-wrap items-center justify-center gap-4 pt-4 text-primary text-sm">
                 {isAppProject ? (
                     <>
                         <div className="flex items-center gap-2">
-                            <Plane className="h-6 w-6"/>
+                            <Plane className="h-5 w-5"/>
                             <span className="font-semibold">Seamless Journeys</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <MapPin className="h-6 w-6"/>
+                            <MapPin className="h-5 w-5"/>
                             <span className="font-semibold">Intuitive Navigation</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <Luggage className="h-6 w-6"/>
+                            <Luggage className="h-5 w-5"/>
                             <span className="font-semibold">Luxury Experience</span>
                         </div>
                     </>
                 ) : (
                     <>
                         <div className="flex items-center gap-2">
-                            <Gem className="h-6 w-6"/>
+                            <Gem className="h-5 w-5"/>
                             <span className="font-semibold">Timeless Elegance</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <Sparkles className="h-6 w-6"/>
+                            <Sparkles className="h-5 w-5"/>
                             <span className="font-semibold">Modern Craft</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <Crown className="h-6 w-6"/>
+                            <Crown className="h-5 w-5"/>
                             <span className="font-semibold">Signature Luxury</span>
                         </div>
                     </>
