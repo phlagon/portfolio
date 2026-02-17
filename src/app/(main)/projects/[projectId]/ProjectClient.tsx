@@ -84,7 +84,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                         {projectImages.map((image, index) => (
                         <CarouselItem key={index}>
                             <Card className="border-none shadow-none bg-transparent">
-                            <CardContent className="relative p-0 rounded-lg overflow-y-auto h-[480px]">
+                            <CardContent className="relative p-0 rounded-lg overflow-y-auto h-[80vh]">
                                 {image && (
                                 <Image
                                     src={image.imageUrl}
