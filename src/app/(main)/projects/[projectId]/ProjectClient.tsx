@@ -178,8 +178,8 @@ export default function ProjectClient({ project, placeholderImages }: { project:
             <p className="text-lg text-foreground/80 leading-relaxed max-w-3xl mx-auto">
                 Here's a glimpse of how the LOSMO brand extends into digital applications and other brand assets.
             </p>
-            <div className="grid md:grid-cols-2 gap-8 items-start pt-8">
-              <div className="space-y-8">
+            <div className="space-y-16 pt-8">
+              <div className="space-y-8 max-w-4xl mx-auto">
                 <h3 className="text-2xl font-bold text-left font-headline text-primary/80">App Concept</h3>
                 <div className="space-y-8">
                   <Card className="overflow-hidden border-2 border-primary/20 shadow-lg hover:shadow-primary/20 transition-shadow duration-300">
@@ -208,7 +208,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                   </Card>
                 </div>
               </div>
-              <div className="space-y-8">
+              <div className="space-y-8 max-w-4xl mx-auto">
                 <h3 className="text-2xl font-bold text-left font-headline text-primary/80">Logo Variation</h3>
                 <Card className="overflow-hidden border-2 border-primary/20 shadow-lg hover:shadow-primary/20 transition-shadow duration-300">
                   <CardContent className="p-0">
