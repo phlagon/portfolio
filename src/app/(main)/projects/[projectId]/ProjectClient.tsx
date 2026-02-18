@@ -24,12 +24,33 @@ type ProjectType = (typeof projects)[0];
 export default function ProjectClient({ project, placeholderImages }: { project: ProjectType, placeholderImages: ImagePlaceholder[] }) {
   const [activePart, setActivePart] = useState<'website' | 'app' | 'logo'>('website');
   const [currentPage, setCurrentPage] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
   
   const projectImages = (project.imageIds || []).map(id => placeholderImages.find(img => img.id === id)).filter(Boolean) as any[];
   const isAppProject = project.tags.includes("Mobile App");
   const isLosmoProject = project.id === 'project-2';
   const isPackageProject = project.id === 'project-5';
   const isTypeSpecimen = project.id === 'project-6';
+
+  const handleNextPage = () => {
+    if (currentPage < projectImages.length - 1 && !isAnimating) {
+      setIsAnimating(true);
+      setTimeout(() => {
+        setCurrentPage(prev => prev + 1);
+        setIsAnimating(false);
+      }, 600); // Mid-point of the flip
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 0 && !isAnimating) {
+      setIsAnimating(true);
+      setCurrentPage(prev => prev - 1);
+      setTimeout(() => {
+        setIsAnimating(false);
+      }, 1200);
+    }
+  };
 
   return (
     <div className="container py-12 md:py-16">
@@ -210,23 +231,18 @@ export default function ProjectClient({ project, placeholderImages }: { project:
             </div>
           ) : isTypeSpecimen ? (
             <div className="w-full max-w-5xl mx-auto animate-fade-in-up">
-              <div className="relative perspective-2000 h-[90vh] w-full flex items-center justify-center">
+              <div className="relative perspective-3000 h-[90vh] w-full flex items-center justify-center">
                 {projectImages.map((image, idx) => (
                   <div 
                     key={idx}
                     className={cn(
-                      "absolute inset-0 transition-all duration-1000 transform-gpu origin-left ease-in-out",
+                      "absolute inset-0 page-base",
                       idx === currentPage 
-                        ? "z-20 rotate-y-0 translate-z-0 opacity-100 scale-100" 
+                        ? "page-active opacity-100 scale-100" 
                         : idx < currentPage 
-                          ? "z-10 -rotate-y-110 -translate-x-full translate-z-20 skew-y-6 opacity-0 pointer-events-none scale-95" 
-                          : "z-0 rotate-y-5 translate-z-[-50px] opacity-0 pointer-events-none scale-105"
+                          ? "page-flipped" 
+                          : "page-upcoming"
                     )}
-                    style={{ 
-                      transformStyle: 'preserve-3d',
-                      backfaceVisibility: 'hidden',
-                      transitionTimingFunction: 'cubic-bezier(0.645, 0.045, 0.355, 1)'
-                    }}
                   >
                     <Card className="h-full w-full overflow-hidden border-2 border-primary/20 bg-background shadow-2xl relative">
                       <CardContent className="p-0 h-full flex items-center justify-center relative group">
@@ -234,22 +250,17 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                           src={image.imageUrl}
                           alt={`Page ${idx + 1}`}
                           fill
-                          className="object-contain p-8 transition-transform duration-1000 group-hover:scale-[1.02]"
+                          className="object-contain p-8 transition-transform duration-1000 group-hover:scale-[1.01]"
                         />
                         
-                        {/* Curved fold shadow - simulate the "flow" of paper */}
+                        {/* Dynamic Fold Shadow (Bottom Right Corner focus) */}
                         <div className={cn(
-                          "absolute inset-0 pointer-events-none transition-opacity duration-1000",
-                          idx === currentPage ? "opacity-0" : "opacity-40",
-                          "bg-gradient-to-r from-black/60 via-transparent to-transparent"
+                          "absolute inset-0 pointer-events-none transition-opacity duration-1000 bg-gradient-to-br from-transparent via-black/5 to-black/20",
+                          idx === currentPage && isAnimating ? "opacity-100" : "opacity-0"
                         )} />
 
-                        {/* Moving highlight shadow during the turn */}
-                        <div className={cn(
-                          "absolute inset-0 pointer-events-none transition-all duration-1000 ease-in-out",
-                          idx < currentPage ? "translate-x-full opacity-0" : "translate-x-[-100%] opacity-0",
-                          "bg-gradient-to-r from-transparent via-white/5 to-transparent z-30"
-                        )} />
+                        {/* Spine Shadow */}
+                        <div className="absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-black/20 to-transparent pointer-events-none z-10" />
                         
                         <div className="absolute bottom-4 right-8 text-xs text-foreground/40 font-mono">
                           {idx + 1} / {projectImages.length}
@@ -261,19 +272,19 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                 
                 {/* Navigation Overlays */}
                 <button 
-                  onClick={() => setCurrentPage(prev => Math.max(0, prev - 1))}
+                  onClick={handlePrevPage}
                   className={cn(
-                    "absolute left-4 z-30 p-2 rounded-full bg-background/50 backdrop-blur hover:bg-primary hover:text-primary-foreground transition-all border border-primary/20",
-                    currentPage === 0 && "opacity-0 pointer-events-none"
+                    "absolute left-4 z-40 p-2 rounded-full bg-background/50 backdrop-blur hover:bg-primary hover:text-primary-foreground transition-all border border-primary/20",
+                    (currentPage === 0 || isAnimating) && "opacity-0 pointer-events-none"
                   )}
                 >
                   <ChevronLeft className="h-6 w-6" />
                 </button>
                 <button 
-                  onClick={() => setCurrentPage(prev => Math.min(projectImages.length - 1, prev + 1))}
+                  onClick={handleNextPage}
                   className={cn(
-                    "absolute right-4 z-30 p-2 rounded-full bg-background/50 backdrop-blur hover:bg-primary hover:text-primary-foreground transition-all border border-primary/20",
-                    currentPage === projectImages.length - 1 && "opacity-0 pointer-events-none"
+                    "absolute right-4 z-40 p-2 rounded-full bg-background/50 backdrop-blur hover:bg-primary hover:text-primary-foreground transition-all border border-primary/20",
+                    (currentPage === projectImages.length - 1 || isAnimating) && "opacity-0 pointer-events-none"
                   )}
                 >
                   <ChevronRight className="h-6 w-6" />

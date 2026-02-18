@@ -82,22 +82,50 @@ body {
 }
 
 @layer utilities {
-  .perspective-2000 {
+  .perspective-3000 {
     perspective: 3000px;
   }
-  .rotate-y-0 {
-    transform: rotateY(0deg);
+  
+  /* Natural Page Turn Base */
+  .page-base {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    transition: all 1.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transform-origin: left center;
   }
-  .-rotate-y-110 {
-    transform: rotateY(-110deg) translateZ(100px);
+
+  /* Phase 1: The Lift (Bottom Right Corner) */
+  .page-active {
+    z-index: 20;
+    transform: rotateY(0deg) translateZ(0);
   }
-  .rotate-y-5 {
-    transform: rotateY(5deg);
+
+  /* Phase 2: The Flip (Completing the turn) */
+  .page-flipped {
+    z-index: 10;
+    transform: rotateY(-130deg) skewY(8deg) translateZ(50px) translateY(-10px);
+    opacity: 0;
   }
-  .translate-z-0 {
-    transform: translateZ(0);
+
+  .page-upcoming {
+    z-index: 0;
+    transform: rotateY(5deg) translateZ(-50px);
+    opacity: 0;
   }
-  .translate-z-20 {
-    transform: translateZ(20px);
+
+  .perspective-2000 {
+    perspective: 2000px;
+  }
+}
+
+@keyframes corner-curl {
+  0% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+  20% {
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
+  }
+  100% {
+    clip-path: polygon(0 0, 100% 0, 0 0, 0 100%);
   }
 }
