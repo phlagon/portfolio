@@ -80,3 +80,18 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .perspective-2000 {
+    perspective: 2000px;
+  }
+  .rotate-y-0 {
+    transform: rotateY(0deg);
+  }
+  .-rotate-y-180 {
+    transform: rotateY(-180deg);
+  }
+  .rotate-y-10 {
+    transform: rotateY(10deg);
+  }
+}

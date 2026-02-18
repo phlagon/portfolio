@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, Plane, MapPin, Luggage, Gem, Sparkles, Crown } from 'lucide-react';
+import { ArrowLeft, Plane, MapPin, Luggage, Gem, Sparkles, Crown, ChevronLeft, ChevronRight } from 'lucide-react';
 
 import type { ImagePlaceholder } from '@/lib/placeholder-images';
 import type { projects } from '@/lib/projects';
@@ -23,11 +23,13 @@ type ProjectType = (typeof projects)[0];
 
 export default function ProjectClient({ project, placeholderImages }: { project: ProjectType, placeholderImages: ImagePlaceholder[] }) {
   const [activePart, setActivePart] = useState<'website' | 'app' | 'logo'>('website');
+  const [currentPage, setCurrentPage] = useState(0);
   
   const projectImages = (project.imageIds || []).map(id => placeholderImages.find(img => img.id === id)).filter(Boolean) as any[];
   const isAppProject = project.tags.includes("Mobile App");
   const isLosmoProject = project.id === 'project-2';
   const isPackageProject = project.id === 'project-5';
+  const isTypeSpecimen = project.id === 'project-6';
 
   return (
     <div className="container py-12 md:py-16">
@@ -159,8 +161,8 @@ export default function ProjectClient({ project, placeholderImages }: { project:
               )}
 
               {activePart === 'app' && (
-                <div className="space-y-8 max-w-4xl mx-auto animate-fade-in-up">
-                  <div className="space-y-8">
+                <div className="space-y-12 max-w-6xl mx-auto animate-fade-in-up">
+                  <div className="space-y-12">
                     <Card className="overflow-hidden border-2 border-primary/20 shadow-lg hover:shadow-primary/20 transition-shadow duration-300">
                       <CardContent className="p-0">
                         <Image
@@ -190,7 +192,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
               )}
 
               {activePart === 'logo' && (
-                <div className="max-w-4xl mx-auto animate-fade-in-up">
+                <div className="max-w-6xl mx-auto animate-fade-in-up">
                   <Card className="overflow-hidden border-2 border-primary/20 shadow-lg hover:shadow-primary/20 transition-shadow duration-300">
                     <CardContent className="p-0">
                       <Image
@@ -205,6 +207,62 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                   </Card>
                 </div>
               )}
+            </div>
+          ) : isTypeSpecimen ? (
+            <div className="w-full max-w-5xl mx-auto animate-fade-in-up">
+              <div className="relative perspective-2000 h-[90vh] w-full flex items-center justify-center">
+                {projectImages.map((image, idx) => (
+                  <div 
+                    key={idx}
+                    className={cn(
+                      "absolute inset-0 transition-all duration-1000 ease-in-out transform-gpu origin-left",
+                      idx === currentPage 
+                        ? "z-20 rotate-y-0 opacity-100" 
+                        : idx < currentPage 
+                          ? "z-10 -rotate-y-180 opacity-0 pointer-events-none" 
+                          : "z-0 rotate-y-10 opacity-0 pointer-events-none"
+                    )}
+                    style={{ 
+                      transformStyle: 'preserve-3d',
+                      backfaceVisibility: 'hidden'
+                    }}
+                  >
+                    <Card className="h-full w-full overflow-hidden border-2 border-primary/20 bg-background shadow-2xl">
+                      <CardContent className="p-0 h-full flex items-center justify-center relative">
+                        <Image
+                          src={image.imageUrl}
+                          alt={`Page ${idx + 1}`}
+                          fill
+                          className="object-contain p-8"
+                        />
+                        <div className="absolute bottom-4 right-8 text-xs text-foreground/40 font-mono">
+                          {idx + 1} / {projectImages.length}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                ))}
+                
+                {/* Navigation Overlays */}
+                <button 
+                  onClick={() => setCurrentPage(prev => Math.max(0, prev - 1))}
+                  className={cn(
+                    "absolute left-4 z-30 p-2 rounded-full bg-background/50 backdrop-blur hover:bg-primary hover:text-primary-foreground transition-all border border-primary/20",
+                    currentPage === 0 && "opacity-0 pointer-events-none"
+                  )}
+                >
+                  <ChevronLeft className="h-6 w-6" />
+                </button>
+                <button 
+                  onClick={() => setCurrentPage(prev => Math.min(projectImages.length - 1, prev + 1))}
+                  className={cn(
+                    "absolute right-4 z-30 p-2 rounded-full bg-background/50 backdrop-blur hover:bg-primary hover:text-primary-foreground transition-all border border-primary/20",
+                    currentPage === projectImages.length - 1 && "opacity-0 pointer-events-none"
+                  )}
+                >
+                  <ChevronRight className="h-6 w-6" />
+                </button>
+              </div>
             </div>
           ) : (
             <div className="p-4 rounded-xl bg-gradient-to-br from-card to-background/80 border border-primary/20 shadow-2xl shadow-primary/10 w-full max-w-6xl mx-auto">
