@@ -219,13 +219,13 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                       idx === currentPage 
                         ? "z-20 rotate-y-0 translate-z-0 opacity-100 scale-100" 
                         : idx < currentPage 
-                          ? "z-10 -rotate-y-180 -translate-z-20 opacity-0 pointer-events-none scale-95" 
+                          ? "z-10 -rotate-y-110 -translate-x-full translate-z-20 skew-y-6 opacity-0 pointer-events-none scale-95" 
                           : "z-0 rotate-y-5 translate-z-[-50px] opacity-0 pointer-events-none scale-105"
                     )}
                     style={{ 
                       transformStyle: 'preserve-3d',
                       backfaceVisibility: 'hidden',
-                      transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)'
+                      transitionTimingFunction: 'cubic-bezier(0.645, 0.045, 0.355, 1)'
                     }}
                   >
                     <Card className="h-full w-full overflow-hidden border-2 border-primary/20 bg-background shadow-2xl relative">
@@ -237,15 +237,19 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                           className="object-contain p-8 transition-transform duration-1000 group-hover:scale-[1.02]"
                         />
                         
-                        {/* Dynamic fold shadow that simulates curvature during turning */}
+                        {/* Curved fold shadow - simulate the "flow" of paper */}
                         <div className={cn(
-                          "absolute inset-y-0 left-0 w-full pointer-events-none transition-opacity duration-1000",
-                          idx === currentPage ? "opacity-0" : "opacity-30",
-                          "bg-gradient-to-r from-black/40 via-transparent to-transparent"
+                          "absolute inset-0 pointer-events-none transition-opacity duration-1000",
+                          idx === currentPage ? "opacity-0" : "opacity-40",
+                          "bg-gradient-to-r from-black/60 via-transparent to-transparent"
                         )} />
 
-                        {/* Realistic spine shadow overlay */}
-                        <div className="absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-black/30 via-black/10 to-transparent pointer-events-none" />
+                        {/* Moving highlight shadow during the turn */}
+                        <div className={cn(
+                          "absolute inset-0 pointer-events-none transition-all duration-1000 ease-in-out",
+                          idx < currentPage ? "translate-x-full opacity-0" : "translate-x-[-100%] opacity-0",
+                          "bg-gradient-to-r from-transparent via-white/5 to-transparent z-30"
+                        )} />
                         
                         <div className="absolute bottom-4 right-8 text-xs text-foreground/40 font-mono">
                           {idx + 1} / {projectImages.length}
@@ -349,4 +353,3 @@ export default function ProjectClient({ project, placeholderImages }: { project:
     </div>
   );
 }
-

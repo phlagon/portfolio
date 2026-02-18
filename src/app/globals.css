@@ -83,13 +83,13 @@ body {
 
 @layer utilities {
   .perspective-2000 {
-    perspective: 2500px;
+    perspective: 3000px;
   }
   .rotate-y-0 {
     transform: rotateY(0deg);
   }
-  .-rotate-y-180 {
-    transform: rotateY(-180deg) translateZ(50px);
+  .-rotate-y-110 {
+    transform: rotateY(-110deg) translateZ(100px);
   }
   .rotate-y-5 {
     transform: rotateY(5deg);
