@@ -35,21 +35,22 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   const handleNextPage = () => {
     if (currentPage < projectImages.length - 1 && !isAnimating) {
       setIsAnimating(true);
-      // Increased timeout to match the longer 2.5s folding animation
+      // Duration set to 3s to allow the folding animation to complete gracefully
       setTimeout(() => {
         setCurrentPage(prev => prev + 1);
         setIsAnimating(false);
-      }, 2500); 
+      }, 3000); 
     }
   };
 
   const handlePrevPage = () => {
     if (currentPage > 0 && !isAnimating) {
       setIsAnimating(true);
+      // Duration set to 3s to allow the folding animation to complete gracefully
       setTimeout(() => {
         setCurrentPage(prev => prev - 1);
         setIsAnimating(false);
-      }, 2500);
+      }, 3000);
     }
   };
 
