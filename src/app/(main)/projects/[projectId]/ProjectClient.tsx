@@ -215,7 +215,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                   <div 
                     key={idx}
                     className={cn(
-                      "absolute inset-0 transition-all duration-1000 ease-in-out transform-gpu origin-left",
+                      "absolute inset-0 transition-all duration-700 transform-gpu origin-left ease-in-out",
                       idx === currentPage 
                         ? "z-20 rotate-y-0 opacity-100" 
                         : idx < currentPage 
@@ -224,10 +224,11 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                     )}
                     style={{ 
                       transformStyle: 'preserve-3d',
-                      backfaceVisibility: 'hidden'
+                      backfaceVisibility: 'hidden',
+                      transitionTimingFunction: 'cubic-bezier(0.645, 0.045, 0.355, 1)'
                     }}
                   >
-                    <Card className="h-full w-full overflow-hidden border-2 border-primary/20 bg-background shadow-2xl">
+                    <Card className="h-full w-full overflow-hidden border-2 border-primary/20 bg-background shadow-2xl relative">
                       <CardContent className="p-0 h-full flex items-center justify-center relative">
                         <Image
                           src={image.imageUrl}
@@ -235,6 +236,9 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                           fill
                           className="object-contain p-8"
                         />
+                        {/* Realistic spine shadow overlay */}
+                        <div className="absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-black/20 to-transparent pointer-events-none" />
+                        
                         <div className="absolute bottom-4 right-8 text-xs text-foreground/40 font-mono">
                           {idx + 1} / {projectImages.length}
                         </div>
@@ -295,38 +299,38 @@ export default function ProjectClient({ project, placeholderImages }: { project:
         </div>
         
         <div className="space-y-4 animate-fade-in-up max-w-3xl mx-auto text-center" style={{ animationDelay: '600ms' }}>
-            <h2 className="text-lg font-bold font-headline">The Vision</h2>
-            <p className="text-xs text-foreground/80 leading-relaxed">
+            <h2 className="text-sm font-bold font-headline">The Vision</h2>
+            <p className="text-[10px] text-foreground/80 leading-relaxed uppercase tracking-widest">
               {project.longDescription}
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-4 pt-4 text-primary text-xs">
+            <div className="flex flex-wrap items-center justify-center gap-4 pt-4 text-primary text-[10px] uppercase tracking-tighter">
                 {isAppProject ? (
                     <>
                         <div className="flex items-center gap-2">
-                            <Plane className="h-4 w-4"/>
+                            <Plane className="h-3 w-3"/>
                             <span className="font-semibold">Seamless Journeys</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <MapPin className="h-4 w-4"/>
+                            <MapPin className="h-3 w-3"/>
                             <span className="font-semibold">Intuitive Navigation</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <Luggage className="h-4 w-4"/>
+                            <Luggage className="h-3 w-3"/>
                             <span className="font-semibold">Luxury Experience</span>
                         </div>
                     </>
                 ) : (
                     <>
                         <div className="flex items-center gap-2">
-                            <Gem className="h-4 w-4"/>
+                            <Gem className="h-3 w-3"/>
                             <span className="font-semibold">Timeless Elegance</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <Sparkles className="h-4 w-4"/>
+                            <Sparkles className="h-3 w-3"/>
                             <span className="font-semibold">Modern Craft</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <Crown className="h-4 w-4"/>
+                            <Crown className="h-3 w-3"/>
                             <span className="font-semibold">Signature Luxury</span>
                         </div>
                     </>
