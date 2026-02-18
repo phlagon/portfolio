@@ -36,6 +36,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
     if (currentPage < projectImages.length - 1 && !isAnimating) {
       setIsAnimating(true);
       // Wait for the folding animation to reach near-completion
+      // Increased timeout to match the slower 3.5s animation
       setTimeout(() => {
         setCurrentPage(prev => prev + 1);
         setIsAnimating(false);
