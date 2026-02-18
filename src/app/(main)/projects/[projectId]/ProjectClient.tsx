@@ -35,10 +35,11 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   const handleNextPage = () => {
     if (currentPage < projectImages.length - 1 && !isAnimating) {
       setIsAnimating(true);
+      // Change the actual page index mid-way through the turn for better sync
       setTimeout(() => {
         setCurrentPage(prev => prev + 1);
         setIsAnimating(false);
-      }, 600); // Mid-point of the flip
+      }, 1200); // Wait for the full animation duration
     }
   };
 
@@ -238,7 +239,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                     className={cn(
                       "absolute inset-0 page-base",
                       idx === currentPage 
-                        ? "page-active opacity-100 scale-100" 
+                        ? (isAnimating ? "page-folding" : "page-active") 
                         : idx < currentPage 
                           ? "page-flipped" 
                           : "page-upcoming"
@@ -250,14 +251,11 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                           src={image.imageUrl}
                           alt={`Page ${idx + 1}`}
                           fill
-                          className="object-contain p-8 transition-transform duration-1000 group-hover:scale-[1.01]"
+                          className="object-contain p-8"
                         />
                         
-                        {/* Dynamic Fold Shadow (Bottom Right Corner focus) */}
-                        <div className={cn(
-                          "absolute inset-0 pointer-events-none transition-opacity duration-1000 bg-gradient-to-br from-transparent via-black/5 to-black/20",
-                          idx === currentPage && isAnimating ? "opacity-100" : "opacity-0"
-                        )} />
+                        {/* Dynamic Fold Shadow */}
+                        <div className="fold-shadow" />
 
                         {/* Spine Shadow */}
                         <div className="absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-black/20 to-transparent pointer-events-none z-10" />
