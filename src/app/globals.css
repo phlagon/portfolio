@@ -83,15 +83,21 @@ body {
 
 @layer utilities {
   .perspective-2000 {
-    perspective: 2000px;
+    perspective: 2500px;
   }
   .rotate-y-0 {
     transform: rotateY(0deg);
   }
   .-rotate-y-180 {
-    transform: rotateY(-180deg);
+    transform: rotateY(-180deg) translateZ(50px);
   }
-  .rotate-y-10 {
-    transform: rotateY(10deg);
+  .rotate-y-5 {
+    transform: rotateY(5deg);
+  }
+  .translate-z-0 {
+    transform: translateZ(0);
+  }
+  .translate-z-20 {
+    transform: translateZ(20px);
   }
 }

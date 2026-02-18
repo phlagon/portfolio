@@ -215,29 +215,37 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                   <div 
                     key={idx}
                     className={cn(
-                      "absolute inset-0 transition-all duration-700 transform-gpu origin-left ease-in-out",
+                      "absolute inset-0 transition-all duration-1000 transform-gpu origin-left ease-in-out",
                       idx === currentPage 
-                        ? "z-20 rotate-y-0 opacity-100" 
+                        ? "z-20 rotate-y-0 translate-z-0 opacity-100 scale-100" 
                         : idx < currentPage 
-                          ? "z-10 -rotate-y-180 opacity-0 pointer-events-none" 
-                          : "z-0 rotate-y-10 opacity-0 pointer-events-none"
+                          ? "z-10 -rotate-y-180 -translate-z-20 opacity-0 pointer-events-none scale-95" 
+                          : "z-0 rotate-y-5 translate-z-[-50px] opacity-0 pointer-events-none scale-105"
                     )}
                     style={{ 
                       transformStyle: 'preserve-3d',
                       backfaceVisibility: 'hidden',
-                      transitionTimingFunction: 'cubic-bezier(0.645, 0.045, 0.355, 1)'
+                      transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)'
                     }}
                   >
                     <Card className="h-full w-full overflow-hidden border-2 border-primary/20 bg-background shadow-2xl relative">
-                      <CardContent className="p-0 h-full flex items-center justify-center relative">
+                      <CardContent className="p-0 h-full flex items-center justify-center relative group">
                         <Image
                           src={image.imageUrl}
                           alt={`Page ${idx + 1}`}
                           fill
-                          className="object-contain p-8"
+                          className="object-contain p-8 transition-transform duration-1000 group-hover:scale-[1.02]"
                         />
+                        
+                        {/* Dynamic fold shadow that simulates curvature during turning */}
+                        <div className={cn(
+                          "absolute inset-y-0 left-0 w-full pointer-events-none transition-opacity duration-1000",
+                          idx === currentPage ? "opacity-0" : "opacity-30",
+                          "bg-gradient-to-r from-black/40 via-transparent to-transparent"
+                        )} />
+
                         {/* Realistic spine shadow overlay */}
-                        <div className="absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-black/20 to-transparent pointer-events-none" />
+                        <div className="absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-black/30 via-black/10 to-transparent pointer-events-none" />
                         
                         <div className="absolute bottom-4 right-8 text-xs text-foreground/40 font-mono">
                           {idx + 1} / {projectImages.length}
@@ -299,11 +307,11 @@ export default function ProjectClient({ project, placeholderImages }: { project:
         </div>
         
         <div className="space-y-4 animate-fade-in-up max-w-3xl mx-auto text-center" style={{ animationDelay: '600ms' }}>
-            <h2 className="text-sm font-bold font-headline">The Vision</h2>
-            <p className="text-[10px] text-foreground/80 leading-relaxed uppercase tracking-widest">
+            <h2 className="text-xs font-bold font-headline uppercase tracking-widest text-primary">The Vision</h2>
+            <p className="text-[10px] text-foreground/80 leading-relaxed uppercase tracking-widest px-4">
               {project.longDescription}
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-4 pt-4 text-primary text-[10px] uppercase tracking-tighter">
+            <div className="flex flex-wrap items-center justify-center gap-4 pt-4 text-primary text-[10px] uppercase tracking-tighter opacity-80">
                 {isAppProject ? (
                     <>
                         <div className="flex items-center gap-2">
@@ -341,3 +349,4 @@ export default function ProjectClient({ project, placeholderImages }: { project:
     </div>
   );
 }
+
