@@ -35,21 +35,21 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   const handleNextPage = () => {
     if (currentPage < projectImages.length - 1 && !isAnimating) {
       setIsAnimating(true);
-      // Change the actual page index mid-way through the turn for better sync
+      // Increased timeout to match the longer 2.5s folding animation
       setTimeout(() => {
         setCurrentPage(prev => prev + 1);
         setIsAnimating(false);
-      }, 1200); // Wait for the full animation duration
+      }, 2500); 
     }
   };
 
   const handlePrevPage = () => {
     if (currentPage > 0 && !isAnimating) {
       setIsAnimating(true);
-      setCurrentPage(prev => prev - 1);
       setTimeout(() => {
+        setCurrentPage(prev => prev - 1);
         setIsAnimating(false);
-      }, 1200);
+      }, 2500);
     }
   };
 
@@ -320,11 +320,11 @@ export default function ProjectClient({ project, placeholderImages }: { project:
         </div>
         
         <div className="space-y-4 animate-fade-in-up max-w-3xl mx-auto text-center" style={{ animationDelay: '600ms' }}>
-            <h2 className="text-xs font-bold font-headline uppercase tracking-widest text-primary">The Vision</h2>
-            <p className="text-[10px] text-foreground/80 leading-relaxed uppercase tracking-widest px-4">
+            <h2 className="text-[10px] font-bold font-headline uppercase tracking-widest text-primary">The Vision</h2>
+            <p className="text-[9px] text-foreground/80 leading-relaxed uppercase tracking-widest px-4">
               {project.longDescription}
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-4 pt-4 text-primary text-[10px] uppercase tracking-tighter opacity-80">
+            <div className="flex flex-wrap items-center justify-center gap-4 pt-4 text-primary text-[8px] uppercase tracking-tighter opacity-80">
                 {isAppProject ? (
                     <>
                         <div className="flex items-center gap-2">

@@ -99,9 +99,9 @@ body {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
   }
 
-  /* The Folding State - applied when isAnimating is true */
+  /* The Folding State - increased duration for drama */
   .page-folding {
-    animation: fold-and-flip 1.2s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+    animation: fold-and-flip 2.5s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
   }
 
   .page-flipped {
@@ -123,17 +123,23 @@ body {
       transform: rotateY(0deg) translateZ(0);
     }
     30% {
-      /* Corner begins to lift and fold inward */
-      clip-path: polygon(0 0, 100% 0, 100% 75%, 75% 100%, 0 100%);
-      transform: rotateY(-15deg) skewY(3deg) translateZ(20px);
+      /* Corner begins to lift slowly */
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
+      transform: rotateY(-5deg) skewY(1deg) translateZ(10px);
     }
     60% {
-      /* Deep fold as it crosses the mid-point */
-      clip-path: polygon(0 0, 100% 0, 100% 20%, 20% 100%, 0 100%);
-      transform: rotateY(-60deg) skewY(6deg) translateZ(40px);
+      /* Deep fold takes up the majority of the time */
+      clip-path: polygon(0 0, 100% 0, 100% 40%, 40% 100%, 0 100%);
+      transform: rotateY(-15deg) skewY(3deg) translateZ(25px);
+    }
+    85% {
+      /* Stay in a very folded state for a long duration */
+      clip-path: polygon(0 0, 100% 0, 100% 15%, 15% 100%, 0 100%);
+      transform: rotateY(-35deg) skewY(6deg) translateZ(40px);
+      opacity: 1;
     }
     100% {
-      /* Full flip completed */
+      /* Sudden flip completed at the very end */
       clip-path: polygon(0 0, 100% 0, 0 0, 0 100%);
       transform: rotateY(-130deg) skewY(8deg) translateZ(50px) translateY(-10px);
       opacity: 0;
