@@ -22,6 +22,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   const projectImages = (project.imageIds || []).map(id => placeholderImages.find(img => img.id === id)).filter(Boolean) as any[];
   const isAppProject = project.tags.includes("Mobile App");
   const isLosmoProject = project.id === 'project-2';
+  const isPackageProject = project.id === 'project-5';
 
   return (
     <div className="container py-12 md:py-16">
@@ -42,6 +43,24 @@ export default function ProjectClient({ project, placeholderImages }: { project:
       </header>
       
       <div className="flex flex-col gap-16 items-center">
+        {/* Video for Package Project - Displayed at the top */}
+        {isPackageProject && (
+          <div className="w-full max-w-6xl mx-auto animate-fade-in-up" style={{ animationDelay: '300ms' }}>
+             <div className="p-4 rounded-xl bg-gradient-to-br from-card to-background/80 border border-primary/20 shadow-2xl shadow-primary/10 overflow-hidden">
+                <video
+                    src="https://raw.githubusercontent.com/phlagon/purr-folio/9cdfabedb3d405c90563cc732aaa3532d718a5bb/medmix%20packaging.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-auto rounded-lg"
+                >
+                    Your browser does not support the video tag.
+                </video>
+             </div>
+          </div>
+        )}
+
         <div className="animate-fade-in-up w-full" style={{ animationDelay: '400ms' }}>
           {isAppProject ? (
             <div className="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[14px] rounded-[2.5rem] h-[600px] w-[300px] shadow-xl">
@@ -134,39 +153,39 @@ export default function ProjectClient({ project, placeholderImages }: { project:
           )}
         </div>
         
-        <div className="space-y-6 animate-fade-in-up max-w-3xl mx-auto text-center" style={{ animationDelay: '600ms' }}>
-            <h2 className="text-xl font-bold font-headline">The Vision</h2>
-            <p className="text-sm text-foreground/80 leading-relaxed">
+        <div className="space-y-4 animate-fade-in-up max-w-3xl mx-auto text-center" style={{ animationDelay: '600ms' }}>
+            <h2 className="text-lg font-bold font-headline">The Vision</h2>
+            <p className="text-xs text-foreground/80 leading-relaxed">
               {project.longDescription}
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-4 pt-4 text-primary text-sm">
+            <div className="flex flex-wrap items-center justify-center gap-4 pt-4 text-primary text-xs">
                 {isAppProject ? (
                     <>
                         <div className="flex items-center gap-2">
-                            <Plane className="h-5 w-5"/>
+                            <Plane className="h-4 w-4"/>
                             <span className="font-semibold">Seamless Journeys</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <MapPin className="h-5 w-5"/>
+                            <MapPin className="h-4 w-4"/>
                             <span className="font-semibold">Intuitive Navigation</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <Luggage className="h-5 w-5"/>
+                            <Luggage className="h-4 w-4"/>
                             <span className="font-semibold">Luxury Experience</span>
                         </div>
                     </>
                 ) : (
                     <>
                         <div className="flex items-center gap-2">
-                            <Gem className="h-5 w-5"/>
+                            <Gem className="h-4 w-4"/>
                             <span className="font-semibold">Timeless Elegance</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <Sparkles className="h-5 w-5"/>
+                            <Sparkles className="h-4 w-4"/>
                             <span className="font-semibold">Modern Craft</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <Crown className="h-5 w-5"/>
+                            <Crown className="h-4 w-4"/>
                             <span className="font-semibold">Signature Luxury</span>
                         </div>
                     </>
