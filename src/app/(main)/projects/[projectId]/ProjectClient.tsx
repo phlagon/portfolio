@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, Plane, MapPin, Luggage, Gem, Sparkles, Crown } from 'lucide-react';
@@ -15,10 +16,14 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 type ProjectType = (typeof projects)[0];
 
 export default function ProjectClient({ project, placeholderImages }: { project: ProjectType, placeholderImages: ImagePlaceholder[] }) {
+  const [activePart, setActivePart] = useState<'website' | 'app' | 'logo'>('website');
+  
   const projectImages = (project.imageIds || []).map(id => placeholderImages.find(img => img.id === id)).filter(Boolean) as any[];
   const isAppProject = project.tags.includes("Mobile App");
   const isLosmoProject = project.id === 'project-2';
@@ -33,7 +38,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
         </Link>
       </div>
 
-      <header className="mb-12 text-center space-y-4">
+      <header className="mb-8 text-center space-y-4">
         <h1 className="text-4xl md:text-5xl font-bold font-headline text-primary animate-fade-in-down">{project.title}</h1>
         <div className="flex justify-center flex-wrap gap-2 animate-fade-in-down" style={{ animationDelay: '200ms' }}>
           {project.tags.map((tag) => (
@@ -41,6 +46,32 @@ export default function ProjectClient({ project, placeholderImages }: { project:
           ))}
         </div>
       </header>
+
+      {isLosmoProject && (
+        <div className="flex justify-center gap-4 mb-12 animate-fade-in-down" style={{ animationDelay: '300ms' }}>
+          <Button 
+            variant={activePart === 'website' ? 'default' : 'outline'}
+            onClick={() => setActivePart('website')}
+            className="rounded-full px-6"
+          >
+            Website
+          </Button>
+          <Button 
+            variant={activePart === 'app' ? 'default' : 'outline'}
+            onClick={() => setActivePart('app')}
+            className="rounded-full px-6"
+          >
+            App Concept
+          </Button>
+          <Button 
+            variant={activePart === 'logo' ? 'default' : 'outline'}
+            onClick={() => setActivePart('logo')}
+            className="rounded-full px-6"
+          >
+            Logo Variation
+          </Button>
+        </div>
+      )}
       
       <div className="flex flex-col gap-16 items-center">
         {/* Video for Package Project - Displayed at the top */}
@@ -97,32 +128,84 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                 </div>
             </div>
           ) : isLosmoProject ? (
-             <div className="p-4 rounded-xl bg-gradient-to-br from-card to-background/80 border border-primary/20 shadow-2xl shadow-primary/10 w-full max-w-6xl mx-auto">
-                <Carousel className="w-full group">
-                    <CarouselContent>
-                        {projectImages.map((image, index) => (
-                        <CarouselItem key={index}>
-                            <Card className="border-none shadow-none bg-transparent">
-                            <CardContent className="relative p-0 rounded-lg overflow-y-auto h-[90vh]">
-                                {image && (
-                                <Image
-                                    src={image.imageUrl}
-                                    alt={`${project.title} image ${index + 1}`}
-                                    width={800}
-                                    height={1200}
-                                    data-ai-hint={image.imageHint}
-                                    className="w-full h-auto"
-                                />
-                                )}
-                            </CardContent>
-                            </Card>
-                        </CarouselItem>
-                        ))}
-                    </CarouselContent>
-                    <CarouselPrevious className="left-[-50px] opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <CarouselNext className="right-[-50px] opacity-0 group-hover:opacity-100 transition-opacity" />
-                </Carousel>
-             </div>
+            <div className="w-full">
+              {activePart === 'website' && (
+                <div className="p-4 rounded-xl bg-gradient-to-br from-card to-background/80 border border-primary/20 shadow-2xl shadow-primary/10 w-full max-w-6xl mx-auto">
+                    <Carousel className="w-full group">
+                        <CarouselContent>
+                            {projectImages.map((image, index) => (
+                            <CarouselItem key={index}>
+                                <Card className="border-none shadow-none bg-transparent">
+                                <CardContent className="relative p-0 rounded-lg overflow-y-auto h-[90vh]">
+                                    {image && (
+                                    <Image
+                                        src={image.imageUrl}
+                                        alt={`${project.title} image ${index + 1}`}
+                                        width={800}
+                                        height={1200}
+                                        data-ai-hint={image.imageHint}
+                                        className="w-full h-auto"
+                                    />
+                                    )}
+                                </CardContent>
+                                </Card>
+                            </CarouselItem>
+                            ))}
+                        </CarouselContent>
+                        <CarouselPrevious className="left-[-50px] opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <CarouselNext className="right-[-50px] opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </Carousel>
+                </div>
+              )}
+
+              {activePart === 'app' && (
+                <div className="space-y-8 max-w-4xl mx-auto animate-fade-in-up">
+                  <div className="space-y-8">
+                    <Card className="overflow-hidden border-2 border-primary/20 shadow-lg hover:shadow-primary/20 transition-shadow duration-300">
+                      <CardContent className="p-0">
+                        <Image
+                          src="https://raw.githubusercontent.com/phlagon/purr-folio/71c54d64fd51dfb14c2157d784043438c397591f/Screenshot%202026-02-08%20at%2021.23.20.png?raw=true"
+                          alt="LOSMO App Screenshot 1"
+                          width={1200}
+                          height={900}
+                          className="w-full h-auto object-cover"
+                          data-ai-hint="app mockup"
+                        />
+                      </CardContent>
+                    </Card>
+                    <Card className="overflow-hidden border-2 border-primary/20 shadow-lg hover:shadow-primary/20 transition-shadow duration-300">
+                      <CardContent className="p-0">
+                        <Image
+                          src="https://raw.githubusercontent.com/phlagon/purr-folio/71c54d64fd51dfb14c2157d784043438c397591f/Screenshot%202026-02-08%20at%2021.22.21.png?raw=true"
+                          alt="LOSMO App Screenshot 2"
+                          width={1200}
+                          height={900}
+                          className="w-full h-auto object-cover"
+                          data-ai-hint="app screen"
+                        />
+                      </CardContent>
+                    </Card>
+                  </div>
+                </div>
+              )}
+
+              {activePart === 'logo' && (
+                <div className="max-w-4xl mx-auto animate-fade-in-up">
+                  <Card className="overflow-hidden border-2 border-primary/20 shadow-lg hover:shadow-primary/20 transition-shadow duration-300">
+                    <CardContent className="p-0">
+                      <Image
+                        src="https://raw.githubusercontent.com/phlagon/purr-folio/71c54d64fd51dfb14c2157d784043438c397591f/Screenshot%202026-02-08%20at%2021.23.50.png?raw=true"
+                        alt="LOSMO Logo Variation"
+                        width={1200}
+                        height={900}
+                        className="w-full h-auto object-cover"
+                        data-ai-hint="logo variation"
+                      />
+                    </CardContent>
+                  </Card>
+                </div>
+              )}
+            </div>
           ) : (
             <div className="p-4 rounded-xl bg-gradient-to-br from-card to-background/80 border border-primary/20 shadow-2xl shadow-primary/10 w-full max-w-6xl mx-auto">
               <Carousel className="w-full group">
@@ -192,61 +275,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                 )}
             </div>
         </div>
-
-        {isLosmoProject && (
-          <div className="w-full max-w-6xl mx-auto text-center space-y-8 pt-16 animate-fade-in-up" style={{ animationDelay: '800ms' }}>
-            <h2 className="text-3xl font-bold font-headline">Brand in Action</h2>
-            <p className="text-lg text-foreground/80 leading-relaxed max-w-3xl mx-auto">
-                Here's a glimpse of how the LOSMO brand extends into digital applications and other brand assets.
-            </p>
-            <div className="space-y-16 pt-8">
-              <div className="space-y-8 max-w-4xl mx-auto">
-                <h3 className="text-2xl font-bold text-left font-headline text-primary/80">App Concept</h3>
-                <div className="space-y-8">
-                  <Card className="overflow-hidden border-2 border-primary/20 shadow-lg hover:shadow-primary/20 transition-shadow duration-300">
-                    <CardContent className="p-0">
-                      <Image
-                        src="https://raw.githubusercontent.com/phlagon/purr-folio/71c54d64fd51dfb14c2157d784043438c397591f/Screenshot%202026-02-08%20at%2021.23.20.png?raw=true"
-                        alt="LOSMO App Screenshot 1"
-                        width={800}
-                        height={600}
-                        className="w-full h-auto object-cover"
-                        data-ai-hint="app mockup"
-                      />
-                    </CardContent>
-                  </Card>
-                  <Card className="overflow-hidden border-2 border-primary/20 shadow-lg hover:shadow-primary/20 transition-shadow duration-300">
-                    <CardContent className="p-0">
-                      <Image
-                        src="https://raw.githubusercontent.com/phlagon/purr-folio/71c54d64fd51dfb14c2157d784043438c397591f/Screenshot%202026-02-08%20at%2021.22.21.png?raw=true"
-                        alt="LOSMO App Screenshot 2"
-                        width={800}
-                        height={600}
-                        className="w-full h-auto object-cover"
-                        data-ai-hint="app screen"
-                      />
-                    </CardContent>
-                  </Card>
-                </div>
-              </div>
-              <div className="space-y-8 max-w-4xl mx-auto">
-                <h3 className="text-2xl font-bold text-left font-headline text-primary/80">Logo Variation</h3>
-                <Card className="overflow-hidden border-2 border-primary/20 shadow-lg hover:shadow-primary/20 transition-shadow duration-300">
-                  <CardContent className="p-0">
-                    <Image
-                      src="https://raw.githubusercontent.com/phlagon/purr-folio/71c54d64fd51dfb14c2157d784043438c397591f/Screenshot%202026-02-08%20at%2021.23.50.png?raw=true"
-                      alt="LOSMO Logo Variation"
-                      width={800}
-                      height={600}
-                      className="w-full h-auto object-cover"
-                      data-ai-hint="logo variation"
-                    />
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );
