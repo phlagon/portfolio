@@ -45,7 +45,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
 
   const handlePrevPage = () => {
     if (currentPage > 0 && !isAnimating) {
-      // For simplicity in a prototype, prev just snaps back
       setCurrentPage(prev => prev - 1);
     }
   };
@@ -70,27 +69,33 @@ export default function ProjectClient({ project, placeholderImages }: { project:
 
       {isLosmoProject && (
         <div className="flex justify-center gap-4 mb-12">
-          <Button 
-            variant={activePart === 'website' ? 'default' : 'outline'}
+          <button 
             onClick={() => setActivePart('website')}
-            className="rounded-full px-6"
+            className={cn(
+              "px-6 py-2 rounded-full border transition-all text-sm font-medium",
+              activePart === 'website' ? "bg-primary text-primary-foreground border-primary" : "bg-transparent text-foreground/70 border-border hover:border-primary/50"
+            )}
           >
             Website
-          </Button>
-          <Button 
-            variant={activePart === 'app' ? 'default' : 'outline'}
+          </button>
+          <button 
             onClick={() => setActivePart('app')}
-            className="rounded-full px-6"
+            className={cn(
+              "px-6 py-2 rounded-full border transition-all text-sm font-medium",
+              activePart === 'app' ? "bg-primary text-primary-foreground border-primary" : "bg-transparent text-foreground/70 border-border hover:border-primary/50"
+            )}
           >
             App Concept
-          </Button>
-          <Button 
-            variant={activePart === 'logo' ? 'default' : 'outline'}
+          </button>
+          <button 
             onClick={() => setActivePart('logo')}
-            className="rounded-full px-6"
+            className={cn(
+              "px-6 py-2 rounded-full border transition-all text-sm font-medium",
+              activePart === 'logo' ? "bg-primary text-primary-foreground border-primary" : "bg-transparent text-foreground/70 border-border hover:border-primary/50"
+            )}
           >
             Logo Variation
-          </Button>
+          </button>
         </div>
       )}
       
