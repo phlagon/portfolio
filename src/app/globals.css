@@ -136,7 +136,7 @@ body {
       clip-path: polygon(0 0, 100% 0, 100% 80%, 80% 100%, 0 100%);
     }
     60% {
-      /* Mid-fold, more deformation */
+      /* Mid-fold, more deformation, simulated curl */
       transform: translate3d(-20%, -5%, 200px) rotateY(-18deg) skewY(8deg) scale(0.8);
       clip-path: polygon(0 0, 100% 0, 100% 40%, 40% 100%, 0 100%);
     }
