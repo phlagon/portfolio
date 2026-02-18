@@ -35,22 +35,18 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   const handleNextPage = () => {
     if (currentPage < projectImages.length - 1 && !isAnimating) {
       setIsAnimating(true);
-      // Duration set to 3s to allow the folding animation to complete gracefully
+      // Wait for the folding animation to reach near-completion
       setTimeout(() => {
         setCurrentPage(prev => prev + 1);
         setIsAnimating(false);
-      }, 3000); 
+      }, 3500); 
     }
   };
 
   const handlePrevPage = () => {
     if (currentPage > 0 && !isAnimating) {
-      setIsAnimating(true);
-      // Duration set to 3s to allow the folding animation to complete gracefully
-      setTimeout(() => {
-        setCurrentPage(prev => prev - 1);
-        setIsAnimating(false);
-      }, 3000);
+      // For simplicity in a prototype, prev just snaps back
+      setCurrentPage(prev => prev - 1);
     }
   };
 
@@ -64,8 +60,8 @@ export default function ProjectClient({ project, placeholderImages }: { project:
       </div>
 
       <header className="mb-8 text-center space-y-4">
-        <h1 className="text-4xl md:text-5xl font-bold font-headline text-primary animate-fade-in-down">{project.title}</h1>
-        <div className="flex justify-center flex-wrap gap-2 animate-fade-in-down" style={{ animationDelay: '200ms' }}>
+        <h1 className="text-4xl md:text-5xl font-bold font-headline text-primary">{project.title}</h1>
+        <div className="flex justify-center flex-wrap gap-2">
           {project.tags.map((tag) => (
             <Badge key={tag} variant="secondary" className="text-sm">{tag}</Badge>
           ))}
@@ -73,7 +69,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
       </header>
 
       {isLosmoProject && (
-        <div className="flex justify-center gap-4 mb-12 animate-fade-in-down" style={{ animationDelay: '300ms' }}>
+        <div className="flex justify-center gap-4 mb-12">
           <Button 
             variant={activePart === 'website' ? 'default' : 'outline'}
             onClick={() => setActivePart('website')}
@@ -99,9 +95,8 @@ export default function ProjectClient({ project, placeholderImages }: { project:
       )}
       
       <div className="flex flex-col gap-16 items-center">
-        {/* Video for Package Project - Displayed at the top */}
         {isPackageProject && (
-          <div className="w-full max-w-6xl mx-auto animate-fade-in-up" style={{ animationDelay: '300ms' }}>
+          <div className="w-full max-w-6xl mx-auto">
              <div className="p-4 rounded-xl bg-gradient-to-br from-card to-background/80 border border-primary/20 shadow-2xl shadow-primary/10 overflow-hidden">
                 <video
                     src="https://raw.githubusercontent.com/phlagon/purr-folio/9cdfabedb3d405c90563cc732aaa3532d718a5bb/medmix%20packaging.mp4"
@@ -117,7 +112,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
           </div>
         )}
 
-        <div className="animate-fade-in-up w-full" style={{ animationDelay: '400ms' }}>
+        <div className="w-full">
           {isAppProject ? (
             <div className="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[14px] rounded-[2.5rem] h-[600px] w-[300px] shadow-xl">
                 <div className="w-[148px] h-[18px] bg-gray-800 top-0 rounded-b-[1rem] left-1/2 -translate-x-1/2 absolute"></div>
@@ -184,9 +179,9 @@ export default function ProjectClient({ project, placeholderImages }: { project:
               )}
 
               {activePart === 'app' && (
-                <div className="space-y-12 max-w-6xl mx-auto animate-fade-in-up">
+                <div className="space-y-12 max-w-6xl mx-auto">
                   <div className="space-y-12">
-                    <Card className="overflow-hidden border-2 border-primary/20 shadow-lg hover:shadow-primary/20 transition-shadow duration-300">
+                    <Card className="overflow-hidden border-2 border-primary/20 shadow-lg">
                       <CardContent className="p-0">
                         <Image
                           src="https://raw.githubusercontent.com/phlagon/purr-folio/71c54d64fd51dfb14c2157d784043438c397591f/Screenshot%202026-02-08%20at%2021.23.20.png?raw=true"
@@ -198,7 +193,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                         />
                       </CardContent>
                     </Card>
-                    <Card className="overflow-hidden border-2 border-primary/20 shadow-lg hover:shadow-primary/20 transition-shadow duration-300">
+                    <Card className="overflow-hidden border-2 border-primary/20 shadow-lg">
                       <CardContent className="p-0">
                         <Image
                           src="https://raw.githubusercontent.com/phlagon/purr-folio/71c54d64fd51dfb14c2157d784043438c397591f/Screenshot%202026-02-08%20at%2021.22.21.png?raw=true"
@@ -215,8 +210,8 @@ export default function ProjectClient({ project, placeholderImages }: { project:
               )}
 
               {activePart === 'logo' && (
-                <div className="max-w-6xl mx-auto animate-fade-in-up">
-                  <Card className="overflow-hidden border-2 border-primary/20 shadow-lg hover:shadow-primary/20 transition-shadow duration-300">
+                <div className="max-w-6xl mx-auto">
+                  <Card className="overflow-hidden border-2 border-primary/20 shadow-lg">
                     <CardContent className="p-0">
                       <Image
                         src="https://raw.githubusercontent.com/phlagon/purr-folio/71c54d64fd51dfb14c2157d784043438c397591f/Screenshot%202026-02-08%20at%2021.23.50.png?raw=true"
@@ -232,42 +227,53 @@ export default function ProjectClient({ project, placeholderImages }: { project:
               )}
             </div>
           ) : isTypeSpecimen ? (
-            <div className="w-full max-w-5xl mx-auto animate-fade-in-up">
+            <div className="w-full max-w-5xl mx-auto">
               <div className="relative perspective-3000 h-[90vh] w-full flex items-center justify-center">
-                {projectImages.map((image, idx) => (
-                  <div 
-                    key={idx}
-                    className={cn(
-                      "absolute inset-0 page-base",
-                      idx === currentPage 
-                        ? (isAnimating ? "page-folding" : "page-active") 
-                        : idx < currentPage 
-                          ? "page-flipped" 
-                          : "page-upcoming"
-                    )}
-                  >
-                    <Card className="h-full w-full overflow-hidden border-2 border-primary/20 bg-background shadow-2xl relative">
-                      <CardContent className="p-0 h-full flex items-center justify-center relative group">
-                        <Image
-                          src={image.imageUrl}
-                          alt={`Page ${idx + 1}`}
-                          fill
-                          className="object-contain p-8"
-                        />
-                        
-                        {/* Dynamic Fold Shadow */}
-                        <div className="fold-shadow" />
+                {projectImages.map((image, idx) => {
+                  const isCurrent = idx === currentPage;
+                  const isNext = idx === currentPage + 1 && isAnimating;
+                  const isVisible = isCurrent || isNext;
+                  
+                  if (!isVisible && idx < currentPage) return (
+                    <div key={idx} className="absolute inset-0 page-base page-flipped" />
+                  );
+                  if (!isVisible) return (
+                    <div key={idx} className="absolute inset-0 page-base page-upcoming" />
+                  );
 
-                        {/* Spine Shadow */}
-                        <div className="absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-black/20 to-transparent pointer-events-none z-10" />
-                        
-                        <div className="absolute bottom-4 right-8 text-xs text-foreground/40 font-mono">
-                          {idx + 1} / {projectImages.length}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </div>
-                ))}
+                  return (
+                    <div 
+                      key={idx}
+                      className={cn(
+                        "absolute inset-0 page-base",
+                        isCurrent 
+                          ? (isAnimating ? "page-folding" : "page-active") 
+                          : "page-visible-under"
+                      )}
+                    >
+                      <Card className="h-full w-full overflow-hidden border-2 border-primary/20 bg-background shadow-2xl relative">
+                        <CardContent className="p-0 h-full flex items-center justify-center relative">
+                          <Image
+                            src={image.imageUrl}
+                            alt={`Page ${idx + 1}`}
+                            fill
+                            className="object-contain p-8"
+                          />
+                          
+                          {/* Dynamic Fold Shadow only on folding page */}
+                          {isCurrent && isAnimating && <div className="fold-shadow" />}
+
+                          {/* Spine Shadow */}
+                          <div className="absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-black/20 to-transparent pointer-events-none z-10" />
+                          
+                          <div className="absolute bottom-4 right-8 text-xs text-foreground/40 font-mono">
+                            {idx + 1} / {projectImages.length}
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  );
+                })}
                 
                 {/* Navigation Overlays */}
                 <button 
@@ -320,7 +326,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
           )}
         </div>
         
-        <div className="space-y-4 animate-fade-in-up max-w-3xl mx-auto text-center" style={{ animationDelay: '600ms' }}>
+        <div className="space-y-4 max-w-3xl mx-auto text-center">
             <h2 className="text-[10px] font-bold font-headline uppercase tracking-widest text-primary">The Vision</h2>
             <p className="text-[9px] text-foreground/80 leading-relaxed uppercase tracking-widest px-4">
               {project.longDescription}
