@@ -351,15 +351,18 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                         <CarouselContent className="-ml-8">
                           {losmoAppImages.map((image, index) => (
                             <CarouselItem key={index} className="pl-8 basis-full md:basis-1/2 lg:basis-1/3">
-                              <div className="relative aspect-[9/19] rounded-2xl overflow-hidden bg-black shadow-2xl border border-white/10 group">
-                                <Image
-                                  src={image.imageUrl}
-                                  alt={`Losmo App Screen ${index + 1}`}
-                                  fill
-                                  className="object-contain transition-transform duration-700 group-hover:scale-105"
-                                  priority={index < 3}
-                                  unoptimized
-                                />
+                              <div className="relative aspect-[9/19] rounded-2xl overflow-y-auto scrollbar-hide bg-black shadow-2xl border border-white/10 group">
+                                {image && (
+                                  <Image
+                                    src={image.imageUrl}
+                                    alt={`Losmo App Screen ${index + 1}`}
+                                    width={360}
+                                    height={1200}
+                                    className="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]"
+                                    priority={index < 3}
+                                    unoptimized
+                                  />
+                                )}
                               </div>
                             </CarouselItem>
                           ))}
