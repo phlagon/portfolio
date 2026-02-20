@@ -137,6 +137,32 @@ export default function ProjectClient({ project, placeholderImages }: { project:
             {project.title}
           </h1>
         </Reveal>
+
+        {isLogoProject && (
+          <Reveal delay={50}>
+            <nav className="flex items-center justify-center gap-12 mt-8 mb-4">
+              <Link 
+                href="/projects/project-3/"
+                className={cn(
+                  "transition-all uppercase tracking-[0.4em] text-[10px] font-black pb-2 border-b-2",
+                  project.id === 'project-3' ? "text-primary border-primary" : "text-foreground/20 border-transparent hover:text-foreground/60"
+                )}
+              >
+                Logo Design
+              </Link>
+              <Link 
+                href="/projects/project-logo-redesign/"
+                className={cn(
+                  "transition-all uppercase tracking-[0.4em] text-[10px] font-black pb-2 border-b-2",
+                  project.id === 'project-logo-redesign' ? "text-primary border-primary" : "text-foreground/20 border-transparent hover:text-foreground/60"
+                )}
+              >
+                Logo Redesign
+              </Link>
+            </nav>
+          </Reveal>
+        )}
+
         <Reveal delay={100}>
           <div className="flex justify-center flex-wrap gap-3">
             {project.tags.map((tag) => (
@@ -405,16 +431,16 @@ export default function ProjectClient({ project, placeholderImages }: { project:
               </div>
             </Reveal>
           ) : isLosmo ? (
-            <Reveal className="w-full max-w-6xl mx-auto">
+            <Reveal className="w-full max-w-5xl mx-auto">
               <div className="relative w-full group">
-                <div className="relative bg-[#1a1a1a] rounded-[2.5rem] p-[1.5%] shadow-[0_100px_100px_-50px_rgba(0,0,0,0.8)] border-4 border-[#333]">
-                   <div className="relative aspect-video bg-black rounded-lg overflow-hidden border-8 border-black shadow-inner">
+                {/* iMac Monitor Frame */}
+                <div className="relative bg-[#000] rounded-[3rem] p-4 pt-4 pb-16 shadow-[0_100px_100px_-50px_rgba(0,0,0,0.8)] border-[6px] border-[#333] overflow-hidden">
+                   <div className="relative aspect-video bg-[#111] rounded-[1.5rem] overflow-hidden border-2 border-white/5">
                     <Carousel className="w-full h-full">
-                      <CarouselContent className="-ml-0">
+                      <CarouselContent className="-ml-0 h-full">
                         {projectImages.map((image, index) => (
-                          <CarouselItem key={index} className="pl-0">
-                            <div className="relative w-full h-[600px] flex flex-col overflow-hidden bg-black/40">
-                              <div className="flex-1 overflow-y-auto scrollbar-hide">
+                          <CarouselItem key={index} className="pl-0 h-full">
+                            <div className="relative w-full h-full overflow-y-auto scrollbar-hide bg-black/40 flex flex-col">
                                  {image && (
                                    <Image
                                      src={image.imageUrl}
@@ -425,24 +451,32 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                      unoptimized
                                    />
                                  )}
-                              </div>
-                              <div className="absolute top-6 right-6 bg-primary/20 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest text-primary border border-primary/20 shadow-xl">
-                                Live Preview • Scrollable
-                              </div>
                             </div>
                           </CarouselItem>
                         ))}
                       </CarouselContent>
-                      <CarouselPrevious className="left-8 h-12 w-12 bg-black/80 border-white/10 text-white hover:bg-primary hover:text-black transition-all z-50" />
-                      <CarouselNext className="right-8 h-12 w-12 bg-black/80 border-white/10 text-white hover:bg-primary hover:text-black transition-all z-50" />
+                      <CarouselPrevious className="left-4 h-10 w-10 bg-black/40 backdrop-blur-md border-white/5 text-white hover:bg-primary hover:text-black transition-all z-50 rounded-full" />
+                      <CarouselNext className="right-4 h-10 w-10 bg-black/40 backdrop-blur-md border-white/5 text-white hover:bg-primary hover:text-black transition-all z-50 rounded-full" />
                     </Carousel>
                    </div>
-                   <div className="absolute bottom-[2%] left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-[#333]" />
+                   
+                   {/* Monitor Bottom Logo Detail */}
+                   <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-40">
+                      <div className="w-6 h-6 rounded-full border border-white/20 flex items-center justify-center">
+                        <div className="w-1.5 h-1.5 bg-white/40 rounded-full" />
+                      </div>
+                   </div>
                 </div>
-                <div className="relative mx-auto w-[25%] h-20 bg-gradient-to-b from-[#333] to-[#222] mt-[-2px] clip-path-stand shadow-2xl rounded-b-lg">
-                   <div className="absolute inset-x-0 bottom-0 h-1 bg-black/40" />
+                
+                {/* iMac Stand */}
+                <div className="relative mx-auto w-32 h-24 bg-gradient-to-b from-[#222] to-[#111] mt-[-2px] rounded-b-xl shadow-2xl overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20" />
                 </div>
-                <div className="relative mx-auto w-[40%] h-3 bg-black/40 blur-xl rounded-full mt-2" />
+                <div className="relative mx-auto w-56 h-3 bg-black/60 blur-xl rounded-full mt-[-8px]" />
+              </div>
+              
+              <div className="mt-12 text-center text-[10px] font-black uppercase tracking-[0.5em] text-primary/40 animate-pulse">
+                Interactive Mockup • Scroll Inside Monitor
               </div>
             </Reveal>
           ) : isLogoProject ? (

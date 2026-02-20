@@ -9,8 +9,6 @@ import { cn } from "@/lib/utils";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-  { href: "/projects/project-3/", label: "Logo Design" },
-  { href: "/projects/project-logo-redesign/", label: "Logo Redesign" },
   { href: "/#projects", label: "Portfolio" },
   { href: "/#contact", label: "Contact" },
 ];
@@ -32,7 +30,7 @@ export function Header() {
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
           {navLinks.map((link) => {
             // Only apply active state logic after mounting to avoid hydration errors
-            const isActive = mounted && (pathname === link.href || (pathname.startsWith('/projects/') && link.href === '/#projects' && !pathname.includes('project-3') && !pathname.includes('project-logo-redesign')));
+            const isActive = mounted && (pathname === link.href || (pathname.startsWith('/projects/') && link.href === '/#projects'));
             const isSpecificActive = mounted && pathname === link.href;
             
             return (
