@@ -66,6 +66,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
 
   const projectImages = (project.imageIds || []).map(id => placeholderImages.find(img => img.id === id)).filter(Boolean) as any[];
   const isRapido = project.id === 'project-1';
+  const isLosmo = project.id === 'project-2';
   
   const handleSearchTransit = async () => {
     if (!pickupLocation || !dropLocation) return;
@@ -385,6 +386,23 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                       )}
                   </div>
               </div>
+            </div>
+          ) : isLosmo ? (
+            <div className="w-full max-w-5xl mx-auto space-y-0 border border-white/10 shadow-2xl overflow-hidden bg-white">
+                <div className="flex flex-col">
+                    {projectImages.map((image, idx) => (
+                      <div key={idx} className="relative w-full">
+                        <Image 
+                          src={image.imageUrl} 
+                          alt={`Losmo Section ${idx + 1}`} 
+                          width={1920} 
+                          height={1080} 
+                          className="w-full h-auto block" 
+                          unoptimized
+                        />
+                      </div>
+                    ))}
+                </div>
             </div>
           ) : (
             <div className="p-1 bg-white/5 border border-white/10 shadow-2xl w-full max-w-6xl mx-auto">
