@@ -16,7 +16,7 @@ import {
   ChevronRight, 
   RotateCcw,
   Navigation,
-  PalmTree,
+  Palmtree,
   CloudOff,
   User,
   Briefcase
@@ -65,16 +65,14 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   };
 
   const getRapidoImage = () => {
-    if (rapidoScreen === 'flight') return placeholderImages.find(img => img.id === 'rapido-flight');
+    if (rapidoScreen === 'flight') return placeholderImages.find(img => img.id === 'rapido-flight')?.imageUrl;
     if (rapidoScreen === 'travel') return "https://raw.githubusercontent.com/phlagon/purr-folio/d65df9b43e62721b4bff28ad3c0c65f1b90e3396/travel%202.jpg";
     return placeholderImages.find(img => img.id === 'rapido-home')?.imageUrl;
   };
 
-  const RAPIDO_YELLOW = "#F9D915";
-
   const navTabs = [
     { id: 'ride', label: 'Ride', icon: Navigation },
-    { id: 'travel', label: 'Travel', icon: PalmTree },
+    { id: 'travel', label: 'Travel', icon: Palmtree },
     { id: 'offline', label: 'Offline', icon: CloudOff },
     { id: 'live', label: 'Live', icon: MapPin },
     { id: 'profile', label: 'Profile', icon: User },
