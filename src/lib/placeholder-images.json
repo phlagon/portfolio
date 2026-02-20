@@ -67,6 +67,24 @@
       "imageHint": "candle branding"
     },
     {
+      "id": "losmo-product",
+      "description": "Losmo Product Page",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/cf9fa69f68449ce2ee8b9ab827193515392ae546/product%20page%206.jpg",
+      "imageHint": "product details"
+    },
+    {
+      "id": "losmo-gift",
+      "description": "Losmo Gift Section",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/d24db5467c262073456571996f9769673dfeea83/Gift%207.jpg",
+      "imageHint": "gift boxing"
+    },
+    {
+      "id": "losmo-story",
+      "description": "Losmo Brand Story",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/d24db5467c262073456571996f9769673dfeea83/story.png",
+      "imageHint": "brand history"
+    },
+    {
       "id": "rapido-home",
       "description": "Rapido Home Page (Ride)",
       "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/92a13efe52f877af083d2af307f50753e3a5c6d2/home%20page.jpg",
