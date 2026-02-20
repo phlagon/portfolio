@@ -1,4 +1,3 @@
-
 export const projects = [
   {
     id: "project-1",
@@ -23,9 +22,9 @@ export const projects = [
     title: "LOGO",
     description: "Breathing new life into a brand's identity with a modern, impactful, and versatile logo redesign.",
     longDescription: "This project involved taking an existing brand identity and breathing new life into it. The redesign focused on modernizing the visual language while honoring the brand's core values. The result is an impactful and versatile logo that works beautifully across all digital and print applications, giving the brand a fresh platform for future growth.",
-    tags: ["Logo Design", "Logo redesign"],
+    tags: ["Logo redesign"],
     thumbnailId: "project-3-thumb",
-    imageIds: [],
+    imageIds: ["logo-redesign-1", "logo-redesign-2", "logo-redesign-3", "logo-redesign-4", "logo-redesign-5"],
   },
   {
     id: "project-5",

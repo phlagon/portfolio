@@ -21,8 +21,8 @@
     {
       "id": "project-3-thumb",
       "description": "Breathing new life into a brand's identity with a modern, impactful, and versatile logo redesign.",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/3b5ade78949bc7e2bb844b4f36532c942e7245dd/project-3.png",
-      "imageHint": "logo design"
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/2e71bb52245f22555171ab2bd5f2820e09bfbe0c/leader%20board.jpg",
+      "imageHint": "logo redesign"
     },
     {
       "id": "project-5-thumb",
@@ -173,6 +173,36 @@
       "description": "Typography Specimen Detail",
       "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/3b5ade78949bc7e2bb844b4f36532c942e7245dd/project-5.png",
       "imageHint": "typography mockup"
+    },
+    {
+      "id": "logo-redesign-1",
+      "description": "Logo redesign - logo out",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/2e71bb52245f22555171ab2bd5f2820e09bfbe0c/logo%20out.png",
+      "imageHint": "logo redesign"
+    },
+    {
+      "id": "logo-redesign-2",
+      "description": "Logo redesign - leader board",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/2e71bb52245f22555171ab2bd5f2820e09bfbe0c/leader%20board.jpg",
+      "imageHint": "brand identity"
+    },
+    {
+      "id": "logo-redesign-3",
+      "description": "Logo redesign - woody",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/2e71bb52245f22555171ab2bd5f2820e09bfbe0c/woody.jpg",
+      "imageHint": "logo woody"
+    },
+    {
+      "id": "logo-redesign-4",
+      "description": "Logo redesign - 30 off",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/2e71bb52245f22555171ab2bd5f2820e09bfbe0c/30%20off.png",
+      "imageHint": "sale design"
+    },
+    {
+      "id": "logo-redesign-5",
+      "description": "Logo redesign - bc",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/2e71bb52245f22555171ab2bd5f2820e09bfbe0c/bc.png",
+      "imageHint": "business card"
     }
   ]
 }
