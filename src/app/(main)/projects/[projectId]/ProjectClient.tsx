@@ -20,7 +20,7 @@ import {
   User,
   Globe,
   Navigation,
-  Suitcase
+  Briefcase
 } from 'lucide-react';
 
 import type { ImagePlaceholder } from '@/lib/placeholder-images';
@@ -47,7 +47,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   
   const projectImages = (project.imageIds || []).map(id => placeholderImages.find(img => img.id === id)).filter(Boolean) as any[];
   const isRapido = project.id === 'project-1';
-  const isLosmoProject = project.id === 'project-2';
   const isPackageProject = project.id === 'project-5';
   const isTypeSpecimen = project.id === 'project-6';
 
@@ -90,23 +89,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
           ))}
         </div>
       </header>
-
-      {isLosmoProject && (
-        <div className="flex justify-center gap-6 mb-16">
-          {['website', 'app', 'logo'].map((part) => (
-            <button 
-              key={part}
-              onClick={() => setActivePart(part as any)}
-              className={cn(
-                "px-8 py-3 transition-all text-[11px] uppercase tracking-[0.3em] font-black border-b-2",
-                activePart === part ? "border-primary text-primary" : "border-transparent text-foreground/40 hover:text-foreground/70"
-              )}
-            >
-              {part}
-            </button>
-          ))}
-        </div>
-      )}
       
       <div className="flex flex-col gap-24 items-center">
         {isPackageProject && (
@@ -162,11 +144,11 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                         )}
                       </div>
 
-                      {/* Fixed Navigation Bar - Stick to Bottom */}
+                      {/* Fixed Navigation Bar - Authentic Shell */}
                       <div className="absolute bottom-0 left-0 w-full h-[84px] bg-black/95 backdrop-blur-2xl border-t border-white/10 flex items-center justify-around px-2 z-[60] pb-4 shadow-[0_-20px_40px_rgba(0,0,0,0.5)]">
                         {[
                           { id: 'ride', label: 'Ride', icon: Bike },
-                          { id: 'travel', label: 'Travel', icon: Suitcase },
+                          { id: 'travel', label: 'Travel', icon: Briefcase },
                           { id: 'offline', label: 'Offline', icon: ArrowDownToLine },
                           { id: 'live', label: 'Live', icon: Activity },
                           { id: 'profile', label: 'Profile', icon: User },
