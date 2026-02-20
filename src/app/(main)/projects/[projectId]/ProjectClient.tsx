@@ -126,14 +126,20 @@ export default function ProjectClient({ project, placeholderImages }: { project:
         </Link>
       </Reveal>
 
-      <Reveal className="mb-16 text-center space-y-6">
-        <h1 className="text-5xl md:text-[10rem] font-black text-white uppercase tracking-tighter leading-none">{project.title}</h1>
-        <div className="flex justify-center flex-wrap gap-3">
-          {project.tags.map((tag) => (
-            <Badge key={tag} variant="outline" className="text-[10px] uppercase tracking-[0.2em] font-black border-primary/20 text-primary px-4 py-1">{tag}</Badge>
-          ))}
-        </div>
-      </Reveal>
+      <div className="mb-16 text-center space-y-6">
+        <Reveal>
+          <h1 className="text-5xl md:text-[10rem] font-black text-white uppercase tracking-tighter leading-none hover:text-primary hover:drop-shadow-[0_0_20px_hsl(var(--primary)/0.5)] transition-all duration-500 cursor-none select-none">
+            {project.title}
+          </h1>
+        </Reveal>
+        <Reveal delay={100}>
+          <div className="flex justify-center flex-wrap gap-3">
+            {project.tags.map((tag) => (
+              <Badge key={tag} variant="outline" className="text-[10px] uppercase tracking-[0.2em] font-black border-primary/20 text-primary px-4 py-1">{tag}</Badge>
+            ))}
+          </div>
+        </Reveal>
+      </div>
       
       <div className="flex flex-col gap-24 items-center">
         <div className="w-full">
