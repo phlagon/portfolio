@@ -13,8 +13,8 @@ import {
   CloudOff,
   User,
   Monitor,
-  FileText,
-  ExternalLink
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 
 import type { ImagePlaceholder } from '@/lib/placeholder-images';
@@ -30,11 +30,13 @@ import { Card, CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import { getTransitOptions, type TransitSearchOutput } from '@/ai/flows/transit-search-flow';
 import { Reveal } from '@/components/ui/reveal';
+import { Button } from '@/components/ui/button';
 
 type ProjectType = (typeof projects)[0];
 
 export default function ProjectClient({ project, placeholderImages }: { project: ProjectType, placeholderImages: ImagePlaceholder[] }) {
   const [rapidoScreen, setRapidoScreen] = useState<'ride' | 'travel' | 'offline' | 'live' | 'profile' | 'flight' | 'your-trip' | 'public-transport' | 'stops' | 'confirmation' | 'auto-find' | 'gps-confirm' | 'weather'>('ride');
+  const [currentPage, setCurrentPage] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   
   const [pickupLocation, setPickupLocation] = useState('');
@@ -103,6 +105,18 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   ];
 
   const isStaticScreen = ['flight', 'your-trip', 'public-transport', 'stops', 'confirmation', 'auto-find', 'gps-confirm', 'weather'].includes(rapidoScreen);
+
+  const nextPage = () => {
+    if (currentPage < projectImages.length - 1) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const prevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
 
   return (
     <div className="container py-12 md:py-24">
@@ -296,13 +310,67 @@ export default function ProjectClient({ project, placeholderImages }: { project:
               </div>
             </Reveal>
           ) : isTypeSpecimen ? (
-            <div className="w-full max-w-7xl mx-auto py-12 px-4 space-y-12">
-              <Reveal className="w-full aspect-[16/11] bg-white/5 border border-white/10 overflow-hidden shadow-2xl relative">
-                <iframe 
-                  src="https://raw.githubusercontent.com/phlagon/purr-folio/3dea7a623a7b346182ae83d184f86bfa8883b84d/recusive%20final_compressed.pdf"
-                  className="w-full h-full border-none"
-                  title="Recursive Type Specimen"
-                />
+            <div className="w-full max-w-5xl mx-auto py-12 px-4 space-y-12">
+              <Reveal className="relative group">
+                <div className="aspect-[16/11] bg-white border border-white/10 shadow-2xl overflow-hidden relative group-hover:shadow-primary/20 transition-all duration-500">
+                  <div key={currentPage} className="w-full h-full animate-in fade-in slide-in-from-right-8 duration-700">
+                    <Image 
+                      src={projectImages[currentPage]?.imageUrl || ''}
+                      alt={`Specimen Page ${currentPage + 1}`}
+                      fill
+                      className="object-contain"
+                      priority
+                      unoptimized
+                    />
+                  </div>
+
+                  {/* Desktop Controls Overlay */}
+                  <div className="absolute inset-y-0 left-0 w-24 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <Button 
+                      variant="ghost" 
+                      size="icon" 
+                      onClick={prevPage}
+                      disabled={currentPage === 0}
+                      className="h-16 w-16 rounded-full bg-black/40 backdrop-blur-md text-white hover:bg-primary hover:text-black disabled:opacity-0"
+                    >
+                      <ChevronLeft className="h-10 w-10" />
+                    </Button>
+                  </div>
+                  <div className="absolute inset-y-0 right-0 w-24 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <Button 
+                      variant="ghost" 
+                      size="icon" 
+                      onClick={nextPage}
+                      disabled={currentPage === projectImages.length - 1}
+                      className="h-16 w-16 rounded-full bg-black/40 backdrop-blur-md text-white hover:bg-primary hover:text-black disabled:opacity-0"
+                    >
+                      <ChevronRight className="h-10 w-10" />
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Mobile & Minimalist Navigation Bar */}
+                <div className="flex items-center justify-between mt-8 border-t border-white/5 pt-8">
+                  <div className="flex gap-4">
+                    <Button 
+                      onClick={prevPage}
+                      disabled={currentPage === 0}
+                      className="rounded-none px-8 h-12 text-[10px] font-black uppercase tracking-[0.3em] bg-white/5 text-white hover:bg-primary hover:text-black transition-all"
+                    >
+                      Previous
+                    </Button>
+                    <Button 
+                      onClick={nextPage}
+                      disabled={currentPage === projectImages.length - 1}
+                      className="rounded-none px-8 h-12 text-[10px] font-black uppercase tracking-[0.3em] bg-white/5 text-white hover:bg-primary hover:text-black transition-all"
+                    >
+                      Next
+                    </Button>
+                  </div>
+                  <div className="text-[10px] font-black uppercase tracking-[0.5em] text-foreground/40">
+                    Page <span className="text-primary">{currentPage + 1}</span> / {projectImages.length}
+                  </div>
+                </div>
               </Reveal>
             </div>
           ) : (isLogoProject || isPackageRedesign || isPackageDesign) ? (
@@ -361,21 +429,19 @@ export default function ProjectClient({ project, placeholderImages }: { project:
               <Carousel className="w-full group">
                 <CarouselContent>
                   {projectImages.map((image, index) => (
-                    <CarouselItem key={index}>
-                      <Card className="border-none shadow-none bg-transparent">
-                        <CardContent className="relative h-[85vh] flex items-center justify-center p-0">
-                          {image && (
-                            <Image
-                              src={image.imageUrl}
-                              alt={`${project.title} image ${index + 1}`}
-                              fill
-                              className="object-contain grayscale hover:grayscale-0 transition-all duration-700"
-                              unoptimized
-                            />
-                          )}
-                        </CardContent>
-                      </Card>
-                    </CarouselItem>
+                    <Card key={index} className="border-none shadow-none bg-transparent">
+                      <CardContent className="relative h-[85vh] flex items-center justify-center p-0">
+                        {image && (
+                          <Image
+                            src={image.imageUrl}
+                            alt={`${project.title} image ${index + 1}`}
+                            fill
+                            className="object-contain grayscale hover:grayscale-0 transition-all duration-700"
+                            unoptimized
+                          />
+                        )}
+                      </CardContent>
+                    </Card>
                   ))}
                 </CarouselContent>
                 <CarouselPrevious className="left-6 bg-black/80 border-white/10" />
@@ -411,3 +477,4 @@ export default function ProjectClient({ project, placeholderImages }: { project:
     </div>
   );
 }
+
