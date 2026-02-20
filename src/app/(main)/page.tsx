@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -8,7 +7,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { Github, Linkedin, Twitter, Mail, Facebook } from "lucide-react";
 
-import { Loading } from "@/components/layout/loading";
 import { AboutSection } from "@/components/home/about-section";
 import { ProjectsSection } from "@/components/home/projects-section";
 import { HeroGraphic } from "@/components/home/hero-graphic";
@@ -32,9 +30,6 @@ const formSchema = z.object({
 });
 
 export default function Home() {
-  const [progress, setProgress] = useState(0);
-  const [showLoader, setShowLoader] = useState(true);
-
   const { toast } = useToast();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -54,30 +49,9 @@ export default function Home() {
     form.reset();
   }
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((oldProgress) => {
-        if (oldProgress >= 100) {
-          clearInterval(timer);
-          setTimeout(() => {
-            setShowLoader(false);
-          }, 800);
-          return 100;
-        }
-        return oldProgress + 4;
-      });
-    }, 20);
-
-    return () => clearInterval(timer);
-  }, []);
-
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
-
-  if (showLoader) {
-    return <Loading progress={progress} />;
-  }
 
   return (
     <main className="bg-background">
