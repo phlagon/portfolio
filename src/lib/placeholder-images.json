@@ -47,6 +47,12 @@
       "description": "Rapido Flight Booking",
       "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/055f5150e859457b4ce413f8241c93cdad3556e8/travel%20flight.jpg",
       "imageHint": "app interface"
+    },
+    {
+      "id": "rapido-nav",
+      "description": "Rapido Navigation Bar",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/4579872bb707e2449e7cea76118bc4ec33c4c950/nav%20%20home.jpg",
+      "imageHint": "app nav"
     }
   ]
 }

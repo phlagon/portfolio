@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -18,8 +19,6 @@ import {
   ArrowDownToLine,
   Activity,
   User,
-  Globe,
-  Navigation,
   Briefcase
 } from 'lucide-react';
 
@@ -49,6 +48,8 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   const isRapido = project.id === 'project-1';
   const isPackageProject = project.id === 'project-5';
   const isTypeSpecimen = project.id === 'project-6';
+
+  const navImage = placeholderImages.find(img => img.id === 'rapido-nav');
 
   const handleNextPage = () => {
     if (currentPage < projectImages.length - 1 && !isAnimating) {
@@ -146,31 +147,41 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                         )}
                       </div>
 
-                      {/* Fixed Navigation Bar - Authentic UI */}
-                      <div className="absolute bottom-0 left-0 w-full h-[84px] bg-black/95 backdrop-blur-2xl border-t border-white/10 flex items-center justify-around px-2 z-[60] pb-4 shadow-[0_-20px_40px_rgba(0,0,0,0.5)]">
-                        {[
-                          { id: 'ride', label: 'Ride', icon: Bike },
-                          { id: 'travel', label: 'Travel', icon: Briefcase },
-                          { id: 'offline', label: 'Offline', icon: ArrowDownToLine },
-                          { id: 'live', label: 'Live', icon: Activity },
-                          { id: 'profile', label: 'Profile', icon: User },
-                        ].map((tab) => {
-                          const Icon = tab.icon;
-                          const isActive = rapidoScreen === tab.id || (tab.id === 'travel' && rapidoScreen === 'flight');
-                          return (
-                            <button
-                              key={tab.id}
-                              onClick={() => setRapidoScreen(tab.id as any)}
-                              className={cn(
-                                "flex flex-col items-center gap-1.5 transition-all duration-300 flex-1 py-2",
-                                isActive ? "text-[#F9D915] scale-105" : "text-white/40 hover:text-white/70"
-                              )}
-                            >
-                              <Icon className={cn("h-5 w-5", isActive && "drop-shadow-[0_0_8px_rgba(249,217,21,0.5)]")} />
-                              <span className="text-[8px] font-black uppercase tracking-[0.2em]">{tab.label}</span>
-                            </button>
-                          );
-                        })}
+                      {/* Fixed Navigation Bar - Authentic UI Image Replacement */}
+                      <div className="absolute bottom-0 left-0 w-full h-[84px] z-[60] pb-4">
+                        {navImage && (
+                          <Image 
+                            src={navImage.imageUrl} 
+                            alt="Navigation Bar" 
+                            fill 
+                            className="object-cover pointer-events-none"
+                          />
+                        )}
+                        <div className="absolute inset-0 flex items-center justify-around px-2 pb-4 bg-black/40 backdrop-blur-sm border-t border-white/10">
+                          {[
+                            { id: 'ride', label: 'Ride', icon: Bike },
+                            { id: 'travel', label: 'Travel', icon: Briefcase },
+                            { id: 'offline', label: 'Offline', icon: ArrowDownToLine },
+                            { id: 'live', label: 'Live', icon: Activity },
+                            { id: 'profile', label: 'Profile', icon: User },
+                          ].map((tab) => {
+                            const Icon = tab.icon;
+                            const isActive = rapidoScreen === tab.id || (tab.id === 'travel' && rapidoScreen === 'flight');
+                            return (
+                              <button
+                                key={tab.id}
+                                onClick={() => setRapidoScreen(tab.id as any)}
+                                className={cn(
+                                  "flex flex-col items-center gap-1.5 transition-all duration-300 flex-1 py-2",
+                                  isActive ? "text-[#F9D915] scale-105" : "text-white/40 hover:text-white/70"
+                                )}
+                              >
+                                <Icon className={cn("h-5 w-5", isActive && "drop-shadow-[0_0_8px_rgba(249,217,21,0.5)]")} />
+                                <span className="text-[8px] font-black uppercase tracking-[0.2em]">{tab.label}</span>
+                              </button>
+                            );
+                          })}
+                        </div>
                       </div>
 
                       {/* Floating Return Button */}
