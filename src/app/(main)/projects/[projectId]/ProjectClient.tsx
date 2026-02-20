@@ -16,7 +16,8 @@ import {
   Bus,
   Loader2,
   RotateCcw,
-  PlayCircle
+  PlayCircle,
+  BookOpen
 } from 'lucide-react';
 
 import type { ImagePlaceholder } from '@/lib/placeholder-images';
@@ -48,18 +49,12 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   const [transitResults, setTransitResults] = useState<TransitSearchOutput | null>(null);
   const [isSearching, setIsSearching] = useState(false);
 
+  // Page Turn State for Type Specimen
+  const [foldedPages, setFoldedPages] = useState<number[]>([]);
+
   useEffect(() => {
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollTop = 0;
-    }
-  }, [rapidoScreen]);
-
-  useEffect(() => {
-    if (rapidoScreen === 'auto-find') {
-      const timer = setTimeout(() => {
-        setRapidoScreen('gps-confirm');
-      }, 1500);
-      return () => clearTimeout(timer);
     }
   }, [rapidoScreen]);
 
@@ -67,6 +62,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   const isRapido = project.id === 'project-1';
   const isLosmo = project.id === 'project-2';
   const isPackageDesign = project.id === 'project-5';
+  const isTypeSpecimen = project.id === 'project-6';
   
   const handleSearchTransit = async () => {
     if (!pickupLocation || !dropLocation) return;
@@ -82,6 +78,14 @@ export default function ProjectClient({ project, placeholderImages }: { project:
       console.error("Failed to fetch transit options", error);
     } finally {
       setIsSearching(false);
+    }
+  };
+
+  const togglePageFold = (index: number) => {
+    if (foldedPages.includes(index)) {
+      setFoldedPages(prev => prev.filter(i => i !== index));
+    } else {
+      setFoldedPages(prev => [...prev, index]);
     }
   };
 
@@ -389,10 +393,8 @@ export default function ProjectClient({ project, placeholderImages }: { project:
             </Reveal>
           ) : isLosmo ? (
             <Reveal className="relative mx-auto w-full max-w-5xl group perspective-3000">
-               {/* iMac Mockup */}
                <div className="relative bg-[#f5f5f7] p-3 md:p-5 rounded-t-[2.5rem] shadow-2xl border-x-[1px] border-t-[1px] border-white/20">
                   <div className="bg-[#0a0a0a] p-2 md:p-3 rounded-[1.5rem] overflow-hidden shadow-inner">
-                      {/* Screen Content */}
                       <div className="bg-white aspect-video overflow-y-auto scrollbar-hide rounded-lg shadow-2xl">
                           <div className="flex flex-col">
                               {projectImages.map((image, idx) => (
@@ -414,15 +416,11 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                       </div>
                   </div>
                </div>
-               
-               {/* Stand Base */}
                <div className="h-16 md:h-20 bg-gradient-to-b from-[#e2e2e2] to-[#c1c1c1] rounded-b-[2.5rem] relative flex items-center justify-center shadow-xl border-x-[1px] border-b-[2px] border-gray-400/30">
                   <div className="w-8 h-8 md:w-10 md:h-10 opacity-20 bg-black/20 rounded-full flex items-center justify-center">
                     <div className="w-3 h-3 md:w-4 md:h-4 bg-black/40 rounded-full" />
                   </div>
                </div>
-
-               {/* Stand Neck */}
                <div className="mx-auto w-40 h-24 md:w-56 md:h-32 bg-gradient-to-b from-[#d1d1d1] to-[#b1b1b1] rounded-b-2xl relative -mt-1 z-[-1] shadow-2xl transform-gpu origin-top">
                   <div className="absolute inset-x-0 top-0 h-4 bg-black/10" />
                   <div className="absolute bottom-0 inset-x-0 h-[2px] bg-black/5" />
@@ -454,7 +452,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                     </div>
                  </div>
                </Reveal>
-
                {projectImages.map((image, index) => (
                  <Reveal key={index} className="w-full">
                     <div className="relative aspect-video border border-white/5 shadow-2xl bg-white/5">
@@ -470,6 +467,56 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                     </div>
                  </Reveal>
                ))}
+            </div>
+          ) : isTypeSpecimen ? (
+            <div className="w-full max-w-5xl mx-auto py-12">
+               <Reveal className="relative perspective-3000 aspect-[4/3] w-full">
+                  <div className="absolute inset-0 bg-white/5 border border-white/10 flex items-center justify-center">
+                    <div className="text-center space-y-4">
+                      <BookOpen className="h-12 w-12 text-primary mx-auto opacity-20" />
+                      <p className="text-[10px] font-black uppercase tracking-[0.4em] opacity-40">End of Specimen</p>
+                      <button 
+                        onClick={() => setFoldedPages([])}
+                        className="text-xs font-black uppercase text-primary tracking-widest hover:underline"
+                      >
+                        Reset Book
+                      </button>
+                    </div>
+                  </div>
+
+                  {projectImages.map((image, index) => {
+                    const isFolded = foldedPages.includes(index);
+                    const isTop = index === (projectImages.length - 1 - foldedPages.length);
+                    
+                    return (
+                      <div 
+                        key={index}
+                        className={cn(
+                          "absolute inset-0 page-base bg-white shadow-2xl overflow-hidden cursor-none",
+                          isFolded && "page-folding",
+                          !isFolded && "page-active"
+                        )}
+                        style={{ zIndex: projectImages.length - index }}
+                        onClick={() => togglePageFold(index)}
+                      >
+                        <Image
+                          src={image.imageUrl}
+                          alt={`Specimen Page ${index + 1}`}
+                          fill
+                          className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                          unoptimized
+                        />
+                        <div className="fold-shadow" />
+                        
+                        {isTop && !isFolded && (
+                          <div className="absolute bottom-8 right-8 bg-black/80 text-white px-4 py-2 text-[10px] font-black uppercase tracking-widest flex items-center gap-3">
+                            Click to turn page <ArrowLeft className="h-3 w-3 rotate-180" />
+                          </div>
+                        )}
+                      </div>
+                    );
+                  }).reverse()}
+               </Reveal>
             </div>
           ) : (
             <Reveal className="p-1 bg-white/5 border border-white/10 shadow-2xl w-full max-w-6xl mx-auto">
