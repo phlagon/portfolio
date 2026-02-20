@@ -1,9 +1,10 @@
+
 'use client';
 
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, Plane, MapPin, Luggage, Gem, Sparkles, Crown, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowLeft, Plane, MapPin, Luggage, Gem, Sparkles, Crown, ChevronLeft, ChevronRight, RotateCcw } from 'lucide-react';
 
 import type { ImagePlaceholder } from '@/lib/placeholder-images';
 import type { projects } from '@/lib/projects';
@@ -25,9 +26,10 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   const [activePart, setActivePart] = useState<'website' | 'app' | 'logo'>('website');
   const [currentPage, setCurrentPage] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [rapidoScreen, setRapidoScreen] = useState<'home' | 'travel' | 'flight'>('home');
   
   const projectImages = (project.imageIds || []).map(id => placeholderImages.find(img => img.id === id)).filter(Boolean) as any[];
-  const isAppProject = project.tags.includes("Mobile App");
+  const isRapido = project.id === 'project-1';
   const isLosmoProject = project.id === 'project-2';
   const isPackageProject = project.id === 'project-5';
   const isTypeSpecimen = project.id === 'project-6';
@@ -35,8 +37,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   const handleNextPage = () => {
     if (currentPage < projectImages.length - 1 && !isAnimating) {
       setIsAnimating(true);
-      // Wait for the folding animation to reach near-completion
-      // Increased timeout to match the slower 3.5s animation
       setTimeout(() => {
         setCurrentPage(prev => prev + 1);
         setIsAnimating(false);
@@ -50,6 +50,11 @@ export default function ProjectClient({ project, placeholderImages }: { project:
     }
   };
 
+  const getRapidoImage = () => {
+    const id = rapidoScreen === 'home' ? 'rapido-home' : rapidoScreen === 'travel' ? 'rapido-travel' : 'rapido-flight';
+    return placeholderImages.find(img => img.id === id);
+  };
+
   return (
     <div className="container py-12 md:py-16">
       <div className="mb-8">
@@ -60,10 +65,10 @@ export default function ProjectClient({ project, placeholderImages }: { project:
       </div>
 
       <header className="mb-8 text-center space-y-4">
-        <h1 className="text-4xl md:text-5xl font-bold font-headline text-primary">{project.title}</h1>
+        <h1 className="text-4xl md:text-5xl font-bold font-headline text-primary uppercase tracking-tighter">{project.title}</h1>
         <div className="flex justify-center flex-wrap gap-2">
           {project.tags.map((tag) => (
-            <Badge key={tag} variant="secondary" className="text-sm">{tag}</Badge>
+            <Badge key={tag} variant="secondary" className="text-[10px] uppercase tracking-wider font-bold bg-white/5 border-white/10">{tag}</Badge>
           ))}
         </div>
       </header>
@@ -73,8 +78,8 @@ export default function ProjectClient({ project, placeholderImages }: { project:
           <button 
             onClick={() => setActivePart('website')}
             className={cn(
-              "px-6 py-2 rounded-full border transition-all text-sm font-medium",
-              activePart === 'website' ? "bg-primary text-primary-foreground border-primary" : "bg-transparent text-foreground/70 border-border hover:border-primary/50"
+              "px-6 py-2 rounded-full border transition-all text-[10px] uppercase tracking-widest font-bold",
+              activePart === 'website' ? "bg-primary text-black border-primary" : "bg-transparent text-foreground/70 border-white/10 hover:border-primary/50"
             )}
           >
             Website
@@ -82,8 +87,8 @@ export default function ProjectClient({ project, placeholderImages }: { project:
           <button 
             onClick={() => setActivePart('app')}
             className={cn(
-              "px-6 py-2 rounded-full border transition-all text-sm font-medium",
-              activePart === 'app' ? "bg-primary text-primary-foreground border-primary" : "bg-transparent text-foreground/70 border-border hover:border-primary/50"
+              "px-6 py-2 rounded-full border transition-all text-[10px] uppercase tracking-widest font-bold",
+              activePart === 'app' ? "bg-primary text-black border-primary" : "bg-transparent text-foreground/70 border-white/10 hover:border-primary/50"
             )}
           >
             App Concept
@@ -91,8 +96,8 @@ export default function ProjectClient({ project, placeholderImages }: { project:
           <button 
             onClick={() => setActivePart('logo')}
             className={cn(
-              "px-6 py-2 rounded-full border transition-all text-sm font-medium",
-              activePart === 'logo' ? "bg-primary text-primary-foreground border-primary" : "bg-transparent text-foreground/70 border-border hover:border-primary/50"
+              "px-6 py-2 rounded-full border transition-all text-[10px] uppercase tracking-widest font-bold",
+              activePart === 'logo' ? "bg-primary text-black border-primary" : "bg-transparent text-foreground/70 border-white/10 hover:border-primary/50"
             )}
           >
             Logo Variation
@@ -103,14 +108,14 @@ export default function ProjectClient({ project, placeholderImages }: { project:
       <div className="flex flex-col gap-16 items-center">
         {isPackageProject && (
           <div className="w-full max-w-6xl mx-auto">
-             <div className="p-4 rounded-xl bg-gradient-to-br from-card to-background/80 border border-primary/20 shadow-2xl shadow-primary/10 overflow-hidden">
+             <div className="p-4 rounded-xl bg-gradient-to-br from-card to-background/80 border border-white/5 shadow-2xl overflow-hidden">
                 <video
                     src="https://raw.githubusercontent.com/phlagon/purr-folio/9cdfabedb3d405c90563cc732aaa3532d718a5bb/medmix%20packaging.mp4"
                     autoPlay
                     loop
                     muted
                     playsInline
-                    className="w-full h-auto rounded-lg"
+                    className="w-full h-auto rounded-lg grayscale hover:grayscale-0 transition-all duration-700"
                 >
                     Your browser does not support the video tag.
                 </video>
@@ -119,44 +124,61 @@ export default function ProjectClient({ project, placeholderImages }: { project:
         )}
 
         <div className="w-full">
-          {isAppProject ? (
-            <div className="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[14px] rounded-[2.5rem] h-[600px] w-[300px] shadow-xl">
-                <div className="w-[148px] h-[18px] bg-gray-800 top-0 rounded-b-[1rem] left-1/2 -translate-x-1/2 absolute"></div>
-                <div className="h-[46px] w-[3px] bg-gray-800 absolute -left-[17px] top-[124px] rounded-l-lg"></div>
-                <div className="h-[46px] w-[3px] bg-gray-800 absolute -left-[17px] top-[178px] rounded-l-lg"></div>
-                <div className="h-[64px] w-[3px] bg-gray-800 absolute -right-[17px] top-[142px] rounded-r-lg"></div>
-                <div className="rounded-[2rem] overflow-hidden w-full h-full bg-background">
-                    <Carousel className="w-full h-full">
-                      <CarouselContent className="ml-0">
-                        {projectImages.map((image, index) => (
-                          <CarouselItem key={index} className="p-0">
-                            <Card className="border-none shadow-none h-full w-full bg-transparent">
-                              <CardContent className="p-0 h-full overflow-y-auto">
-                                {image && (
-                                  <Image
-                                    src={image.imageUrl}
-                                    alt={`${project.title} screenshot ${index + 1}`}
-                                    width={272}
-                                    height={598}
-                                    className="w-full h-auto"
-                                    data-ai-hint={image.imageHint}
-                                    priority={index === 0}
-                                  />
-                                )}
-                              </CardContent>
-                            </Card>
-                          </CarouselItem>
-                        ))}
-                      </CarouselContent>
-                      <CarouselPrevious className="left-4 text-primary" />
-                      <CarouselNext className="right-4 text-primary" />
-                    </Carousel>
-                </div>
+          {isRapido ? (
+            <div className="flex flex-col items-center gap-8">
+              <div className="relative mx-auto border-[#1a1a1a] bg-[#1a1a1a] border-[14px] rounded-[2.5rem] h-[650px] w-[320px] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)]">
+                  <div className="w-[148px] h-[18px] bg-[#1a1a1a] top-0 rounded-b-[1rem] left-1/2 -translate-x-1/2 absolute z-20"></div>
+                  <div className="h-[46px] w-[3px] bg-[#1a1a1a] absolute -left-[17px] top-[124px] rounded-l-lg"></div>
+                  <div className="h-[46px] w-[3px] bg-[#1a1a1a] absolute -left-[17px] top-[178px] rounded-l-lg"></div>
+                  <div className="h-[64px] w-[3px] bg-[#1a1a1a] absolute -right-[17px] top-[142px] rounded-r-lg"></div>
+                  
+                  <div className="rounded-[2rem] overflow-hidden w-full h-full bg-black relative">
+                      {getRapidoImage() && (
+                        <div className="relative w-full h-full animate-in fade-in duration-500">
+                          <Image
+                            src={getRapidoImage()!.imageUrl}
+                            alt={`Rapido ${rapidoScreen}`}
+                            fill
+                            className="object-cover"
+                            priority
+                          />
+                          
+                          {/* Interactions */}
+                          {rapidoScreen === 'home' && (
+                            <button 
+                              onClick={() => setRapidoScreen('travel')}
+                              className="absolute bottom-0 left-0 w-full h-[15%] bg-transparent cursor-pointer z-30"
+                              title="Click Travel Tab"
+                            />
+                          )}
+                          
+                          {rapidoScreen === 'travel' && (
+                            <button 
+                              onClick={() => setRapidoScreen('flight')}
+                              className="absolute top-[25%] left-0 w-[30%] h-[15%] bg-transparent cursor-pointer z-30"
+                              title="Click Flight Tab"
+                            />
+                          )}
+                          
+                          {rapidoScreen !== 'home' && (
+                            <button 
+                              onClick={() => setRapidoScreen('home')}
+                              className="absolute bottom-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center z-40 backdrop-blur-sm transition-colors"
+                              title="Reset to Home"
+                            >
+                              <RotateCcw className="h-4 w-4 text-white" />
+                            </button>
+                          )}
+                        </div>
+                      )}
+                  </div>
+              </div>
+              <p className="text-[10px] text-primary font-bold uppercase tracking-[0.3em] opacity-50">Interactive Prototype • Click to Navigate</p>
             </div>
           ) : isLosmoProject ? (
             <div className="w-full">
               {activePart === 'website' && (
-                <div className="p-4 rounded-xl bg-gradient-to-br from-card to-background/80 border border-primary/20 shadow-2xl shadow-primary/10 w-full max-w-6xl mx-auto">
+                <div className="p-4 rounded-xl bg-gradient-to-br from-card to-background/80 border border-white/5 shadow-2xl w-full max-w-6xl mx-auto">
                     <Carousel className="w-full group">
                         <CarouselContent>
                             {projectImages.map((image, index) => (
@@ -167,10 +189,9 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                     <Image
                                         src={image.imageUrl}
                                         alt={`${project.title} image ${index + 1}`}
-                                        width={800}
-                                        height={1200}
-                                        data-ai-hint={image.imageHint}
-                                        className="w-full h-auto"
+                                        width={1200}
+                                        height={1800}
+                                        className="w-full h-auto grayscale hover:grayscale-0 transition-all duration-700"
                                     />
                                     )}
                                 </CardContent>
@@ -178,8 +199,8 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             </CarouselItem>
                             ))}
                         </CarouselContent>
-                        <CarouselPrevious className="left-[-50px] opacity-0 group-hover:opacity-100 transition-opacity" />
-                        <CarouselNext className="right-[-50px] opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <CarouselPrevious className="left-4 opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 border-white/10" />
+                        <CarouselNext className="right-4 opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 border-white/10" />
                     </Carousel>
                 </div>
               )}
@@ -187,27 +208,25 @@ export default function ProjectClient({ project, placeholderImages }: { project:
               {activePart === 'app' && (
                 <div className="space-y-12 max-w-6xl mx-auto">
                   <div className="space-y-12">
-                    <Card className="overflow-hidden border-2 border-primary/20 shadow-lg">
+                    <Card className="overflow-hidden border border-white/5 shadow-2xl">
                       <CardContent className="p-0">
                         <Image
                           src="https://raw.githubusercontent.com/phlagon/purr-folio/71c54d64fd51dfb14c2157d784043438c397591f/Screenshot%202026-02-08%20at%2021.23.20.png?raw=true"
                           alt="LOSMO App Screenshot 1"
                           width={1200}
                           height={900}
-                          className="w-full h-auto object-cover"
-                          data-ai-hint="app mockup"
+                          className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700"
                         />
                       </CardContent>
                     </Card>
-                    <Card className="overflow-hidden border-2 border-primary/20 shadow-lg">
+                    <Card className="overflow-hidden border border-white/5 shadow-2xl">
                       <CardContent className="p-0">
                         <Image
                           src="https://raw.githubusercontent.com/phlagon/purr-folio/71c54d64fd51dfb14c2157d784043438c397591f/Screenshot%202026-02-08%20at%2021.22.21.png?raw=true"
                           alt="LOSMO App Screenshot 2"
                           width={1200}
                           height={900}
-                          className="w-full h-auto object-cover"
-                          data-ai-hint="app screen"
+                          className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700"
                         />
                       </CardContent>
                     </Card>
@@ -217,15 +236,14 @@ export default function ProjectClient({ project, placeholderImages }: { project:
 
               {activePart === 'logo' && (
                 <div className="max-w-6xl mx-auto">
-                  <Card className="overflow-hidden border-2 border-primary/20 shadow-lg">
+                  <Card className="overflow-hidden border border-white/5 shadow-2xl">
                     <CardContent className="p-0">
                       <Image
                         src="https://raw.githubusercontent.com/phlagon/purr-folio/71c54d64fd51dfb14c2157d784043438c397591f/Screenshot%202026-02-08%20at%2021.23.50.png?raw=true"
                         alt="LOSMO Logo Variation"
                         width={1200}
                         height={900}
-                        className="w-full h-auto object-cover"
-                        data-ai-hint="logo variation"
+                        className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700"
                       />
                     </CardContent>
                   </Card>
@@ -257,22 +275,20 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                           : "page-visible-under"
                       )}
                     >
-                      <Card className="h-full w-full overflow-hidden border-2 border-primary/20 bg-background shadow-2xl relative">
+                      <Card className="h-full w-full overflow-hidden border border-white/5 bg-background shadow-2xl relative">
                         <CardContent className="p-0 h-full flex items-center justify-center relative">
                           <Image
                             src={image.imageUrl}
                             alt={`Page ${idx + 1}`}
                             fill
-                            className="object-contain p-8"
+                            className="object-contain p-8 grayscale"
                           />
                           
-                          {/* Dynamic Fold Shadow only on folding page */}
                           {isCurrent && isAnimating && <div className="fold-shadow" />}
 
-                          {/* Spine Shadow */}
-                          <div className="absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-black/20 to-transparent pointer-events-none z-10" />
+                          <div className="absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-black/40 to-transparent pointer-events-none z-10" />
                           
-                          <div className="absolute bottom-4 right-8 text-xs text-foreground/40 font-mono">
+                          <div className="absolute bottom-4 right-8 text-[10px] text-white/20 font-mono tracking-widest">
                             {idx + 1} / {projectImages.length}
                           </div>
                         </CardContent>
@@ -281,29 +297,28 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                   );
                 })}
                 
-                {/* Navigation Overlays */}
                 <button 
                   onClick={handlePrevPage}
                   className={cn(
-                    "absolute left-4 z-40 p-2 rounded-full bg-background/50 backdrop-blur hover:bg-primary hover:text-primary-foreground transition-all border border-primary/20",
+                    "absolute left-4 z-40 p-3 rounded-full bg-black/50 backdrop-blur hover:bg-primary hover:text-black transition-all border border-white/10",
                     (currentPage === 0 || isAnimating) && "opacity-0 pointer-events-none"
                   )}
                 >
-                  <ChevronLeft className="h-6 w-6" />
+                  <ChevronLeft className="h-5 w-5" />
                 </button>
                 <button 
                   onClick={handleNextPage}
                   className={cn(
-                    "absolute right-4 z-40 p-2 rounded-full bg-background/50 backdrop-blur hover:bg-primary hover:text-primary-foreground transition-all border border-primary/20",
+                    "absolute right-4 z-40 p-3 rounded-full bg-black/50 backdrop-blur hover:bg-primary hover:text-black transition-all border border-white/10",
                     (currentPage === projectImages.length - 1 || isAnimating) && "opacity-0 pointer-events-none"
                   )}
                 >
-                  <ChevronRight className="h-6 w-6" />
+                  <ChevronRight className="h-5 w-5" />
                 </button>
               </div>
             </div>
           ) : (
-            <div className="p-4 rounded-xl bg-gradient-to-br from-card to-background/80 border border-primary/20 shadow-2xl shadow-primary/10 w-full max-w-6xl mx-auto">
+            <div className="p-4 rounded-xl bg-gradient-to-br from-card to-background/80 border border-white/5 shadow-2xl w-full max-w-6xl mx-auto">
               <Carousel className="w-full group">
                 <CarouselContent>
                   {projectImages.map((image, index) => (
@@ -315,9 +330,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               src={image.imageUrl}
                               alt={`${project.title} image ${index + 1}`}
                               fill
-                              style={{ objectFit: 'contain' }}
-                              data-ai-hint={image.imageHint}
-                              className="rounded-lg object-contain"
+                              className="rounded-lg object-contain grayscale hover:grayscale-0 transition-all duration-700"
                             />
                           )}
                         </CardContent>
@@ -325,47 +338,47 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <CarouselPrevious className="left-[-50px] opacity-0 group-hover:opacity-100 transition-opacity" />
-                <CarouselNext className="right-[-50px] opacity-0 group-hover:opacity-100 transition-opacity" />
+                <CarouselPrevious className="left-4 opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 border-white/10" />
+                <CarouselNext className="right-4 opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 border-white/10" />
               </Carousel>
             </div>
           )}
         </div>
         
         <div className="space-y-4 max-w-3xl mx-auto text-center">
-            <h2 className="text-[10px] font-bold font-headline uppercase tracking-widest text-primary">The Vision</h2>
-            <p className="text-[9px] text-foreground/80 leading-relaxed uppercase tracking-widest px-4">
+            <h2 className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary">The Vision</h2>
+            <p className="text-xs text-foreground/60 leading-relaxed uppercase tracking-widest px-8">
               {project.longDescription}
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-4 pt-4 text-primary text-[8px] uppercase tracking-tighter opacity-80">
-                {isAppProject ? (
+            <div className="flex flex-wrap items-center justify-center gap-12 pt-8 text-primary text-[10px] uppercase tracking-[0.2em] opacity-40">
+                {isRapido ? (
                     <>
                         <div className="flex items-center gap-2">
-                            <Plane className="h-3 w-3"/>
-                            <span className="font-semibold">Seamless Journeys</span>
+                            <Plane className="h-4 w-4"/>
+                            <span className="font-bold">Seamless Journeys</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <MapPin className="h-3 w-3"/>
-                            <span className="font-semibold">Intuitive Navigation</span>
+                            <MapPin className="h-4 w-4"/>
+                            <span className="font-bold">Intuitive Navigation</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <Luggage className="h-3 w-3"/>
-                            <span className="font-semibold">Luxury Experience</span>
+                            <Luggage className="h-4 w-4"/>
+                            <span className="font-bold">Luxury Experience</span>
                         </div>
                     </>
                 ) : (
                     <>
                         <div className="flex items-center gap-2">
-                            <Gem className="h-3 w-3"/>
-                            <span className="font-semibold">Timeless Elegance</span>
+                            <Gem className="h-4 w-4"/>
+                            <span className="font-bold">Timeless Elegance</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <Sparkles className="h-3 w-3"/>
-                            <span className="font-semibold">Modern Craft</span>
+                            <Sparkles className="h-4 w-4"/>
+                            <span className="font-bold">Modern Craft</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <Crown className="h-3 w-3"/>
-                            <span className="font-semibold">Signature Luxury</span>
+                            <Crown className="h-4 w-4"/>
+                            <span className="font-bold">Signature Luxury</span>
                         </div>
                     </>
                 )}

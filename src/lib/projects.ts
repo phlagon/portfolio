@@ -1,12 +1,13 @@
+
 export const projects = [
   {
     id: "project-1",
     title: "Rapido UI/UX Redesign",
-    description: "A complete UI/UX overhaul for the popular bike taxi app, focusing on a modern and user-friendly experience.",
+    description: "An interactive prototype redesign for Rapido, transforming travel into a premium digital experience.",
     longDescription: "The Rapido UI/UX redesign project was a deep dive into crafting a premium, end-to-end travel experience. Our focus was to transform the functional process of booking a ride into a seamless and sophisticated journey. By integrating a clean, intuitive interface with elegant visual cues, we elevated the user experience to reflect the speed and convenience of modern travel, with a touch of luxury. Every interaction was meticulously designed to be effortless, ensuring that users feel confident and catered to from the moment they open the app to their final destination.",
-    tags: ["UI/UX Design", "Mobile App", "Figma"],
+    tags: ["UI/UX Design", "Interactive Prototype", "Figma"],
     thumbnailId: "project-1-thumb",
-    imageIds: ["rapido-1", "rapido-2", "rapido-3", "rapido-4", "rapido-5"],
+    imageIds: ["rapido-home", "rapido-travel", "rapido-flight"],
   },
   {
     id: "project-2",

@@ -3,7 +3,7 @@
     {
       "id": "project-1-thumb",
       "description": "UI/UX redesign for Rapido, a bike taxi app.",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/3b5ade78949bc7e2bb844b4f36532c942e7245dd/Project-1.png",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/934c847585a181d9bfeab5b1d241f6d537c6f64b/home%20page.jpg",
       "imageHint": "app mockup"
     },
     {
@@ -31,88 +31,22 @@
       "imageHint": "typography design"
     },
     {
-      "id": "rapido-1",
-      "description": "Rapido project image 1",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/d0df336fd1d46ca2d09a030838c498356d514c1d/WhatsApp%20Image%202026-02-08%20at%2019.33.00%20(1).jpeg",
+      "id": "rapido-home",
+      "description": "Rapido Home Page",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/934c847585a181d9bfeab5b1d241f6d537c6f64b/home%20page.jpg",
       "imageHint": "mobile ui"
     },
     {
-      "id": "rapido-2",
-      "description": "Rapido project image 2",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/d0df336fd1d46ca2d09a030838c498356d514c1d/WhatsApp%20Image%202026-02-08%20at%2019.33.00%20(2).jpeg",
+      "id": "rapido-travel",
+      "description": "Rapido Travel Section",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/837fd86490c1a61f9e755837451973218d6cf2ab/travel%202.jpg",
       "imageHint": "app screen"
     },
     {
-      "id": "rapido-3",
-      "description": "Rapido project image 3",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/d0df336fd1d46ca2d09a030838c498356d514c1d/WhatsApp%20Image%202026-02-08%20at%2019.33.00%20(3).jpeg",
+      "id": "rapido-flight",
+      "description": "Rapido Flight Booking",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/055f5150e859457b4ce413f8241c93cdad3556e8/travel%20flight.jpg",
       "imageHint": "app interface"
-    },
-    {
-      "id": "rapido-4",
-      "description": "Rapido project image 4",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/d0df336fd1d46ca2d09a030838c498356d514c1d/WhatsApp%20Image%202026-02-08%20at%2019.33.00.jpeg",
-      "imageHint": "mobile design"
-    },
-    {
-      "id": "rapido-5",
-      "description": "Rapido project image 5",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/d0df336fd1d46ca2d09a030838c498356d514c1d/WhatsApp%20Image%202026-02-08%20at%2019.33.01.jpeg",
-      "imageHint": "user experience"
-    },
-    {
-      "id": "losmo-1",
-      "description": "LOSMO project image 1",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/2c06991479cbeec83a8ce51081d6ac8e12440495/WhatsApp%20Image%202026-02-08%20at%2019.44.01.jpeg",
-      "imageHint": "perfume branding"
-    },
-    {
-      "id": "losmo-2",
-      "description": "LOSMO project image 2",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/2c06991479cbeec83a8ce51081d6ac8e12440495/WhatsApp%20Image%202026-02-08%20at%2019.44.01%20(6).jpeg",
-      "imageHint": "luxury logo"
-    },
-    {
-      "id": "losmo-3",
-      "description": "LOSMO project image 3",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/2c06991479cbeec83a8ce51081d6ac8e12440495/WhatsApp%20Image%202026-02-08%20at%2019.44.01%20(5).jpeg",
-      "imageHint": "brand identity"
-    },
-    {
-      "id": "losmo-4",
-      "description": "LOSMO project image 4",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/2c06991479cbeec83a8ce51081d6ac8e12440495/WhatsApp%20Image%202026-02-08%20at%2019.44.01%20(4).jpeg",
-      "imageHint": "elegant design"
-    },
-    {
-      "id": "losmo-5",
-      "description": "LOSMO project image 5",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/2c06991479cbeec83a8ce51081d6ac8e12440495/WhatsApp%20Image%202026-02-08%20at%2019.44.01%20(3).jpeg",
-      "imageHint": "logo mockup"
-    },
-    {
-      "id": "losmo-6",
-      "description": "LOSMO project image 6",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/2c06991479cbeec83a8ce51081d6ac8e12440495/WhatsApp%20Image%202026-02-08%20at%2019.44.01%20(2).jpeg",
-      "imageHint": "visual identity"
-    },
-    {
-      "id": "losmo-7",
-      "description": "LOSMO project image 7",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/2c06991479cbeec83a8ce51081d6ac8e12440495/WhatsApp%20Image%202026-02-08%20at%2019.44.01%20(1).jpeg",
-      "imageHint": "stationery design"
-    },
-    {
-      "id": "losmo-8",
-      "description": "LOSMO project image 8",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/2c06991479cbeec83a8ce51081d6ac8e12440495/WhatsApp%20Image%202026-02-08%20at%2019.44.00.jpeg",
-      "imageHint": "brand guide"
-    },
-    {
-      "id": "typespec-1",
-      "description": "Type specimen details",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/a96e78f037e29b13997b3aa3cb5433327f5be201/Screenshot%202026-02-08%20at%2021.30.37.png?raw=true",
-      "imageHint": "typography example"
     }
   ]
 }
