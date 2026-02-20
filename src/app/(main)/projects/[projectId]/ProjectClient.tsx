@@ -304,18 +304,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                   title="Recursive Type Specimen"
                 />
               </Reveal>
-              
-              <Reveal delay={200} className="flex flex-col items-center gap-6">
-                 <Link 
-                   href="https://github.com/phlagon/purr-folio/raw/3dea7a623a7b346182ae83d184f86bfa8883b84d/recusive%20final_compressed.pdf" 
-                   target="_blank"
-                   className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-black font-black uppercase tracking-[0.4em] text-[10px] hover:bg-white transition-all duration-500 shadow-xl"
-                 >
-                   <FileText className="h-4 w-4" />
-                   Download Full Specimen
-                   <ExternalLink className="h-3 w-3 ml-2" />
-                 </Link>
-              </Reveal>
             </div>
           ) : (isLogoProject || isPackageRedesign || isPackageDesign) ? (
             <div className="flex flex-col gap-40 py-24 max-w-6xl mx-auto px-4">
