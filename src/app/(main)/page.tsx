@@ -105,7 +105,6 @@ export default function Home() {
                 <div className="absolute inset-0 z-0">
                   <HeroGraphic />
                 </div>
-                {/* Mockup image removed as per user request to focus only on the golden animation */}
               </div>
             </div>
           </div>
