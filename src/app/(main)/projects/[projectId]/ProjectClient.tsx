@@ -35,7 +35,7 @@ import { getTransitOptions, type TransitSearchOutput } from '@/ai/flows/transit-
 type ProjectType = (typeof projects)[0];
 
 export default function ProjectClient({ project, placeholderImages }: { project: ProjectType, placeholderImages: ImagePlaceholder[] }) {
-  const [rapidoScreen, setRapidoScreen] = useState<'ride' | 'travel' | 'offline' | 'live' | 'profile' | 'flight' | 'your-trip'>('ride');
+  const [rapidoScreen, setRapidoScreen] = useState<'ride' | 'travel' | 'offline' | 'live' | 'profile' | 'flight' | 'your-trip' | 'public-transport'>('ride');
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   
   const [pickupLocation, setPickupLocation] = useState('');
@@ -80,6 +80,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
     if (rapidoScreen === 'live') return placeholderImages.find(img => img.id === 'rapido-live')?.imageUrl;
     if (rapidoScreen === 'travel') return placeholderImages.find(img => img.id === 'rapido-travel')?.imageUrl;
     if (rapidoScreen === 'your-trip') return placeholderImages.find(img => img.id === 'rapido-your-trip')?.imageUrl;
+    if (rapidoScreen === 'public-transport') return placeholderImages.find(img => img.id === 'rapido-public-transport')?.imageUrl;
     return placeholderImages.find(img => img.id === 'rapido-home')?.imageUrl;
   };
 
@@ -90,6 +91,8 @@ export default function ProjectClient({ project, placeholderImages }: { project:
     { id: 'live', label: 'Live', icon: MapPin },
     { id: 'profile', label: 'Profile', icon: User },
   ];
+
+  const isStaticScreen = ['flight', 'your-trip', 'public-transport'].includes(rapidoScreen);
 
   return (
     <div className="container py-12 md:py-24">
@@ -123,7 +126,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                         ref={scrollContainerRef}
                         className={cn(
                           "flex-1 relative bg-white pb-[84px]",
-                          rapidoScreen === 'flight' || rapidoScreen === 'your-trip' ? "overflow-hidden" : "overflow-y-auto scrollbar-hide"
+                          isStaticScreen ? "overflow-hidden" : "overflow-y-auto scrollbar-hide"
                         )}
                       >
                         <div className="relative w-full">
@@ -137,7 +140,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               unoptimized
                             />
                             
-                            {(rapidoScreen === 'ride' || rapidoScreen === 'travel' || rapidoScreen === 'flight') && (
+                            {(rapidoScreen === 'ride' || rapidoScreen === 'travel') && (
                               <>
                                   <input 
                                       type="text"
@@ -162,36 +165,25 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               </>
                             )}
 
-                            {rapidoScreen === 'flight' && (
-                              <>
-                                  <input 
-                                      type="text"
-                                      value={departDate}
-                                      onChange={(e) => setDepartDate(e.target.value)}
-                                      className="absolute top-[16.5%] left-[18%] w-[33%] h-[4.5%] bg-transparent border-none text-[11px] font-medium focus:outline-none z-[80] text-black px-2"
-                                      autoComplete="off"
-                                      placeholder=""
-                                  />
-                                  <input 
-                                      type="text"
-                                      value={returnDate}
-                                      onChange={(e) => setReturnDate(e.target.value)}
-                                      className="absolute top-[16.5%] left-[53%] w-[33%] h-[4.5%] bg-transparent border-none text-[11px] font-medium focus:outline-none z-[80] text-black px-2"
-                                      autoComplete="off"
-                                      placeholder=""
-                                  />
-                              </>
-                            )}
-
                             {rapidoScreen === 'travel' && (
-                              <button 
-                                onClick={() => {
-                                  setRapidoScreen('flight');
-                                  setTransitResults(null);
-                                }}
-                                className="absolute top-[17.2%] left-[12%] w-[25%] h-[5%] bg-transparent cursor-pointer z-[95]"
-                                title="Flight Booking"
-                              />
+                              <>
+                                <button 
+                                  onClick={() => {
+                                    setRapidoScreen('public-transport');
+                                    setTransitResults(null);
+                                  }}
+                                  className="absolute top-[15%] left-[5%] w-[45%] h-[10%] bg-transparent cursor-pointer z-[95]"
+                                  title="Public Transport"
+                                />
+                                <button 
+                                  onClick={() => {
+                                    setRapidoScreen('flight');
+                                    setTransitResults(null);
+                                  }}
+                                  className="absolute top-[17.2%] left-[60%] w-[28%] h-[7%] bg-transparent cursor-pointer z-[95]"
+                                  title="Flight Booking"
+                                />
+                              </>
                             )}
 
                             {rapidoScreen === 'live' && (
@@ -199,6 +191,14 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                 onClick={() => setRapidoScreen('your-trip')}
                                 className="absolute top-[12.5%] left-[5%] w-[45%] h-[5%] bg-transparent cursor-pointer z-[95]"
                                 title="Your Trip"
+                              />
+                            )}
+
+                            {rapidoScreen === 'your-trip' && (
+                              <button 
+                                onClick={() => setRapidoScreen('public-transport')}
+                                className="absolute top-[65%] left-[5%] w-[90%] h-[15%] bg-transparent cursor-pointer z-[95]"
+                                title="Switch to Public Transport"
                               />
                             )}
                         </div>
@@ -218,7 +218,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                           </div>
                         )}
 
-                        {transitResults && (rapidoScreen === 'ride' || rapidoScreen === 'travel' || rapidoScreen === 'flight') && (
+                        {transitResults && (rapidoScreen === 'ride' || rapidoScreen === 'travel') && (
                           <div className="bg-[#F8F9FA] min-h-[400px] animate-in slide-in-from-bottom duration-500 pb-12">
                              <div className="space-y-4 pt-4">
                                 {transitResults.options.map((option, idx) => {
@@ -319,7 +319,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                       <div className="absolute bottom-0 left-0 w-full h-[84px] z-[60] bg-white border-t border-black/5 flex items-center justify-around px-2 pb-4">
                         {navTabs.map((tab) => {
                           const Icon = tab.icon;
-                          const isActive = rapidoScreen === tab.id || (tab.id === 'travel' && rapidoScreen === 'flight') || (tab.id === 'live' && rapidoScreen === 'your-trip');
+                          const isActive = rapidoScreen === tab.id || (tab.id === 'travel' && (rapidoScreen === 'flight' || rapidoScreen === 'public-transport')) || (tab.id === 'live' && rapidoScreen === 'your-trip');
                           return (
                             <button
                               key={tab.id}
@@ -346,7 +346,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                         })}
                       </div>
 
-                      {(rapidoScreen === 'flight' || transitResults || rapidoScreen === 'offline' || rapidoScreen === 'profile' || rapidoScreen === 'live' || rapidoScreen === 'your-trip') && (
+                      {(rapidoScreen !== 'ride') && (
                         <button 
                           onClick={() => {
                             setRapidoScreen('ride');
