@@ -129,14 +129,14 @@ export default function ProjectClient({ project, placeholderImages }: { project:
         <div className="w-full">
           {isRapido ? (
             <div className="flex flex-col items-center gap-8">
-              <div className="relative mx-auto border-[#1a1a1a] bg-[#1a1a1a] border-[14px] rounded-[2.5rem] h-[650px] w-[320px] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)]">
+              <div className="relative mx-auto border-[#1a1a1a] bg-[#1a1a1a] border-[14px] rounded-[2.5rem] h-[650px] w-[320px] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)] overflow-hidden">
+                  {/* Speaker Notch */}
                   <div className="w-[148px] h-[18px] bg-[#1a1a1a] top-0 rounded-b-[1rem] left-1/2 -translate-x-1/2 absolute z-40"></div>
-                  <div className="h-[46px] w-[3px] bg-[#1a1a1a] absolute -left-[17px] top-[124px] rounded-l-lg"></div>
-                  <div className="h-[46px] w-[3px] bg-[#1a1a1a] absolute -left-[17px] top-[178px] rounded-l-lg"></div>
-                  <div className="h-[64px] w-[3px] bg-[#1a1a1a] absolute -right-[17px] top-[142px] rounded-r-lg"></div>
                   
-                  <div className="rounded-[2rem] overflow-hidden w-full h-full bg-black relative">
-                      <div className="w-full h-full overflow-y-auto scrollbar-hide">
+                  {/* Phone Screen Container */}
+                  <div className="rounded-[2rem] overflow-hidden w-full h-full bg-black relative flex flex-col">
+                      {/* Scrollable Content */}
+                      <div className="flex-1 overflow-y-auto scrollbar-hide pb-[80px]">
                         {getRapidoImage() && (
                           <div className="relative w-full animate-in fade-in duration-500">
                             <Image
@@ -148,7 +148,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               priority
                             />
                             
-                            {/* Inner hotspots (screen specific) */}
+                            {/* Screen Specific Internal Hotspots */}
                             {rapidoScreen === 'travel' && (
                               <button 
                                 onClick={() => setRapidoScreen('flight')}
@@ -160,8 +160,8 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                         )}
                       </div>
 
-                      {/* Sticky Bottom Nav Hotspots */}
-                      <div className="absolute bottom-0 left-0 w-full h-[12%] bg-transparent flex z-50">
+                      {/* Fixed Bottom Nav Hotspots */}
+                      <div className="absolute bottom-0 left-0 w-full h-[80px] bg-black/40 backdrop-blur-md flex z-50 border-t border-white/5">
                         <button onClick={() => setRapidoScreen('ride')} className="flex-1 h-full" title="Ride" />
                         <button onClick={() => setRapidoScreen('travel')} className="flex-1 h-full" title="Travel" />
                         <button onClick={() => setRapidoScreen('offline')} className="flex-1 h-full" title="Offline" />
@@ -173,7 +173,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                       {rapidoScreen !== 'ride' && (
                         <button 
                           onClick={() => setRapidoScreen('ride')}
-                          className="absolute bottom-20 right-4 w-10 h-10 rounded-full bg-primary text-black flex items-center justify-center z-[60] shadow-xl hover:scale-110 transition-transform"
+                          className="absolute bottom-24 right-4 w-10 h-10 rounded-full bg-primary text-black flex items-center justify-center z-[60] shadow-xl hover:scale-110 transition-transform"
                           title="Return to Home"
                         >
                           <RotateCcw className="h-5 w-5" />
@@ -183,7 +183,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
               </div>
               <div className="flex flex-col items-center gap-2">
                 <p className="text-[10px] text-primary font-bold uppercase tracking-[0.3em] opacity-80">Interactive Prototype</p>
-                <p className="text-[10px] text-foreground/40 uppercase tracking-[0.1em]">Scroll vertically • Use bottom tabs to navigate</p>
+                <p className="text-[10px] text-foreground/40 uppercase tracking-[0.1em]">Vertical Scroll Enabled • Navigation Fixed at Bottom</p>
               </div>
             </div>
           ) : isLosmoProject ? (
