@@ -6,26 +6,19 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { 
   ArrowLeft, 
-  Plane, 
   MapPin, 
   Luggage, 
   Navigation,
   Palmtree,
   CloudOff,
   User,
-  Train,
-  Bus,
-  Loader2,
-  RotateCcw,
   Monitor,
-  ChevronRight,
-  ChevronLeft,
-  ArrowUpRight
+  FileText,
+  ExternalLink
 } from 'lucide-react';
 
 import type { ImagePlaceholder } from '@/lib/placeholder-images';
 import type { projects } from '@/lib/projects';
-import { Badge } from '@/components/ui/badge';
 import {
   Carousel,
   CarouselContent,
@@ -36,25 +29,19 @@ import {
 import { Card, CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import { getTransitOptions, type TransitSearchOutput } from '@/ai/flows/transit-search-flow';
-import { useToast } from '@/hooks/use-toast';
 import { Reveal } from '@/components/ui/reveal';
-import { Button } from '@/components/ui/button';
 
 type ProjectType = (typeof projects)[0];
 
 export default function ProjectClient({ project, placeholderImages }: { project: ProjectType, placeholderImages: ImagePlaceholder[] }) {
   const [rapidoScreen, setRapidoScreen] = useState<'ride' | 'travel' | 'offline' | 'live' | 'profile' | 'flight' | 'your-trip' | 'public-transport' | 'stops' | 'confirmation' | 'auto-find' | 'gps-confirm' | 'weather'>('ride');
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const { toast } = useToast();
   
   const [pickupLocation, setPickupLocation] = useState('');
   const [dropLocation, setDropLocation] = useState('');
   
   const [transitResults, setTransitResults] = useState<TransitSearchOutput | null>(null);
   const [isSearching, setIsSearching] = useState(false);
-
-  // Page Turn State for Type Specimen
-  const [foldedPages, setFoldedPages] = useState<number[]>([]);
 
   useEffect(() => {
     if (scrollContainerRef.current) {
@@ -85,18 +72,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
       console.error("Failed to fetch transit options", error);
     } finally {
       setIsSearching(false);
-    }
-  };
-
-  const turnNextPage = () => {
-    if (foldedPages.length < projectImages.length) {
-      setFoldedPages(prev => [...prev, foldedPages.length]);
-    }
-  };
-
-  const turnPrevPage = () => {
-    if (foldedPages.length > 0) {
-      setFoldedPages(prev => prev.slice(0, -1));
     }
   };
 
@@ -140,7 +115,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
 
       <div className="mb-16 text-center space-y-6">
         <Reveal>
-          <h1 className="text-5xl md:text-[10rem] font-black text-white uppercase tracking-tighter leading-none hover:text-primary hover:drop-shadow-[0_0_20px_hsl(var(--primary)/0.5)] transition-all duration-500 cursor-none select-none">
+          <h1 className="text-5xl md:text-[10rem] font-black text-white uppercase tracking-tighter leading-none hover:text-primary transition-all duration-500 select-none">
             {project.title}
           </h1>
         </Reveal>
@@ -200,7 +175,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
         <div className="w-full">
           {isRapido ? (
             <Reveal className="flex flex-col items-center gap-12">
-              {/* Rapido Screen Content */}
               <div className="relative mx-auto border-[#0a0a0a] bg-[#f8f9fa] border-[12px] rounded-[3.5rem] h-[720px] w-[360px] shadow-[0_60px_120px_-30px_rgba(0,0,0,1)] overflow-hidden">
                   <div className="w-[120px] h-[34px] bg-black top-4 rounded-[1.2rem] left-1/2 -translate-x-1/2 absolute z-[100] flex items-center justify-center">
                     <div className="w-2 h-2 rounded-full bg-white/10 ml-auto mr-4" />
@@ -224,7 +198,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               priority
                               unoptimized
                             />
-                            
                             {(rapidoScreen === 'ride' || rapidoScreen === 'travel') && (
                               <>
                                   <input 
@@ -249,9 +222,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                   />
                               </>
                             )}
-                            {/* Further Rapido Buttons... */}
                         </div>
-                        {/* Searching and Results UI... */}
                       </div>
 
                       <div className="absolute bottom-0 left-0 w-full h-[84px] z-[60] bg-white border-t border-black/5 flex items-center justify-around px-2 pb-4">
@@ -321,11 +292,31 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                       </Carousel>
                     </div>
                   </div>
-                  <div className="relative w-48 h-16 bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a] mt-[-1rem] z-[-1] rounded-b-xl" />
-                  <div className="relative w-64 h-2 bg-gradient-to-b from-[#333] to-[#111] rounded-full shadow-2xl" />
                 </div>
               </div>
             </Reveal>
+          ) : isTypeSpecimen ? (
+            <div className="w-full max-w-7xl mx-auto py-12 px-4 space-y-12">
+              <Reveal className="w-full aspect-[16/11] bg-white/5 border border-white/10 overflow-hidden shadow-2xl relative">
+                <iframe 
+                  src="https://raw.githubusercontent.com/phlagon/purr-folio/3dea7a623a7b346182ae83d184f86bfa8883b84d/recusive%20final_compressed.pdf"
+                  className="w-full h-full border-none"
+                  title="Recursive Type Specimen"
+                />
+              </Reveal>
+              
+              <Reveal delay={200} className="flex flex-col items-center gap-6">
+                 <Link 
+                   href="https://github.com/phlagon/purr-folio/raw/3dea7a623a7b346182ae83d184f86bfa8883b84d/recusive%20final_compressed.pdf" 
+                   target="_blank"
+                   className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-black font-black uppercase tracking-[0.4em] text-[10px] hover:bg-white transition-all duration-500 shadow-xl"
+                 >
+                   <FileText className="h-4 w-4" />
+                   Download Full Specimen
+                   <ExternalLink className="h-3 w-3 ml-2" />
+                 </Link>
+              </Reveal>
+            </div>
           ) : (isLogoProject || isPackageRedesign || isPackageDesign) ? (
             <div className="flex flex-col gap-40 py-24 max-w-6xl mx-auto px-4">
               {projectImages.map((image, index) => {
@@ -376,88 +367,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                   </Reveal>
                 );
               })}
-            </div>
-          ) : isTypeSpecimen ? (
-            <div className="w-full max-w-5xl mx-auto py-12 flex flex-col items-center gap-12">
-               <Reveal className="relative perspective-3000 aspect-[4/3] w-full max-w-4xl" onClick={() => foldedPages.length === projectImages.length && setFoldedPages([])}>
-                  {projectImages.map((image, index) => {
-                    const isFolded = foldedPages.includes(index);
-                    const isCurrent = index === foldedPages.length;
-                    
-                    return (
-                      <div 
-                        key={index}
-                        className={cn(
-                          "absolute inset-0 page-base bg-white shadow-2xl overflow-hidden cursor-none",
-                          isFolded ? "page-turned-static" : "z-20",
-                          index === foldedPages[foldedPages.length - 1] && "page-turning"
-                        )}
-                        style={{ zIndex: projectImages.length - index }}
-                      >
-                        <Image
-                          src={image.imageUrl}
-                          alt={`Specimen Page ${index + 1}`}
-                          fill
-                          className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                          unoptimized
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity pointer-events-none" />
-                      </div>
-                    );
-                  })}
-
-                  {foldedPages.length === projectImages.length && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/5 animate-in fade-in duration-700 z-[100]">
-                       <button 
-                         onClick={() => setFoldedPages([])}
-                         className="flex flex-col items-center gap-6 group"
-                       >
-                         <div className="h-20 w-20 rounded-full border border-primary/20 flex items-center justify-center group-hover:scale-110 group-hover:bg-primary group-hover:border-primary transition-all duration-500">
-                            <RotateCcw className="h-8 w-8 text-primary group-hover:text-black transition-colors" />
-                         </div>
-                         <span className="text-[11px] font-black uppercase tracking-[0.5em] text-primary">Restart Specimen</span>
-                       </button>
-                    </div>
-                  )}
-               </Reveal>
-
-               {/* Book Controls */}
-               <Reveal delay={200} className="flex flex-col items-center gap-8">
-                  <div className="flex items-center gap-8">
-                    <Button 
-                      variant="outline" 
-                      size="lg" 
-                      onClick={turnPrevPage}
-                      disabled={foldedPages.length === 0}
-                      className="rounded-full h-16 w-16 border-white/10 hover:border-primary hover:text-primary transition-all duration-500"
-                    >
-                      <ChevronLeft className="h-8 w-8" />
-                    </Button>
-                    <div className="flex flex-col items-center">
-                      <span className="text-[10px] font-black uppercase tracking-[0.4em] text-foreground/40 mb-1">Page</span>
-                      <span className="text-xl font-black text-primary">
-                        {foldedPages.length + 1} / {projectImages.length}
-                      </span>
-                    </div>
-                    <Button 
-                      variant="outline" 
-                      size="lg" 
-                      onClick={turnNextPage}
-                      disabled={foldedPages.length === projectImages.length}
-                      className="rounded-full h-16 w-16 border-white/10 hover:border-primary hover:text-primary transition-all duration-500"
-                    >
-                      <ChevronRight className="h-8 w-8" />
-                    </Button>
-                  </div>
-
-                  <Link 
-                    href="https://github.com/phlagon/purr-folio/raw/3dea7a623a7b346182ae83d184f86bfa8883b84d/recusive%20final_compressed.pdf" 
-                    target="_blank"
-                    className="text-[10px] font-black uppercase tracking-[0.4em] text-primary hover:opacity-70 transition-opacity flex items-center gap-2"
-                  >
-                    View Full PDF <ArrowUpRight className="h-3 w-3" />
-                  </Link>
-               </Reveal>
             </div>
           ) : (
             <Reveal className="p-1 bg-white/5 border border-white/10 shadow-2xl w-full max-w-6xl mx-auto">
