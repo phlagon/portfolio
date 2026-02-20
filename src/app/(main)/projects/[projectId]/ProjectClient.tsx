@@ -192,11 +192,9 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             {pickupLocation && dropLocation && (rapidoScreen === 'ride' || rapidoScreen === 'travel') && (
                               <button 
                                 onClick={handleSearchTransit}
-                                className="absolute top-[16%] left-1/2 -translate-x-1/2 bg-[#F9D915] text-black text-[10px] font-black px-6 py-2 rounded-full shadow-lg hover:scale-105 transition-transform flex items-center gap-2 z-[90]"
-                              >
-                                <Search className="h-3 w-3" />
-                                Find Routes
-                              </button>
+                                className="absolute top-[15%] left-[15%] w-[70%] h-[6%] bg-transparent cursor-pointer z-[90] flex items-center justify-center"
+                                title="Click to Search"
+                              />
                             )}
 
                             {rapidoScreen === 'flight' && (
