@@ -45,6 +45,8 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   
   const [pickupLocation, setPickupLocation] = useState('');
   const [dropLocation, setDropLocation] = useState('');
+  const [departDate, setDepartDate] = useState('');
+  const [returnDate, setReturnDate] = useState('');
   
   const projectImages = (project.imageIds || []).map(id => placeholderImages.find(img => img.id === id)).filter(Boolean) as any[];
   const isRapido = project.id === 'project-1';
@@ -153,6 +155,27 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                     value={dropLocation}
                                     onChange={(e) => setDropLocation(e.target.value)}
                                     className="absolute top-[10.2%] left-[18%] w-[68%] h-[4.5%] bg-transparent border-none text-[11px] font-medium focus:outline-none z-[80] text-black px-2"
+                                    autoComplete="off"
+                                    placeholder=""
+                                />
+                            </>
+                          )}
+
+                          {rapidoScreen === 'flight' && (
+                            <>
+                                <input 
+                                    type="text"
+                                    value={departDate}
+                                    onChange={(e) => setDepartDate(e.target.value)}
+                                    className="absolute top-[16.2%] left-[18%] w-[33%] h-[4.5%] bg-transparent border-none text-[11px] font-medium focus:outline-none z-[80] text-black px-2"
+                                    autoComplete="off"
+                                    placeholder=""
+                                />
+                                <input 
+                                    type="text"
+                                    value={returnDate}
+                                    onChange={(e) => setReturnDate(e.target.value)}
+                                    className="absolute top-[16.2%] left-[53%] w-[33%] h-[4.5%] bg-transparent border-none text-[11px] font-medium focus:outline-none z-[80] text-black px-2"
                                     autoComplete="off"
                                     placeholder=""
                                 />
