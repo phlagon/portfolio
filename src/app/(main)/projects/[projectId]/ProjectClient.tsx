@@ -16,9 +16,12 @@ import {
   RotateCcw,
   Bike,
   Navigation,
-  CloudOff,
+  Download,
   Zap,
-  User
+  User,
+  Activity,
+  Globe,
+  UserCircle
 } from 'lucide-react';
 
 import type { ImagePlaceholder } from '@/lib/placeholder-images';
@@ -55,7 +58,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
       setTimeout(() => {
         setCurrentPage(prev => prev + 1);
         setIsAnimating(false);
-      }, 3000); 
+      }, 2500); 
     }
   };
 
@@ -74,14 +77,14 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   return (
     <div className="container py-12 md:py-24">
       <div className="mb-12">
-        <Link href="/#projects" className="inline-flex items-center text-xs uppercase tracking-widest font-bold text-primary hover:opacity-70 transition-opacity">
+        <Link href="/#projects" className="inline-flex items-center text-xs uppercase tracking-widest font-black text-primary hover:opacity-70 transition-opacity">
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back to Portfolio
         </Link>
       </div>
 
       <header className="mb-16 text-center space-y-6">
-        <h1 className="text-5xl md:text-7xl font-bold text-white uppercase tracking-tighter leading-none">{project.title}</h1>
+        <h1 className="text-5xl md:text-8xl font-black text-white uppercase tracking-tighter leading-none">{project.title}</h1>
         <div className="flex justify-center flex-wrap gap-3">
           {project.tags.map((tag) => (
             <Badge key={tag} variant="outline" className="text-[10px] uppercase tracking-[0.2em] font-black border-primary/20 text-primary px-4 py-1">{tag}</Badge>
@@ -161,13 +164,13 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                       </div>
 
                       {/* Fixed Navigation Bar - Stick to Bottom */}
-                      <div className="absolute bottom-0 left-0 w-full h-[80px] bg-black/95 backdrop-blur-xl border-t border-white/5 flex items-center justify-around px-4 z-[60] pb-2">
+                      <div className="absolute bottom-0 left-0 w-full h-[84px] bg-black/95 backdrop-blur-2xl border-t border-white/10 flex items-center justify-around px-4 z-[60] pb-4 shadow-[0_-20px_40px_rgba(0,0,0,0.5)]">
                         {[
                           { id: 'ride', label: 'Ride', icon: Bike },
-                          { id: 'travel', label: 'Travel', icon: Navigation },
-                          { id: 'offline', label: 'Offline', icon: CloudOff },
-                          { id: 'live', label: 'Live', icon: Zap },
-                          { id: 'profile', label: 'Profile', icon: User },
+                          { id: 'travel', label: 'Travel', icon: Globe },
+                          { id: 'offline', label: 'Offline', icon: Download },
+                          { id: 'live', label: 'Live', icon: Activity },
+                          { id: 'profile', label: 'Profile', icon: UserCircle },
                         ].map((tab) => {
                           const Icon = tab.icon;
                           const isActive = rapidoScreen === tab.id || (tab.id === 'travel' && rapidoScreen === 'flight');
@@ -176,12 +179,12 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               key={tab.id}
                               onClick={() => setRapidoScreen(tab.id as any)}
                               className={cn(
-                                "flex flex-col items-center gap-1 transition-all duration-300",
-                                isActive ? "text-primary scale-110" : "text-white/30 hover:text-white/60"
+                                "flex flex-col items-center gap-1.5 transition-all duration-300 flex-1 py-2",
+                                isActive ? "text-[#F9D915] scale-105" : "text-white/40 hover:text-white/70"
                               )}
                             >
-                              <Icon className="h-5 w-5" />
-                              <span className="text-[9px] font-black uppercase tracking-widest">{tab.label}</span>
+                              <Icon className={cn("h-6 w-6", isActive && "drop-shadow-[0_0_8px_rgba(249,217,21,0.5)]")} />
+                              <span className="text-[8px] font-black uppercase tracking-[0.2em]">{tab.label}</span>
                             </button>
                           );
                         })}
@@ -191,7 +194,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                       {rapidoScreen === 'flight' && (
                         <button 
                           onClick={() => setRapidoScreen('travel')}
-                          className="absolute bottom-24 right-6 w-12 h-12 rounded-full bg-primary text-black flex items-center justify-center z-[80] shadow-2xl hover:scale-110 transition-transform"
+                          className="absolute bottom-24 right-6 w-12 h-12 rounded-full bg-[#F9D915] text-black flex items-center justify-center z-[80] shadow-2xl hover:scale-110 transition-transform"
                         >
                           <RotateCcw className="h-5 w-5" />
                         </button>
@@ -200,7 +203,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
               </div>
               <div className="flex flex-col items-center gap-3">
                 <p className="text-[10px] text-primary font-black uppercase tracking-[0.4em]">Interactive Mobile Prototype</p>
-                <p className="text-[10px] text-foreground/30 uppercase tracking-[0.2em]">Vertical Scroll • Fixed Bottom Navigation</p>
+                <p className="text-[10px] text-foreground/30 uppercase tracking-[0.2em]">Vertical Scroll • Fixed App Shell Navigation</p>
               </div>
             </div>
           ) : isTypeSpecimen ? (
@@ -293,7 +296,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
           )}
         </div>
         
-        <div className="space-y-8 max-w-3xl mx-auto text-center">
+        <div className="space-y-8 max-w-3xl mx-auto text-center pb-24">
             <h2 className="text-[11px] font-black uppercase tracking-[0.5em] text-primary">Concept Narrative</h2>
             <p className="text-sm text-foreground/50 leading-loose uppercase tracking-[0.2em] px-12">
               {project.longDescription}
