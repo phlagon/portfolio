@@ -202,7 +202,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                     description: "Viewing nearby transportation hubs."
                                   });
                                 }}
-                                className="absolute top-[63%] left-[5%] w-[90%] h-[12%] bg-transparent cursor-pointer z-[95]"
+                                className="absolute top-[35%] left-[5%] w-[90%] h-[12%] bg-transparent cursor-pointer z-[95]"
                                 title="Nearby Bus Stop"
                               />
                             )}
@@ -311,9 +311,10 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                       <div className="absolute bottom-0 left-0 w-full h-[84px] z-[60] bg-white border-t border-black/5 flex items-center justify-around px-2 pb-4">
                         {navTabs.map((tab) => {
                           const Icon = tab.icon;
-                          const isActive = rapidoScreen === tab.id 
-                            || (tab.id === 'travel' && (rapidoScreen === 'flight')) 
-                            || (tab.id === 'live' && (rapidoScreen === 'your-trip' || rapidoScreen === 'public-transport'));
+                          const isActive = tab.id === 'ride' ? (rapidoScreen === 'ride' || rapidoScreen === 'offline' || rapidoScreen === 'profile') : 
+                                         tab.id === 'travel' ? (rapidoScreen === 'travel' || rapidoScreen === 'flight') :
+                                         tab.id === 'live' ? (rapidoScreen === 'live' || rapidoScreen === 'your-trip' || rapidoScreen === 'public-transport') :
+                                         rapidoScreen === tab.id;
                           
                           return (
                             <button
