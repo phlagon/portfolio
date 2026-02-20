@@ -6,9 +6,8 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import Image from "next/image";
 import Script from "next/script";
-import { Github, Linkedin, Twitter, Mail, Facebook } from "lucide-react";
+import { Linkedin, Twitter, Mail, Facebook } from "lucide-react";
 
 import { ProjectsSection } from "@/components/home/projects-section";
 import { Button } from "@/components/ui/button";
@@ -33,9 +32,9 @@ const formSchema = z.object({
 
 export default function Home() {
   const { toast } = useToast();
-  const [spotlightPos, setSpotlightPos] = useState({ x: 0, y: 0 });
+  const [spotlightPos, setSpotlightPos] = useState({ x: -1000, y: -1000 });
   const [isHovering, setIsHovering] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -55,8 +54,8 @@ export default function Home() {
   }
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
+    if (!heroRef.current) return;
+    const rect = heroRef.current.getBoundingClientRect();
     setSpotlightPos({
       x: e.clientX - rect.left,
       y: e.clientY - rect.top,
@@ -69,11 +68,39 @@ export default function Home() {
 
   return (
     <main className="bg-background">
+      <Script 
+        type="module" 
+        src="https://unpkg.com/@splinetool/viewer@1.12.58/build/spline-viewer.js" 
+        strategy="afterInteractive"
+      />
+
       {/* Hero Section */}
-      <section id="home" className="relative min-h-screen flex flex-col justify-center px-4 md:px-16 overflow-hidden border-b border-white/5">
-        <div className="container max-w-7xl mx-auto z-10">
-          <div className="grid lg:grid-cols-2 gap-24 items-center">
-            <Reveal className="space-y-12">
+      <section 
+        id="home" 
+        ref={heroRef}
+        onMouseEnter={() => setIsHovering(true)}
+        onMouseLeave={() => setIsHovering(false)}
+        onMouseMove={handleMouseMove}
+        className="relative min-h-screen flex flex-col justify-center px-4 md:px-16 overflow-hidden border-b border-white/5"
+      >
+        {/* Spline 3D Scene - Background Layer */}
+        <div 
+          className="absolute top-0 right-0 w-full lg:w-[80%] h-full z-0 transition-opacity duration-500 pointer-events-none"
+          style={{
+            opacity: isHovering ? 1 : 0,
+            maskImage: `radial-gradient(circle 350px at ${spotlightPos.x}px ${spotlightPos.y}px, black 0%, transparent 100%)`,
+            WebkitMaskImage: `radial-gradient(circle 350px at ${spotlightPos.x}px ${spotlightPos.y}px, black 0%, transparent 100%)`,
+          }}
+        >
+          <spline-viewer 
+            url="https://prod.spline.design/YPNPfF4VmzkVgRS1/scene.splinecode"
+            style={{ width: '100%', height: '100%' }}
+          ></spline-viewer>
+        </div>
+
+        <div className="container max-w-7xl mx-auto z-10 pointer-events-none">
+          <div className="grid lg:grid-cols-2 items-center">
+            <Reveal className="space-y-12 pointer-events-auto">
               <div className="space-y-6">
                 <p className="text-primary font-black tracking-[0.5em] uppercase text-[10px]">India • Remote • Available</p>
                 <h1 className="text-7xl md:text-[10rem] font-bold tracking-tighter text-white leading-[0.85] uppercase">
@@ -90,7 +117,7 @@ export default function Home() {
                     size="lg" 
                     variant="outline" 
                     className="rounded-none px-12 h-16 text-xs uppercase tracking-[0.3em] font-black border-white/10 text-white hover:border-primary hover:text-primary transition-all duration-500"
-                    onClick={scrollToContact}
+                    onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
                   >
                     View Work
                   </Button>
@@ -108,33 +135,6 @@ export default function Home() {
                   <Linkedin className="h-4 w-4" />
                 </Link>
               </div>
-            </Reveal>
-
-            <Reveal delay={200} className="relative flex justify-center items-center">
-                {/* Spline 3D Container with Spotlight Reveal */}
-                <div 
-                  ref={containerRef}
-                  onMouseEnter={() => setIsHovering(true)}
-                  onMouseLeave={() => setIsHovering(false)}
-                  onMouseMove={handleMouseMove}
-                  className="relative w-full max-w-2xl group perspective-3000 h-[600px] transition-opacity duration-700"
-                  style={{
-                    opacity: isHovering ? 1 : 0,
-                    maskImage: isHovering 
-                      ? `radial-gradient(circle 200px at ${spotlightPos.x}px ${spotlightPos.y}px, black 0%, transparent 100%)`
-                      : 'none',
-                    WebkitMaskImage: isHovering 
-                      ? `radial-gradient(circle 200px at ${spotlightPos.x}px ${spotlightPos.y}px, black 0%, transparent 100%)`
-                      : 'none',
-                  }}
-                >
-                  <Script 
-                    type="module" 
-                    src="https://unpkg.com/@splinetool/viewer@1.12.58/build/spline-viewer.js" 
-                    strategy="afterInteractive"
-                  />
-                  <spline-viewer url="https://prod.spline.design/YPNPfF4VmzkVgRS1/scene.splinecode"></spline-viewer>
-                </div>
             </Reveal>
           </div>
         </div>
