@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
+  { href: "/projects/project-3/", label: "Logo Design" },
   { href: "/#projects", label: "Portfolio" },
   { href: "/#contact", label: "Contact" },
 ];
@@ -27,7 +28,7 @@ export function Header() {
               key={link.href}
               href={link.href}
               className={cn(
-                "transition-colors hover:text-primary",
+                "transition-colors hover:text-primary uppercase tracking-widest text-[10px] font-black",
                 pathname === link.href ? "text-primary" : "text-foreground/70"
               )}
             >
