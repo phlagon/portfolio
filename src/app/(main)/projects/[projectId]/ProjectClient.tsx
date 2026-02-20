@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -36,7 +37,7 @@ import { useToast } from '@/hooks/use-toast';
 type ProjectType = (typeof projects)[0];
 
 export default function ProjectClient({ project, placeholderImages }: { project: ProjectType, placeholderImages: ImagePlaceholder[] }) {
-  const [rapidoScreen, setRapidoScreen] = useState<'ride' | 'travel' | 'offline' | 'live' | 'profile' | 'flight' | 'your-trip' | 'public-transport' | 'stops' | 'confirmation' | 'auto-find' | 'gps-confirm'>('ride');
+  const [rapidoScreen, setRapidoScreen] = useState<'ride' | 'travel' | 'offline' | 'live' | 'profile' | 'flight' | 'your-trip' | 'public-transport' | 'stops' | 'confirmation' | 'auto-find' | 'gps-confirm' | 'weather'>('ride');
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
   
@@ -95,6 +96,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
     if (rapidoScreen === 'your-trip') return placeholderImages.find(img => img.id === 'rapido-your-trip')?.imageUrl;
     if (rapidoScreen === 'public-transport') return placeholderImages.find(img => img.id === 'rapido-public-transport')?.imageUrl;
     if (rapidoScreen === 'stops') return placeholderImages.find(img => img.id === 'rapido-stops')?.imageUrl;
+    if (rapidoScreen === 'weather') return placeholderImages.find(img => img.id === 'rapido-weather')?.imageUrl;
     return placeholderImages.find(img => img.id === 'rapido-home')?.imageUrl;
   };
 
@@ -106,7 +108,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
     { id: 'profile', label: 'Profile', icon: User },
   ];
 
-  const isStaticScreen = ['flight', 'your-trip', 'public-transport', 'stops', 'confirmation', 'auto-find', 'gps-confirm'].includes(rapidoScreen);
+  const isStaticScreen = ['flight', 'your-trip', 'public-transport', 'stops', 'confirmation', 'auto-find', 'gps-confirm', 'weather'].includes(rapidoScreen);
 
   return (
     <div className="container py-12 md:py-24">
@@ -211,12 +213,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                   title="Your Trip Details"
                                 />
                                 <button 
-                                  onClick={() => {
-                                    toast({
-                                      title: "Weather Forecast ⛅",
-                                      description: "Partly cloudy with a high of 28°C. Perfect for a ride!",
-                                    });
-                                  }}
+                                  onClick={() => setRapidoScreen('weather')}
                                   className="absolute top-[25%] left-[30%] w-[35%] h-[6%] bg-transparent cursor-pointer z-[95]"
                                   title="Weather Details"
                                 />
@@ -346,7 +343,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                           const isActive = tab.id === 'ride' ? (rapidoScreen === 'ride' || rapidoScreen === 'profile') : 
                                          tab.id === 'travel' ? (rapidoScreen === 'travel' || rapidoScreen === 'flight') :
                                          tab.id === 'offline' ? (rapidoScreen === 'offline' || rapidoScreen === 'confirmation' || rapidoScreen === 'auto-find' || rapidoScreen === 'gps-confirm') :
-                                         tab.id === 'live' ? (rapidoScreen === 'live' || rapidoScreen === 'your-trip' || rapidoScreen === 'public-transport' || rapidoScreen === 'stops') :
+                                         tab.id === 'live' ? (rapidoScreen === 'live' || rapidoScreen === 'your-trip' || rapidoScreen === 'public-transport' || rapidoScreen === 'stops' || rapidoScreen === 'weather') :
                                          rapidoScreen === tab.id;
                           
                           return (

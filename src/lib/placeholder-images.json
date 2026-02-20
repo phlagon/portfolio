@@ -107,6 +107,12 @@
       "description": "Rapido Navigation Bar",
       "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/4579872bb707e2449e7cea76118bc4ec33c4c950/nav%20%20home.jpg",
       "imageHint": "app nav"
+    },
+    {
+      "id": "rapido-weather",
+      "description": "Rapido Weather Details",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/1e86a7d646b793222feceec9ded448cbd3a24335/weather.jpg",
+      "imageHint": "weather ui"
     }
   ]
 }
