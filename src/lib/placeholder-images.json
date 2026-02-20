@@ -229,10 +229,10 @@
       "imageHint": "logo icon"
     },
     {
-      "id": "redesign-bc",
-      "description": "Logo bc",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/4b464978c61de5e25c4c99a796860cbe6f3f16a5/bc.png",
-      "imageHint": "business card"
+      "id": "redesign-indigo",
+      "description": "Indigo logo redesign",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/4b464978c61de5e25c4c99a796860cbe6f3f16a5/indigo.jpg",
+      "imageHint": "indigo logo"
     },
     {
       "id": "redesign-medimix-1",
