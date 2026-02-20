@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import Image from "next/image";
 import { Github, Linkedin, Twitter, Mail, Facebook } from "lucide-react";
 
 import { AboutSection } from "@/components/home/about-section";
@@ -55,7 +54,7 @@ export default function Home() {
 
   return (
     <main className="bg-background">
-      {/* Hero Section */}
+      {/* Hero Section - Focused on Golden Animation */}
       <section id="home" className="relative min-h-screen flex flex-col justify-center px-4 md:px-16 overflow-hidden border-b border-white/5">
         <div className="container max-w-7xl mx-auto z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -69,7 +68,7 @@ export default function Home() {
               
               <div className="space-y-8 max-w-xl">
                 <p className="text-xl md:text-2xl font-light text-foreground/70 leading-tight">
-                  I'm <span className="text-white font-bold italic">Benzitta</span>. I craft intentional digital experiences through high-end branding and mobile interaction.
+                  I'm <span className="text-white font-bold italic">Benzitta</span>. I craft intentional digital experiences through high-end branding and interaction.
                 </p>
                 
                 <div className="flex flex-wrap gap-6 pt-6">
@@ -100,8 +99,8 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="hidden lg:flex justify-center items-center">
-              <div className="relative w-[550px] h-[550px] flex items-center justify-center">
+            <div className="flex justify-center items-center">
+              <div className="relative w-[300px] h-[300px] md:w-[550px] md:h-[550px] flex items-center justify-center">
                 <div className="absolute inset-0 z-0">
                   <HeroGraphic />
                 </div>

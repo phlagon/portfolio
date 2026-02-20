@@ -43,7 +43,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   const [isAnimating, setIsAnimating] = useState(false);
   const [rapidoScreen, setRapidoScreen] = useState<'ride' | 'travel' | 'offline' | 'live' | 'profile' | 'flight'>('ride');
   
-  // Interactive location inputs for Rapido
   const [pickupLocation, setPickupLocation] = useState('');
   const [dropLocation, setDropLocation] = useState('');
   
@@ -141,21 +140,19 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                           
                           {rapidoScreen === 'ride' && (
                             <>
-                                {/* Pickup Location Overlay */}
                                 <input 
                                     type="text"
                                     value={pickupLocation}
                                     onChange={(e) => setPickupLocation(e.target.value)}
                                     placeholder="Your current location"
-                                    className="absolute top-[8%] left-[18%] w-[65%] h-[4.5%] bg-transparent border-none text-[11px] font-medium focus:outline-none z-[80] text-black placeholder:text-black/30 px-2"
+                                    className="absolute top-[7.8%] left-[18.5%] w-[68%] h-[4.2%] bg-transparent border-none text-[11px] font-medium focus:outline-none z-[80] text-black placeholder:text-black/30 px-2"
                                 />
-                                {/* Drop Location Overlay */}
                                 <input 
                                     type="text"
                                     value={dropLocation}
                                     onChange={(e) => setDropLocation(e.target.value)}
                                     placeholder="Drop location"
-                                    className="absolute top-[14.5%] left-[18%] w-[65%] h-[4.5%] bg-transparent border-none text-[11px] font-medium focus:outline-none z-[80] text-black placeholder:text-black/30 px-2"
+                                    className="absolute top-[14.2%] left-[18.5%] w-[68%] h-[4.2%] bg-transparent border-none text-[11px] font-medium focus:outline-none z-[80] text-black placeholder:text-black/30 px-2"
                                 />
                             </>
                           )}
