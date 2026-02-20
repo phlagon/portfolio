@@ -16,7 +16,7 @@ export const projects = [
     longDescription: "Crafting the LOSMO logo was an exercise in pure elegance. The goal was to create a mark that felt both timeless and modern, embodying the essence of a luxury perfume brand. Through refined typography and a minimalist aesthetic, the final design speaks to an audience that appreciates artistry, quality, and understated sophistication. It's more than a logo; it's a signature of luxury that adorns every bottle and correspondence, promising an experience of refined scent and unparalleled class.",
     tags: ["Logo Design", "Branding", "Luxury"],
     thumbnailId: "project-2-thumb",
-    imageIds: ["losmo-6", "losmo-5", "losmo-2", "losmo-1", "losmo-8", "losmo-4", "losmo-7", "losmo-3"],
+    imageIds: ["losmo-woody-2", "losmo-6", "losmo-5", "losmo-2", "losmo-1", "losmo-8", "losmo-4", "losmo-7", "losmo-3"],
   },
   {
     id: "project-3",
