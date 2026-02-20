@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { 
   ArrowLeft, 
   MapPin, 
@@ -17,12 +18,16 @@ import {
   Loader2,
   Smartphone
 } from 'lucide-react';
-import { Document, Page, pdfjs } from 'react-pdf';
+
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 
-// Set up the PDF.js worker using a compatible version from CDN
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+// Dynamically import PDF components to ensure polyfills are loaded first
+const Document = dynamic(() => import('react-pdf').then(mod => mod.Document), { 
+  ssr: false,
+  loading: () => <div className="flex items-center gap-4 text-white font-black uppercase tracking-widest text-xs h-[400px] justify-center"><Loader2 className="animate-spin" /> Preparing Viewer...</div>
+});
+const Page = dynamic(() => import('react-pdf').then(mod => mod.Page), { ssr: false });
 
 import type { ImagePlaceholder } from '@/lib/placeholder-images';
 import type { projects } from '@/lib/projects';
@@ -58,6 +63,13 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   const [isSearching, setIsSearching] = useState(false);
 
   useEffect(() => {
+    // Configure worker inside useEffect to ensure it only runs on client
+    import('react-pdf').then(pdfjs => {
+      pdfjs.pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.pdfjs.version}/build/pdf.worker.min.mjs`;
+    });
+  }, []);
+
+  useEffect(() => {
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollTop = 0;
     }
@@ -65,7 +77,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
 
   const projectImages = (project.imageIds || []).map(id => placeholderImages.find(img => img.id === id)).filter(Boolean) as any[];
   
-  // Losmo App Images specifically
   const losmoAppImageIds = Array.from({ length: 14 }, (_, i) => `losmo-app-${i + 1}`);
   const losmoAppImages = losmoAppImageIds.map(id => placeholderImages.find(img => img.id === id)).filter(Boolean) as any[];
 
@@ -304,9 +315,8 @@ export default function ProjectClient({ project, placeholderImages }: { project:
               </div>
             </Reveal>
           ) : isLosmo ? (
-            <Reveal className="w-full max-w-5xl mx-auto">
-              <div className="relative w-full group">
-                <div className="relative mx-auto w-full flex flex-col items-center">
+            <Reveal className="w-full max-w-7xl mx-auto px-4">
+              <div className="relative w-full">
                   {losmoTab === 'web' ? (
                     <div className="relative bg-[#0a0a0a] rounded-[2.5rem] p-[1rem] pb-[4rem] shadow-[0_100px_100px_-50px_rgba(0,0,0,0.8)] border-[2px] border-[#333] w-full aspect-[16/10.5] overflow-hidden">
                       <div className="relative w-full h-full bg-[#111] rounded-[1.5rem] overflow-hidden border border-white/5">
@@ -335,30 +345,31 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                       </div>
                     </div>
                   ) : (
-                    <div className="relative mx-auto w-full max-w-[400px] aspect-[9/19] flex items-center justify-center">
-                      <Carousel className="w-full h-full">
-                        <CarouselContent className="-ml-0 h-full">
+                    <div className="relative mx-auto w-full max-w-3xl py-12">
+                      <Carousel className="w-full">
+                        <CarouselContent className="-ml-8">
                           {losmoAppImages.map((image, index) => (
-                            <CarouselItem key={index} className="pl-0 h-full">
-                              <div className="relative w-full h-full rounded-3xl overflow-hidden bg-black shadow-2xl border border-white/10">
+                            <CarouselItem key={index} className="pl-8 basis-full md:basis-1/2 lg:basis-1/3">
+                              <div className="relative aspect-[9/19] rounded-2xl overflow-hidden bg-black shadow-2xl border border-white/10 group">
                                 <Image
                                   src={image.imageUrl}
                                   alt={`Losmo App Screen ${index + 1}`}
                                   fill
-                                  className="object-contain"
-                                  priority={index === 0}
+                                  className="object-contain transition-transform duration-700 group-hover:scale-105"
+                                  priority={index < 3}
                                   unoptimized
                                 />
                               </div>
                             </CarouselItem>
                           ))}
                         </CarouselContent>
-                        <CarouselPrevious className="left-[-40px] bg-black/40 hover:bg-primary border-none text-white" />
-                        <CarouselNext className="right-[-40px] bg-black/40 hover:bg-primary border-none text-white" />
+                        <div className="flex justify-center gap-6 mt-16">
+                          <CarouselPrevious className="static translate-y-0 h-16 w-16 bg-white/5 border-white/10 text-white hover:bg-primary hover:text-black transition-all rounded-full" />
+                          <CarouselNext className="static translate-y-0 h-16 w-16 bg-white/5 border-white/10 text-white hover:bg-primary hover:text-black transition-all rounded-full" />
+                        </div>
                       </Carousel>
                     </div>
                   )}
-                </div>
               </div>
             </Reveal>
           ) : isTypeSpecimen ? (
@@ -370,11 +381,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                       <Document
                         file={PDF_URL}
                         onLoadSuccess={onDocumentLoadSuccess}
-                        loading={
-                          <div className="flex items-center gap-4 text-black font-black uppercase tracking-widest text-xs">
-                            <Loader2 className="animate-spin" /> Rendering Specimen...
-                          </div>
-                        }
+                        className="flex flex-col items-center"
                       >
                         <div className={cn(
                           "page-base",
@@ -383,8 +390,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                         )}>
                           <Page 
                             pageNumber={currentPage} 
-                            width={window.innerWidth > 768 ? 1200 : 400}
-                            scale={1}
+                            width={typeof window !== 'undefined' ? (window.innerWidth > 1024 ? 1000 : window.innerWidth > 768 ? 800 : 350) : 350}
                             renderAnnotationLayer={false}
                             renderTextLayer={false}
                           />
@@ -393,7 +399,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                     </div>
                   </div>
 
-                  {/* Tactile Navigation Buttons */}
                   <div className="absolute inset-y-0 left-0 w-24 flex items-center justify-center z-[100] group">
                     <Button 
                       variant="ghost" 

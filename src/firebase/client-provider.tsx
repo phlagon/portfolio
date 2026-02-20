@@ -1,7 +1,9 @@
 'use client';
 
-// Polyfill for Promise.withResolvers which is required by newer versions of PDF.js
-// This must run before any other modules that might use it (like react-pdf/pdf.js) are evaluated.
+/**
+ * Global Polyfills
+ * Promise.withResolvers is required by newer versions of PDF.js.
+ */
 if (typeof Promise.withResolvers === 'undefined') {
   if (typeof window !== 'undefined') {
     // @ts-expect-error - Polyfilling modern JS feature
