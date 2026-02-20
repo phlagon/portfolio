@@ -144,15 +144,15 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                     type="text"
                                     value={pickupLocation}
                                     onChange={(e) => setPickupLocation(e.target.value)}
-                                    placeholder="Your current location"
-                                    className="absolute top-[7.8%] left-[18.5%] w-[68%] h-[4.2%] bg-transparent border-none text-[11px] font-medium focus:outline-none z-[80] text-black placeholder:text-black/30 px-2"
+                                    className="absolute top-[7.8%] left-[18%] w-[68%] h-[4.2%] bg-transparent border-none text-[11px] font-medium focus:outline-none z-[80] text-black px-2"
+                                    autoComplete="off"
                                 />
                                 <input 
                                     type="text"
                                     value={dropLocation}
                                     onChange={(e) => setDropLocation(e.target.value)}
-                                    placeholder="Drop location"
-                                    className="absolute top-[14.2%] left-[18.5%] w-[68%] h-[4.2%] bg-transparent border-none text-[11px] font-medium focus:outline-none z-[80] text-black placeholder:text-black/30 px-2"
+                                    className="absolute top-[14.2%] left-[18%] w-[68%] h-[4.2%] bg-transparent border-none text-[11px] font-medium focus:outline-none z-[80] text-black px-2"
+                                    autoComplete="off"
                                 />
                             </>
                           )}
