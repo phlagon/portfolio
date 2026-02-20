@@ -388,24 +388,46 @@ export default function ProjectClient({ project, placeholderImages }: { project:
               </div>
             </div>
           ) : isLosmo ? (
-            <div className="w-full max-w-5xl mx-auto space-y-0 border border-white/10 shadow-2xl overflow-hidden bg-white">
-                <div className="flex flex-col">
-                    {projectImages.map((image, idx) => (
-                      <div key={idx} className="relative w-full">
-                        {image && (
-                          <Image 
-                            src={image.imageUrl} 
-                            alt={`Losmo Section ${idx + 1}`} 
-                            width={1920} 
-                            height={1080} 
-                            className="w-full h-auto block" 
-                            unoptimized
-                            priority={idx < 2}
-                          />
-                        )}
+            <div className="relative mx-auto w-full max-w-5xl group perspective-3000">
+               {/* iMac Top Frame */}
+               <div className="relative bg-[#f5f5f7] p-3 md:p-5 rounded-t-[2.5rem] shadow-2xl border-x-[1px] border-t-[1px] border-white/20">
+                  {/* Black Screen Bezel */}
+                  <div className="bg-[#0a0a0a] p-2 md:p-3 rounded-[1.5rem] overflow-hidden shadow-inner">
+                      {/* Actual Screen Content */}
+                      <div className="bg-white aspect-video overflow-y-auto scrollbar-hide rounded-lg shadow-2xl">
+                          <div className="flex flex-col">
+                              {projectImages.map((image, idx) => (
+                                <div key={idx} className="relative w-full">
+                                  {image && (
+                                    <Image 
+                                      src={image.imageUrl} 
+                                      alt={`Losmo Section ${idx + 1}`} 
+                                      width={1920} 
+                                      height={1080} 
+                                      className="w-full h-auto block" 
+                                      unoptimized
+                                      priority={idx < 2}
+                                    />
+                                  )}
+                                </div>
+                              ))}
+                          </div>
                       </div>
-                    ))}
-                </div>
+                  </div>
+               </div>
+               
+               {/* Aluminum Bottom Chin */}
+               <div className="h-16 md:h-20 bg-gradient-to-b from-[#e2e2e2] to-[#c1c1c1] rounded-b-[2.5rem] relative flex items-center justify-center shadow-xl border-x-[1px] border-b-[2px] border-gray-400/30">
+                  <div className="w-8 h-8 md:w-10 md:h-10 opacity-20 bg-black/20 rounded-full flex items-center justify-center">
+                    <div className="w-3 h-3 md:w-4 md:h-4 bg-black/40 rounded-full" />
+                  </div>
+               </div>
+
+               {/* iMac Stand */}
+               <div className="mx-auto w-40 h-24 md:w-56 md:h-32 bg-gradient-to-b from-[#d1d1d1] to-[#b1b1b1] rounded-b-2xl relative -mt-1 z-[-1] shadow-2xl transform-gpu origin-top">
+                  <div className="absolute inset-x-0 top-0 h-4 bg-black/10" />
+                  <div className="absolute bottom-0 inset-x-0 h-[2px] bg-black/5" />
+               </div>
             </div>
           ) : (
             <div className="p-1 bg-white/5 border border-white/10 shadow-2xl w-full max-w-6xl mx-auto">
