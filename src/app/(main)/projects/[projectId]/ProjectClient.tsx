@@ -53,10 +53,9 @@ export default function ProjectClient({ project, placeholderImages }: { project:
     setIsSearching(true);
     try {
       const results = await getTransitOptions({ pickup: pickupLocation, drop: dropLocation });
-      // Sort by Train, then Flight, then Bus
       const order = { 'Train': 1, 'Flight': 2, 'Bus': 3, 'Taxi': 4 };
       const sortedOptions = [...results.options].sort((a, b) => 
-        (order[a.type] || 99) - (order[b.type] || 99)
+        (order[a.type as keyof typeof order] || 99) - (order[b.type as keyof typeof order] || 99)
       );
       setTransitResults({ options: sortedOptions });
     } catch (error) {
@@ -106,7 +105,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
           {isRapido ? (
             <div className="flex flex-col items-center gap-12">
               <div className="relative mx-auto border-[#0a0a0a] bg-[#f8f9fa] border-[12px] rounded-[3.5rem] h-[720px] w-[360px] shadow-[0_60px_120px_-30px_rgba(0,0,0,1)] overflow-hidden">
-                  {/* Dynamic Island */}
                   <div className="w-[120px] h-[34px] bg-black top-4 rounded-[1.2rem] left-1/2 -translate-x-1/2 absolute z-[100] flex items-center justify-center">
                     <div className="w-2 h-2 rounded-full bg-white/10 ml-auto mr-4" />
                   </div>
@@ -124,7 +122,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               unoptimized
                             />
                             
-                            {/* Location Input Overlays (Ride, Travel, Flight) */}
                             {(rapidoScreen === 'ride' || rapidoScreen === 'travel' || rapidoScreen === 'flight') && (
                               <>
                                   <input 
@@ -143,7 +140,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                       autoComplete="off"
                                       placeholder=""
                                   />
-                                  {/* Search Trigger over the "Search" text in image */}
                                   <button 
                                     onClick={handleSearchTransit}
                                     className="absolute top-[19.2%] left-1/2 -translate-x-1/2 w-[75%] h-[5%] bg-transparent cursor-pointer z-[90]"
@@ -151,7 +147,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               </>
                             )}
 
-                            {/* Date Overlays (Flight screen only) */}
                             {rapidoScreen === 'flight' && (
                               <>
                                   <input 
@@ -173,20 +168,18 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               </>
                             )}
 
-                            {/* Click Zone for Flight design in Travel screen */}
                             {rapidoScreen === 'travel' && (
                               <button 
                                 onClick={() => {
                                   setRapidoScreen('flight');
                                   setTransitResults(null);
                                 }}
-                                className="absolute top-[17.2%] left-[60%] w-[28%] h-[7%] bg-transparent cursor-pointer z-[95]"
+                                className="absolute top-[17.2%] left-[58%] w-[30%] h-[6%] bg-transparent cursor-pointer z-[95]"
                                 title="Flight Booking"
                               />
                             )}
                         </div>
 
-                        {/* Loading State Overlay */}
                         {isSearching && (
                           <div className="absolute inset-0 bg-white/90 z-[95] flex flex-col items-center justify-center p-12 text-center space-y-6">
                              <div className="relative">
@@ -202,7 +195,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                           </div>
                         )}
 
-                        {/* Detailed Search Results Section */}
                         {transitResults && (rapidoScreen === 'ride' || rapidoScreen === 'travel' || rapidoScreen === 'flight') && (
                           <div className="bg-[#F8F9FA] min-h-[400px] animate-in slide-in-from-bottom duration-500 pb-12">
                              <div className="space-y-4 pt-4">
@@ -213,17 +205,31 @@ export default function ProjectClient({ project, placeholderImages }: { project:
 
                                   return (
                                     <div key={idx} className="flex px-4">
-                                      {/* Side Label (Train, Flight, Bus) */}
-                                      <div className="w-[60px] flex flex-col items-center pt-8 space-y-2 shrink-0">
+                                      <div 
+                                        className={cn(
+                                          "w-[60px] flex flex-col items-center pt-8 space-y-2 shrink-0 cursor-default",
+                                          option.type === 'Flight' && "cursor-pointer hover:opacity-70 transition-opacity"
+                                        )}
+                                        onClick={() => {
+                                          if (option.type === 'Flight') {
+                                            setRapidoScreen('flight');
+                                            setTransitResults(null);
+                                          }
+                                        }}
+                                      >
                                          <div className="h-10 w-10 flex items-center justify-center">
                                             <Icon className="h-6 w-6 text-black/80" />
                                          </div>
                                          <span className="text-[11px] font-black uppercase tracking-tight text-black">{option.type}</span>
                                       </div>
 
-                                      {/* Detail Card */}
                                       <div className="flex-1 bg-white border border-black/5 shadow-sm p-4 relative">
-                                        {option.type === 'Train' && <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#F9D915]" />}
+                                        {(option.type === 'Train' || option.type === 'Flight') && (
+                                          <div className={cn(
+                                            "absolute left-0 top-0 bottom-0 w-[3px]",
+                                            option.type === 'Train' ? "bg-[#F9D915]" : "bg-[#4F46E5]"
+                                          )} />
+                                        )}
                                         <div className="space-y-4">
                                           <div className="space-y-1">
                                             <p className="text-[10px] text-black/40 font-bold uppercase tracking-widest">{option.number}</p>
@@ -250,7 +256,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                             </div>
                                           </div>
 
-                                          {/* Class Badges & Action */}
                                           <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-hide">
                                             {['SL', '3E', '3A', '2A', '1A'].map(cls => (
                                               <Badge key={cls} variant="outline" className="text-[8px] font-black h-7 min-w-[32px] justify-center bg-black/5 border-none text-black/40 rounded-sm">
@@ -272,7 +277,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                 })}
                              </div>
 
-                             {/* Powered By Footer */}
                              <div className="mt-12 py-8 flex flex-col items-center space-y-4">
                                 <div className="flex items-center gap-4 w-full px-8">
                                    <div className="h-px bg-black/10 flex-1" />
@@ -289,7 +293,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                         )}
                       </div>
 
-                      {/* Mockup Navigation Bar */}
                       <div className="absolute bottom-0 left-0 w-full h-[84px] z-[60] bg-white border-t border-black/5 flex items-center justify-around px-2 pb-4">
                         {navTabs.map((tab) => {
                           const Icon = tab.icon;
@@ -320,7 +323,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                         })}
                       </div>
 
-                      {/* Reset Button (Visible when in deep sub-screens) */}
                       {(rapidoScreen === 'flight' || transitResults || rapidoScreen === 'offline' || rapidoScreen === 'profile' || rapidoScreen === 'live') && (
                         <button 
                           onClick={() => {
