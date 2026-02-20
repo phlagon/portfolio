@@ -190,7 +190,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               <>
                                 <button 
                                   onClick={() => setRapidoScreen('public-transport')}
-                                  className="absolute top-[5%] left-[5%] w-[45%] h-[10%] bg-transparent cursor-pointer z-[95]"
+                                  className="absolute top-[15%] left-[5%] w-[45%] h-[10%] bg-transparent cursor-pointer z-[95]"
                                   title="Public Transport Tab"
                                 />
                                 <button 
