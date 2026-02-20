@@ -55,6 +55,12 @@
       "imageHint": "app offline"
     },
     {
+      "id": "rapido-profile",
+      "description": "Rapido Profile Screen",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/100bf2226ad9ce45c70a709cf1ba733d96d39ad1/Profile.jpg",
+      "imageHint": "app profile"
+    },
+    {
       "id": "rapido-nav",
       "description": "Rapido Navigation Bar",
       "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/4579872bb707e2449e7cea76118bc4ec33c4c950/nav%20%20home.jpg",
