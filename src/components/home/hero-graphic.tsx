@@ -11,7 +11,7 @@ export function HeroGraphic() {
             animation: draw-in-out 6s ease-in-out infinite;
           }
           .graphic-glow {
-            animation: pulse-glow 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.4));
           }
           @keyframes draw-in-out {
             0% {
@@ -24,22 +24,14 @@ export function HeroGraphic() {
               stroke-dashoffset: 500;
             }
           }
-          @keyframes pulse-glow {
-            0%, 100% {
-              filter: drop-shadow(0 0 3px hsl(var(--primary) / 0.5));
-            }
-            50% {
-              filter: drop-shadow(0 0 10px hsl(var(--primary) / 0.8));
-            }
-          }
         `}
       </style>
       <svg
         className="w-full h-full overflow-visible graphic-glow"
         viewBox="0 0 200 200"
         fill="none"
-        stroke="hsl(var(--primary))"
-        strokeWidth="2"
+        stroke="#FFD700"
+        strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
@@ -56,9 +48,9 @@ export function HeroGraphic() {
         <path className="graphic-path" style={{ animationDelay: "1.6s" }} d="M 20 180 L 40 100" />
         
         {/* Central decorative element */}
-        <circle className="graphic-path" style={{ animationDelay: "2s" }} cx="100" cy="100" r="10" stroke="hsl(var(--foreground))" />
-        <path className="graphic-path" style={{ animationDelay: "2.2s" }} d="M 100 80 L 100 120" stroke="hsl(var(--foreground))" />
-        <path className="graphic-path" style={{ animationDelay: "2.4s" }} d="M 80 100 L 120 100" stroke="hsl(var(--foreground))" />
+        <circle className="graphic-path" style={{ animationDelay: "2s" }} cx="100" cy="100" r="12" stroke="#FFD700" strokeWidth="1" />
+        <path className="graphic-path" style={{ animationDelay: "2.2s" }} d="M 100 80 L 100 120" stroke="#FFD700" />
+        <path className="graphic-path" style={{ animationDelay: "2.4s" }} d="M 80 100 L 120 100" stroke="#FFD700" />
       </svg>
     </>
   );
