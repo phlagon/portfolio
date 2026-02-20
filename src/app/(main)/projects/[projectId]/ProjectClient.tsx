@@ -26,7 +26,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   const [activePart, setActivePart] = useState<'website' | 'app' | 'logo'>('website');
   const [currentPage, setCurrentPage] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [rapidoScreen, setRapidoScreen] = useState<'home' | 'travel' | 'flight'>('home');
+  const [rapidoScreen, setRapidoScreen] = useState<'ride' | 'travel' | 'offline' | 'live' | 'profile' | 'flight'>('ride');
   
   const projectImages = (project.imageIds || []).map(id => placeholderImages.find(img => img.id === id)).filter(Boolean) as any[];
   const isRapido = project.id === 'project-1';
@@ -51,7 +51,10 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   };
 
   const getRapidoImage = () => {
-    const id = rapidoScreen === 'home' ? 'rapido-home' : rapidoScreen === 'travel' ? 'rapido-travel' : 'rapido-flight';
+    const id = rapidoScreen === 'ride' ? 'rapido-home' 
+             : rapidoScreen === 'travel' ? 'rapido-travel' 
+             : rapidoScreen === 'flight' ? 'rapido-flight'
+             : 'rapido-home'; // Fallback for placeholders
     return placeholderImages.find(img => img.id === id);
   };
 
@@ -127,53 +130,61 @@ export default function ProjectClient({ project, placeholderImages }: { project:
           {isRapido ? (
             <div className="flex flex-col items-center gap-8">
               <div className="relative mx-auto border-[#1a1a1a] bg-[#1a1a1a] border-[14px] rounded-[2.5rem] h-[650px] w-[320px] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)]">
-                  <div className="w-[148px] h-[18px] bg-[#1a1a1a] top-0 rounded-b-[1rem] left-1/2 -translate-x-1/2 absolute z-20"></div>
+                  <div className="w-[148px] h-[18px] bg-[#1a1a1a] top-0 rounded-b-[1rem] left-1/2 -translate-x-1/2 absolute z-40"></div>
                   <div className="h-[46px] w-[3px] bg-[#1a1a1a] absolute -left-[17px] top-[124px] rounded-l-lg"></div>
                   <div className="h-[46px] w-[3px] bg-[#1a1a1a] absolute -left-[17px] top-[178px] rounded-l-lg"></div>
                   <div className="h-[64px] w-[3px] bg-[#1a1a1a] absolute -right-[17px] top-[142px] rounded-r-lg"></div>
                   
                   <div className="rounded-[2rem] overflow-hidden w-full h-full bg-black relative">
-                      {getRapidoImage() && (
-                        <div className="relative w-full h-full animate-in fade-in duration-500">
-                          <Image
-                            src={getRapidoImage()!.imageUrl}
-                            alt={`Rapido ${rapidoScreen}`}
-                            fill
-                            className="object-cover"
-                            priority
-                          />
-                          
-                          {/* Interactions */}
-                          {rapidoScreen === 'home' && (
-                            <button 
-                              onClick={() => setRapidoScreen('travel')}
-                              className="absolute bottom-0 left-0 w-full h-[15%] bg-transparent cursor-pointer z-30"
-                              title="Click Travel Tab"
+                      <div className="w-full h-full overflow-y-auto scrollbar-hide">
+                        {getRapidoImage() && (
+                          <div className="relative w-full animate-in fade-in duration-500">
+                            <Image
+                              src={getRapidoImage()!.imageUrl}
+                              alt={`Rapido ${rapidoScreen}`}
+                              width={320}
+                              height={1000}
+                              className="w-full h-auto block"
+                              priority
                             />
-                          )}
-                          
-                          {rapidoScreen === 'travel' && (
-                            <button 
-                              onClick={() => setRapidoScreen('flight')}
-                              className="absolute top-[25%] left-0 w-[30%] h-[15%] bg-transparent cursor-pointer z-30"
-                              title="Click Flight Tab"
-                            />
-                          )}
-                          
-                          {rapidoScreen !== 'home' && (
-                            <button 
-                              onClick={() => setRapidoScreen('home')}
-                              className="absolute bottom-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center z-40 backdrop-blur-sm transition-colors"
-                              title="Reset to Home"
-                            >
-                              <RotateCcw className="h-4 w-4 text-white" />
-                            </button>
-                          )}
-                        </div>
+                            
+                            {/* Inner hotspots (screen specific) */}
+                            {rapidoScreen === 'travel' && (
+                              <button 
+                                onClick={() => setRapidoScreen('flight')}
+                                className="absolute top-[28%] left-0 w-[33%] h-[12%] bg-transparent cursor-pointer z-30"
+                                title="Click Flight Tab"
+                              />
+                            )}
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Sticky Bottom Nav Hotspots */}
+                      <div className="absolute bottom-0 left-0 w-full h-[12%] bg-transparent flex z-50">
+                        <button onClick={() => setRapidoScreen('ride')} className="flex-1 h-full" title="Ride" />
+                        <button onClick={() => setRapidoScreen('travel')} className="flex-1 h-full" title="Travel" />
+                        <button onClick={() => setRapidoScreen('offline')} className="flex-1 h-full" title="Offline" />
+                        <button onClick={() => setRapidoScreen('live')} className="flex-1 h-full" title="Live" />
+                        <button onClick={() => setRapidoScreen('profile')} className="flex-1 h-full" title="Profile" />
+                      </div>
+
+                      {/* Floating Reset Button */}
+                      {rapidoScreen !== 'ride' && (
+                        <button 
+                          onClick={() => setRapidoScreen('ride')}
+                          className="absolute bottom-20 right-4 w-10 h-10 rounded-full bg-primary text-black flex items-center justify-center z-[60] shadow-xl hover:scale-110 transition-transform"
+                          title="Return to Home"
+                        >
+                          <RotateCcw className="h-5 w-5" />
+                        </button>
                       )}
                   </div>
               </div>
-              <p className="text-[10px] text-primary font-bold uppercase tracking-[0.3em] opacity-50">Interactive Prototype • Click to Navigate</p>
+              <div className="flex flex-col items-center gap-2">
+                <p className="text-[10px] text-primary font-bold uppercase tracking-[0.3em] opacity-80">Interactive Prototype</p>
+                <p className="text-[10px] text-foreground/40 uppercase tracking-[0.1em]">Scroll vertically • Use bottom tabs to navigate</p>
+              </div>
             </div>
           ) : isLosmoProject ? (
             <div className="w-full">
