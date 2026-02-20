@@ -1,56 +1,29 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 @layer base {
   :root {
-    --background: 222 47% 11%;
+    --background: 230 40% 6%;
     --foreground: 210 40% 98%;
-    --card: 222 47% 13%;
+    --card: 230 40% 8%;
     --card-foreground: 210 40% 98%;
-    --popover: 222 47% 11%;
+    --popover: 230 40% 6%;
     --popover-foreground: 210 40% 98%;
-    --primary: 199 100% 50%;
-    --primary-foreground: 222 47% 11%;
-    --secondary: 217 33% 17%;
+    --primary: 180 100% 50%;
+    --primary-foreground: 230 40% 6%;
+    --secondary: 217 33% 12%;
     --secondary-foreground: 210 40% 98%;
-    --muted: 217 33% 17%;
+    --muted: 217 33% 12%;
     --muted-foreground: 215 20% 65%;
-    --accent: 199 100% 50%;
-    --accent-foreground: 222 47% 11%;
-    --destructive: 0 63% 31%;
+    --accent: 180 100% 50%;
+    --accent-foreground: 230 40% 6%;
+    --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    --border: 217 33% 25%;
-    --input: 217 33% 25%;
-    --ring: 199 100% 50%;
-    --radius: 0.75rem;
-  }
-
-  .dark {
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
-    --card: 222 47% 13%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222 47% 11%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 199 100% 50%;
-    --primary-foreground: 222 47% 11%;
-    --secondary: 217 33% 17%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 199 100% 50%;
-    --accent-foreground: 222 47% 11%;
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217 33% 25%;
-    --input: 217 33% 25%;
-    --ring: 199 100% 50%;
+    --border: 217 33% 20%;
+    --input: 217 33% 20%;
+    --ring: 180 100% 50%;
+    --radius: 0rem;
   }
 }
 
@@ -59,7 +32,7 @@ body {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground selection:bg-primary selection:text-primary-foreground;
   }
 }
 
@@ -85,52 +58,28 @@ body {
 
   .page-active {
     z-index: 20;
-    transform: rotateY(0deg) translateZ(0);
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    transform: rotateY(0deg);
     opacity: 1;
   }
 
   .page-folding {
     z-index: 30;
-    animation: fold-and-curl 3.5s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+    animation: simple-fold 3s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
   }
 
   .page-visible-under {
     z-index: 10;
-    opacity: 1 !important;
-    transform: rotateY(0deg) translateZ(-1px) !important;
+    opacity: 1;
   }
 
-  .page-flipped {
-    z-index: 5;
-    opacity: 0;
-    pointer-events: none;
-    transform: rotateY(-10deg) translateX(-100%);
-  }
-
-  .page-upcoming {
-    z-index: 0;
-    opacity: 0;
-    transform: translateZ(-50px);
-  }
-
-  @keyframes fold-and-curl {
+  @keyframes simple-fold {
     0% {
-      transform: translate3d(0, 0, 0) rotateY(0deg) skewY(0deg) scaleX(1);
+      transform: scaleX(1) skewY(0deg);
       clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-      opacity: 1;
-    }
-    40% {
-      transform: translate3d(-10%, -2%, 100px) rotateY(-5deg) skewY(2deg) scaleX(0.9);
-      clip-path: polygon(0 0, 100% 0, 100% 70%, 70% 100%, 0 100%);
-    }
-    80% {
-      transform: translate3d(-50%, -8%, 200px) rotateY(-12deg) skewY(8deg) scaleX(0.4);
-      clip-path: polygon(0 0, 100% 0, 100% 10%, 10% 100%, 0 100%);
     }
     100% {
-      transform: translate3d(-100%, -10%, 300px) rotateY(-20deg) skewY(12deg) scaleX(0);
-      clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+      transform: scaleX(0) skewY(15deg) translateX(-10%);
+      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
       opacity: 0;
     }
   }
@@ -139,27 +88,18 @@ body {
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background: linear-gradient(
-      135deg, 
-      transparent 40%, 
-      rgba(0,0,0,0.03) 50%, 
-      rgba(0,0,0,0.08) 60%, 
-      rgba(255,255,255,0.02) 70%, 
-      transparent 80%
-    );
+    background: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 100%);
     z-index: 35;
     opacity: 0;
-    transition: opacity 0.5s ease;
-    mix-blend-mode: multiply;
   }
 
   .page-folding .fold-shadow {
-    animation: shadow-move 3.5s linear forwards;
-    opacity: 1;
+    animation: shadow-fade 3s linear forwards;
   }
 
-  @keyframes shadow-move {
-    0% { background-position: 200% 200%; }
-    100% { background-position: -200% -200%; }
+  @keyframes shadow-fade {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
   }
 }
