@@ -44,8 +44,6 @@ import { getTransitOptions, type TransitSearchOutput } from '@/ai/flows/transit-
 type ProjectType = (typeof projects)[0];
 
 export default function ProjectClient({ project, placeholderImages }: { project: ProjectType, placeholderImages: ImagePlaceholder[] }) {
-  const [currentPage, setCurrentPage] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
   const [rapidoScreen, setRapidoScreen] = useState<'ride' | 'travel' | 'offline' | 'live' | 'profile' | 'flight'>('ride');
   
   const [pickupLocation, setPickupLocation] = useState('');
@@ -185,7 +183,8 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             {rapidoScreen === 'travel' && (
                               <button 
                                 onClick={() => setRapidoScreen('flight')}
-                                className="absolute top-[18%] left-0 w-[40%] h-[15%] bg-transparent cursor-pointer z-[40]"
+                                className="absolute top-[18%] left-[24%] w-[20%] h-[12%] bg-transparent cursor-pointer z-[40]"
+                                title="Flight Booking"
                               />
                             )}
                         </div>
