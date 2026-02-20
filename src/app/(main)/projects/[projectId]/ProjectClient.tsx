@@ -196,6 +196,14 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               />
                             )}
 
+                            {rapidoScreen === 'gps-confirm' && (
+                              <button 
+                                onClick={() => setRapidoScreen('confirmation')}
+                                className="absolute top-[58%] left-[55%] w-[30%] h-[8%] bg-transparent cursor-pointer z-[95]"
+                                title="Confirm Yes"
+                              />
+                            )}
+
                             {rapidoScreen === 'live' && (
                               <button 
                                 onClick={() => setRapidoScreen('your-trip')}
