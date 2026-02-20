@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -64,6 +65,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   const isLogoProject = project.id === 'project-3' || project.id === 'project-logo-redesign';
   const isPackageProject = project.id === 'project-5' || project.id === 'project-packaging-redesign';
   const isPackageDesign = project.id === 'project-5';
+  const isPackageRedesign = project.id === 'project-packaging-redesign';
   const isTypeSpecimen = project.id === 'project-6';
   
   const handleSearchTransit = async () => {
@@ -502,7 +504,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                 </div>
               </div>
             </Reveal>
-          ) : isLogoProject ? (
+          ) : (isLogoProject || isPackageRedesign) ? (
             <div className="flex flex-col gap-40 py-24 max-w-6xl mx-auto px-4">
               {projectImages.map((image, index) => {
                 const alignments = [
@@ -515,6 +517,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                   "self-end md:mr-32"
                 ];
                 const alignClass = alignments[index % alignments.length];
+                const isVideo = image.imageUrl.endsWith('.mp4');
                 
                 return (
                   <Reveal 
@@ -524,15 +527,26 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                       alignClass
                     )}
                   >
-                    <div className="relative group overflow-hidden">
-                      <Image 
-                        src={image.imageUrl} 
-                        alt={`Logo Design ${index + 1}`} 
-                        width={1400} 
-                        height={1000} 
-                        className="w-full h-auto block grayscale hover:grayscale-0 scale-100 hover:scale-110 transition-all duration-[1.5s] ease-out"
-                        unoptimized
-                      />
+                    <div className="relative group overflow-hidden aspect-video md:aspect-auto">
+                      {isVideo ? (
+                        <video 
+                          src={image.imageUrl}
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          className="w-full h-auto block grayscale hover:grayscale-0 scale-100 hover:scale-110 transition-all duration-[1.5s] ease-out"
+                        />
+                      ) : (
+                        <Image 
+                          src={image.imageUrl} 
+                          alt={`Design ${index + 1}`} 
+                          width={1400} 
+                          height={1000} 
+                          className="w-full h-auto block grayscale hover:grayscale-0 scale-100 hover:scale-110 transition-all duration-[1.5s] ease-out"
+                          unoptimized
+                        />
+                      )}
                     </div>
                   </Reveal>
                 );

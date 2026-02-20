@@ -1,3 +1,4 @@
+
 export const projects = [
   {
     id: "project-1",
@@ -50,8 +51,8 @@ export const projects = [
     description: "Reimagining established products with modern, sustainable, and consumer-focused packaging solutions.",
     longDescription: "This series explores the transformation of established brand packaging. By analyzing consumer behavior and modern retail environments, we developed redesigns that improve shelf presence, sustainability, and ease of use, all while maintaining the brand's recognizable heritage.",
     tags: ["Packaging Redesign", "Sustainability"],
-    thumbnailId: "project-5-thumb",
-    imageIds: [],
+    thumbnailId: "pkg-redesign-box",
+    imageIds: ["pkg-redesign-box", "pkg-redesign-loreal", "pkg-redesign-pack", "pkg-redesign-video"],
   },
   {
     id: "project-6",

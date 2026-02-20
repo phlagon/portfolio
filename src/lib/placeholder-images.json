@@ -245,6 +245,30 @@
       "description": "Medimix redesign 2",
       "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/4b464978c61de5e25c4c99a796860cbe6f3f16a5/medimix.jpg",
       "imageHint": "medimix logo"
+    },
+    {
+      "id": "pkg-redesign-box",
+      "description": "Packaging Redesign Box",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/012c8876302ae167d1412807b3f4871f26a3510b/box.png",
+      "imageHint": "package box"
+    },
+    {
+      "id": "pkg-redesign-loreal",
+      "description": "Packaging Redesign Loreal",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/012c8876302ae167d1412807b3f4871f26a3510b/loreal.jpg",
+      "imageHint": "loreal redesign"
+    },
+    {
+      "id": "pkg-redesign-pack",
+      "description": "Packaging Redesign Pack",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/012c8876302ae167d1412807b3f4871f26a3510b/packge.png",
+      "imageHint": "packaging layout"
+    },
+    {
+      "id": "pkg-redesign-video",
+      "description": "Packaging Redesign Video",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/012c8876302ae167d1412807b3f4871f26a3510b/medmix%20packaging.mp4",
+      "imageHint": "packaging video"
     }
   ]
 }
