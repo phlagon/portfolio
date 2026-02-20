@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -57,39 +58,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
 
   const projectImages = (project.imageIds || []).map(id => placeholderImages.find(img => img.id === id)).filter(Boolean) as any[];
   const isRapido = project.id === 'project-1';
-  const isPackageProject = project.id === 'project-5';
-  const isTypeSpecimen = project.id === 'project-6';
-
-  const handleNextPage = () => {
-    if (currentPage < projectImages.length - 1 && !isAnimating) {
-      setIsAnimating(true);
-      setTimeout(() => {
-        setCurrentPage(prev => prev + 1);
-        setIsAnimating(false);
-      }, 2500); 
-    }
-  };
-
-  const handlePrevPage = () => {
-    if (currentPage > 0 && !isAnimating) {
-      setCurrentPage(prev => prev - 1);
-    }
-  };
-
-  const getRapidoImage = () => {
-    if (rapidoScreen === 'flight') return placeholderImages.find(img => img.id === 'rapido-flight')?.imageUrl;
-    if (rapidoScreen === 'travel' || rapidoScreen === 'ride') return placeholderImages.find(img => img.id === (rapidoScreen === 'travel' ? 'rapido-travel' : 'rapido-home'))?.imageUrl;
-    return placeholderImages.find(img => img.id === 'rapido-home')?.imageUrl;
-  };
-
-  const navTabs = [
-    { id: 'ride', label: 'Ride', icon: Navigation },
-    { id: 'travel', label: 'Travel', icon: Palmtree },
-    { id: 'offline', label: 'Offline', icon: CloudOff },
-    { id: 'live', label: 'Live', icon: MapPin },
-    { id: 'profile', label: 'Profile', icon: User },
-  ];
-
+  
   const handleSearchTransit = async () => {
     if (!pickupLocation || !dropLocation) return;
     setIsSearching(true);
@@ -107,11 +76,20 @@ export default function ProjectClient({ project, placeholderImages }: { project:
     }
   };
 
-  const resetTransit = () => {
-    setTransitResults(null);
-    setPickupLocation('');
-    setDropLocation('');
+  const getRapidoImage = () => {
+    if (rapidoScreen === 'flight') return placeholderImages.find(img => img.id === 'rapido-flight')?.imageUrl;
+    if (rapidoScreen === 'offline') return placeholderImages.find(img => img.id === 'rapido-offline')?.imageUrl;
+    if (rapidoScreen === 'travel' || rapidoScreen === 'ride') return placeholderImages.find(img => img.id === (rapidoScreen === 'travel' ? 'rapido-travel' : 'rapido-home'))?.imageUrl;
+    return placeholderImages.find(img => img.id === 'rapido-home')?.imageUrl;
   };
+
+  const navTabs = [
+    { id: 'ride', label: 'Ride', icon: Navigation },
+    { id: 'travel', label: 'Travel', icon: Palmtree },
+    { id: 'offline', label: 'Offline', icon: CloudOff },
+    { id: 'live', label: 'Live', icon: MapPin },
+    { id: 'profile', label: 'Profile', icon: User },
+  ];
 
   return (
     <div className="container py-12 md:py-24">
@@ -144,7 +122,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                   <div className="w-full h-full relative flex flex-col bg-white">
                       <div className="flex-1 overflow-y-auto scrollbar-hide pb-[84px] relative bg-white">
                         <div className="relative w-full">
-                            {/* Main Background Image (Ride or Travel) */}
+                            {/* Main Background Image */}
                             <Image
                               src={getRapidoImage() || ''}
                               alt={`Rapido Screen`}
@@ -174,10 +152,9 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                       autoComplete="off"
                                       placeholder=""
                                   />
-                                  {/* Clickable Search area in the image (The Yellow Search Button) */}
                                   <button 
                                     onClick={handleSearchTransit}
-                                    className="absolute top-[18.2%] left-[1/2] -translate-x-1/2 w-[70%] h-[5%] bg-transparent cursor-pointer z-[90] left-1/2"
+                                    className="absolute top-[18.2%] left-1/2 -translate-x-1/2 w-[70%] h-[5%] bg-transparent cursor-pointer z-[90]"
                                   />
                               </>
                             )}
@@ -203,7 +180,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               </>
                             )}
 
-                            {/* Trigger Search logic on Travel screen as requested */}
                             {rapidoScreen === 'travel' && (
                               <button 
                                 onClick={() => setRapidoScreen('flight')}
@@ -212,7 +188,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             )}
                         </div>
 
-                        {/* Loading State Overlay */}
+                        {/* Loading State */}
                         {isSearching && (
                           <div className="absolute inset-0 bg-white/90 z-[95] flex flex-col items-center justify-center p-12 text-center space-y-6">
                              <div className="relative">
@@ -228,10 +204,9 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                           </div>
                         )}
 
-                        {/* Results Section - Integrated directly as shown in image */}
-                        {transitResults && (
+                        {/* Results Section */}
+                        {transitResults && rapidoScreen !== 'offline' && (
                           <div className="bg-[#F8F9FA] min-h-[400px] animate-in slide-in-from-bottom duration-500 pb-12">
-                             {/* Results Container */}
                              <div className="space-y-4 pt-4">
                                 {transitResults.options.map((option, idx) => {
                                   let Icon = Train;
@@ -240,7 +215,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
 
                                   return (
                                     <div key={idx} className="flex px-4">
-                                      {/* Left Category Column */}
                                       <div className="w-[60px] flex flex-col items-center pt-8 space-y-2 shrink-0">
                                          <div className="h-10 w-10 flex items-center justify-center">
                                             <Icon className="h-6 w-6 text-black/80" />
@@ -248,19 +222,14 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                          <span className="text-[11px] font-black uppercase tracking-tight text-black">{option.type}</span>
                                       </div>
 
-                                      {/* Right Card Column */}
                                       <div className="flex-1 bg-white border border-black/5 shadow-sm p-4 relative">
-                                        {/* Yellow side highlight for Train */}
                                         {option.type === 'Train' && <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#F9D915]" />}
-                                        
                                         <div className="space-y-4">
-                                          {/* ID and Name */}
                                           <div className="space-y-1">
                                             <p className="text-[10px] text-black/40 font-bold uppercase tracking-widest">{option.number}</p>
                                             <h3 className="text-[13px] font-black text-black uppercase">{option.provider}</h3>
                                           </div>
 
-                                          {/* Times and Locations */}
                                           <div className="flex items-center justify-between">
                                             <div className="space-y-1">
                                               <p className="text-[11px] font-black text-black">{option.departureTime} <span className="text-black/40 font-bold">{option.departureDate}</span></p>
@@ -281,7 +250,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                             </div>
                                           </div>
 
-                                          {/* Classes and Buttons */}
                                           <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-hide">
                                             {['SL', '3E', '3A', '2A', '1A'].map(cls => (
                                               <Badge key={cls} variant="outline" className="text-[8px] font-black h-7 min-w-[32px] justify-center bg-black/5 border-none text-black/40 rounded-sm">
@@ -293,8 +261,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                             </button>
                                           </div>
 
-                                          {/* Final Select Button */}
-                                          <button className="w-full bg-[#F9D915] text-black text-[11px] font-black uppercase tracking-widest py-3 rounded-full shadow-sm hover:scale-[0.98] transition-transform">
+                                          <button className="w-full bg-[#F9D915] text-black text-[11px] font-black uppercase tracking-widest py-3 rounded-full shadow-sm">
                                             Select
                                           </button>
                                         </div>
@@ -304,7 +271,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                 })}
                              </div>
 
-                             {/* Branding Footer */}
                              <div className="mt-12 py-8 flex flex-col items-center space-y-4">
                                 <div className="flex items-center gap-4 w-full px-8">
                                    <div className="h-px bg-black/10 flex-1" />
@@ -352,11 +318,11 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                         })}
                       </div>
 
-                      {/* Reset Control */}
-                      {(rapidoScreen === 'flight' || transitResults) && (
+                      {/* Reset Controls */}
+                      {(rapidoScreen === 'flight' || transitResults || rapidoScreen === 'offline') && (
                         <button 
                           onClick={() => {
-                            setRapidoScreen('travel');
+                            setRapidoScreen('ride');
                             setTransitResults(null);
                           }}
                           className="absolute bottom-24 right-6 w-10 h-10 rounded-full bg-[#F9D915] text-black flex items-center justify-center z-[80] shadow-2xl hover:scale-110 transition-transform"
