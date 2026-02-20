@@ -202,7 +202,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                     description: "Viewing nearby transportation hubs."
                                   });
                                 }}
-                                className="absolute top-[52%] left-[5%] w-[90%] h-[12%] bg-transparent cursor-pointer z-[95]"
+                                className="absolute top-[48%] left-[5%] w-[90%] h-[12%] bg-transparent cursor-pointer z-[95]"
                                 title="Nearby Bus Stop"
                               />
                             )}
