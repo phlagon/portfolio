@@ -15,7 +15,8 @@ import {
   Train,
   Bus,
   Loader2,
-  RotateCcw
+  RotateCcw,
+  PlayCircle
 } from 'lucide-react';
 
 import type { ImagePlaceholder } from '@/lib/placeholder-images';
@@ -28,7 +29,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/Card';
 import { cn } from '@/lib/utils';
 import { getTransitOptions, type TransitSearchOutput } from '@/ai/flows/transit-search-flow';
 import { useToast } from '@/hooks/use-toast';
@@ -65,6 +66,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   const projectImages = (project.imageIds || []).map(id => placeholderImages.find(img => img.id === id)).filter(Boolean) as any[];
   const isRapido = project.id === 'project-1';
   const isLosmo = project.id === 'project-2';
+  const isPackageDesign = project.id === 'project-5';
   
   const handleSearchTransit = async () => {
     if (!pickupLocation || !dropLocation) return;
@@ -387,8 +389,10 @@ export default function ProjectClient({ project, placeholderImages }: { project:
             </Reveal>
           ) : isLosmo ? (
             <Reveal className="relative mx-auto w-full max-w-5xl group perspective-3000">
+               {/* iMac Mockup */}
                <div className="relative bg-[#f5f5f7] p-3 md:p-5 rounded-t-[2.5rem] shadow-2xl border-x-[1px] border-t-[1px] border-white/20">
                   <div className="bg-[#0a0a0a] p-2 md:p-3 rounded-[1.5rem] overflow-hidden shadow-inner">
+                      {/* Screen Content */}
                       <div className="bg-white aspect-video overflow-y-auto scrollbar-hide rounded-lg shadow-2xl">
                           <div className="flex flex-col">
                               {projectImages.map((image, idx) => (
@@ -411,15 +415,42 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                   </div>
                </div>
                
+               {/* Stand Base */}
                <div className="h-16 md:h-20 bg-gradient-to-b from-[#e2e2e2] to-[#c1c1c1] rounded-b-[2.5rem] relative flex items-center justify-center shadow-xl border-x-[1px] border-b-[2px] border-gray-400/30">
                   <div className="w-8 h-8 md:w-10 md:h-10 opacity-20 bg-black/20 rounded-full flex items-center justify-center">
                     <div className="w-3 h-3 md:w-4 md:h-4 bg-black/40 rounded-full" />
                   </div>
                </div>
 
+               {/* Stand Neck */}
                <div className="mx-auto w-40 h-24 md:w-56 md:h-32 bg-gradient-to-b from-[#d1d1d1] to-[#b1b1b1] rounded-b-2xl relative -mt-1 z-[-1] shadow-2xl transform-gpu origin-top">
                   <div className="absolute inset-x-0 top-0 h-4 bg-black/10" />
                   <div className="absolute bottom-0 inset-x-0 h-[2px] bg-black/5" />
+               </div>
+            </Reveal>
+          ) : isPackageDesign ? (
+            <Reveal className="w-full max-w-6xl mx-auto">
+               <div className="relative aspect-video bg-black/20 rounded-none overflow-hidden border border-white/5 shadow-2xl group">
+                  <video 
+                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"
+                    autoPlay 
+                    loop 
+                    muted 
+                    playsInline
+                  >
+                    <source src="https://raw.githubusercontent.com/phlagon/purr-folio/1e86a7d646b793222feceec9ded448cbd3a24335/medmix%20packaging.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
+                  <div className="absolute bottom-12 left-12 flex items-center gap-6">
+                      <div className="h-12 w-12 rounded-full border border-primary/40 flex items-center justify-center animate-pulse">
+                         <PlayCircle className="h-6 w-6 text-primary" />
+                      </div>
+                      <div className="space-y-1">
+                        <p className="text-[10px] font-black uppercase tracking-[0.4em] text-primary">Now Playing</p>
+                        <p className="text-sm font-bold text-white uppercase tracking-widest">MedMix Packaging Process</p>
+                      </div>
+                  </div>
                </div>
             </Reveal>
           ) : (
