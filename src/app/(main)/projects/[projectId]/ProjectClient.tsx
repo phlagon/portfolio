@@ -1,22 +1,4 @@
-
 'use client';
-
-// Polyfill for Promise.withResolvers which is required by newer versions of PDF.js
-// MUST run before react-pdf import
-if (typeof Promise.withResolvers === 'undefined') {
-  if (typeof window !== 'undefined') {
-    // @ts-expect-error - Polyfilling modern JS feature
-    Promise.withResolvers = function <T>() {
-      let resolve!: (value: T | PromiseLike<T>) => void;
-      let reject!: (reason?: any) => void;
-      const promise = new Promise<T>((res, rej) => {
-        resolve = res;
-        reject = rej;
-      });
-      return { promise, resolve, reject };
-    };
-  }
-}
 
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
