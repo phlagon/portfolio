@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -138,6 +139,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               unoptimized
                             />
                             
+                            {/* Inputs and Search only on main interactive screens */}
                             {(rapidoScreen === 'ride' || rapidoScreen === 'travel') && (
                               <>
                                   <input 
@@ -166,18 +168,12 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             {rapidoScreen === 'travel' && (
                               <>
                                 <button 
-                                  onClick={() => {
-                                    setRapidoScreen('public-transport');
-                                    setTransitResults(null);
-                                  }}
-                                  className="absolute top-[17%] left-[10%] w-[20%] h-[10%] bg-transparent cursor-pointer z-[95]"
+                                  onClick={() => setRapidoScreen('public-transport')}
+                                  className="absolute top-[45.2%] left-[10%] w-[20%] h-[10%] bg-transparent cursor-pointer z-[95]"
                                   title="Public Transport"
                                 />
                                 <button 
-                                  onClick={() => {
-                                    setRapidoScreen('flight');
-                                    setTransitResults(null);
-                                  }}
+                                  onClick={() => setRapidoScreen('flight')}
                                   className="absolute top-[45.2%] left-[5%] w-[30%] h-[10%] bg-transparent cursor-pointer z-[95]"
                                   title="Flight"
                                 />
@@ -187,8 +183,8 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             {rapidoScreen === 'live' && (
                               <button 
                                 onClick={() => setRapidoScreen('your-trip')}
-                                className="absolute top-[12.5%] left-[5%] w-[45%] h-[5%] bg-transparent cursor-pointer z-[95]"
-                                title="Your Trip"
+                                className="absolute top-[12.5%] left-[5%] w-[90%] h-[8%] bg-transparent cursor-pointer z-[95]"
+                                title="Your Trip Details"
                               />
                             )}
 
@@ -201,7 +197,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                 />
                                 <button 
                                   onClick={() => setRapidoScreen('flight')}
-                                  className="absolute top-[65%] left-[5%] w-[30%] h-[15%] bg-transparent cursor-pointer z-[95]"
+                                  className="absolute top-[65%] left-[35%] w-[30%] h-[15%] bg-transparent cursor-pointer z-[95]"
                                   title="Flight Tab"
                                 />
                               </>
@@ -312,19 +308,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                   );
                                 })}
                              </div>
-
-                             <div className="mt-12 py-8 flex flex-col items-center space-y-4">
-                                <div className="flex items-center gap-4 w-full px-8">
-                                   <div className="h-px bg-black/10 flex-1" />
-                                   <span className="text-[10px] font-bold text-black/30 uppercase tracking-[0.2em]">Partner Integration</span>
-                                   <div className="h-px bg-black/10 flex-1" />
-                                </div>
-                                <div className="flex items-center justify-center gap-8 opacity-40 grayscale">
-                                   <p className="text-xs font-black uppercase text-black tracking-tighter">goibibo</p>
-                                   <p className="text-xs font-black uppercase text-black tracking-tighter">redBus</p>
-                                   <p className="text-xs font-black uppercase text-black tracking-tighter">Confirmtkt</p>
-                                </div>
-                             </div>
                           </div>
                         )}
                       </div>
@@ -371,10 +354,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                         </button>
                       )}
                   </div>
-              </div>
-              <div className="flex flex-col items-center gap-3">
-                <p className="text-[10px] text-primary font-black uppercase tracking-[0.4em]">Integrated Transit Engine</p>
-                <p className="text-[10px] text-foreground/30 uppercase tracking-[0.2em]">Figma Mockup x AI Logic</p>
               </div>
             </div>
           ) : (
