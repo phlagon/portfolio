@@ -72,6 +72,8 @@ export default function ProjectClient({ project, placeholderImages }: { project:
     return placeholderImages.find(img => img.id === 'rapido-home');
   };
 
+  const RAPIDO_YELLOW = "#F9D915";
+
   return (
     <div className="container py-12 md:py-24">
       <div className="mb-12">
@@ -144,7 +146,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                         )}
                       </div>
 
-                      {/* Fixed Navigation Bar - Authentic Shell */}
+                      {/* Fixed Navigation Bar - Authentic UI */}
                       <div className="absolute bottom-0 left-0 w-full h-[84px] bg-black/95 backdrop-blur-2xl border-t border-white/10 flex items-center justify-around px-2 z-[60] pb-4 shadow-[0_-20px_40px_rgba(0,0,0,0.5)]">
                         {[
                           { id: 'ride', label: 'Ride', icon: Bike },

@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
+import Image from "next/image";
 import { Github, Linkedin, Twitter, Mail, Facebook } from "lucide-react";
 
 import { Loading } from "@/components/layout/loading";
@@ -126,9 +127,24 @@ export default function Home() {
             </div>
 
             <div className="hidden lg:flex justify-center items-center">
-              <div className="relative w-[550px] h-[550px]">
-                <div className="absolute inset-0 bg-primary/5 blur-[160px] rounded-full" />
-                <HeroGraphic />
+              <div className="relative w-[550px] h-[550px] flex items-center justify-center">
+                {/* Golden Box Graphic */}
+                <div className="absolute inset-0 z-0">
+                  <HeroGraphic />
+                </div>
+                
+                {/* Rapido Hero Mockup */}
+                <div className="relative z-10 scale-[0.85] -translate-y-4">
+                   <div className="relative border-[#0a0a0a] bg-[#0a0a0a] border-[8px] rounded-[2.5rem] h-[520px] w-[260px] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.8)] overflow-hidden">
+                      <Image 
+                        src="https://raw.githubusercontent.com/phlagon/purr-folio/92a13efe52f877af083d2af307f50753e3a5c6d2/home%20page.jpg"
+                        alt="Rapido Mockup"
+                        fill
+                        className="object-cover"
+                        priority
+                      />
+                   </div>
+                </div>
               </div>
             </div>
           </div>
