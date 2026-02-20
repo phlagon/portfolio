@@ -17,7 +17,6 @@ import {
   Loader2,
   RotateCcw,
   PlayCircle,
-  BookOpen,
   ChevronLeft,
   ChevronRight
 } from 'lucide-react';
@@ -119,7 +118,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
 
   const isStaticScreen = ['flight', 'your-trip', 'public-transport', 'stops', 'confirmation', 'auto-find', 'gps-confirm', 'weather'].includes(rapidoScreen);
 
-  // For LOSMO project, we prepend the specific homepage splash image requested
+  // For LOSMO project, we ensure the homepage-splash is the first image
   const losmoFirstImage = placeholderImages.find(img => img.id === 'homepage-splash');
   const losmoImages = isLosmo && losmoFirstImage ? [losmoFirstImage, ...projectImages] : projectImages;
 
@@ -414,6 +413,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             <CarouselContent className="-ml-0 h-full">
                               {losmoImages.map((image, idx) => (
                                 <CarouselItem key={idx} className="pl-0 h-full">
+                                  {/* Wrapping image in a scrollable div for website feel */}
                                   <div className="w-full h-full overflow-y-auto scrollbar-hide">
                                     {image && (
                                       <Image 
@@ -422,6 +422,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                         width={1920} 
                                         height={1080} 
                                         className="w-full h-auto block" 
+                                        priority={idx === 0}
                                         unoptimized
                                       />
                                     )}
@@ -504,7 +505,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                         className={cn(
                           "absolute inset-0 page-base bg-white shadow-2xl overflow-hidden cursor-none",
                           isFolded ? "page-turned-static" : "z-20",
-                          // Use a temporary animation class when a page is turned
                           index === foldedPages[foldedPages.length - 1] && "page-turning"
                         )}
                         style={{ zIndex: projectImages.length - index }}
@@ -580,7 +580,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
             <p className="text-sm text-foreground/50 leading-loose uppercase tracking-[0.2em] px-12">
               {project.longDescription}
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-16 pt-12 text-primary text-[10px] font-black uppercase tracking-[0.4em] opacity-40">
+            <div className="flex flex-wrap items-center justify-center gap-16 pt-12 text-primary text-[10px] font-black uppercase tracking-widest opacity-40">
                 <div className="flex items-center gap-3">
                     <Plane className="h-5 w-5"/>
                     <span>Seamless</span>
