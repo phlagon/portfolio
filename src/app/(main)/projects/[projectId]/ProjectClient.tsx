@@ -412,9 +412,9 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                           <Carousel className="w-full h-full">
                             <CarouselContent className="-ml-0 h-full">
                               {losmoImages.map((image, idx) => (
-                                <CarouselItem key={idx} className="pl-0 h-full">
-                                  {/* Wrapping image in a scrollable div for website feel */}
-                                  <div className="w-full h-full overflow-y-auto scrollbar-hide">
+                                <CarouselItem key={idx} className="pl-0 h-full relative">
+                                  {/* Wrapping image in an absolute scrollable div for website feel */}
+                                  <div className="absolute inset-0 overflow-y-auto scrollbar-hide">
                                     {image && (
                                       <Image 
                                         src={image.imageUrl} 
