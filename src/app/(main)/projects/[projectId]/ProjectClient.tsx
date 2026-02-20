@@ -166,11 +166,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             {rapidoScreen === 'travel' && (
                               <>
                                 <button 
-                                  onClick={() => setRapidoScreen('public-transport')}
-                                  className="absolute top-[45.2%] left-[5%] w-[30%] h-[10%] bg-transparent cursor-pointer z-[95]"
-                                  title="Public Transport Icon"
-                                />
-                                <button 
                                   onClick={() => setRapidoScreen('flight')}
                                   className="absolute top-[45.2%] left-[5%] w-[30%] h-[10%] bg-transparent cursor-pointer z-[95]"
                                   title="Flight Icon"
@@ -313,7 +308,10 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                       <div className="absolute bottom-0 left-0 w-full h-[84px] z-[60] bg-white border-t border-black/5 flex items-center justify-around px-2 pb-4">
                         {navTabs.map((tab) => {
                           const Icon = tab.icon;
-                          const isActive = rapidoScreen === tab.id || (tab.id === 'travel' && (rapidoScreen === 'flight' || rapidoScreen === 'public-transport')) || (tab.id === 'live' && rapidoScreen === 'your-trip');
+                          const isActive = rapidoScreen === tab.id 
+                            || (tab.id === 'travel' && (rapidoScreen === 'flight')) 
+                            || (tab.id === 'live' && (rapidoScreen === 'your-trip' || rapidoScreen === 'public-transport'));
+                          
                           return (
                             <button
                               key={tab.id}
