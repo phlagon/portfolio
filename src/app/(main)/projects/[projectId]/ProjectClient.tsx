@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState } from 'react';
@@ -9,22 +8,14 @@ import {
   Plane, 
   MapPin, 
   Luggage, 
-  Gem, 
-  Sparkles, 
-  Crown, 
-  ChevronLeft, 
-  ChevronRight, 
-  RotateCcw,
   Navigation,
   Palmtree,
   CloudOff,
   User,
   Train,
   Bus,
-  Car,
   Loader2,
-  Clock,
-  ArrowRight
+  RotateCcw
 } from 'lucide-react';
 
 import type { ImagePlaceholder } from '@/lib/placeholder-images';
@@ -62,6 +53,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
     setIsSearching(true);
     try {
       const results = await getTransitOptions({ pickup: pickupLocation, drop: dropLocation });
+      // Sort by Train, then Flight, then Bus
       const order = { 'Train': 1, 'Flight': 2, 'Bus': 3, 'Taxi': 4 };
       const sortedOptions = [...results.options].sort((a, b) => 
         (order[a.type] || 99) - (order[b.type] || 99)
@@ -79,7 +71,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
     if (rapidoScreen === 'offline') return placeholderImages.find(img => img.id === 'rapido-offline')?.imageUrl;
     if (rapidoScreen === 'profile') return placeholderImages.find(img => img.id === 'rapido-profile')?.imageUrl;
     if (rapidoScreen === 'live') return placeholderImages.find(img => img.id === 'rapido-live')?.imageUrl;
-    if (rapidoScreen === 'travel' || rapidoScreen === 'ride') return placeholderImages.find(img => img.id === (rapidoScreen === 'travel' ? 'rapido-travel' : 'rapido-home'))?.imageUrl;
+    if (rapidoScreen === 'travel') return placeholderImages.find(img => img.id === 'rapido-travel')?.imageUrl;
     return placeholderImages.find(img => img.id === 'rapido-home')?.imageUrl;
   };
 
@@ -122,7 +114,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                   <div className="w-full h-full relative flex flex-col bg-white">
                       <div className="flex-1 overflow-y-auto scrollbar-hide pb-[84px] relative bg-white">
                         <div className="relative w-full">
-                            {/* Main Background Image */}
                             <Image
                               src={getRapidoImage() || ''}
                               alt={`Rapido Screen`}
@@ -133,7 +124,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               unoptimized
                             />
                             
-                            {/* Transparent Input Overlays */}
+                            {/* Location Input Overlays (Ride, Travel, Flight) */}
                             {(rapidoScreen === 'ride' || rapidoScreen === 'travel' || rapidoScreen === 'flight') && (
                               <>
                                   <input 
@@ -152,6 +143,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                       autoComplete="off"
                                       placeholder=""
                                   />
+                                  {/* Search Trigger over the "Search" text in image */}
                                   <button 
                                     onClick={handleSearchTransit}
                                     className="absolute top-[19.2%] left-1/2 -translate-x-1/2 w-[75%] h-[5%] bg-transparent cursor-pointer z-[90]"
@@ -159,6 +151,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               </>
                             )}
 
+                            {/* Date Overlays (Flight screen only) */}
                             {rapidoScreen === 'flight' && (
                               <>
                                   <input 
@@ -180,16 +173,20 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               </>
                             )}
 
+                            {/* Click Zone for Flight design in Travel screen */}
                             {rapidoScreen === 'travel' && (
                               <button 
-                                onClick={() => setRapidoScreen('flight')}
-                                className="absolute top-[17.5%] left-[62%] w-[25%] h-[8%] bg-transparent cursor-pointer z-[95]"
+                                onClick={() => {
+                                  setRapidoScreen('flight');
+                                  setTransitResults(null);
+                                }}
+                                className="absolute top-[17.2%] left-[60%] w-[28%] h-[7%] bg-transparent cursor-pointer z-[95]"
                                 title="Flight Booking"
                               />
                             )}
                         </div>
 
-                        {/* Loading State */}
+                        {/* Loading State Overlay */}
                         {isSearching && (
                           <div className="absolute inset-0 bg-white/90 z-[95] flex flex-col items-center justify-center p-12 text-center space-y-6">
                              <div className="relative">
@@ -200,13 +197,13 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                              </div>
                              <div className="space-y-2">
                                <p className="text-sm font-black uppercase tracking-widest text-black">Calculating Routes</p>
-                               <p className="text-[10px] text-black/40 uppercase font-bold">Integrating Google Maps Data...</p>
+                               <p className="text-[10px] text-black/40 uppercase font-bold">Connecting to Transit Engine...</p>
                              </div>
                           </div>
                         )}
 
-                        {/* Results Section */}
-                        {transitResults && rapidoScreen !== 'offline' && rapidoScreen !== 'profile' && rapidoScreen !== 'live' && (
+                        {/* Detailed Search Results Section */}
+                        {transitResults && (rapidoScreen === 'ride' || rapidoScreen === 'travel' || rapidoScreen === 'flight') && (
                           <div className="bg-[#F8F9FA] min-h-[400px] animate-in slide-in-from-bottom duration-500 pb-12">
                              <div className="space-y-4 pt-4">
                                 {transitResults.options.map((option, idx) => {
@@ -216,6 +213,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
 
                                   return (
                                     <div key={idx} className="flex px-4">
+                                      {/* Side Label (Train, Flight, Bus) */}
                                       <div className="w-[60px] flex flex-col items-center pt-8 space-y-2 shrink-0">
                                          <div className="h-10 w-10 flex items-center justify-center">
                                             <Icon className="h-6 w-6 text-black/80" />
@@ -223,6 +221,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                          <span className="text-[11px] font-black uppercase tracking-tight text-black">{option.type}</span>
                                       </div>
 
+                                      {/* Detail Card */}
                                       <div className="flex-1 bg-white border border-black/5 shadow-sm p-4 relative">
                                         {option.type === 'Train' && <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#F9D915]" />}
                                         <div className="space-y-4">
@@ -246,11 +245,12 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                             </div>
 
                                             <div className="text-right space-y-1">
-                                              <p className="text-[11px] font-black text-black">{option.arrivalDate} <span className="text-black/40 font-bold">{option.arrivalTime}</span></p>
+                                              <p className="text-[11px] font-black text-black">{option.arrivalTime} <span className="text-black/40 font-bold">{option.arrivalDate}</span></p>
                                               <p className="text-[9px] font-black text-black/60 uppercase">{option.destination}</p>
                                             </div>
                                           </div>
 
+                                          {/* Class Badges & Action */}
                                           <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-hide">
                                             {['SL', '3E', '3A', '2A', '1A'].map(cls => (
                                               <Badge key={cls} variant="outline" className="text-[8px] font-black h-7 min-w-[32px] justify-center bg-black/5 border-none text-black/40 rounded-sm">
@@ -272,10 +272,11 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                 })}
                              </div>
 
+                             {/* Powered By Footer */}
                              <div className="mt-12 py-8 flex flex-col items-center space-y-4">
                                 <div className="flex items-center gap-4 w-full px-8">
                                    <div className="h-px bg-black/10 flex-1" />
-                                   <span className="text-[10px] font-bold text-black/30 uppercase tracking-[0.2em]">Powered by</span>
+                                   <span className="text-[10px] font-bold text-black/30 uppercase tracking-[0.2em]">Partner Integration</span>
                                    <div className="h-px bg-black/10 flex-1" />
                                 </div>
                                 <div className="flex items-center justify-center gap-8 opacity-40 grayscale">
@@ -288,7 +289,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                         )}
                       </div>
 
-                      {/* Navigation Bar */}
+                      {/* Mockup Navigation Bar */}
                       <div className="absolute bottom-0 left-0 w-full h-[84px] z-[60] bg-white border-t border-black/5 flex items-center justify-around px-2 pb-4">
                         {navTabs.map((tab) => {
                           const Icon = tab.icon;
@@ -319,7 +320,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                         })}
                       </div>
 
-                      {/* Reset Controls */}
+                      {/* Reset Button (Visible when in deep sub-screens) */}
                       {(rapidoScreen === 'flight' || transitResults || rapidoScreen === 'offline' || rapidoScreen === 'profile' || rapidoScreen === 'live') && (
                         <button 
                           onClick={() => {
@@ -335,7 +336,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
               </div>
               <div className="flex flex-col items-center gap-3">
                 <p className="text-[10px] text-primary font-black uppercase tracking-[0.4em]">Integrated Transit Engine</p>
-                <p className="text-[10px] text-foreground/30 uppercase tracking-[0.2em]">Figma Mockup x Genkit AI Integration</p>
+                <p className="text-[10px] text-foreground/30 uppercase tracking-[0.2em]">Figma Mockup x AI Logic</p>
               </div>
             </div>
           ) : (
@@ -352,6 +353,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               alt={`${project.title} image ${index + 1}`}
                               fill
                               className="object-contain grayscale"
+                              unoptimized
                             />
                           )}
                         </CardContent>
