@@ -83,9 +83,9 @@ export default function Home() {
         onMouseMove={handleMouseMove}
         className="relative min-h-screen flex flex-col justify-center px-4 md:px-16 overflow-hidden border-b border-white/5"
       >
-        {/* Spline 3D Scene - Background Layer */}
+        {/* Spline 3D Scene - Full Background Layer */}
         <div 
-          className="absolute top-0 right-0 w-full lg:w-[80%] h-full z-0 transition-opacity duration-500 pointer-events-none"
+          className="absolute inset-0 z-0 transition-opacity duration-500 pointer-events-none"
           style={{
             opacity: isHovering ? 1 : 0,
             maskImage: `radial-gradient(circle 350px at ${spotlightPos.x}px ${spotlightPos.y}px, black 0%, transparent 100%)`,
