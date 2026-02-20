@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -23,6 +23,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Reveal } from "@/components/ui/reveal";
+import { Loading } from "@/components/layout/loading";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -32,9 +33,27 @@ const formSchema = z.object({
 
 export default function Home() {
   const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadingProgress, setLoadingProgress] = useState(0);
   const [spotlightPos, setSpotlightPos] = useState({ x: -1000, y: -1000 });
   const [isHovering, setIsHovering] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setLoadingProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(timer);
+          setTimeout(() => setIsLoading(false), 800);
+          return 100;
+        }
+        const diff = Math.random() * 15;
+        return Math.min(prev + diff, 100);
+      });
+    }, 150);
+
+    return () => clearInterval(timer);
+  }, []);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -65,6 +84,10 @@ export default function Home() {
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  if (isLoading) {
+    return <Loading progress={loadingProgress} />;
+  }
 
   return (
     <main className="bg-background">

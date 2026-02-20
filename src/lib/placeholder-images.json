@@ -1,6 +1,12 @@
 {
   "placeholderImages": [
     {
+      "id": "homepage-splash",
+      "description": "Initial splash image for the homepage.",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/a4729c35c128038797c7f719841a98636f86e4bf/homepage%201.jpg",
+      "imageHint": "homepage mockup"
+    },
+    {
       "id": "project-1-thumb",
       "description": "UI/UX redesign for Rapido, a bike taxi app.",
       "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/92a13efe52f877af083d2af307f50753e3a5c6d2/home%20page.jpg",
