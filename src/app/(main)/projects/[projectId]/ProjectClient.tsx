@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -425,7 +424,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
           ) : isLosmo ? (
             <Reveal className="w-full max-w-5xl mx-auto">
               <div className="relative w-full group">
-                {/* iMac Monitor Frame */}
                 <div className="relative bg-[#000] rounded-[3rem] p-4 pt-4 pb-16 shadow-[0_100px_100px_-50px_rgba(0,0,0,0.8)] border-[6px] border-[#333] overflow-hidden">
                    <div className="relative aspect-video bg-[#111] rounded-[1.5rem] overflow-hidden border-2 border-white/5">
                     <Carousel className="w-full h-full">
@@ -451,24 +449,16 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                       <CarouselNext className="right-4 h-10 w-10 bg-black/40 backdrop-blur-md border-white/5 text-white hover:bg-primary hover:text-black transition-all z-50 rounded-full" />
                     </Carousel>
                    </div>
-                   
-                   {/* Monitor Bottom Logo Detail */}
                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-40">
                       <div className="w-6 h-6 rounded-full border border-white/20 flex items-center justify-center">
                         <div className="w-1.5 h-1.5 bg-white/40 rounded-full" />
                       </div>
                    </div>
                 </div>
-                
-                {/* iMac Stand */}
                 <div className="relative mx-auto w-32 h-24 bg-gradient-to-b from-[#222] to-[#111] mt-[-2px] rounded-b-xl shadow-2xl overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20" />
                 </div>
                 <div className="relative mx-auto w-56 h-3 bg-black/60 blur-xl rounded-full mt-[-8px]" />
-              </div>
-              
-              <div className="mt-12 text-center text-[10px] font-black uppercase tracking-[0.5em] text-primary/40 animate-pulse">
-                Interactive Mockup • Scroll Inside Monitor
               </div>
             </Reveal>
           ) : isLogoProject ? (
@@ -502,7 +492,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                         className="w-full h-auto block grayscale hover:grayscale-0 scale-100 hover:scale-110 transition-all duration-[1.5s] ease-out"
                         unoptimized
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     </div>
                   </Reveal>
                 );
