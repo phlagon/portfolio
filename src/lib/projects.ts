@@ -56,9 +56,9 @@ export const projects = [
   },
   {
     id: "project-6",
-    title: "Type specimen",
-    description: "Exploring the art of typography with a detailed type specimen, showcasing the beauty and versatility of a chosen typeface.",
-    longDescription: "Typography is the cornerstone of good design. This project is a deep exploration into the art of the letterform through an interactive 3D type specimen. Designed as a physical book experience, this specimen allows you to interact with the typography, experiencing the tone, hierarchy, and emotion of the typeface through tactile, fluid movements.",
+    title: "Recursive Type Specimen",
+    description: "A comprehensive exploration of the Recursive typeface through an interactive 3D book experience.",
+    longDescription: "Recursive is a five-axis variable font family. This specimen explores its versatility across weight, slant, and expression. The interactive 3D book simulates a physical reading experience, allowing you to interact with the typography, experiencing the tone, hierarchy, and emotion of the typeface through tactile, fluid movements.",
     tags: ["Typography", "Graphic Design"],
     thumbnailId: "project-6-thumb",
     imageIds: [

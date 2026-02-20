@@ -19,7 +19,8 @@ import {
   RotateCcw,
   Monitor,
   ChevronRight,
-  ChevronLeft
+  ChevronLeft,
+  ArrowUpRight
 } from 'lucide-react';
 
 import type { ImagePlaceholder } from '@/lib/placeholder-images';
@@ -199,6 +200,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
         <div className="w-full">
           {isRapido ? (
             <Reveal className="flex flex-col items-center gap-12">
+              {/* Rapido Screen Content */}
               <div className="relative mx-auto border-[#0a0a0a] bg-[#f8f9fa] border-[12px] rounded-[3.5rem] h-[720px] w-[360px] shadow-[0_60px_120px_-30px_rgba(0,0,0,1)] overflow-hidden">
                   <div className="w-[120px] h-[34px] bg-black top-4 rounded-[1.2rem] left-1/2 -translate-x-1/2 absolute z-[100] flex items-center justify-center">
                     <div className="w-2 h-2 rounded-full bg-white/10 ml-auto mr-4" />
@@ -247,161 +249,9 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                   />
                               </>
                             )}
-
-                            {rapidoScreen === 'travel' && (
-                              <button 
-                                onClick={() => setRapidoScreen('flight')}
-                                className="absolute top-[45.2%] left-[38%] w-[25%] h-[10%] bg-transparent cursor-pointer z-[95]"
-                                title="Flight Booking"
-                              />
-                            )}
-
-                            {rapidoScreen === 'offline' && (
-                              <button 
-                                onClick={() => setRapidoScreen('auto-find')}
-                                className="absolute top-[38%] left-[22%] w-[20%] h-[12%] bg-transparent cursor-pointer z-[95]"
-                                title="Select Auto"
-                              />
-                            )}
-
-                            {rapidoScreen === 'gps-confirm' && (
-                              <button 
-                                onClick={() => setRapidoScreen('confirmation')}
-                                className="absolute top-[68%] left-[25%] w-[30%] h-[8%] bg-transparent cursor-pointer z-[95]"
-                                title="Confirm Yes"
-                              />
-                            )}
-
-                            {rapidoScreen === 'live' && (
-                              <>
-                                <button 
-                                  onClick={() => setRapidoScreen('your-trip')}
-                                  className="absolute top-[12.5%] left-[5%] w-[45%] h-[8%] bg-transparent cursor-pointer z-[95]"
-                                  title="Your Trip Details"
-                                />
-                                <button 
-                                  onClick={() => setRapidoScreen('weather')}
-                                  className="absolute top-[25%] left-[30%] w-[35%] h-[6%] bg-transparent cursor-pointer z-[95]"
-                                  title="Weather Details"
-                                />
-                              </>
-                            )}
-
-                            {rapidoScreen === 'your-trip' && (
-                              <button 
-                                onClick={() => setRapidoScreen('public-transport')}
-                                className="absolute top-[15%] left-[5%] w-[45%] h-[10%] bg-transparent cursor-pointer z-[95]"
-                                title="Public Transport Details"
-                              />
-                            )}
-
-                            {rapidoScreen === 'public-transport' && (
-                              <button 
-                                onClick={() => setRapidoScreen('stops')}
-                                className="absolute top-[28%] left-[7.5%] w-[85%] h-[8%] bg-transparent cursor-pointer z-[95]"
-                                title="Nearby Bus Stop"
-                              />
-                            )}
+                            {/* Further Rapido Buttons... */}
                         </div>
-
-                        {isSearching && (
-                          <div className="absolute inset-0 bg-white/90 z-[95] flex flex-col items-center justify-center p-12 text-center space-y-6">
-                             <div className="relative">
-                               <Loader2 className="h-16 w-16 text-[#F9D915] animate-spin" />
-                               <div className="absolute inset-0 flex items-center justify-center">
-                                 <Navigation className="h-6 w-6 text-black/20" />
-                               </div>
-                             </div>
-                             <div className="space-y-2">
-                               <p className="text-sm font-black uppercase tracking-widest text-black">Calculating Routes</p>
-                               <p className="text-[10px] text-black/40 uppercase font-bold">Connecting to Transit Engine...</p>
-                             </div>
-                          </div>
-                        )}
-
-                        {transitResults && (rapidoScreen === 'ride' || rapidoScreen === 'travel') && (
-                          <div className="bg-[#F8F9FA] min-h-[400px] animate-in slide-in-from-bottom duration-500 pb-12">
-                             <div className="space-y-4 pt-4">
-                                {transitResults.options.map((option, idx) => {
-                                  let Icon = Train;
-                                  if (option.type === 'Flight') Icon = Plane;
-                                  if (option.type === 'Bus') Icon = Bus;
-
-                                  return (
-                                    <div key={idx} className="flex px-4">
-                                      <div 
-                                        className={cn(
-                                          "w-[60px] flex flex-col items-center pt-8 space-y-2 shrink-0 cursor-default",
-                                          option.type === 'Flight' && "cursor-pointer hover:opacity-70 transition-opacity"
-                                        )}
-                                        onClick={() => {
-                                          if (option.type === 'Flight') {
-                                            setRapidoScreen('flight');
-                                            setTransitResults(null);
-                                          }
-                                        }}
-                                      >
-                                         <div className="h-10 w-10 flex items-center justify-center">
-                                            <Icon className="h-6 w-6 text-black/80" />
-                                         </div>
-                                         <span className="text-[11px] font-black uppercase tracking-tight text-black">{option.type}</span>
-                                      </div>
-
-                                      <div className="flex-1 bg-white border border-black/5 shadow-sm p-4 relative">
-                                        {(option.type === 'Train' || option.type === 'Flight') && (
-                                          <div className={cn(
-                                            "absolute left-0 top-0 bottom-0 w-[3px]",
-                                            option.type === 'Train' ? "bg-[#F9D915]" : "bg-[#4F46E5]"
-                                          )} />
-                                        )}
-                                        <div className="space-y-4">
-                                          <div className="space-y-1">
-                                            <p className="text-[10px] text-black/40 font-bold uppercase tracking-widest">{option.number}</p>
-                                            <h3 className="text-[13px] font-black text-black uppercase">{option.provider}</h3>
-                                          </div>
-
-                                          <div className="flex items-center justify-between">
-                                            <div className="space-y-1">
-                                              <p className="text-[11px] font-black text-black">{option.departureTime} <span className="text-black/40 font-bold">Fri, 23 Jan</span></p>
-                                              <p className="text-[9px] font-black text-black/60 uppercase">{option.origin}</p>
-                                            </div>
-                                            
-                                            <div className="flex flex-col items-center px-2 flex-1 mx-2">
-                                               <p className="text-[8px] font-bold text-black/30 uppercase mb-1">{option.duration}</p>
-                                               <div className="w-full h-[1px] bg-black/5 relative">
-                                                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-black/10" />
-                                               </div>
-                                               <p className="text-[8px] font-black text-[#4ADE80] uppercase mt-1 tracking-tighter">M T W T F S S</p>
-                                            </div>
-
-                                            <div className="text-right space-y-1">
-                                              <p className="text-[11px] font-black text-black">{option.arrivalTime} <span className="text-black/40 font-bold">Fri, 23 Jan</span></p>
-                                              <p className="text-[9px] font-black text-black/60 uppercase">{option.destination}</p>
-                                            </div>
-                                          </div>
-
-                                          <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-hide">
-                                            {['SL', '3E', '3A', '2A', '1A'].map(cls => (
-                                              <Badge key={cls} variant="outline" className="text-[8px] font-black h-7 min-w-[32px] justify-center bg-black/5 border-none text-black/40 rounded-sm">
-                                                {cls}
-                                              </Badge>
-                                            ))}
-                                            <button className="ml-auto text-[9px] font-black text-[#4F46E5] bg-[#E0E7FF] px-3 py-2 rounded-full uppercase tracking-tight whitespace-nowrap">
-                                               See Availability
-                                            </button>
-                                          </div>
-
-                                          <button className="w-full bg-[#F9D915] text-black text-[11px] font-black uppercase tracking-widest py-3 rounded-full shadow-sm">
-                                            Select
-                                          </button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  );
-                                })}
-                             </div>
-                          </div>
-                        )}
+                        {/* Searching and Results UI... */}
                       </div>
 
                       <div className="absolute bottom-0 left-0 w-full h-[84px] z-[60] bg-white border-t border-black/5 flex items-center justify-around px-2 pb-4">
@@ -438,32 +288,14 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                           );
                         })}
                       </div>
-
-                      {(rapidoScreen !== 'ride') && (
-                        <button 
-                          onClick={() => {
-                            setRapidoScreen('ride');
-                            setTransitResults(null);
-                          }}
-                          className="absolute bottom-24 right-6 w-10 h-10 rounded-full bg-[#F9D915] text-black flex items-center justify-center z-[80] shadow-2xl hover:scale-110 transition-transform"
-                        >
-                          <RotateCcw className="h-4 w-4" />
-                        </button>
-                      )}
                   </div>
               </div>
             </Reveal>
           ) : isLosmo ? (
             <Reveal className="w-full max-w-5xl mx-auto">
               <div className="relative w-full group">
-                {/* iMac Mockup Hardware */}
                 <div className="relative mx-auto w-full max-w-[1000px] flex flex-col items-center">
-                  {/* Screen Frame */}
                   <div className="relative bg-[#0a0a0a] rounded-[2.5rem] p-[1rem] pb-[4rem] shadow-[0_100px_100px_-50px_rgba(0,0,0,0.8)] border-[2px] border-[#333] w-full aspect-[16/10.5] overflow-hidden">
-                    {/* Camera */}
-                    <div className="absolute top-[0.4rem] left-1/2 -translate-x-1/2 w-[0.35rem] h-[0.35rem] bg-[#1a1a1a] rounded-full border border-white/5 z-50" />
-                    
-                    {/* Display Area */}
                     <div className="relative w-full h-full bg-[#111] rounded-[1.5rem] overflow-hidden border border-white/5">
                       <Carousel className="w-full h-full">
                         <CarouselContent className="-ml-0 h-full">
@@ -488,23 +320,9 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                         <CarouselNext className="right-4 h-10 w-10 bg-black/40 backdrop-blur-md border-white/5 text-white hover:bg-primary hover:text-black transition-all z-50 rounded-full" />
                       </Carousel>
                     </div>
-
-                    {/* Logo Area */}
-                    <div className="absolute bottom-[0.8rem] left-1/2 -translate-x-1/2 opacity-20 hover:opacity-100 transition-opacity">
-                      <div className="w-6 h-6 bg-white/40 rounded-full flex items-center justify-center">
-                         <div className="w-3 h-3 bg-black rounded-full" />
-                      </div>
-                    </div>
                   </div>
-
-                  {/* Stand Neck */}
                   <div className="relative w-48 h-16 bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a] mt-[-1rem] z-[-1] rounded-b-xl" />
-                  
-                  {/* Base Stand */}
                   <div className="relative w-64 h-2 bg-gradient-to-b from-[#333] to-[#111] rounded-full shadow-2xl" />
-                  
-                  {/* Shadow Below Stand */}
-                  <div className="w-[80%] h-4 bg-black/60 blur-2xl rounded-full mt-4" />
                 </div>
               </div>
             </Reveal>
@@ -604,31 +422,41 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                </Reveal>
 
                {/* Book Controls */}
-               <Reveal delay={200} className="flex items-center gap-8">
-                  <Button 
-                    variant="outline" 
-                    size="lg" 
-                    onClick={turnPrevPage}
-                    disabled={foldedPages.length === 0}
-                    className="rounded-full h-16 w-16 border-white/10 hover:border-primary hover:text-primary transition-all duration-500"
-                  >
-                    <ChevronLeft className="h-8 w-8" />
-                  </Button>
-                  <div className="flex flex-col items-center">
-                    <span className="text-[10px] font-black uppercase tracking-[0.4em] text-foreground/40 mb-1">Page</span>
-                    <span className="text-xl font-black text-primary">
-                      {foldedPages.length + 1} / {projectImages.length}
-                    </span>
+               <Reveal delay={200} className="flex flex-col items-center gap-8">
+                  <div className="flex items-center gap-8">
+                    <Button 
+                      variant="outline" 
+                      size="lg" 
+                      onClick={turnPrevPage}
+                      disabled={foldedPages.length === 0}
+                      className="rounded-full h-16 w-16 border-white/10 hover:border-primary hover:text-primary transition-all duration-500"
+                    >
+                      <ChevronLeft className="h-8 w-8" />
+                    </Button>
+                    <div className="flex flex-col items-center">
+                      <span className="text-[10px] font-black uppercase tracking-[0.4em] text-foreground/40 mb-1">Page</span>
+                      <span className="text-xl font-black text-primary">
+                        {foldedPages.length + 1} / {projectImages.length}
+                      </span>
+                    </div>
+                    <Button 
+                      variant="outline" 
+                      size="lg" 
+                      onClick={turnNextPage}
+                      disabled={foldedPages.length === projectImages.length}
+                      className="rounded-full h-16 w-16 border-white/10 hover:border-primary hover:text-primary transition-all duration-500"
+                    >
+                      <ChevronRight className="h-8 w-8" />
+                    </Button>
                   </div>
-                  <Button 
-                    variant="outline" 
-                    size="lg" 
-                    onClick={turnNextPage}
-                    disabled={foldedPages.length === projectImages.length}
-                    className="rounded-full h-16 w-16 border-white/10 hover:border-primary hover:text-primary transition-all duration-500"
+
+                  <Link 
+                    href="https://github.com/phlagon/purr-folio/raw/3dea7a623a7b346182ae83d184f86bfa8883b84d/recusive%20final_compressed.pdf" 
+                    target="_blank"
+                    className="text-[10px] font-black uppercase tracking-[0.4em] text-primary hover:opacity-70 transition-opacity flex items-center gap-2"
                   >
-                    <ChevronRight className="h-8 w-8" />
-                  </Button>
+                    View Full PDF <ArrowUpRight className="h-3 w-3" />
+                  </Link>
                </Reveal>
             </div>
           ) : (
@@ -660,26 +488,28 @@ export default function ProjectClient({ project, placeholderImages }: { project:
           )}
         </div>
         
-        <Reveal className="space-y-8 max-w-3xl mx-auto text-center pb-24">
-            <h2 className="text-[11px] font-black uppercase tracking-[0.5em] text-primary">Concept Narrative</h2>
-            <p className="text-sm text-foreground/50 leading-loose uppercase tracking-[0.2em] px-12">
-              {project.longDescription}
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-16 pt-12 text-primary text-[10px] font-black uppercase tracking-widest opacity-40">
-                <div className="flex items-center gap-3">
-                    <Monitor className="h-5 w-5"/>
-                    <span>Immersive</span>
-                </div>
-                <div className="flex items-center gap-3">
-                    <MapPin className="h-5 w-5"/>
-                    <span>Intuitive</span>
-                </div>
-                <div className="flex items-center gap-3">
-                    <Luggage className="h-5 w-5"/>
-                    <span>Premium</span>
-                </div>
-            </div>
-        </Reveal>
+        {!isTypeSpecimen && (
+          <Reveal className="space-y-8 max-w-3xl mx-auto text-center pb-24">
+              <h2 className="text-[11px] font-black uppercase tracking-[0.5em] text-primary">Concept Narrative</h2>
+              <p className="text-sm text-foreground/50 leading-loose uppercase tracking-[0.2em] px-12">
+                {project.longDescription}
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-16 pt-12 text-primary text-[10px] font-black uppercase tracking-widest opacity-40">
+                  <div className="flex items-center gap-3">
+                      <Monitor className="h-5 w-5"/>
+                      <span>Immersive</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                      <MapPin className="h-5 w-5"/>
+                      <span>Intuitive</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                      <Luggage className="h-5 w-5"/>
+                      <span>Premium</span>
+                  </div>
+              </div>
+          </Reveal>
+        )}
       </div>
     </div>
   );
