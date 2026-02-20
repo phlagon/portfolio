@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -31,7 +32,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent } from '@/card';
 import { cn } from '@/lib/utils';
 import { getTransitOptions, type TransitSearchOutput } from '@/ai/flows/transit-search-flow';
 import { useToast } from '@/hooks/use-toast';
@@ -413,18 +414,19 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             <CarouselContent className="-ml-0 h-full">
                               {losmoImages.map((image, idx) => (
                                 <CarouselItem key={idx} className="pl-0 h-full relative">
-                                  {/* Wrapping image in an absolute scrollable div for website feel */}
-                                  <div className="absolute inset-0 overflow-y-auto scrollbar-hide">
+                                  <div className="absolute inset-0 h-full overflow-y-auto scrollbar-hide">
                                     {image && (
-                                      <Image 
-                                        src={image.imageUrl} 
-                                        alt={`Losmo Section ${idx + 1}`} 
-                                        width={1920} 
-                                        height={1080} 
-                                        className="w-full h-auto block" 
-                                        priority={idx === 0}
-                                        unoptimized
-                                      />
+                                      <div className="relative w-full h-fit">
+                                        <Image 
+                                          src={image.imageUrl} 
+                                          alt={`Losmo Section ${idx + 1}`} 
+                                          width={1920} 
+                                          height={2000} 
+                                          className="w-full h-auto block" 
+                                          priority={idx === 0}
+                                          unoptimized
+                                        />
+                                      </div>
                                     )}
                                   </div>
                                 </CarouselItem>
