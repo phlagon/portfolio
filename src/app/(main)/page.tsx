@@ -129,12 +129,10 @@ export default function Home() {
 
             <div className="hidden lg:flex justify-center items-center">
               <div className="relative w-[550px] h-[550px] flex items-center justify-center">
-                {/* Golden Box Graphic */}
                 <div className="absolute inset-0 z-0">
                   <HeroGraphic />
                 </div>
                 
-                {/* Rapido Hero Mockup */}
                 <div className="relative z-10 scale-[0.85] -translate-y-4">
                    <div className="relative border-[#0a0a0a] bg-[#0a0a0a] border-[8px] rounded-[2.5rem] h-[520px] w-[260px] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.8)] overflow-hidden">
                       <Image 
@@ -151,7 +149,6 @@ export default function Home() {
           </div>
         </div>
         
-        {/* Structural Grid Background */}
         <div className="absolute inset-0 pointer-events-none opacity-[0.02] -z-10">
           <div className="h-full w-px bg-white absolute left-1/4" />
           <div className="h-full w-px bg-white absolute left-2/4" />
@@ -165,7 +162,6 @@ export default function Home() {
       <AboutSection />
       <ProjectsSection />
 
-      {/* Contact Section */}
       <section id="contact" className="py-40 bg-card/40 border-t border-white/5">
         <div className="container max-w-6xl mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-32">

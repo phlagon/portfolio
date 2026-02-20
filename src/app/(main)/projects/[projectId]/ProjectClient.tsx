@@ -115,14 +115,11 @@ export default function ProjectClient({ project, placeholderImages }: { project:
           {isRapido ? (
             <div className="flex flex-col items-center gap-12">
               <div className="relative mx-auto border-[#0a0a0a] bg-[#0a0a0a] border-[12px] rounded-[3.5rem] h-[720px] w-[360px] shadow-[0_60px_120px_-30px_rgba(0,0,0,1)] overflow-hidden">
-                  {/* Dynamic Island Notch */}
                   <div className="w-[120px] h-[34px] bg-black top-4 rounded-[1.2rem] left-1/2 -translate-x-1/2 absolute z-[70] flex items-center justify-center">
                     <div className="w-2 h-2 rounded-full bg-white/10 ml-auto mr-4" />
                   </div>
                   
-                  {/* Phone Screen Container */}
                   <div className="w-full h-full bg-[#050505] relative flex flex-col">
-                      {/* Scrollable Content Area */}
                       <div className="flex-1 overflow-y-auto scrollbar-hide pb-[84px]">
                         {getRapidoImage() && (
                           <div className="relative w-full">
@@ -135,7 +132,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               priority
                             />
                             
-                            {/* Interactive Hotspot for Flight (Only on Travel Screen) */}
                             {rapidoScreen === 'travel' && (
                               <button 
                                 onClick={() => setRapidoScreen('flight')}
@@ -147,17 +143,15 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                         )}
                       </div>
 
-                      {/* Fixed Navigation Bar - Authentic UI Image Replacement */}
-                      <div className="absolute bottom-0 left-0 w-full h-[84px] z-[60] pb-4">
+                      <div className="absolute bottom-0 left-0 w-full h-[84px] z-[60] pb-4 bg-black/90 backdrop-blur-xl">
                         {navImage && (
                           <Image 
                             src={navImage.imageUrl} 
                             alt="Navigation Bar" 
                             fill 
-                            className="object-cover"
+                            className="object-cover opacity-90"
                           />
                         )}
-                        {/* Interactive Hotspots Overlay */}
                         <div className="absolute inset-0 flex items-center justify-around px-2 pb-4">
                           {[
                             { id: 'ride', label: 'Ride' },
@@ -176,7 +170,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                 )}
                               >
                                 {isActive && (
-                                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-1 bg-[#F9D915] rounded-full shadow-[0_0_8px_#F9D915]" />
+                                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-1 bg-[#F9D915] rounded-full shadow-[0_0_8px_#F9D915] z-10" />
                                 )}
                                 <span className="sr-only">{tab.label}</span>
                               </button>
@@ -185,7 +179,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                         </div>
                       </div>
 
-                      {/* Floating Return Button */}
                       {rapidoScreen === 'flight' && (
                         <button 
                           onClick={() => setRapidoScreen('travel')}
