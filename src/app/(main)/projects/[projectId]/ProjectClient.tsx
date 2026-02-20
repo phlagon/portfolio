@@ -17,7 +17,9 @@ import {
   Loader2,
   RotateCcw,
   PlayCircle,
-  BookOpen
+  BookOpen,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 
 import type { ImagePlaceholder } from '@/lib/placeholder-images';
@@ -101,7 +103,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
     if (rapidoScreen === 'live') return placeholderImages.find(img => img.id === 'rapido-live')?.imageUrl;
     if (rapidoScreen === 'travel') return placeholderImages.find(img => img.id === 'rapido-travel')?.imageUrl;
     if (rapidoScreen === 'your-trip') return placeholderImages.find(img => img.id === 'rapido-your-trip')?.imageUrl;
-    if (rapidoScreen === 'public-transport') return placeholderImages.find(img => img.id === 'rapido-public-transport')?.imageUrl;
+    if (rapidoScreen === 'your-trip' || rapidoScreen === 'public-transport') return placeholderImages.find(img => img.id === 'rapido-public-transport')?.imageUrl;
     if (rapidoScreen === 'stops') return placeholderImages.find(img => img.id === 'rapido-stops')?.imageUrl;
     if (rapidoScreen === 'weather') return placeholderImages.find(img => img.id === 'rapido-weather')?.imageUrl;
     return placeholderImages.find(img => img.id === 'rapido-home')?.imageUrl;
@@ -116,6 +118,10 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   ];
 
   const isStaticScreen = ['flight', 'your-trip', 'public-transport', 'stops', 'confirmation', 'auto-find', 'gps-confirm', 'weather'].includes(rapidoScreen);
+
+  // For LOSMO project, we prepend the specific homepage splash image requested
+  const losmoFirstImage = placeholderImages.find(img => img.id === 'homepage-splash');
+  const losmoImages = isLosmo && losmoFirstImage ? [losmoFirstImage, ...projectImages] : projectImages;
 
   return (
     <div className="container py-12 md:py-24">
@@ -402,25 +408,34 @@ export default function ProjectClient({ project, placeholderImages }: { project:
           ) : isLosmo ? (
             <Reveal className="relative mx-auto w-full max-w-5xl group perspective-3000">
                <div className="relative bg-[#f5f5f7] p-3 md:p-5 rounded-t-[2.5rem] shadow-2xl border-x-[1px] border-t-[1px] border-white/20">
-                  <div className="bg-[#0a0a0a] p-2 md:p-3 rounded-[1.5rem] overflow-hidden shadow-inner">
-                      <div className="bg-white aspect-video overflow-y-auto scrollbar-hide rounded-lg shadow-2xl">
-                          <div className="flex flex-col">
-                              {projectImages.map((image, idx) => (
-                                <div key={idx} className="relative w-full">
-                                  {image && (
-                                    <Image 
-                                      src={image.imageUrl} 
-                                      alt={`Losmo Section ${idx + 1}`} 
-                                      width={1920} 
-                                      height={1080} 
-                                      className="w-full h-auto block" 
-                                      unoptimized
-                                      priority={idx < 2}
-                                    />
-                                  )}
-                                </div>
+                  <div className="bg-[#0a0a0a] p-2 md:p-3 rounded-[1.5rem] overflow-hidden shadow-inner relative group/monitor">
+                      <div className="bg-white aspect-video rounded-lg shadow-2xl overflow-hidden relative">
+                          <Carousel className="w-full h-full">
+                            <CarouselContent className="-ml-0 h-full">
+                              {losmoImages.map((image, idx) => (
+                                <CarouselItem key={idx} className="pl-0 h-full">
+                                  <div className="w-full h-full overflow-y-auto scrollbar-hide">
+                                    {image && (
+                                      <Image 
+                                        src={image.imageUrl} 
+                                        alt={`Losmo Section ${idx + 1}`} 
+                                        width={1920} 
+                                        height={1080} 
+                                        className="w-full h-auto block" 
+                                        unoptimized
+                                      />
+                                    )}
+                                  </div>
+                                </CarouselItem>
                               ))}
-                          </div>
+                            </CarouselContent>
+                            <CarouselPrevious className="left-4 opacity-0 group-hover/monitor:opacity-100 transition-opacity bg-black/50 text-white border-none hover:bg-black/70 flex items-center justify-center">
+                              <ChevronLeft className="h-8 w-8" />
+                            </CarouselPrevious>
+                            <CarouselNext className="right-4 opacity-0 group-hover/monitor:opacity-100 transition-opacity bg-black/50 text-white border-none hover:bg-black/70 flex items-center justify-center">
+                              <ChevronRight className="h-8 w-8" />
+                            </CarouselNext>
+                          </Carousel>
                       </div>
                   </div>
                </div>
