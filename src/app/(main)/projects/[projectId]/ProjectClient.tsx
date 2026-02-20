@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -409,9 +410,9 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             <CarouselContent className="-ml-0 h-full">
                               {projectImages.map((image, idx) => (
                                 <CarouselItem key={idx} className="pl-0 h-full relative">
-                                  <div className="absolute inset-0 h-full overflow-y-auto scrollbar-hide">
+                                  <div className="absolute inset-0 h-full overflow-y-auto scrollbar-hide z-10 bg-white">
                                     {image && (
-                                      <div className="relative w-full h-fit">
+                                      <div className="relative w-full h-fit min-h-full">
                                         <Image 
                                           src={image.imageUrl} 
                                           alt={`Losmo Section ${idx + 1}`} 
