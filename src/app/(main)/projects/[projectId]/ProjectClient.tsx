@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -144,15 +145,17 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                     type="text"
                                     value={pickupLocation}
                                     onChange={(e) => setPickupLocation(e.target.value)}
-                                    className="absolute top-[7.8%] left-[18%] w-[68%] h-[4.2%] bg-transparent border-none text-[11px] font-medium focus:outline-none z-[80] text-black px-2"
+                                    className="absolute top-[7.2%] left-[18%] w-[68%] h-[4.2%] bg-transparent border-none text-[11px] font-medium focus:outline-none z-[80] text-black px-2"
                                     autoComplete="off"
+                                    placeholder=""
                                 />
                                 <input 
                                     type="text"
                                     value={dropLocation}
                                     onChange={(e) => setDropLocation(e.target.value)}
-                                    className="absolute top-[14.2%] left-[18%] w-[68%] h-[4.2%] bg-transparent border-none text-[11px] font-medium focus:outline-none z-[80] text-black px-2"
+                                    className="absolute top-[13.6%] left-[18%] w-[68%] h-[4.2%] bg-transparent border-none text-[11px] font-medium focus:outline-none z-[80] text-black px-2"
                                     autoComplete="off"
+                                    placeholder=""
                                 />
                             </>
                           )}
