@@ -32,7 +32,8 @@ import {
   ChevronLeft,
   ChevronRight,
   Luggage,
-  Loader2
+  Loader2,
+  Smartphone
 } from 'lucide-react';
 import { Document, Page, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
@@ -62,6 +63,7 @@ const PDF_URL = "https://raw.githubusercontent.com/phlagon/purr-folio/3dea7a623a
 
 export default function ProjectClient({ project, placeholderImages }: { project: ProjectType, placeholderImages: ImagePlaceholder[] }) {
   const [rapidoScreen, setRapidoScreen] = useState<'ride' | 'travel' | 'offline' | 'live' | 'profile' | 'flight' | 'your-trip' | 'public-transport' | 'stops' | 'confirmation' | 'auto-find' | 'gps-confirm' | 'weather'>('ride');
+  const [losmoTab, setLosmoTab] = useState<'web' | 'app'>('web');
   const [currentPage, setCurrentPage] = useState(1);
   const [numPages, setNumPages] = useState<number | null>(null);
   const [isTurning, setIsTurning] = useState(false);
@@ -77,9 +79,14 @@ export default function ProjectClient({ project, placeholderImages }: { project:
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollTop = 0;
     }
-  }, [rapidoScreen]);
+  }, [rapidoScreen, losmoTab]);
 
   const projectImages = (project.imageIds || []).map(id => placeholderImages.find(img => img.id === id)).filter(Boolean) as any[];
+  
+  // Losmo App Images specifically
+  const losmoAppImageIds = Array.from({ length: 14 }, (_, i) => `losmo-app-${i + 1}`);
+  const losmoAppImages = losmoAppImageIds.map(id => placeholderImages.find(img => img.id === id)).filter(Boolean) as any[];
+
   const isRapido = project.id === 'project-1';
   const isLosmo = project.id === 'project-2';
   const isLogoProject = project.id === 'project-3' || project.id === 'project-logo-redesign';
@@ -171,6 +178,31 @@ export default function ProjectClient({ project, placeholderImages }: { project:
             {project.title}
           </h1>
         </Reveal>
+
+        {isLosmo && (
+          <Reveal delay={50}>
+            <nav className="flex items-center justify-center gap-12 mt-8 mb-4">
+              <button 
+                onClick={() => setLosmoTab('web')}
+                className={cn(
+                  "transition-all uppercase tracking-[0.4em] text-[10px] font-black pb-2 border-b-2",
+                  losmoTab === 'web' ? "text-primary border-primary" : "text-foreground/20 border-transparent hover:text-foreground/60"
+                )}
+              >
+                Webpage
+              </button>
+              <button 
+                onClick={() => setLosmoTab('app')}
+                className={cn(
+                  "transition-all uppercase tracking-[0.4em] text-[10px] font-black pb-2 border-b-2",
+                  losmoTab === 'app' ? "text-primary border-primary" : "text-foreground/20 border-transparent hover:text-foreground/60"
+                )}
+              >
+                App Concept
+              </button>
+            </nav>
+          </Reveal>
+        )}
 
         {(isLogoProject || isPackageProject) && (
           <Reveal delay={50}>
@@ -293,32 +325,60 @@ export default function ProjectClient({ project, placeholderImages }: { project:
             <Reveal className="w-full max-w-5xl mx-auto">
               <div className="relative w-full group">
                 <div className="relative mx-auto w-full max-w-[1000px] flex flex-col items-center">
-                  <div className="relative bg-[#0a0a0a] rounded-[2.5rem] p-[1rem] pb-[4rem] shadow-[0_100px_100px_-50px_rgba(0,0,0,0.8)] border-[2px] border-[#333] w-full aspect-[16/10.5] overflow-hidden">
-                    <div className="relative w-full h-full bg-[#111] rounded-[1.5rem] overflow-hidden border border-white/5">
+                  {losmoTab === 'web' ? (
+                    <div className="relative bg-[#0a0a0a] rounded-[2.5rem] p-[1rem] pb-[4rem] shadow-[0_100px_100px_-50px_rgba(0,0,0,0.8)] border-[2px] border-[#333] w-full aspect-[16/10.5] overflow-hidden">
+                      <div className="relative w-full h-full bg-[#111] rounded-[1.5rem] overflow-hidden border border-white/5">
+                        <Carousel className="w-full h-full">
+                          <CarouselContent className="-ml-0 h-full">
+                            {projectImages.map((image, index) => (
+                              <CarouselItem key={index} className="pl-0 h-full">
+                                <div className="relative w-full h-full overflow-y-auto scrollbar-hide bg-[#050505] flex flex-col">
+                                     {image && (
+                                       <Image
+                                         src={image.imageUrl}
+                                         alt={`${project.title} design ${index + 1}`}
+                                         width={1400}
+                                         height={2000}
+                                         className="w-full h-auto block grayscale hover:grayscale-0 transition-all duration-700"
+                                         unoptimized
+                                       />
+                                     )}
+                                </div>
+                              </CarouselItem>
+                            ))}
+                          </CarouselContent>
+                          <CarouselPrevious className="left-4 h-10 w-10 bg-black/40 backdrop-blur-md border-white/5 text-white hover:bg-primary hover:text-black transition-all z-50 rounded-full" />
+                          <CarouselNext className="right-4 h-10 w-10 bg-black/40 backdrop-blur-md border-white/5 text-white hover:bg-primary hover:text-black transition-all z-50 rounded-full" />
+                        </Carousel>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="relative mx-auto border-[#0a0a0a] bg-[#111] border-[12px] rounded-[3.5rem] h-[720px] w-[360px] shadow-[0_60px_120px_-30px_rgba(0,0,0,1)] overflow-hidden">
+                      <div className="w-[120px] h-[34px] bg-black top-4 rounded-[1.2rem] left-1/2 -translate-x-1/2 absolute z-[100] flex items-center justify-center">
+                        <div className="w-2 h-2 rounded-full bg-white/10 ml-auto mr-4" />
+                      </div>
                       <Carousel className="w-full h-full">
                         <CarouselContent className="-ml-0 h-full">
-                          {projectImages.map((image, index) => (
+                          {losmoAppImages.map((image, index) => (
                             <CarouselItem key={index} className="pl-0 h-full">
-                              <div className="relative w-full h-full overflow-y-auto scrollbar-hide bg-[#050505] flex flex-col">
-                                   {image && (
-                                     <Image
-                                       src={image.imageUrl}
-                                       alt={`${project.title} design ${index + 1}`}
-                                       width={1400}
-                                       height={2000}
-                                       className="w-full h-auto block grayscale hover:grayscale-0 transition-all duration-700"
-                                       unoptimized
-                                     />
-                                   )}
+                              <div className="relative w-full h-full bg-black">
+                                <Image
+                                  src={image.imageUrl}
+                                  alt={`Losmo App Screen ${index + 1}`}
+                                  fill
+                                  className="object-contain"
+                                  priority={index === 0}
+                                  unoptimized
+                                />
                               </div>
                             </CarouselItem>
                           ))}
                         </CarouselContent>
-                        <CarouselPrevious className="left-4 h-10 w-10 bg-black/40 backdrop-blur-md border-white/5 text-white hover:bg-primary hover:text-black transition-all z-50 rounded-full" />
-                        <CarouselNext className="right-4 h-10 w-10 bg-black/40 backdrop-blur-md border-white/5 text-white hover:bg-primary hover:text-black transition-all z-50 rounded-full" />
+                        <CarouselPrevious className="left-2 bg-black/20" />
+                        <CarouselNext className="right-2 bg-black/20" />
                       </Carousel>
                     </div>
-                  </div>
+                  )}
                 </div>
               </div>
             </Reveal>
