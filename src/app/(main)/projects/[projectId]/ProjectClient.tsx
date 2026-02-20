@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -14,7 +13,8 @@ import {
   User,
   Monitor,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  ExternalLink
 } from 'lucide-react';
 
 import type { ImagePlaceholder } from '@/lib/placeholder-images';
@@ -37,6 +37,7 @@ type ProjectType = (typeof projects)[0];
 export default function ProjectClient({ project, placeholderImages }: { project: ProjectType, placeholderImages: ImagePlaceholder[] }) {
   const [rapidoScreen, setRapidoScreen] = useState<'ride' | 'travel' | 'offline' | 'live' | 'profile' | 'flight' | 'your-trip' | 'public-transport' | 'stops' | 'confirmation' | 'auto-find' | 'gps-confirm' | 'weather'>('ride');
   const [currentPage, setCurrentPage] = useState(0);
+  const [isTurning, setIsTurning] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   
   const [pickupLocation, setPickupLocation] = useState('');
@@ -56,8 +57,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   const isLosmo = project.id === 'project-2';
   const isLogoProject = project.id === 'project-3' || project.id === 'project-logo-redesign';
   const isPackageProject = project.id === 'project-5' || project.id === 'project-packaging-redesign';
-  const isPackageDesign = project.id === 'project-5';
-  const isPackageRedesign = project.id === 'project-packaging-redesign';
   const isTypeSpecimen = project.id === 'project-6';
   
   const handleSearchTransit = async () => {
@@ -107,14 +106,18 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   const isStaticScreen = ['flight', 'your-trip', 'public-transport', 'stops', 'confirmation', 'auto-find', 'gps-confirm', 'weather'].includes(rapidoScreen);
 
   const nextPage = () => {
-    if (currentPage < projectImages.length - 1) {
-      setCurrentPage(currentPage + 1);
+    if (currentPage < projectImages.length - 1 && !isTurning) {
+      setIsTurning(true);
+      setTimeout(() => {
+        setCurrentPage(prev => prev + 1);
+        setIsTurning(false);
+      }, 800);
     }
   };
 
   const prevPage = () => {
-    if (currentPage > 0) {
-      setCurrentPage(currentPage - 1);
+    if (currentPage > 0 && !isTurning) {
+      setCurrentPage(prev => prev - 1);
     }
   };
 
@@ -134,51 +137,26 @@ export default function ProjectClient({ project, placeholderImages }: { project:
           </h1>
         </Reveal>
 
-        {isLogoProject && (
+        {(isLogoProject || isPackageProject) && (
           <Reveal delay={50}>
             <nav className="flex items-center justify-center gap-12 mt-8 mb-4">
               <Link 
-                href="/projects/project-3/"
+                href={isLogoProject ? "/projects/project-3/" : "/projects/project-5/"}
                 className={cn(
                   "transition-all uppercase tracking-[0.4em] text-[10px] font-black pb-2 border-b-2",
-                  project.id === 'project-3' ? "text-primary border-primary" : "text-foreground/20 border-transparent hover:text-foreground/60"
+                  (project.id === 'project-3' || project.id === 'project-5') ? "text-primary border-primary" : "text-foreground/20 border-transparent hover:text-foreground/60"
                 )}
               >
-                Logo Design
+                {isLogoProject ? "Logo Design" : "Packaging Design"}
               </Link>
               <Link 
-                href="/projects/project-logo-redesign/"
+                href={isLogoProject ? "/projects/project-logo-redesign/" : "/projects/project-packaging-redesign/"}
                 className={cn(
                   "transition-all uppercase tracking-[0.4em] text-[10px] font-black pb-2 border-b-2",
-                  project.id === 'project-logo-redesign' ? "text-primary border-primary" : "text-foreground/20 border-transparent hover:text-foreground/60"
+                  (project.id === 'project-logo-redesign' || project.id === 'project-packaging-redesign') ? "text-primary border-primary" : "text-foreground/20 border-transparent hover:text-foreground/60"
                 )}
               >
-                Logo Redesign
-              </Link>
-            </nav>
-          </Reveal>
-        )}
-
-        {isPackageProject && (
-          <Reveal delay={50}>
-            <nav className="flex items-center justify-center gap-12 mt-8 mb-4">
-              <Link 
-                href="/projects/project-5/"
-                className={cn(
-                  "transition-all uppercase tracking-[0.4em] text-[10px] font-black pb-2 border-b-2",
-                  project.id === 'project-5' ? "text-primary border-primary" : "text-foreground/20 border-transparent hover:text-foreground/60"
-                )}
-              >
-                Packaging Design
-              </Link>
-              <Link 
-                href="/projects/project-packaging-redesign/"
-                className={cn(
-                  "transition-all uppercase tracking-[0.4em] text-[10px] font-black pb-2 border-b-2",
-                  project.id === 'project-packaging-redesign' ? "text-primary border-primary" : "text-foreground/20 border-transparent hover:text-foreground/60"
-                )}
-              >
-                Packaging Redesign
+                {isLogoProject ? "Logo Redesign" : "Packaging Redesign"}
               </Link>
             </nav>
           </Reveal>
@@ -312,36 +290,61 @@ export default function ProjectClient({ project, placeholderImages }: { project:
           ) : isTypeSpecimen ? (
             <div className="w-full max-w-5xl mx-auto py-12 px-4 space-y-12">
               <Reveal className="relative group">
-                <div className="aspect-[16/11] bg-white border border-white/10 shadow-2xl overflow-hidden relative group-hover:shadow-primary/20 transition-all duration-500">
-                  <div key={currentPage} className="w-full h-full animate-in fade-in slide-in-from-right-8 duration-700">
-                    <Image 
-                      src={projectImages[currentPage]?.imageUrl || ''}
-                      alt={`Specimen Page ${currentPage + 1}`}
-                      fill
-                      className="object-contain"
-                      priority
-                      unoptimized
-                    />
+                {/* Book Interface */}
+                <div className="book-container aspect-[16/11] relative">
+                  <div className="absolute inset-0 bg-white/5 border border-white/10 shadow-2xl rounded-sm overflow-hidden">
+                    {/* Previous Page Stack (Visual depth) */}
+                    <div className="absolute inset-0 bg-white shadow-inner opacity-10" />
+                    
+                    {/* Active Content Display */}
+                    <div className="w-full h-full relative z-10">
+                      {projectImages.map((image, index) => {
+                        const isCurrent = index === currentPage;
+                        const isPast = index < currentPage;
+                        const isNext = index === currentPage + 1;
+                        
+                        return (
+                          <div 
+                            key={index} 
+                            className={cn(
+                              "page-base",
+                              isCurrent && !isTurning && "page-active",
+                              isCurrent && isTurning && "page-turning",
+                              isPast && "page-turned-static"
+                            )}
+                          >
+                            <Image 
+                              src={image?.imageUrl || ''}
+                              alt={`Specimen Page ${index + 1}`}
+                              fill
+                              className="object-contain"
+                              priority={index < 3}
+                              unoptimized
+                            />
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
 
-                  {/* Desktop Controls Overlay */}
-                  <div className="absolute inset-y-0 left-0 w-24 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  {/* Desktop Navigation Overlays */}
+                  <div className="absolute inset-y-0 left-0 w-24 flex items-center justify-center z-[100] opacity-0 group-hover:opacity-100 transition-opacity">
                     <Button 
                       variant="ghost" 
                       size="icon" 
                       onClick={prevPage}
-                      disabled={currentPage === 0}
+                      disabled={currentPage === 0 || isTurning}
                       className="h-16 w-16 rounded-full bg-black/40 backdrop-blur-md text-white hover:bg-primary hover:text-black disabled:opacity-0"
                     >
                       <ChevronLeft className="h-10 w-10" />
                     </Button>
                   </div>
-                  <div className="absolute inset-y-0 right-0 w-24 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="absolute inset-y-0 right-0 w-24 flex items-center justify-center z-[100] opacity-0 group-hover:opacity-100 transition-opacity">
                     <Button 
                       variant="ghost" 
                       size="icon" 
                       onClick={nextPage}
-                      disabled={currentPage === projectImages.length - 1}
+                      disabled={currentPage === projectImages.length - 1 || isTurning}
                       className="h-16 w-16 rounded-full bg-black/40 backdrop-blur-md text-white hover:bg-primary hover:text-black disabled:opacity-0"
                     >
                       <ChevronRight className="h-10 w-10" />
@@ -349,22 +352,22 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                   </div>
                 </div>
 
-                {/* Mobile & Minimalist Navigation Bar */}
-                <div className="flex items-center justify-between mt-8 border-t border-white/5 pt-8">
+                {/* Tactical Navigation Bar */}
+                <div className="flex items-center justify-between mt-12 border-t border-white/5 pt-12">
                   <div className="flex gap-4">
                     <Button 
                       onClick={prevPage}
-                      disabled={currentPage === 0}
+                      disabled={currentPage === 0 || isTurning}
                       className="rounded-none px-8 h-12 text-[10px] font-black uppercase tracking-[0.3em] bg-white/5 text-white hover:bg-primary hover:text-black transition-all"
                     >
                       Previous
                     </Button>
                     <Button 
                       onClick={nextPage}
-                      disabled={currentPage === projectImages.length - 1}
+                      disabled={currentPage === projectImages.length - 1 || isTurning}
                       className="rounded-none px-8 h-12 text-[10px] font-black uppercase tracking-[0.3em] bg-white/5 text-white hover:bg-primary hover:text-black transition-all"
                     >
-                      Next
+                      Next Page
                     </Button>
                   </div>
                   <div className="text-[10px] font-black uppercase tracking-[0.5em] text-foreground/40">
@@ -373,7 +376,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                 </div>
               </Reveal>
             </div>
-          ) : (isLogoProject || isPackageRedesign || isPackageDesign) ? (
+          ) : (isLogoProject || isPackageProject) ? (
             <div className="flex flex-col gap-40 py-24 max-w-6xl mx-auto px-4">
               {projectImages.map((image, index) => {
                 const alignments = [
@@ -381,9 +384,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                   "self-end mr-0",
                   "self-center",
                   "self-start md:ml-20",
-                  "self-end md:mr-20",
-                  "self-center md:ml-10",
-                  "self-end md:mr-32"
+                  "self-end md:mr-20"
                 ];
                 const alignClass = alignments[index % alignments.length];
                 const isVideo = image.imageUrl.toLowerCase().endsWith('.mp4');
@@ -477,4 +478,3 @@ export default function ProjectClient({ project, placeholderImages }: { project:
     </div>
   );
 }
-

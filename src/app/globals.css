@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -50,14 +49,19 @@
     scrollbar-width: none;
   }
 
-  .perspective-3000 {
+  /* Interactive Book Physics */
+  .book-container {
     perspective: 3000px;
+    transform-style: preserve-3d;
   }
   
   .page-base {
+    position: absolute;
+    inset: 0;
     transform-style: preserve-3d;
     transform-origin: left center;
     transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 1s, filter 1.2s;
+    background: white;
   }
 
   .page-active {
@@ -69,6 +73,7 @@
   .page-turning {
     animation: page-curl 1.8s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
     pointer-events: none;
+    z-index: 30;
   }
 
   @keyframes page-curl {

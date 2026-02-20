@@ -33,7 +33,7 @@
     {
       "id": "project-6-thumb",
       "description": "Exploring the art of typography with a detailed type specimen, showcasing the beauty and versatility of a chosen typeface.",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/3b5ade78949bc7e2bb844b4f36532c942e7245dd/project-5.png",
+      "imageUrl": "https://images.unsplash.com/photo-1617050318658-a9a3175e34cb?q=80&w=1200",
       "imageHint": "typography design"
     },
     {
@@ -170,159 +170,159 @@
     },
     {
       "id": "typespec-1",
-      "description": "Typography Specimen Page 1",
-      "imageUrl": "https://images.unsplash.com/photo-1721492134985-1dd5b72a3dd6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0eXBvZ3JhcGh5JTIwZGVzaWdufGVufDB8fHx8MTc3MTU0MDIyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "typography design"
+      "description": "Type Specimen Page 1",
+      "imageUrl": "https://images.unsplash.com/photo-1741892193509-7653a99c6091?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx0eXBvZ3JhcGh5JTIwcGFnZXxlbnwwfHx8fDE3NzE2MTk1NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "typography page"
     },
     {
       "id": "typespec-2",
-      "description": "Typography Specimen Page 2",
-      "imageUrl": "https://images.unsplash.com/photo-1617050318658-a9a3175e34cb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx0eXBvZ3JhcGh5JTIwZGVzaWdufGVufDB8fHx8MTc3MTU0MDIyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "typography design"
+      "description": "Type Specimen Page 2",
+      "imageUrl": "https://images.unsplash.com/photo-1741892193509-7653a99c6091?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx0eXBvZ3JhcGh5JTIwcGFnZXxlbnwwfHx8fDE3NzE2MTk1NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "typography page"
     },
     {
       "id": "typespec-3",
-      "description": "Typography Specimen Page 3",
-      "imageUrl": "https://images.unsplash.com/photo-1721492134985-1dd5b72a3dd6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0eXBvZ3JhcGh5JTIwZGVzaWdufGVufDB8fHx8MTc3MTU0MDIyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "typography design"
+      "description": "Type Specimen Page 3",
+      "imageUrl": "https://images.unsplash.com/photo-1580746171752-696bf78660fb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8dHlwb2dyYXBoeSUyMHBhZ2V8ZW58MHx8fHwxNzcxNjE5NTU2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "typography page"
     },
     {
       "id": "typespec-4",
-      "description": "Typography Specimen Page 4",
-      "imageUrl": "https://images.unsplash.com/photo-1595409583957-5d1ec5869de9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHx0eXBvZ3JhcGh5JTIwZGVzaWdufGVufDB8fHx8MTc3MTU0MDIyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "typography design"
+      "description": "Type Specimen Page 4",
+      "imageUrl": "https://images.unsplash.com/photo-1741892193528-25c1ca25bca0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx0eXBvZ3JhcGh5JTIwcGFnZXxlbnwwfHx8fDE3NzE2MTk1NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "typography page"
     },
     {
       "id": "typespec-5",
-      "description": "Typography Specimen Page 5",
-      "imageUrl": "https://images.unsplash.com/photo-1738003667850-a2fb736e31b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0eXBvZ3JhcGh5JTIwZGVzaWdufGVufDB8fHx8MTc3MTU0MDIyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "typography design"
+      "description": "Type Specimen Page 5",
+      "imageUrl": "https://images.unsplash.com/photo-1605606809441-21def3d63361?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx0eXBvZ3JhcGh5JTIwcGFnZXxlbnwwfHx8fDE3NzE2MTk1NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "typography page"
     },
     {
       "id": "typespec-6",
-      "description": "Typography Specimen Page 6",
-      "imageUrl": "https://images.unsplash.com/photo-1547387557-21339915455f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx0eXBvZ3JhcGh5JTIwZGVzaWdufGVufDB8fHx8MTc3MTU0MDIyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "typography design"
+      "description": "Type Specimen Page 6",
+      "imageUrl": "https://images.unsplash.com/photo-1603905204400-e1636c7ae0c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx0eXBvZ3JhcGh5JTIwcGFnZXxlbnwwfHx8fDE3NzE2MTk1NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "typography page"
     },
     {
       "id": "typespec-7",
-      "description": "Typography Specimen Page 7",
-      "imageUrl": "https://images.unsplash.com/photo-1721492134985-1dd5b72a3dd6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0eXBvZ3JhcGh5JTIwZGVzaWdufGVufDB8fHx8MTc3MTU0MDIyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "typography design"
+      "description": "Type Specimen Page 7",
+      "imageUrl": "https://images.unsplash.com/photo-1741892193528-25c1ca25bca0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx0eXBvZ3JhcGh5JTIwcGFnZXxlbnwwfHx8fDE3NzE2MTk1NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "typography page"
     },
     {
       "id": "typespec-8",
-      "description": "Typography Specimen Page 8",
-      "imageUrl": "https://images.unsplash.com/photo-1738003667850-a2fb736e31b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0eXBvZ3JhcGh5JTIwZGVzaWdufGVufDB8fHx8MTc3MTU0MDIyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "typography design"
+      "description": "Type Specimen Page 8",
+      "imageUrl": "https://images.unsplash.com/photo-1741892193509-7653a99c6091?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx0eXBvZ3JhcGh5JTIwcGFnZXxlbnwwfHx8fDE3NzE2MTk1NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "typography page"
     },
     {
       "id": "typespec-9",
-      "description": "Typography Specimen Page 9",
-      "imageUrl": "https://images.unsplash.com/photo-1620325645116-82a352eee4d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHx0eXBvZ3JhcGh5JTIwZGVzaWdufGVufDB8fHx8MTc3MTU0MDIyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "typography design"
+      "description": "Type Specimen Page 9",
+      "imageUrl": "https://images.unsplash.com/photo-1698195811212-2cdb4a0232f9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHx0eXBvZ3JhcGh5JTIwcGFnZXxlbnwwfHx8fDE3NzE2MTk1NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "typography page"
     },
     {
       "id": "typespec-10",
-      "description": "Typography Specimen Page 10",
-      "imageUrl": "https://images.unsplash.com/photo-1695116793973-7bf2f0f3ce1e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8dHlwb2dyYXBoeSUyMGRlc2lnbnxlbnwwfHx8fDE3NzE1NDAyMjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "typography design"
+      "description": "Type Specimen Page 10",
+      "imageUrl": "https://images.unsplash.com/photo-1762901989329-1e7d0d811dc7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx0eXBvZ3JhcGh5JTIwcGFnZXxlbnwwfHx8fDE3NzE2MTk1NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "typography page"
     },
     {
       "id": "typespec-11",
-      "description": "Typography Specimen Page 11",
-      "imageUrl": "https://images.unsplash.com/photo-1721492134985-1dd5b72a3dd6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0eXBvZ3JhcGh5JTIwZGVzaWdufGVufDB8fHx8MTc3MTU0MDIyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "typography design"
+      "description": "Type Specimen Page 11",
+      "imageUrl": "https://images.unsplash.com/photo-1603905204400-e1636c7ae0c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx0eXBvZ3JhcGh5JTIwcGFnZXxlbnwwfHx8fDE3NzE2MTk1NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "typography page"
     },
     {
       "id": "typespec-12",
-      "description": "Typography Specimen Page 12",
-      "imageUrl": "https://images.unsplash.com/photo-1695116793973-7bf2f0f3ce1e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8dHlwb2dyYXBoeSUyMGRlc2lnbnxlbnwwfHx8fDE3NzE1NDAyMjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "typography design"
+      "description": "Type Specimen Page 12",
+      "imageUrl": "https://images.unsplash.com/photo-1603905204400-e1636c7ae0c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx0eXBvZ3JhcGh5JTIwcGFnZXxlbnwwfHx8fDE3NzE2MTk1NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "typography page"
     },
     {
       "id": "typespec-13",
-      "description": "Typography Specimen Page 13",
-      "imageUrl": "https://images.unsplash.com/photo-1634220213445-b6e37d9cf547?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx0eXBvZ3JhcGh5JTIwZGVzaWdufGVufDB8fHx8MTc3MTU0MDIyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "typography design"
+      "description": "Type Specimen Page 13",
+      "imageUrl": "https://images.unsplash.com/photo-1568047571827-8c46fe611345?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0eXBvZ3JhcGh5JTIwcGFnZXxlbnwwfHx8fDE3NzE2MTk1NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "typography page"
     },
     {
       "id": "typespec-14",
-      "description": "Typography Specimen Page 14",
-      "imageUrl": "https://images.unsplash.com/photo-1547387557-21339915455f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx0eXBvZ3JhcGh5JTIwZGVzaWdufGVufDB8fHx8MTc3MTU0MDIyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "typography design"
+      "description": "Type Specimen Page 14",
+      "imageUrl": "https://images.unsplash.com/photo-1741892193528-25c1ca25bca0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx0eXBvZ3JhcGh5JTIwcGFnZXxlbnwwfHx8fDE3NzE2MTk1NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "typography page"
     },
     {
       "id": "typespec-15",
-      "description": "Typography Specimen Page 15",
-      "imageUrl": "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx0eXBvZ3JhcGh5JTIwZGVzaWdufGVufDB8fHx8MTc3MTU0MDIyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "typography design"
+      "description": "Type Specimen Page 15",
+      "imageUrl": "https://images.unsplash.com/photo-1612425506252-50b73402c822?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHx0eXBvZ3JhcGh5JTIwcGFnZXxlbnwwfHx8fDE3NzE2MTk1NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "typography page"
     },
     {
       "id": "typespec-16",
-      "description": "Typography Specimen Page 16",
-      "imageUrl": "https://images.unsplash.com/photo-1738003667850-a2fb736e31b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0eXBvZ3JhcGh5JTIwZGVzaWdufGVufDB8fHx8MTc3MTU0MDIyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "typography design"
+      "description": "Type Specimen Page 16",
+      "imageUrl": "https://images.unsplash.com/photo-1741892193528-25c1ca25bca0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx0eXBvZ3JhcGh5JTIwcGFnZXxlbnwwfHx8fDE3NzE2MTk1NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "typography page"
     },
     {
       "id": "typespec-17",
-      "description": "Typography Specimen Page 17",
-      "imageUrl": "https://images.unsplash.com/photo-1721492134985-1dd5b72a3dd6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0eXBvZ3JhcGh5JTIwZGVzaWdufGVufDB8fHx8MTc3MTU0MDIyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "typography design"
+      "description": "Type Specimen Page 17",
+      "imageUrl": "https://images.unsplash.com/photo-1741892193528-25c1ca25bca0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx0eXBvZ3JhcGh5JTIwcGFnZXxlbnwwfHx8fDE3NzE2MTk1NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "typography page"
     },
     {
       "id": "typespec-18",
-      "description": "Typography Specimen Page 18",
-      "imageUrl": "https://images.unsplash.com/photo-1595409583957-5d1ec5869de9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHx0eXBvZ3JhcGh5JTIwZGVzaWdufGVufDB8fHx8MTc3MTU0MDIyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "typography design"
+      "description": "Type Specimen Page 18",
+      "imageUrl": "https://images.unsplash.com/photo-1762901989329-1e7d0d811dc7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx0eXBvZ3JhcGh5JTIwcGFnZXxlbnwwfHx8fDE3NzE2MTk1NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "typography page"
     },
     {
       "id": "typespec-19",
-      "description": "Typography Specimen Page 19",
-      "imageUrl": "https://images.unsplash.com/photo-1695116793973-7bf2f0f3ce1e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8dHlwb2dyYXBoeSUyMGRlc2lnbnxlbnwwfHx8fDE3NzE1NDAyMjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "typography design"
+      "description": "Type Specimen Page 19",
+      "imageUrl": "https://images.unsplash.com/photo-1568047571827-8c46fe611345?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0eXBvZ3JhcGh5JTIwcGFnZXxlbnwwfHx8fDE3NzE2MTk1NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "typography page"
     },
     {
       "id": "typespec-20",
-      "description": "Typography Specimen Page 20",
-      "imageUrl": "https://images.unsplash.com/photo-1695116793973-7bf2f0f3ce1e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8dHlwb2dyYXBoeSUyMGRlc2lnbnxlbnwwfHx8fDE3NzE1NDAyMjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "typography design"
+      "description": "Type Specimen Page 20",
+      "imageUrl": "https://images.unsplash.com/photo-1741892193509-7653a99c6091?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx0eXBvZ3JhcGh5JTIwcGFnZXxlbnwwfHx8fDE3NzE2MTk1NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "typography page"
     },
     {
       "id": "typespec-21",
-      "description": "Typography Specimen Page 21",
-      "imageUrl": "https://images.unsplash.com/photo-1738003667850-a2fb736e31b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0eXBvZ3JhcGh5JTIwZGVzaWdufGVufDB8fHx8MTc3MTU0MDIyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "typography design"
+      "description": "Type Specimen Page 21",
+      "imageUrl": "https://images.unsplash.com/photo-1605606809441-21def3d63361?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx0eXBvZ3JhcGh5JTIwcGFnZXxlbnwwfHx8fDE3NzE2MTk1NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "typography page"
     },
     {
       "id": "typespec-22",
-      "description": "Typography Specimen Page 22",
-      "imageUrl": "https://images.unsplash.com/photo-1634220213445-b6e37d9cf547?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx0eXBvZ3JhcGh5JTIwZGVzaWdufGVufDB8fHx8MTc3MTU0MDIyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "typography design"
+      "description": "Type Specimen Page 22",
+      "imageUrl": "https://images.unsplash.com/photo-1741892193516-912dbbcec71e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0eXBvZ3JhcGh5JTIwcGFnZXxlbnwwfHx8fDE3NzE2MTk1NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "typography page"
     },
     {
       "id": "typespec-23",
-      "description": "Typography Specimen Page 23",
-      "imageUrl": "https://images.unsplash.com/photo-1620325645116-82a352eee4d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHx0eXBvZ3JhcGh5JTIwZGVzaWdufGVufDB8fHx8MTc3MTU0MDIyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "typography design"
+      "description": "Type Specimen Page 23",
+      "imageUrl": "https://images.unsplash.com/photo-1741892193509-7653a99c6091?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx0eXBvZ3JhcGh5JTIwcGFnZXxlbnwwfHx8fDE3NzE2MTk1NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "typography page"
     },
     {
       "id": "typespec-24",
-      "description": "Typography Specimen Page 24",
-      "imageUrl": "https://images.unsplash.com/photo-1738003667850-a2fb736e31b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0eXBvZ3JhcGh5JTIwZGVzaWdufGVufDB8fHx8MTc3MTU0MDIyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "typography design"
+      "description": "Type Specimen Page 24",
+      "imageUrl": "https://images.unsplash.com/photo-1741892193509-7653a99c6091?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx0eXBvZ3JhcGh5JTIwcGFnZXxlbnwwfHx8fDE3NzE2MTk1NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "typography page"
     },
     {
       "id": "typespec-25",
-      "description": "Typography Specimen Page 25",
-      "imageUrl": "https://images.unsplash.com/photo-1721492134985-1dd5b72a3dd6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0eXBvZ3JhcGh5JTIwZGVzaWdufGVufDB8fHx8MTc3MTU0MDIyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "typography design"
+      "description": "Type Specimen Page 25",
+      "imageUrl": "https://images.unsplash.com/photo-1568047571827-8c46fe611345?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0eXBvZ3JhcGh5JTIwcGFnZXxlbnwwfHx8fDE3NzE2MTk1NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "typography page"
     },
     {
       "id": "typespec-26",
-      "description": "Typography Specimen Page 26",
-      "imageUrl": "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx0eXBvZ3JhcGh5JTIwZGVzaWdufGVufDB8fHx8MTc3MTU0MDIyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "typography design"
+      "description": "Type Specimen Page 26",
+      "imageUrl": "https://images.unsplash.com/photo-1762901989329-1e7d0d811dc7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx0eXBvZ3JhcGh5JTIwcGFnZXxlbnwwfHx8fDE3NzE2MTk1NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "typography page"
     },
     {
       "id": "logo-redesign-1",
@@ -373,12 +373,6 @@
       "imageHint": "ccd logo"
     },
     {
-      "id": "redesign-download",
-      "description": "Logo download",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/4b464978c61de5e25c4c99a796860cbe6f3f16a5/download.png",
-      "imageHint": "logo icon"
-    },
-    {
       "id": "redesign-indigo",
       "description": "Indigo logo redesign",
       "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/4b464978c61de5e25c4c99a796860cbe6f3f16a5/indigo.jpg",
@@ -399,61 +393,61 @@
     {
       "id": "pkg-redesign-box",
       "description": "Packaging Redesign Box",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/012c8876302ae167d1412807b3f4871f26a3510b/box.png",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/raw/012c8876302ae167d1412807b3f4871f26a3510b/box.png",
       "imageHint": "package box"
     },
     {
       "id": "pkg-redesign-loreal",
       "description": "Packaging Redesign Loreal",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/012c8876302ae167d1412807b3f4871f26a3510b/loreal.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/raw/012c8876302ae167d1412807b3f4871f26a3510b/loreal.jpg",
       "imageHint": "loreal redesign"
     },
     {
       "id": "pkg-redesign-pack",
       "description": "Packaging Redesign Pack",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/012c8876302ae167d1412807b3f4871f26a3510b/packge.png",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/raw/012c8876302ae167d1412807b3f4871f26a3510b/packge.png",
       "imageHint": "packaging layout"
     },
     {
       "id": "pkg-redesign-video",
       "description": "Packaging Redesign Video",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/012c8876302ae167d1412807b3f4871f26a3510b/medmix%20packaging.mp4",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/raw/012c8876302ae167d1412807b3f4871f26a3510b/medmix%20packaging.mp4",
       "imageHint": "packaging video"
     },
     {
       "id": "pkg-design-bag",
       "description": "Packaging Design - Bag",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/36d578310f1e623afee304a6e28efc08aae5b14a/bag.png",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/raw/36d578310f1e623afee304a6e28efc08aae5b14a/bag.png",
       "imageHint": "shopping bag"
     },
     {
       "id": "pkg-design-box-floral",
       "description": "Packaging Design - Box Floral",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/36d578310f1e623afee304a6e28efc08aae5b14a/box%20floral.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/raw/36d578310f1e623afee304a6e28efc08aae5b14a/box%20floral.jpg",
       "imageHint": "floral box"
     },
     {
       "id": "pkg-design-box-main",
       "description": "Packaging Design - Box Main",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/36d578310f1e623afee304a6e28efc08aae5b14a/box%401.25x.png",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/raw/36d578310f1e623afee304a6e28efc08aae5b14a/box%401.25x.png",
       "imageHint": "package layout"
     },
     {
       "id": "pkg-design-candle",
       "description": "Packaging Design - Candle Box",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/36d578310f1e623afee304a6e28efc08aae5b14a/candle%20box.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/raw/36d578310f1e623afee304a6e28efc08aae5b14a/candle%20box.jpg",
       "imageHint": "candle packaging"
     },
     {
       "id": "pkg-design-gift-1",
       "description": "Packaging Design - Gift 1",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/36d578310f1e623afee304a6e28efc08aae5b14a/gift%201.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/raw/36d578310f1e623afee304a6e28efc08aae5b14a/gift%201.jpg",
       "imageHint": "gift box"
     },
     {
       "id": "pkg-design-gift-2",
       "description": "Packaging Design - Gift 2",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/36d578310f1e623afee304a6e28efc08aae5b14a/gft.png",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/raw/36d578310f1e623afee304a6e28efc08aae5b14a/gft.png",
       "imageHint": "luxury gift"
     }
   ]
