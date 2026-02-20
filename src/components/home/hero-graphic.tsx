@@ -1,3 +1,4 @@
+
 'use client';
 
 export function HeroGraphic() {
@@ -8,20 +9,17 @@ export function HeroGraphic() {
           .graphic-path {
             stroke-dasharray: 500;
             stroke-dashoffset: 500;
-            animation: draw-in-out 6s ease-in-out infinite;
+            animation: draw-in 4s ease-out forwards;
           }
           .graphic-glow {
-            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.4));
+            filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.6));
           }
-          @keyframes draw-in-out {
+          @keyframes draw-in {
             0% {
               stroke-dashoffset: 500;
             }
-            50% {
-              stroke-dashoffset: 0;
-            }
             100% {
-              stroke-dashoffset: 500;
+              stroke-dashoffset: 0;
             }
           }
         `}

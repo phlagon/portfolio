@@ -85,7 +85,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
       </div>
 
       <header className="mb-16 text-center space-y-6">
-        <h1 className="text-5xl md:text-8xl font-black text-white uppercase tracking-tighter leading-none">{project.title}</h1>
+        <h1 className="text-5xl md:text-[10rem] font-black text-white uppercase tracking-tighter leading-none">{project.title}</h1>
         <div className="flex justify-center flex-wrap gap-3">
           {project.tags.map((tag) => (
             <Badge key={tag} variant="outline" className="text-[10px] uppercase tracking-[0.2em] font-black border-primary/20 text-primary px-4 py-1">{tag}</Badge>
@@ -154,30 +154,31 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             src={navImage.imageUrl} 
                             alt="Navigation Bar" 
                             fill 
-                            className="object-cover pointer-events-none"
+                            className="object-cover"
                           />
                         )}
-                        <div className="absolute inset-0 flex items-center justify-around px-2 pb-4 bg-black/40 backdrop-blur-sm border-t border-white/10">
+                        {/* Interactive Hotspots Overlay */}
+                        <div className="absolute inset-0 flex items-center justify-around px-2 pb-4">
                           {[
-                            { id: 'ride', label: 'Ride', icon: Bike },
-                            { id: 'travel', label: 'Travel', icon: Briefcase },
-                            { id: 'offline', label: 'Offline', icon: ArrowDownToLine },
-                            { id: 'live', label: 'Live', icon: Activity },
-                            { id: 'profile', label: 'Profile', icon: User },
+                            { id: 'ride', label: 'Ride' },
+                            { id: 'travel', label: 'Travel' },
+                            { id: 'offline', label: 'Offline' },
+                            { id: 'live', label: 'Live' },
+                            { id: 'profile', label: 'Profile' },
                           ].map((tab) => {
-                            const Icon = tab.icon;
                             const isActive = rapidoScreen === tab.id || (tab.id === 'travel' && rapidoScreen === 'flight');
                             return (
                               <button
                                 key={tab.id}
                                 onClick={() => setRapidoScreen(tab.id as any)}
                                 className={cn(
-                                  "flex flex-col items-center gap-1.5 transition-all duration-300 flex-1 py-2",
-                                  isActive ? "text-[#F9D915] scale-105" : "text-white/40 hover:text-white/70"
+                                  "flex-1 h-full transition-all duration-300 relative bg-transparent hover:bg-white/5",
                                 )}
                               >
-                                <Icon className={cn("h-5 w-5", isActive && "drop-shadow-[0_0_8px_rgba(249,217,21,0.5)]")} />
-                                <span className="text-[8px] font-black uppercase tracking-[0.2em]">{tab.label}</span>
+                                {isActive && (
+                                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-1 bg-[#F9D915] rounded-full shadow-[0_0_8px_#F9D915]" />
+                                )}
+                                <span className="sr-only">{tab.label}</span>
                               </button>
                             );
                           })}
