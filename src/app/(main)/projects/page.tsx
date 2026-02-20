@@ -8,6 +8,11 @@ import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
 
 export default function ProjectsPage() {
+  // Filter out the "Redesign" duplicates for the main gallery
+  const displayProjects = projects.filter(p => 
+    !['project-logo-redesign', 'project-packaging-redesign'].includes(p.id)
+  );
+
   return (
     <div className="container py-24 md:py-32">
       <div className="space-y-16">
@@ -20,7 +25,7 @@ export default function ProjectsPage() {
         </Reveal>
 
         <div className="grid md:grid-cols-2 gap-12">
-          {projects.map((project, index) => {
+          {displayProjects.map((project, index) => {
             const projectImage = placeholderImages.find(p => p.id === project.thumbnailId);
             return (
               <Reveal key={project.id} delay={index * 100} className="h-full">
@@ -40,7 +45,7 @@ export default function ProjectsPage() {
                       )}
                     </CardHeader>
                     <CardContent className="flex-1 p-8 space-y-4">
-                      <CardTitle className="text-2xl font-bold text-white group-hover:text-primary transition-colors">
+                      <CardTitle className="text-2xl font-bold text-white group-hover:text-primary transition-colors uppercase">
                         {project.title}
                       </CardTitle>
                       <p className="text-foreground/60 text-sm leading-relaxed">
