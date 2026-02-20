@@ -18,7 +18,8 @@ import {
   Palmtree,
   CloudOff,
   User,
-  Briefcase
+  Briefcase,
+  Bike
 } from 'lucide-react';
 
 import type { ImagePlaceholder } from '@/lib/placeholder-images';
