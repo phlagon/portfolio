@@ -35,7 +35,7 @@
     @apply bg-background text-foreground selection:bg-primary selection:text-primary-foreground antialiased cursor-none;
   }
   
-  a, button, input, textarea, [role="button"] {
+  a, button, input, textarea, [role="button"], label {
     @apply cursor-none;
   }
 }
