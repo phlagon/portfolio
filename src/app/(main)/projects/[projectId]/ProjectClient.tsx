@@ -204,11 +204,23 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             )}
 
                             {rapidoScreen === 'live' && (
-                              <button 
-                                onClick={() => setRapidoScreen('your-trip')}
-                                className="absolute top-[12.5%] left-[5%] w-[90%] h-[8%] bg-transparent cursor-pointer z-[95]"
-                                title="Your Trip Details"
-                              />
+                              <>
+                                <button 
+                                  onClick={() => setRapidoScreen('your-trip')}
+                                  className="absolute top-[12.5%] left-[5%] w-[45%] h-[8%] bg-transparent cursor-pointer z-[95]"
+                                  title="Your Trip Details"
+                                />
+                                <button 
+                                  onClick={() => {
+                                    toast({
+                                      title: "Weather Forecast ⛅",
+                                      description: "Partly cloudy with a high of 28°C. Perfect for a ride!",
+                                    });
+                                  }}
+                                  className="absolute top-[12.5%] left-[50%] w-[45%] h-[8%] bg-transparent cursor-pointer z-[95]"
+                                  title="Weather Details"
+                                />
+                              </>
                             )}
 
                             {rapidoScreen === 'your-trip' && (
