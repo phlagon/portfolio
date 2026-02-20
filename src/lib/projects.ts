@@ -20,7 +20,7 @@ export const projects = [
   },
   {
     id: "project-3",
-    title: "Logo Re-Design",
+    title: "LOGO",
     description: "Breathing new life into a brand's identity with a modern, impactful, and versatile logo redesign.",
     longDescription: "This project involved taking an existing brand identity and breathing new life into it. The redesign focused on modernizing the visual language while honoring the brand's core values. The result is an impactful and versatile logo that works beautifully across all digital and print applications, giving the brand a fresh platform for future growth.",
     tags: ["Logo Design", "Branding"],
