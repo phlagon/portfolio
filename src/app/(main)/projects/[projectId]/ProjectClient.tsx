@@ -392,14 +392,17 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                 <div className="flex flex-col">
                     {projectImages.map((image, idx) => (
                       <div key={idx} className="relative w-full">
-                        <Image 
-                          src={image.imageUrl} 
-                          alt={`Losmo Section ${idx + 1}`} 
-                          width={1920} 
-                          height={1080} 
-                          className="w-full h-auto block" 
-                          unoptimized
-                        />
+                        {image && (
+                          <Image 
+                            src={image.imageUrl} 
+                            alt={`Losmo Section ${idx + 1}`} 
+                            width={1920} 
+                            height={1080} 
+                            className="w-full h-auto block" 
+                            unoptimized
+                            priority={idx < 2}
+                          />
+                        )}
                       </div>
                     ))}
                 </div>
