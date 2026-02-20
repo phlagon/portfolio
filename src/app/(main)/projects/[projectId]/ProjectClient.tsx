@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { 
@@ -37,6 +37,7 @@ type ProjectType = (typeof projects)[0];
 
 export default function ProjectClient({ project, placeholderImages }: { project: ProjectType, placeholderImages: ImagePlaceholder[] }) {
   const [rapidoScreen, setRapidoScreen] = useState<'ride' | 'travel' | 'offline' | 'live' | 'profile' | 'flight'>('ride');
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   
   const [pickupLocation, setPickupLocation] = useState('');
   const [dropLocation, setDropLocation] = useState('');
@@ -45,6 +46,13 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   
   const [transitResults, setTransitResults] = useState<TransitSearchOutput | null>(null);
   const [isSearching, setIsSearching] = useState(false);
+
+  // Reset scroll to top when screen changes
+  useEffect(() => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTop = 0;
+    }
+  }, [rapidoScreen]);
 
   const projectImages = (project.imageIds || []).map(id => placeholderImages.find(img => img.id === id)).filter(Boolean) as any[];
   const isRapido = project.id === 'project-1';
@@ -111,7 +119,13 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                   </div>
                   
                   <div className="w-full h-full relative flex flex-col bg-white">
-                      <div className="flex-1 overflow-y-auto scrollbar-hide pb-[84px] relative bg-white">
+                      <div 
+                        ref={scrollContainerRef}
+                        className={cn(
+                          "flex-1 relative bg-white pb-[84px]",
+                          rapidoScreen === 'flight' ? "overflow-hidden" : "overflow-y-auto scrollbar-hide"
+                        )}
+                      >
                         <div className="relative w-full">
                             <Image
                               src={getRapidoImage() || ''}
