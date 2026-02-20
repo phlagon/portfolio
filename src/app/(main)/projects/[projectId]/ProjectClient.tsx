@@ -1,4 +1,3 @@
-
 'use client';
 
 // Polyfill for Promise.withResolvers which is required by newer versions of PDF.js
@@ -324,9 +323,9 @@ export default function ProjectClient({ project, placeholderImages }: { project:
           ) : isTypeSpecimen ? (
             <div className="w-full max-w-6xl mx-auto py-12 px-4">
               <Reveal className="relative flex flex-col items-center gap-12">
-                <div className="book-container aspect-[16/11] w-full max-w-5xl relative">
-                  <div className="absolute inset-0 bg-white/5 border border-white/10 shadow-2xl rounded-sm overflow-hidden">
-                    <div className="w-full h-full relative z-10 flex items-center justify-center bg-white">
+                <div className="book-container w-full max-w-5xl relative min-h-[1200px] md:min-h-[1400px]">
+                  <div className="absolute inset-0 bg-white/5 border border-white/10 shadow-2xl rounded-sm overflow-hidden h-fit">
+                    <div className="w-full h-full relative z-10 flex items-center justify-center bg-white min-h-[1200px] md:min-h-[1400px]">
                       <Document
                         file={PDF_URL}
                         onLoadSuccess={onDocumentLoadSuccess}
