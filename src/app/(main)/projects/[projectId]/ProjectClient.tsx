@@ -17,7 +17,9 @@ import {
   Bus,
   Loader2,
   RotateCcw,
-  Monitor
+  Monitor,
+  ChevronRight,
+  ChevronLeft
 } from 'lucide-react';
 
 import type { ImagePlaceholder } from '@/lib/placeholder-images';
@@ -35,6 +37,7 @@ import { cn } from '@/lib/utils';
 import { getTransitOptions, type TransitSearchOutput } from '@/ai/flows/transit-search-flow';
 import { useToast } from '@/hooks/use-toast';
 import { Reveal } from '@/components/ui/reveal';
+import { Button } from '@/components/ui/button';
 
 type ProjectType = (typeof projects)[0];
 
@@ -84,13 +87,15 @@ export default function ProjectClient({ project, placeholderImages }: { project:
     }
   };
 
-  const togglePageFold = (index: number) => {
-    if (foldedPages.length === projectImages.length) {
-      setFoldedPages([]);
-      return;
+  const turnNextPage = () => {
+    if (foldedPages.length < projectImages.length) {
+      setFoldedPages(prev => [...prev, foldedPages.length]);
     }
-    if (!foldedPages.includes(index)) {
-      setFoldedPages(prev => [...prev, index]);
+  };
+
+  const turnPrevPage = () => {
+    if (foldedPages.length > 0) {
+      setFoldedPages(prev => prev.slice(0, -1));
     }
   };
 
@@ -555,11 +560,11 @@ export default function ProjectClient({ project, placeholderImages }: { project:
               })}
             </div>
           ) : isTypeSpecimen ? (
-            <div className="w-full max-w-5xl mx-auto py-12">
-               <Reveal className="relative perspective-3000 aspect-[4/3] w-full" onClick={() => foldedPages.length === projectImages.length && setFoldedPages([])}>
+            <div className="w-full max-w-5xl mx-auto py-12 flex flex-col items-center gap-12">
+               <Reveal className="relative perspective-3000 aspect-[4/3] w-full max-w-4xl" onClick={() => foldedPages.length === projectImages.length && setFoldedPages([])}>
                   {projectImages.map((image, index) => {
                     const isFolded = foldedPages.includes(index);
-                    const isTop = index === foldedPages.length;
+                    const isCurrent = index === foldedPages.length;
                     
                     return (
                       <div 
@@ -570,10 +575,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                           index === foldedPages[foldedPages.length - 1] && "page-turning"
                         )}
                         style={{ zIndex: projectImages.length - index }}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (!isFolded) togglePageFold(index);
-                        }}
                       >
                         <Image
                           src={image.imageUrl}
@@ -583,12 +584,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                           unoptimized
                         />
                         <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity pointer-events-none" />
-                        
-                        {isTop && !isFolded && (
-                          <div className="absolute bottom-8 right-8 bg-black/80 text-white px-4 py-2 text-[10px] font-black uppercase tracking-widest flex items-center gap-3 animate-pulse">
-                            Turn Page <ArrowLeft className="h-3 w-3 rotate-180" />
-                          </div>
-                        )}
                       </div>
                     );
                   })}
@@ -606,6 +601,34 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                        </button>
                     </div>
                   )}
+               </Reveal>
+
+               {/* Book Controls */}
+               <Reveal delay={200} className="flex items-center gap-8">
+                  <Button 
+                    variant="outline" 
+                    size="lg" 
+                    onClick={turnPrevPage}
+                    disabled={foldedPages.length === 0}
+                    className="rounded-full h-16 w-16 border-white/10 hover:border-primary hover:text-primary transition-all duration-500"
+                  >
+                    <ChevronLeft className="h-8 w-8" />
+                  </Button>
+                  <div className="flex flex-col items-center">
+                    <span className="text-[10px] font-black uppercase tracking-[0.4em] text-foreground/40 mb-1">Page</span>
+                    <span className="text-xl font-black text-primary">
+                      {foldedPages.length + 1} / {projectImages.length}
+                    </span>
+                  </div>
+                  <Button 
+                    variant="outline" 
+                    size="lg" 
+                    onClick={turnNextPage}
+                    disabled={foldedPages.length === projectImages.length}
+                    className="rounded-full h-16 w-16 border-white/10 hover:border-primary hover:text-primary transition-all duration-500"
+                  >
+                    <ChevronRight className="h-8 w-8" />
+                  </Button>
                </Reveal>
             </div>
           ) : (

@@ -58,9 +58,9 @@ export const projects = [
     id: "project-6",
     title: "Type specimen",
     description: "Exploring the art of typography with a detailed type specimen, showcasing the beauty and versatility of a chosen typeface.",
-    longDescription: "Typography is the cornerstone of good design. This project is a deep exploration into the art of the letterform through a detailed type specimen. It showcases the beauty, versatility, and unique character of a chosen typeface, demonstrating its potential to communicate tone, hierarchy, and emotion in visual design.",
+    longDescription: "Typography is the cornerstone of good design. This project is a deep exploration into the art of the letterform through an interactive 3D type specimen. Designed as a physical book experience, this specimen allows you to interact with the typography, experiencing the tone, hierarchy, and emotion of the typeface through tactile, fluid movements.",
     tags: ["Typography", "Graphic Design"],
     thumbnailId: "project-6-thumb",
-    imageIds: ["project-6-thumb", "typespec-1"],
+    imageIds: ["typespec-1", "typespec-2", "typespec-3", "typespec-4", "typespec-5"],
   },
 ];

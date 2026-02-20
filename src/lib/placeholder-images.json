@@ -170,9 +170,33 @@
     },
     {
       "id": "typespec-1",
-      "description": "Typography Specimen Detail",
+      "description": "Typography Specimen Detail 1",
       "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/3b5ade78949bc7e2bb844b4f36532c942e7245dd/project-5.png",
       "imageHint": "typography mockup"
+    },
+    {
+      "id": "typespec-2",
+      "description": "Typography Specimen Detail 2",
+      "imageUrl": "https://images.unsplash.com/photo-1725918128606-9082b2d931b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxmb250JTIwc3BlY2ltZW58ZW58MHx8fHwxNzcxNjE4NTExfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "font specimen"
+    },
+    {
+      "id": "typespec-3",
+      "description": "Typography Specimen Detail 3",
+      "imageUrl": "https://images.unsplash.com/photo-1751069097717-2166d7e464f1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxhbHBoYWJldCUyMGRlc2lnbnxlbnwwfHx8fDE3NzE2MTg1MTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "alphabet design"
+    },
+    {
+      "id": "typespec-4",
+      "description": "Typography Specimen Detail 4",
+      "imageUrl": "https://images.unsplash.com/photo-1611592121675-a09a80da4117?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx0eXBlJTIwbGF5b3V0fGVufDB8fHx8MTc3MTYxODUxMXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "type layout"
+    },
+    {
+      "id": "typespec-5",
+      "description": "Typography Specimen Detail 5",
+      "imageUrl": "https://images.unsplash.com/photo-1635377090186-036bca445c6b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxncmlkJTIwdHlwb2dyYXBoeXxlbnwwfHx8fDE3NzE2MTg1MTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "grid typography"
     },
     {
       "id": "logo-redesign-1",

@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -72,23 +73,25 @@
 
   @keyframes page-curl {
     0% {
-      transform: rotateY(0deg) skewY(0deg);
+      transform: rotateY(0deg) skewY(0deg) rotateZ(0deg);
       filter: brightness(1);
     }
     30% {
-      transform: rotateY(-30deg) skewY(-5deg);
+      transform: rotateY(-40deg) skewY(-5deg) rotateZ(-2deg);
       filter: brightness(0.9);
+      box-shadow: 0 0 50px rgba(0,0,0,0.5);
     }
     100% {
-      transform: rotateY(-150deg) skewY(10deg) scale(0.85) translateX(-15%);
-      filter: brightness(0.4);
+      transform: rotateY(-180deg) skewY(15deg) scale(0.8) translateX(-20%) rotateZ(-5deg);
+      filter: brightness(0.3);
       opacity: 0;
+      box-shadow: 0 0 100px rgba(0,0,0,0.8);
     }
   }
 
   .page-turned-static {
-    transform: rotateY(-150deg) skewY(10deg) scale(0.85) translateX(-15%);
-    filter: brightness(0.4);
+    transform: rotateY(-180deg) skewY(15deg) scale(0.8) translateX(-20%) rotateZ(-5deg);
+    filter: brightness(0.3);
     opacity: 0;
     pointer-events: none;
   }
