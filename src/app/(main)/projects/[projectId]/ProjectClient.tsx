@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -174,7 +175,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                   setRapidoScreen('flight');
                                   setTransitResults(null);
                                 }}
-                                className="absolute top-[17.2%] left-[58%] w-[30%] h-[6%] bg-transparent cursor-pointer z-[95]"
+                                className="absolute top-[43%] left-[53%] w-[35%] h-[15%] bg-transparent cursor-pointer z-[95]"
                                 title="Flight Booking"
                               />
                             )}
