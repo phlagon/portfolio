@@ -1,6 +1,7 @@
 
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -15,6 +16,11 @@ const navLinks = [
 
 export function Header() {
   const pathname = usePathname();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/10 bg-background/80 backdrop-blur-md">
@@ -29,7 +35,7 @@ export function Header() {
               href={link.href}
               className={cn(
                 "transition-colors hover:text-primary uppercase tracking-widest text-[10px] font-black",
-                pathname === link.href ? "text-primary" : "text-foreground/70"
+                mounted && pathname === link.href ? "text-primary" : "text-foreground/70"
               )}
             >
               {link.label}
