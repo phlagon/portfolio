@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -6,7 +7,6 @@ import Link from 'next/link';
 import { 
   ArrowLeft, 
   MapPin, 
-  Luggage, 
   Navigation,
   Palmtree,
   CloudOff,
@@ -14,8 +14,15 @@ import {
   Monitor,
   ChevronLeft,
   ChevronRight,
-  ExternalLink
+  Luggage,
+  Loader2
 } from 'lucide-react';
+import { Document, Page, pdfjs } from 'react-pdf';
+import 'react-pdf/dist/Page/AnnotationLayer.css';
+import 'react-pdf/dist/Page/TextLayer.css';
+
+// Set up the PDF.js worker
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 import type { ImagePlaceholder } from '@/lib/placeholder-images';
 import type { projects } from '@/lib/projects';
@@ -34,9 +41,12 @@ import { Button } from '@/components/ui/button';
 
 type ProjectType = (typeof projects)[0];
 
+const PDF_URL = "https://raw.githubusercontent.com/phlagon/purr-folio/3dea7a623a7b346182ae83d184f86bfa8883b84d/recusive%20final_compressed.pdf";
+
 export default function ProjectClient({ project, placeholderImages }: { project: ProjectType, placeholderImages: ImagePlaceholder[] }) {
   const [rapidoScreen, setRapidoScreen] = useState<'ride' | 'travel' | 'offline' | 'live' | 'profile' | 'flight' | 'your-trip' | 'public-transport' | 'stops' | 'confirmation' | 'auto-find' | 'gps-confirm' | 'weather'>('ride');
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [numPages, setNumPages] = useState<number | null>(null);
   const [isTurning, setIsTurning] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   
@@ -76,6 +86,30 @@ export default function ProjectClient({ project, placeholderImages }: { project:
     }
   };
 
+  const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
+    setNumPages(numPages);
+  };
+
+  const nextPage = () => {
+    if (numPages && currentPage < numPages && !isTurning) {
+      setIsTurning(true);
+      setTimeout(() => {
+        setCurrentPage(prev => prev + 1);
+        setIsTurning(false);
+      }, 600);
+    }
+  };
+
+  const prevPage = () => {
+    if (currentPage > 1 && !isTurning) {
+      setIsTurning(true);
+      setTimeout(() => {
+        setCurrentPage(prev => prev - 1);
+        setIsTurning(false);
+      }, 300);
+    }
+  };
+
   const getRapidoImage = () => {
     const screens: Record<string, string | undefined> = {
       flight: 'rapido-flight',
@@ -104,22 +138,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   ];
 
   const isStaticScreen = ['flight', 'your-trip', 'public-transport', 'stops', 'confirmation', 'auto-find', 'gps-confirm', 'weather'].includes(rapidoScreen);
-
-  const nextPage = () => {
-    if (currentPage < projectImages.length - 1 && !isTurning) {
-      setIsTurning(true);
-      setTimeout(() => {
-        setCurrentPage(prev => prev + 1);
-        setIsTurning(false);
-      }, 800);
-    }
-  };
-
-  const prevPage = () => {
-    if (currentPage > 0 && !isTurning) {
-      setCurrentPage(prev => prev - 1);
-    }
-  };
 
   return (
     <div className="container py-12 md:py-24">
@@ -288,52 +306,43 @@ export default function ProjectClient({ project, placeholderImages }: { project:
               </div>
             </Reveal>
           ) : isTypeSpecimen ? (
-            <div className="w-full max-w-5xl mx-auto py-12 px-4 space-y-12">
-              <Reveal className="relative group">
-                {/* Book Interface */}
-                <div className="book-container aspect-[16/11] relative">
+            <div className="w-full max-w-6xl mx-auto py-12 px-4">
+              <Reveal className="relative flex flex-col items-center gap-12">
+                <div className="book-container aspect-[16/11] w-full max-w-5xl relative">
                   <div className="absolute inset-0 bg-white/5 border border-white/10 shadow-2xl rounded-sm overflow-hidden">
-                    {/* Previous Page Stack (Visual depth) */}
-                    <div className="absolute inset-0 bg-white shadow-inner opacity-10" />
-                    
-                    {/* Active Content Display */}
-                    <div className="w-full h-full relative z-10">
-                      {projectImages.map((image, index) => {
-                        const isCurrent = index === currentPage;
-                        const isPast = index < currentPage;
-                        const isNext = index === currentPage + 1;
-                        
-                        return (
-                          <div 
-                            key={index} 
-                            className={cn(
-                              "page-base",
-                              isCurrent && !isTurning && "page-active",
-                              isCurrent && isTurning && "page-turning",
-                              isPast && "page-turned-static"
-                            )}
-                          >
-                            <Image 
-                              src={image?.imageUrl || ''}
-                              alt={`Specimen Page ${index + 1}`}
-                              fill
-                              className="object-contain"
-                              priority={index < 3}
-                              unoptimized
-                            />
+                    <div className="w-full h-full relative z-10 flex items-center justify-center bg-white">
+                      <Document
+                        file={PDF_URL}
+                        onLoadSuccess={onDocumentLoadSuccess}
+                        loading={
+                          <div className="flex items-center gap-4 text-black font-black uppercase tracking-widest text-xs">
+                            <Loader2 className="animate-spin" /> Rendering Specimen...
                           </div>
-                        );
-                      })}
+                        }
+                      >
+                        <div className={cn(
+                          "page-base",
+                          !isTurning && "page-active",
+                          isTurning && "page-turning"
+                        )}>
+                          <Page 
+                            pageNumber={currentPage} 
+                            width={window.innerWidth > 768 ? 1000 : 400}
+                            renderAnnotationLayer={false}
+                            renderTextLayer={false}
+                          />
+                        </div>
+                      </Document>
                     </div>
                   </div>
 
-                  {/* Desktop Navigation Overlays */}
+                  {/* Tactile Navigation Buttons */}
                   <div className="absolute inset-y-0 left-0 w-24 flex items-center justify-center z-[100] opacity-0 group-hover:opacity-100 transition-opacity">
                     <Button 
                       variant="ghost" 
                       size="icon" 
                       onClick={prevPage}
-                      disabled={currentPage === 0 || isTurning}
+                      disabled={currentPage === 1 || isTurning}
                       className="h-16 w-16 rounded-full bg-black/40 backdrop-blur-md text-white hover:bg-primary hover:text-black disabled:opacity-0"
                     >
                       <ChevronLeft className="h-10 w-10" />
@@ -344,7 +353,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                       variant="ghost" 
                       size="icon" 
                       onClick={nextPage}
-                      disabled={currentPage === projectImages.length - 1 || isTurning}
+                      disabled={(numPages ? currentPage === numPages : false) || isTurning}
                       className="h-16 w-16 rounded-full bg-black/40 backdrop-blur-md text-white hover:bg-primary hover:text-black disabled:opacity-0"
                     >
                       <ChevronRight className="h-10 w-10" />
@@ -352,26 +361,25 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                   </div>
                 </div>
 
-                {/* Tactical Navigation Bar */}
-                <div className="flex items-center justify-between mt-12 border-t border-white/5 pt-12">
+                <div className="flex items-center justify-between w-full max-w-5xl border-t border-white/5 pt-12">
                   <div className="flex gap-4">
                     <Button 
                       onClick={prevPage}
-                      disabled={currentPage === 0 || isTurning}
+                      disabled={currentPage === 1 || isTurning}
                       className="rounded-none px-8 h-12 text-[10px] font-black uppercase tracking-[0.3em] bg-white/5 text-white hover:bg-primary hover:text-black transition-all"
                     >
                       Previous
                     </Button>
                     <Button 
                       onClick={nextPage}
-                      disabled={currentPage === projectImages.length - 1 || isTurning}
+                      disabled={(numPages ? currentPage === numPages : false) || isTurning}
                       className="rounded-none px-8 h-12 text-[10px] font-black uppercase tracking-[0.3em] bg-white/5 text-white hover:bg-primary hover:text-black transition-all"
                     >
                       Next Page
                     </Button>
                   </div>
                   <div className="text-[10px] font-black uppercase tracking-[0.5em] text-foreground/40">
-                    Page <span className="text-primary">{currentPage + 1}</span> / {projectImages.length}
+                    Page <span className="text-primary">{currentPage}</span> / {numPages || '--'}
                   </div>
                 </div>
               </Reveal>
