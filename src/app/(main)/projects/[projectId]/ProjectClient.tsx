@@ -217,7 +217,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                       description: "Partly cloudy with a high of 28°C. Perfect for a ride!",
                                     });
                                   }}
-                                  className="absolute top-[25%] left-[55%] w-[35%] h-[6%] bg-transparent cursor-pointer z-[95]"
+                                  className="absolute top-[25%] left-[50%] w-[35%] h-[6%] bg-transparent cursor-pointer z-[95]"
                                   title="Weather Details"
                                 />
                               </>
