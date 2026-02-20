@@ -29,18 +29,23 @@ export function Header() {
           <span className="text-2xl font-black font-headline tracking-tighter">Benzitta.</span>
         </Link>
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={cn(
-                "transition-colors hover:text-primary uppercase tracking-widest text-[10px] font-black",
-                mounted && pathname === link.href ? "text-primary" : "text-foreground/70"
-              )}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            // Only apply active state logic after mounting to avoid hydration errors
+            const isActive = mounted && (pathname === link.href || (pathname.startsWith('/projects/') && link.href === '/#projects' && !pathname.includes('project-3')));
+            
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cn(
+                  "transition-colors hover:text-primary uppercase tracking-widest text-[10px] font-black",
+                  isActive ? "text-primary" : "text-foreground/70"
+                )}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
       </div>
     </header>
