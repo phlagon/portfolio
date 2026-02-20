@@ -15,9 +15,9 @@ import {
   ChevronLeft, 
   ChevronRight, 
   RotateCcw,
-  Bike,
-  ArrowDownToLine,
-  Activity,
+  Navigation,
+  PalmTree,
+  CloudOff,
   User,
   Briefcase
 } from 'lucide-react';
@@ -39,7 +39,6 @@ import { cn } from '@/lib/utils';
 type ProjectType = (typeof projects)[0];
 
 export default function ProjectClient({ project, placeholderImages }: { project: ProjectType, placeholderImages: ImagePlaceholder[] }) {
-  const [activePart, setActivePart] = useState<'website' | 'app' | 'logo'>('website');
   const [currentPage, setCurrentPage] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [rapidoScreen, setRapidoScreen] = useState<'ride' | 'travel' | 'offline' | 'live' | 'profile' | 'flight'>('ride');
@@ -48,8 +47,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   const isRapido = project.id === 'project-1';
   const isPackageProject = project.id === 'project-5';
   const isTypeSpecimen = project.id === 'project-6';
-
-  const navImage = placeholderImages.find(img => img.id === 'rapido-nav');
 
   const handleNextPage = () => {
     if (currentPage < projectImages.length - 1 && !isAnimating) {
@@ -69,11 +66,19 @@ export default function ProjectClient({ project, placeholderImages }: { project:
 
   const getRapidoImage = () => {
     if (rapidoScreen === 'flight') return placeholderImages.find(img => img.id === 'rapido-flight');
-    if (rapidoScreen === 'travel') return placeholderImages.find(img => img.id === 'rapido-travel');
-    return placeholderImages.find(img => img.id === 'rapido-home');
+    if (rapidoScreen === 'travel') return "https://raw.githubusercontent.com/phlagon/purr-folio/d65df9b43e62721b4bff28ad3c0c65f1b90e3396/travel%202.jpg";
+    return placeholderImages.find(img => img.id === 'rapido-home')?.imageUrl;
   };
 
   const RAPIDO_YELLOW = "#F9D915";
+
+  const navTabs = [
+    { id: 'ride', label: 'Ride', icon: Navigation },
+    { id: 'travel', label: 'Travel', icon: PalmTree },
+    { id: 'offline', label: 'Offline', icon: CloudOff },
+    { id: 'live', label: 'Live', icon: MapPin },
+    { id: 'profile', label: 'Profile', icon: User },
+  ];
 
   return (
     <div className="container py-12 md:py-24">
@@ -119,64 +124,54 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                     <div className="w-2 h-2 rounded-full bg-white/10 ml-auto mr-4" />
                   </div>
                   
-                  <div className="w-full h-full bg-[#050505] relative flex flex-col">
+                  <div className="w-full h-full bg-white relative flex flex-col">
                       <div className="flex-1 overflow-y-auto scrollbar-hide pb-[84px]">
-                        {getRapidoImage() && (
-                          <div className="relative w-full">
-                            <Image
-                              src={getRapidoImage()!.imageUrl}
-                              alt={`Rapido Screen`}
-                              width={360}
-                              height={1200}
-                              className="w-full h-auto block"
-                              priority
+                        <div className="relative w-full">
+                          <Image
+                            src={getRapidoImage() || ''}
+                            alt={`Rapido Screen`}
+                            width={360}
+                            height={1200}
+                            className="w-full h-auto block"
+                            priority
+                            unoptimized
+                          />
+                          
+                          {rapidoScreen === 'travel' && (
+                            <button 
+                              onClick={() => setRapidoScreen('flight')}
+                              className="absolute top-[18%] left-0 w-[40%] h-[15%] bg-transparent cursor-pointer z-[40]"
+                              title="Go to Flights"
                             />
-                            
-                            {rapidoScreen === 'travel' && (
-                              <button 
-                                onClick={() => setRapidoScreen('flight')}
-                                className="absolute top-[28%] left-0 w-[33%] h-[12%] bg-transparent cursor-pointer z-[40]"
-                                title="Go to Flights"
-                              />
-                            )}
-                          </div>
-                        )}
+                          )}
+                        </div>
                       </div>
 
-                      <div className="absolute bottom-0 left-0 w-full h-[84px] z-[60] pb-4 bg-black/90 backdrop-blur-xl">
-                        {navImage && (
-                          <Image 
-                            src={navImage.imageUrl} 
-                            alt="Navigation Bar" 
-                            fill 
-                            className="object-cover opacity-90"
-                          />
-                        )}
-                        <div className="absolute inset-0 flex items-center justify-around px-2 pb-4">
-                          {[
-                            { id: 'ride', label: 'Ride' },
-                            { id: 'travel', label: 'Travel' },
-                            { id: 'offline', label: 'Offline' },
-                            { id: 'live', label: 'Live' },
-                            { id: 'profile', label: 'Profile' },
-                          ].map((tab) => {
-                            const isActive = rapidoScreen === tab.id || (tab.id === 'travel' && rapidoScreen === 'flight');
-                            return (
-                              <button
-                                key={tab.id}
-                                onClick={() => setRapidoScreen(tab.id as any)}
+                      <div className="absolute bottom-0 left-0 w-full h-[84px] z-[60] bg-white border-t border-black/5 flex items-center justify-around px-2 pb-4 shadow-[0_-10px_30px_rgba(0,0,0,0.05)]">
+                        {navTabs.map((tab) => {
+                          const Icon = tab.icon;
+                          const isActive = rapidoScreen === tab.id || (tab.id === 'travel' && rapidoScreen === 'flight');
+                          return (
+                            <button
+                              key={tab.id}
+                              onClick={() => setRapidoScreen(tab.id as any)}
+                              className="flex flex-col items-center justify-center gap-1.5 h-full flex-1 transition-all duration-300"
+                            >
+                              <Icon 
                                 className={cn(
-                                  "flex-1 h-full transition-all duration-300 relative bg-transparent hover:bg-white/5",
-                                )}
-                              >
-                                {isActive && (
-                                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-1 bg-[#F9D915] rounded-full shadow-[0_0_8px_#F9D915] z-10" />
-                                )}
-                                <span className="sr-only">{tab.label}</span>
-                              </button>
-                            );
-                          })}
-                        </div>
+                                  "h-6 w-6 transition-colors",
+                                  isActive ? "text-[#F9D915]" : "text-black/40"
+                                )} 
+                              />
+                              <span className={cn(
+                                "text-[10px] font-bold tracking-tight transition-colors",
+                                isActive ? "text-[#F9D915]" : "text-black"
+                              )}>
+                                {tab.label}
+                              </span>
+                            </button>
+                          );
+                        })}
                       </div>
 
                       {rapidoScreen === 'flight' && (
