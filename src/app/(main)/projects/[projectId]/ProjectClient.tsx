@@ -306,7 +306,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
           ) : isLosmo ? (
             <Reveal className="w-full max-w-5xl mx-auto">
               <div className="relative w-full group">
-                <div className="relative mx-auto w-full max-w-[1000px] flex flex-col items-center">
+                <div className="relative mx-auto w-full flex flex-col items-center">
                   {losmoTab === 'web' ? (
                     <div className="relative bg-[#0a0a0a] rounded-[2.5rem] p-[1rem] pb-[4rem] shadow-[0_100px_100px_-50px_rgba(0,0,0,0.8)] border-[2px] border-[#333] w-full aspect-[16/10.5] overflow-hidden">
                       <div className="relative w-full h-full bg-[#111] rounded-[1.5rem] overflow-hidden border border-white/5">
@@ -335,15 +335,12 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                       </div>
                     </div>
                   ) : (
-                    <div className="relative mx-auto border-[#0a0a0a] bg-[#111] border-[12px] rounded-[3.5rem] h-[720px] w-[360px] shadow-[0_60px_120px_-30px_rgba(0,0,0,1)] overflow-hidden">
-                      <div className="w-[120px] h-[34px] bg-black top-4 rounded-[1.2rem] left-1/2 -translate-x-1/2 absolute z-[100] flex items-center justify-center">
-                        <div className="w-2 h-2 rounded-full bg-white/10 ml-auto mr-4" />
-                      </div>
+                    <div className="relative mx-auto w-full max-w-[400px] aspect-[9/19] flex items-center justify-center">
                       <Carousel className="w-full h-full">
                         <CarouselContent className="-ml-0 h-full">
                           {losmoAppImages.map((image, index) => (
                             <CarouselItem key={index} className="pl-0 h-full">
-                              <div className="relative w-full h-full bg-black">
+                              <div className="relative w-full h-full rounded-3xl overflow-hidden bg-black shadow-2xl border border-white/10">
                                 <Image
                                   src={image.imageUrl}
                                   alt={`Losmo App Screen ${index + 1}`}
@@ -356,8 +353,8 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             </CarouselItem>
                           ))}
                         </CarouselContent>
-                        <CarouselPrevious className="left-2 bg-black/20" />
-                        <CarouselNext className="right-2 bg-black/20" />
+                        <CarouselPrevious className="left-[-40px] bg-black/40 hover:bg-primary border-none text-white" />
+                        <CarouselNext className="right-[-40px] bg-black/40 hover:bg-primary border-none text-white" />
                       </Carousel>
                     </div>
                   )}
