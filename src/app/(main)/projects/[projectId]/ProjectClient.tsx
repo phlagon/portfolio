@@ -183,7 +183,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             {rapidoScreen === 'travel' && (
                               <button 
                                 onClick={() => setRapidoScreen('flight')}
-                                className="absolute top-[18%] left-[24%] w-[20%] h-[12%] bg-transparent cursor-pointer z-[40]"
+                                className="absolute top-[18%] left-[42%] w-[16%] h-[12%] bg-transparent cursor-pointer z-[40]"
                                 title="Flight Booking"
                               />
                             )}
