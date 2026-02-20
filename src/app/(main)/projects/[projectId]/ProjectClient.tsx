@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -402,34 +401,64 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                   </div>
               </div>
             </Reveal>
-          ) : isLosmo || isPackageDesign ? (
+          ) : isLosmo ? (
+            <Reveal className="p-1 bg-white/5 border border-white/10 shadow-2xl w-full max-w-6xl mx-auto">
+              <Carousel className="w-full group">
+                <CarouselContent>
+                  {projectImages.map((image, index) => (
+                    <CarouselItem key={index}>
+                      <Card className="border-none shadow-none bg-transparent">
+                        <CardContent className="relative h-[85vh] flex flex-col p-0 overflow-hidden">
+                          <div className="flex-1 overflow-y-auto scrollbar-hide bg-black/40">
+                             {image && (
+                               <Image
+                                 src={image.imageUrl}
+                                 alt={`${project.title} design ${index + 1}`}
+                                 width={1400}
+                                 height={2000}
+                                 className="w-full h-auto block grayscale hover:grayscale-0 transition-all duration-700"
+                                 unoptimized
+                               />
+                             )}
+                          </div>
+                          <div className="absolute top-4 right-4 bg-primary/20 backdrop-blur-md px-3 py-1 rounded-full text-[8px] font-black uppercase tracking-widest text-primary border border-primary/20">
+                            Website View • Scrollable
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="left-6 bg-black/80 border-white/10 text-white hover:bg-primary hover:text-black transition-all" />
+                <CarouselNext className="right-6 bg-black/80 border-white/10 text-white hover:bg-primary hover:text-black transition-all" />
+              </Carousel>
+            </Reveal>
+          ) : isPackageDesign ? (
             <div className="w-full max-w-6xl mx-auto space-y-24">
-               {isPackageDesign && (
-                 <Reveal className="w-full">
-                   <div className="relative aspect-video bg-black/20 rounded-none overflow-hidden border border-white/5 shadow-2xl group">
-                      <video 
-                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"
-                        autoPlay 
-                        loop 
-                        muted 
-                        playsInline
-                      >
-                        <source src="https://raw.githubusercontent.com/phlagon/purr-folio/1e86a7d646b793222feceec9ded448cbd3a24335/medmix%20packaging.mp4" type="video/mp4" />
-                        Your browser does not support the video tag.
-                      </video>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
-                      <div className="absolute bottom-12 left-12 flex items-center gap-6">
-                          <div className="h-12 w-12 rounded-full border border-primary/40 flex items-center justify-center animate-pulse">
-                             <PlayCircle className="h-6 w-6 text-primary" />
-                          </div>
-                          <div className="space-y-1">
-                            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-primary">Now Playing</p>
-                            <p className="text-sm font-bold text-white uppercase tracking-widest">MedMix Packaging Process</p>
-                          </div>
-                      </div>
-                   </div>
-                 </Reveal>
-               )}
+               <Reveal className="w-full">
+                 <div className="relative aspect-video bg-black/20 rounded-none overflow-hidden border border-white/5 shadow-2xl group">
+                    <video 
+                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"
+                      autoPlay 
+                      loop 
+                      muted 
+                      playsInline
+                    >
+                      <source src="https://raw.githubusercontent.com/phlagon/purr-folio/1e86a7d646b793222feceec9ded448cbd3a24335/medmix%20packaging.mp4" type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
+                    <div className="absolute bottom-12 left-12 flex items-center gap-6">
+                        <div className="h-12 w-12 rounded-full border border-primary/40 flex items-center justify-center animate-pulse">
+                           <PlayCircle className="h-6 w-6 text-primary" />
+                        </div>
+                        <div className="space-y-1">
+                          <p className="text-[10px] font-black uppercase tracking-[0.4em] text-primary">Now Playing</p>
+                          <p className="text-sm font-bold text-white uppercase tracking-widest">MedMix Packaging Process</p>
+                        </div>
+                    </div>
+                 </div>
+               </Reveal>
                {projectImages.map((image, index) => (
                  <Reveal key={index} className="w-full">
                     <div className="relative w-full border border-white/5 shadow-2xl bg-white/5 overflow-hidden">
