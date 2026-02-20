@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState } from 'react';
@@ -19,7 +18,11 @@ import {
   Palmtree,
   CloudOff,
   User,
-  Briefcase
+  Train,
+  Bus,
+  Car,
+  Search,
+  Loader2
 } from 'lucide-react';
 
 import type { ImagePlaceholder } from '@/lib/placeholder-images';
@@ -35,6 +38,7 @@ import {
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { getTransitOptions, type TransitSearchOutput } from '@/ai/flows/transit-search-flow';
 
 type ProjectType = (typeof projects)[0];
 
@@ -48,6 +52,9 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   const [departDate, setDepartDate] = useState('');
   const [returnDate, setReturnDate] = useState('');
   
+  const [transitResults, setTransitResults] = useState<TransitSearchOutput | null>(null);
+  const [isSearching, setIsSearching] = useState(false);
+
   const projectImages = (project.imageIds || []).map(id => placeholderImages.find(img => img.id === id)).filter(Boolean) as any[];
   const isRapido = project.id === 'project-1';
   const isPackageProject = project.id === 'project-5';
@@ -82,6 +89,26 @@ export default function ProjectClient({ project, placeholderImages }: { project:
     { id: 'live', label: 'Live', icon: MapPin },
     { id: 'profile', label: 'Profile', icon: User },
   ];
+
+  const handleSearchTransit = async () => {
+    if (!pickupLocation || !dropLocation) return;
+    setIsSearching(true);
+    setTransitResults(null);
+    try {
+      const results = await getTransitOptions({ pickup: pickupLocation, drop: dropLocation });
+      setTransitResults(results);
+    } catch (error) {
+      console.error("Failed to fetch transit options", error);
+    } finally {
+      setIsSearching(false);
+    }
+  };
+
+  const resetTransit = () => {
+    setTransitResults(null);
+    setPickupLocation('');
+    setDropLocation('');
+  };
 
   return (
     <div className="container py-12 md:py-24">
@@ -128,68 +155,142 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                   </div>
                   
                   <div className="w-full h-full bg-white relative flex flex-col">
-                      <div className="flex-1 overflow-y-auto scrollbar-hide pb-[84px]">
-                        <div className="relative w-full">
-                          <Image
-                            src={getRapidoImage() || ''}
-                            alt={`Rapido Screen`}
-                            width={360}
-                            height={1200}
-                            className="w-full h-auto block"
-                            priority
-                            unoptimized
-                          />
-                          
-                          {(rapidoScreen === 'ride' || rapidoScreen === 'travel' || rapidoScreen === 'flight') && (
-                            <>
-                                <input 
-                                    type="text"
-                                    value={pickupLocation}
-                                    onChange={(e) => setPickupLocation(e.target.value)}
-                                    className="absolute top-[4.2%] left-[18%] w-[68%] h-[4.5%] bg-transparent border-none text-[11px] font-medium focus:outline-none z-[80] text-black px-2"
-                                    autoComplete="off"
-                                    placeholder=""
-                                />
-                                <input 
-                                    type="text"
-                                    value={dropLocation}
-                                    onChange={(e) => setDropLocation(e.target.value)}
-                                    className="absolute top-[10.2%] left-[18%] w-[68%] h-[4.5%] bg-transparent border-none text-[11px] font-medium focus:outline-none z-[80] text-black px-2"
-                                    autoComplete="off"
-                                    placeholder=""
-                                />
-                            </>
-                          )}
-
-                          {rapidoScreen === 'flight' && (
-                            <>
-                                <input 
-                                    type="text"
-                                    value={departDate}
-                                    onChange={(e) => setDepartDate(e.target.value)}
-                                    className="absolute top-[16.2%] left-[18%] w-[33%] h-[4.5%] bg-transparent border-none text-[11px] font-medium focus:outline-none z-[80] text-black px-2"
-                                    autoComplete="off"
-                                    placeholder=""
-                                />
-                                <input 
-                                    type="text"
-                                    value={returnDate}
-                                    onChange={(e) => setReturnDate(e.target.value)}
-                                    className="absolute top-[16.2%] left-[53%] w-[33%] h-[4.5%] bg-transparent border-none text-[11px] font-medium focus:outline-none z-[80] text-black px-2"
-                                    autoComplete="off"
-                                    placeholder=""
-                                />
-                            </>
-                          )}
-
-                          {rapidoScreen === 'travel' && (
-                            <button 
-                              onClick={() => setRapidoScreen('flight')}
-                              className="absolute top-[18%] left-0 w-[40%] h-[15%] bg-transparent cursor-pointer z-[40]"
-                              title="Go to Flights"
+                      <div className="flex-1 overflow-y-auto scrollbar-hide pb-[84px] relative">
+                        {!transitResults && !isSearching ? (
+                          <div className="relative w-full">
+                            <Image
+                              src={getRapidoImage() || ''}
+                              alt={`Rapido Screen`}
+                              width={360}
+                              height={1200}
+                              className="w-full h-auto block"
+                              priority
+                              unoptimized
                             />
-                          )}
-                        </div>
+                            
+                            {(rapidoScreen === 'ride' || rapidoScreen === 'travel' || rapidoScreen === 'flight') && (
+                              <>
+                                  <input 
+                                      type="text"
+                                      value={pickupLocation}
+                                      onChange={(e) => setPickupLocation(e.target.value)}
+                                      className="absolute top-[4.2%] left-[18%] w-[68%] h-[4.5%] bg-transparent border-none text-[11px] font-medium focus:outline-none z-[80] text-black px-2"
+                                      autoComplete="off"
+                                      placeholder=""
+                                  />
+                                  <input 
+                                      type="text"
+                                      value={dropLocation}
+                                      onChange={(e) => setDropLocation(e.target.value)}
+                                      className="absolute top-[10.2%] left-[18%] w-[68%] h-[4.5%] bg-transparent border-none text-[11px] font-medium focus:outline-none z-[80] text-black px-2"
+                                      autoComplete="off"
+                                      placeholder=""
+                                  />
+                              </>
+                            )}
+
+                            {pickupLocation && dropLocation && (rapidoScreen === 'ride' || rapidoScreen === 'travel') && (
+                              <button 
+                                onClick={handleSearchTransit}
+                                className="absolute top-[16%] left-1/2 -translate-x-1/2 bg-[#F9D915] text-black text-[10px] font-black px-6 py-2 rounded-full shadow-lg hover:scale-105 transition-transform flex items-center gap-2 z-[90]"
+                              >
+                                <Search className="h-3 w-3" />
+                                Find Routes
+                              </button>
+                            )}
+
+                            {rapidoScreen === 'flight' && (
+                              <>
+                                  <input 
+                                      type="text"
+                                      value={departDate}
+                                      onChange={(e) => setDepartDate(e.target.value)}
+                                      className="absolute top-[16.2%] left-[18%] w-[33%] h-[4.5%] bg-transparent border-none text-[11px] font-medium focus:outline-none z-[80] text-black px-2"
+                                      autoComplete="off"
+                                      placeholder=""
+                                  />
+                                  <input 
+                                      type="text"
+                                      value={returnDate}
+                                      onChange={(e) => setReturnDate(e.target.value)}
+                                      className="absolute top-[16.2%] left-[53%] w-[33%] h-[4.5%] bg-transparent border-none text-[11px] font-medium focus:outline-none z-[80] text-black px-2"
+                                      autoComplete="off"
+                                      placeholder=""
+                                  />
+                              </>
+                            )}
+
+                            {rapidoScreen === 'travel' && (
+                              <button 
+                                onClick={() => setRapidoScreen('flight')}
+                                className="absolute top-[18%] left-0 w-[40%] h-[15%] bg-transparent cursor-pointer z-[40]"
+                                title="Go to Flights"
+                              />
+                            )}
+                          </div>
+                        ) : isSearching ? (
+                          <div className="h-full flex flex-col items-center justify-center p-12 text-center space-y-6 animate-in fade-in zoom-in duration-500">
+                             <div className="relative">
+                               <Loader2 className="h-16 w-16 text-[#F9D915] animate-spin" />
+                               <div className="absolute inset-0 flex items-center justify-center">
+                                 <Navigation className="h-6 w-6 text-black/20" />
+                               </div>
+                             </div>
+                             <div className="space-y-2">
+                               <p className="text-sm font-black uppercase tracking-widest text-black">Calculating Routes</p>
+                               <p className="text-[10px] text-black/40 uppercase font-bold">Integrating Google Maps Data...</p>
+                             </div>
+                          </div>
+                        ) : (
+                          <div className="h-full bg-[#f8f9fa] flex flex-col animate-in slide-in-from-bottom duration-500">
+                            <div className="bg-[#F9D915] p-8 pt-12 space-y-4 shadow-lg">
+                               <button onClick={resetTransit} className="p-2 -ml-2 hover:bg-black/5 rounded-full transition-colors">
+                                  <ChevronLeft className="h-6 w-6 text-black" />
+                               </button>
+                               <div className="space-y-1">
+                                 <h2 className="text-2xl font-black text-black leading-tight uppercase tracking-tighter">Transit Results</h2>
+                                 <p className="text-[10px] font-bold text-black/60 uppercase tracking-widest">{pickupLocation} to {dropLocation}</p>
+                               </div>
+                            </div>
+                            
+                            <div className="flex-1 p-4 space-y-3">
+                              {transitResults?.options.map((option, idx) => {
+                                let Icon = Navigation;
+                                if (option.type === 'Train') Icon = Train;
+                                if (option.type === 'Bus') Icon = Bus;
+                                if (option.type === 'Flight') Icon = Plane;
+                                if (option.type === 'Taxi') Icon = Car;
+
+                                return (
+                                  <div key={idx} className="bg-white p-4 rounded-2xl shadow-sm border border-black/5 flex items-center gap-4 hover:border-[#F9D915] transition-all cursor-pointer group">
+                                    <div className="h-12 w-12 rounded-xl bg-[#F9D915]/10 flex items-center justify-center group-hover:bg-[#F9D915] transition-colors">
+                                      <Icon className="h-6 w-6 text-black" />
+                                    </div>
+                                    <div className="flex-1 min-w-0">
+                                      <div className="flex items-center justify-between mb-0.5">
+                                        <p className="text-xs font-black text-black truncate">{option.provider}</p>
+                                        <p className="text-xs font-black text-black">{option.price}</p>
+                                      </div>
+                                      <div className="flex items-center justify-between">
+                                        <p className="text-[10px] font-bold text-black/40">{option.departureTime} — {option.arrivalTime}</p>
+                                        <p className="text-[10px] font-bold text-[#F9D915] uppercase">{option.status || 'On Time'}</p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </div>
+
+                            <div className="p-6">
+                               <button 
+                                 onClick={resetTransit}
+                                 className="w-full py-4 bg-black text-[#F9D915] text-[10px] font-black uppercase tracking-[0.3em] rounded-2xl shadow-xl hover:scale-[0.98] transition-transform"
+                               >
+                                 New Search
+                               </button>
+                            </div>
+                          </div>
+                        )}
                       </div>
 
                       <div className="absolute bottom-0 left-0 w-full h-[84px] z-[60] bg-white border-t border-black/5 flex items-center justify-around px-2 pb-4 shadow-[0_-10px_30px_rgba(0,0,0,0.05)]">
@@ -199,7 +300,10 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                           return (
                             <button
                               key={tab.id}
-                              onClick={() => setRapidoScreen(tab.id as any)}
+                              onClick={() => {
+                                setRapidoScreen(tab.id as any);
+                                setTransitResults(null);
+                              }}
                               className="flex flex-col items-center justify-center gap-1.5 h-full flex-1 transition-all duration-300"
                             >
                               <Icon 
@@ -219,9 +323,12 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                         })}
                       </div>
 
-                      {rapidoScreen === 'flight' && (
+                      {(rapidoScreen === 'flight' || transitResults) && (
                         <button 
-                          onClick={() => setRapidoScreen('travel')}
+                          onClick={() => {
+                            setRapidoScreen('travel');
+                            setTransitResults(null);
+                          }}
                           className="absolute bottom-24 right-6 w-12 h-12 rounded-full bg-[#F9D915] text-black flex items-center justify-center z-[80] shadow-2xl hover:scale-110 transition-transform"
                         >
                           <RotateCcw className="h-5 w-5" />
@@ -231,7 +338,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
               </div>
               <div className="flex flex-col items-center gap-3">
                 <p className="text-[10px] text-primary font-black uppercase tracking-[0.4em]">Interactive Mobile Prototype</p>
-                <p className="text-[10px] text-foreground/30 uppercase tracking-[0.2em]">Vertical Scroll • Fixed App Shell Navigation</p>
+                <p className="text-[10px] text-foreground/30 uppercase tracking-[0.2em]">Transit Search Integrated via AI API</p>
               </div>
             </div>
           ) : isTypeSpecimen ? (
