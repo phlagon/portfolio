@@ -45,7 +45,7 @@
     {
       "id": "rapido-flight",
       "description": "Rapido Flight Booking",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/055f5150e859457b4ce413f8241c93cdad3556e8/travel%20flight.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/2fd6cbef91530513217441c33621606f5e3bd8d6/travel%20flight.jpg",
       "imageHint": "app interface"
     },
     {
@@ -59,6 +59,12 @@
       "description": "Rapido Profile Screen",
       "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/100bf2226ad9ce45c70a709cf1ba733d96d39ad1/Profile.jpg",
       "imageHint": "app profile"
+    },
+    {
+      "id": "rapido-live",
+      "description": "Rapido Live Tracking",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/fd609bf95e09f8d1b10a73b02f6f6ce17c998cc6/live%20tracking%20main.jpg",
+      "imageHint": "app tracking"
     },
     {
       "id": "rapido-nav",

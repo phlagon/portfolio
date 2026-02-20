@@ -80,6 +80,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
     if (rapidoScreen === 'flight') return placeholderImages.find(img => img.id === 'rapido-flight')?.imageUrl;
     if (rapidoScreen === 'offline') return placeholderImages.find(img => img.id === 'rapido-offline')?.imageUrl;
     if (rapidoScreen === 'profile') return placeholderImages.find(img => img.id === 'rapido-profile')?.imageUrl;
+    if (rapidoScreen === 'live') return placeholderImages.find(img => img.id === 'rapido-live')?.imageUrl;
     if (rapidoScreen === 'travel' || rapidoScreen === 'ride') return placeholderImages.find(img => img.id === (rapidoScreen === 'travel' ? 'rapido-travel' : 'rapido-home'))?.imageUrl;
     return placeholderImages.find(img => img.id === 'rapido-home')?.imageUrl;
   };
@@ -206,7 +207,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                         )}
 
                         {/* Results Section */}
-                        {transitResults && rapidoScreen !== 'offline' && rapidoScreen !== 'profile' && (
+                        {transitResults && rapidoScreen !== 'offline' && rapidoScreen !== 'profile' && rapidoScreen !== 'live' && (
                           <div className="bg-[#F8F9FA] min-h-[400px] animate-in slide-in-from-bottom duration-500 pb-12">
                              <div className="space-y-4 pt-4">
                                 {transitResults.options.map((option, idx) => {
@@ -320,7 +321,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                       </div>
 
                       {/* Reset Controls */}
-                      {(rapidoScreen === 'flight' || transitResults || rapidoScreen === 'offline' || rapidoScreen === 'profile') && (
+                      {(rapidoScreen === 'flight' || transitResults || rapidoScreen === 'offline' || rapidoScreen === 'profile' || rapidoScreen === 'live') && (
                         <button 
                           onClick={() => {
                             setRapidoScreen('ride');
