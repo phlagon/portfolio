@@ -98,8 +98,8 @@ export default function Home() {
             </Reveal>
 
             <Reveal delay={200} className="relative flex justify-center items-center">
-                {/* Spline 3D Container */}
-                <div className="relative w-full max-w-2xl group perspective-3000 h-[600px]">
+                {/* Spline 3D Container - Hidden until hover */}
+                <div className="relative w-full max-w-2xl group perspective-3000 h-[600px] opacity-0 hover:opacity-100 transition-all duration-1000 ease-in-out">
                   <Script 
                     type="module" 
                     src="https://unpkg.com/@splinetool/viewer@1.12.58/build/spline-viewer.js" 
