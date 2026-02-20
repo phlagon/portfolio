@@ -167,13 +167,11 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             )}
 
                             {rapidoScreen === 'travel' && (
-                              <>
-                                <button 
-                                  onClick={() => setRapidoScreen('flight')}
-                                  className="absolute top-[45.2%] left-[5%] w-[30%] h-[10%] bg-transparent cursor-pointer z-[95]"
-                                  title="Flight Icon"
-                                />
-                              </>
+                              <button 
+                                onClick={() => setRapidoScreen('flight')}
+                                className="absolute top-[45.2%] left-[5%] w-[30%] h-[10%] bg-transparent cursor-pointer z-[95]"
+                                title="Flight Booking"
+                              />
                             )}
 
                             {rapidoScreen === 'live' && (
@@ -185,13 +183,11 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             )}
 
                             {rapidoScreen === 'your-trip' && (
-                              <>
-                                <button 
-                                  onClick={() => setRapidoScreen('public-transport')}
-                                  className="absolute top-[15%] left-[5%] w-[45%] h-[10%] bg-transparent cursor-pointer z-[95]"
-                                  title="Public Transport Tab"
-                                />
-                              </>
+                              <button 
+                                onClick={() => setRapidoScreen('public-transport')}
+                                className="absolute top-[15%] left-[5%] w-[45%] h-[10%] bg-transparent cursor-pointer z-[95]"
+                                title="Public Transport Details"
+                              />
                             )}
 
                             {rapidoScreen === 'public-transport' && (
@@ -202,7 +198,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                     description: "Viewing nearby transportation hubs."
                                   });
                                 }}
-                                className="absolute top-[35%] left-[5%] w-[90%] h-[12%] bg-transparent cursor-pointer z-[95]"
+                                className="absolute top-[28%] left-[7.5%] w-[85%] h-[8%] bg-transparent cursor-pointer z-[95]"
                                 title="Nearby Bus Stop"
                               />
                             )}
