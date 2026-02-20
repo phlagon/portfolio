@@ -1,6 +1,7 @@
 
 "use client";
 
+import { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -32,6 +33,9 @@ const formSchema = z.object({
 
 export default function Home() {
   const { toast } = useToast();
+  const [spotlightPos, setSpotlightPos] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -49,6 +53,15 @@ export default function Home() {
     });
     form.reset();
   }
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    setSpotlightPos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
 
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
@@ -98,8 +111,23 @@ export default function Home() {
             </Reveal>
 
             <Reveal delay={200} className="relative flex justify-center items-center">
-                {/* Spline 3D Container - Hidden until hover */}
-                <div className="relative w-full max-w-2xl group perspective-3000 h-[600px] opacity-0 hover:opacity-100 transition-all duration-1000 ease-in-out">
+                {/* Spline 3D Container with Spotlight Reveal */}
+                <div 
+                  ref={containerRef}
+                  onMouseEnter={() => setIsHovering(true)}
+                  onMouseLeave={() => setIsHovering(false)}
+                  onMouseMove={handleMouseMove}
+                  className="relative w-full max-w-2xl group perspective-3000 h-[600px] transition-opacity duration-700"
+                  style={{
+                    opacity: isHovering ? 1 : 0,
+                    maskImage: isHovering 
+                      ? `radial-gradient(circle 200px at ${spotlightPos.x}px ${spotlightPos.y}px, black 0%, transparent 100%)`
+                      : 'none',
+                    WebkitMaskImage: isHovering 
+                      ? `radial-gradient(circle 200px at ${spotlightPos.x}px ${spotlightPos.y}px, black 0%, transparent 100%)`
+                      : 'none',
+                  }}
+                >
                   <Script 
                     type="module" 
                     src="https://unpkg.com/@splinetool/viewer@1.12.58/build/spline-viewer.js" 
