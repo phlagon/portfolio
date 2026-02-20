@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -188,20 +189,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                   className="absolute top-[15%] left-[5%] w-[45%] h-[10%] bg-transparent cursor-pointer z-[95]"
                                   title="Public Transport Tab"
                                 />
-                                <button 
-                                  onClick={() => setRapidoScreen('flight')}
-                                  className="absolute top-[45%] left-[5%] w-[30%] h-[10%] bg-transparent cursor-pointer z-[95]"
-                                  title="Flight Tab"
-                                />
                               </>
-                            )}
-
-                            {rapidoScreen === 'public-transport' && (
-                                <button 
-                                  onClick={() => setRapidoScreen('flight')}
-                                  className="absolute top-[35%] left-[5%] w-[30%] h-[10%] bg-transparent cursor-pointer z-[95]"
-                                  title="Flight Tab"
-                                />
                             )}
                         </div>
 
