@@ -162,14 +162,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
             </nav>
           </Reveal>
         )}
-
-        <Reveal delay={100}>
-          <div className="flex justify-center flex-wrap gap-3">
-            {project.tags.map((tag) => (
-              <Badge key={tag} variant="outline" className="text-[10px] uppercase tracking-[0.2em] font-black border-primary/20 text-primary px-4 py-1">{tag}</Badge>
-            ))}
-          </div>
-        </Reveal>
       </div>
       
       <div className="flex flex-col gap-24 items-center">
