@@ -92,10 +92,12 @@ export default function Home() {
             WebkitMaskImage: `radial-gradient(circle 350px at ${spotlightPos.x}px ${spotlightPos.y}px, black 0%, transparent 100%)`,
           }}
         >
-          <spline-viewer 
-            url="https://prod.spline.design/YPNPfF4VmzkVgRS1/scene.splinecode"
-            style={{ width: '100%', height: '100%' }}
-          ></spline-viewer>
+          <div className="w-full h-full pointer-events-auto">
+            <spline-viewer 
+              url="https://prod.spline.design/YPNPfF4VmzkVgRS1/scene.splinecode"
+              style={{ width: '100%', height: '100%' }}
+            ></spline-viewer>
+          </div>
         </div>
 
         <div className="container max-w-7xl mx-auto z-10 pointer-events-none">
