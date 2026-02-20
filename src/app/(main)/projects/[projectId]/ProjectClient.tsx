@@ -140,7 +140,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                       type="text"
                                       value={pickupLocation}
                                       onChange={(e) => setPickupLocation(e.target.value)}
-                                      className="absolute top-[4.5%] left-[18%] w-[68%] h-[4.5%] bg-transparent border-none text-[11px] font-medium focus:outline-none z-[80] text-black px-2"
+                                      className="absolute top-[4.2%] left-[18%] w-[68%] h-[4.5%] bg-transparent border-none text-[11px] font-medium focus:outline-none z-[80] text-black px-2"
                                       autoComplete="off"
                                       placeholder=""
                                   />
@@ -148,13 +148,13 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                       type="text"
                                       value={dropLocation}
                                       onChange={(e) => setDropLocation(e.target.value)}
-                                      className="absolute top-[10.5%] left-[18%] w-[68%] h-[4.5%] bg-transparent border-none text-[11px] font-medium focus:outline-none z-[80] text-black px-2"
+                                      className="absolute top-[10.2%] left-[18%] w-[68%] h-[4.5%] bg-transparent border-none text-[11px] font-medium focus:outline-none z-[80] text-black px-2"
                                       autoComplete="off"
                                       placeholder=""
                                   />
                                   <button 
                                     onClick={handleSearchTransit}
-                                    className="absolute top-[19.5%] left-1/2 -translate-x-1/2 w-[75%] h-[5%] bg-transparent cursor-pointer z-[90]"
+                                    className="absolute top-[19.2%] left-1/2 -translate-x-1/2 w-[75%] h-[5%] bg-transparent cursor-pointer z-[90]"
                                   />
                               </>
                             )}
@@ -183,7 +183,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             {rapidoScreen === 'travel' && (
                               <button 
                                 onClick={() => setRapidoScreen('flight')}
-                                className="absolute top-[17%] left-[58%] w-[14%] h-[10%] bg-transparent cursor-pointer z-[95]"
+                                className="absolute top-[17.5%] left-[62%] w-[25%] h-[8%] bg-transparent cursor-pointer z-[95]"
                                 title="Flight Booking"
                               />
                             )}
