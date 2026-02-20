@@ -6,6 +6,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import Image from "next/image";
+import Script from "next/script";
 import { Github, Linkedin, Twitter, Mail, Facebook } from "lucide-react";
 
 import { ProjectsSection } from "@/components/home/projects-section";
@@ -97,30 +98,14 @@ export default function Home() {
             </Reveal>
 
             <Reveal delay={200} className="relative flex justify-center items-center">
-                {/* iMac Mockup */}
-                <div className="relative w-full max-w-2xl group perspective-3000">
-                    <div className="relative bg-[#f5f5f7] p-3 rounded-t-[2rem] shadow-2xl border-x-[1px] border-t-[1px] border-white/20">
-                        <div className="bg-[#0a0a0a] p-1.5 rounded-[1.2rem] overflow-hidden shadow-inner">
-                            <div className="bg-white aspect-video relative overflow-hidden rounded-lg shadow-2xl">
-                                <Image 
-                                    src="https://raw.githubusercontent.com/phlagon/purr-folio/3b5ade78949bc7e2bb844b4f36532c942e7245dd/project-2.png" 
-                                    alt="Featured Work" 
-                                    fill
-                                    className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                                    unoptimized
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent pointer-events-none" />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="h-12 bg-gradient-to-b from-[#e2e2e2] to-[#c1c1c1] rounded-b-[2rem] relative flex items-center justify-center shadow-xl border-x-[1px] border-b-[2px] border-gray-400/30">
-                        <div className="w-6 h-6 opacity-20 bg-black/20 rounded-full flex items-center justify-center">
-                            <div className="w-2 h-2 bg-black/40 rounded-full" />
-                        </div>
-                    </div>
-                    <div className="mx-auto w-32 h-20 bg-gradient-to-b from-[#d1d1d1] to-[#b1b1b1] rounded-b-2xl relative -mt-1 z-[-1] shadow-2xl transform-gpu origin-top">
-                        <div className="absolute inset-x-0 top-0 h-4 bg-black/10" />
-                    </div>
+                {/* Spline 3D Container */}
+                <div className="relative w-full max-w-2xl group perspective-3000 h-[600px]">
+                  <Script 
+                    type="module" 
+                    src="https://unpkg.com/@splinetool/viewer@1.12.58/build/spline-viewer.js" 
+                    strategy="afterInteractive"
+                  />
+                  <spline-viewer url="https://prod.spline.design/YPNPfF4VmzkVgRS1/scene.splinecode"></spline-viewer>
                 </div>
             </Reveal>
           </div>
