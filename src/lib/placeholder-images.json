@@ -67,6 +67,12 @@
       "imageHint": "app tracking"
     },
     {
+      "id": "rapido-your-trip",
+      "description": "Rapido Your Trip Details",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/45621b6615e434383601f953f60287481e09b593/Your%20trip%202.jpg",
+      "imageHint": "app trip"
+    },
+    {
       "id": "rapido-nav",
       "description": "Rapido Navigation Bar",
       "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/4579872bb707e2449e7cea76118bc4ec33c4c950/nav%20%20home.jpg",
