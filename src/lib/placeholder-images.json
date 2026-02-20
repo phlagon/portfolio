@@ -203,6 +203,48 @@
       "description": "Logo redesign - bc",
       "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/2e71bb52245f22555171ab2bd5f2820e09bfbe0c/bc.png",
       "imageHint": "business card"
+    },
+    {
+      "id": "redesign-air-india",
+      "description": "Air India redesign",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/4b464978c61de5e25c4c99a796860cbe6f3f16a5/air%20india.jpg",
+      "imageHint": "air india"
+    },
+    {
+      "id": "redesign-ccd-1",
+      "description": "CCD redesign 1",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/4b464978c61de5e25c4c99a796860cbe6f3f16a5/ccd%202.jpg",
+      "imageHint": "ccd branding"
+    },
+    {
+      "id": "redesign-ccd-2",
+      "description": "CCD redesign 2",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/4b464978c61de5e25c4c99a796860cbe6f3f16a5/ccd.jpg",
+      "imageHint": "ccd logo"
+    },
+    {
+      "id": "redesign-download",
+      "description": "Logo download",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/4b464978c61de5e25c4c99a796860cbe6f3f16a5/download.png",
+      "imageHint": "logo icon"
+    },
+    {
+      "id": "redesign-bc",
+      "description": "Logo bc",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/4b464978c61de5e25c4c99a796860cbe6f3f16a5/bc.png",
+      "imageHint": "business card"
+    },
+    {
+      "id": "redesign-medimix-1",
+      "description": "Medimix redesign 1",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/4b464978c61de5e25c4c99a796860cbe6f3f16a5/medimix%202.jpg",
+      "imageHint": "medimix brand"
+    },
+    {
+      "id": "redesign-medimix-2",
+      "description": "Medimix redesign 2",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/4b464978c61de5e25c4c99a796860cbe6f3f16a5/medimix.jpg",
+      "imageHint": "medimix logo"
     }
   ]
 }

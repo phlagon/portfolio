@@ -1,3 +1,4 @@
+
 export const projects = [
   {
     id: "project-1",
@@ -25,6 +26,15 @@ export const projects = [
     tags: ["Logo redesign"],
     thumbnailId: "project-3-thumb",
     imageIds: ["logo-redesign-1", "logo-redesign-2", "logo-redesign-3", "logo-redesign-4", "logo-redesign-5"],
+  },
+  {
+    id: "project-logo-redesign",
+    title: "LOGO REDESIGN",
+    description: "A comprehensive showcase of brand revitalizations, from corporate giants to boutique labels.",
+    longDescription: "This collection features meticulous redesigns for brands like Air India, Café Coffee Day, and Medimix. Each project was an exercise in balancing heritage with contemporary visual trends, ensuring that the brand identity remains recognizable while feeling fresh, dynamic, and future-proof. The focus was on clarity, scalability, and emotional resonance.",
+    tags: ["Logo redesign", "Case Study"],
+    thumbnailId: "redesign-air-india",
+    imageIds: ["redesign-air-india", "redesign-ccd-1", "redesign-ccd-2", "redesign-download", "redesign-bc", "redesign-medimix-1", "redesign-medimix-2"],
   },
   {
     id: "project-5",

@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -61,7 +62,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   const projectImages = (project.imageIds || []).map(id => placeholderImages.find(img => img.id === id)).filter(Boolean) as any[];
   const isRapido = project.id === 'project-1';
   const isLosmo = project.id === 'project-2';
-  const isLogoProject = project.id === 'project-3';
+  const isLogoProject = project.id === 'project-3' || project.id === 'project-logo-redesign';
   const isPackageDesign = project.id === 'project-5';
   const isTypeSpecimen = project.id === 'project-6';
   
@@ -406,13 +407,13 @@ export default function ProjectClient({ project, placeholderImages }: { project:
           ) : isLosmo ? (
             <Reveal className="w-full max-w-6xl mx-auto">
               <div className="relative w-full group">
-                <div className="relative bg-[#1a1a1a] rounded-[2.5rem] p-[2%] shadow-[0_100px_100px_-50px_rgba(0,0,0,0.8)] border-4 border-[#333]">
-                  <div className="relative aspect-video bg-black rounded-lg overflow-hidden border-8 border-black shadow-inner">
+                <div className="relative bg-[#1a1a1a] rounded-[2.5rem] p-[1.5%] shadow-[0_100px_100px_-50px_rgba(0,0,0,0.8)] border-4 border-[#333]">
+                   <div className="relative aspect-video bg-black rounded-lg overflow-hidden border-8 border-black shadow-inner">
                     <Carousel className="w-full h-full">
                       <CarouselContent className="-ml-0">
                         {projectImages.map((image, index) => (
                           <CarouselItem key={index} className="pl-0">
-                            <div className="relative w-full h-[calc(100vh-25vh)] flex flex-col overflow-hidden bg-black/40">
+                            <div className="relative w-full h-[600px] flex flex-col overflow-hidden bg-black/40">
                               <div className="flex-1 overflow-y-auto scrollbar-hide">
                                  {image && (
                                    <Image
@@ -435,8 +436,8 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                       <CarouselPrevious className="left-8 h-12 w-12 bg-black/80 border-white/10 text-white hover:bg-primary hover:text-black transition-all z-50" />
                       <CarouselNext className="right-8 h-12 w-12 bg-black/80 border-white/10 text-white hover:bg-primary hover:text-black transition-all z-50" />
                     </Carousel>
-                  </div>
-                  <div className="absolute bottom-[2%] left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-[#333]" />
+                   </div>
+                   <div className="absolute bottom-[2%] left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-[#333]" />
                 </div>
                 <div className="relative mx-auto w-[25%] h-20 bg-gradient-to-b from-[#333] to-[#222] mt-[-2px] clip-path-stand shadow-2xl rounded-b-lg">
                    <div className="absolute inset-x-0 bottom-0 h-1 bg-black/40" />
@@ -452,7 +453,9 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                   "self-end mr-0",
                   "self-center",
                   "self-start md:ml-20",
-                  "self-end md:mr-20"
+                  "self-end md:mr-20",
+                  "self-center md:ml-10",
+                  "self-end md:mr-32"
                 ];
                 const alignClass = alignments[index % alignments.length];
                 
@@ -470,7 +473,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                         alt={`Logo Design ${index + 1}`} 
                         width={1400} 
                         height={1000} 
-                        className="w-full h-auto block grayscale hover:grayscale-0 scale-100 hover:scale-105 transition-all duration-[1.5s] ease-out"
+                        className="w-full h-auto block grayscale hover:grayscale-0 scale-100 hover:scale-110 transition-all duration-[1.5s] ease-out"
                         unoptimized
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
