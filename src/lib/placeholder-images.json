@@ -297,85 +297,85 @@
     {
       "id": "losmo-app-1",
       "description": "Losmo App Concept 1",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/raw/6563242256d3756fbb722b0b6e5d2f92b180bd27/Android%20Compact%20-%203.png",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/6563242256d3756fbb722b0b6e5d2f92b180bd27/Android%20Compact%20-%203.png",
       "imageHint": "app compact"
     },
     {
       "id": "losmo-app-2",
       "description": "Losmo App Concept 2",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/raw/6563242256d3756fbb722b0b6e5d2f92b180bd27/Android%20Compact%20-%202.png",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/6563242256d3756fbb722b0b6e5d2f92b180bd27/Android%20Compact%20-%202.png",
       "imageHint": "app view"
     },
     {
       "id": "losmo-app-3",
       "description": "Losmo App Concept 3",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/raw/6563242256d3756fbb722b0b6e5d2f92b180bd27/home%20page.png",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/6563242256d3756fbb722b0b6e5d2f92b180bd27/home%20page.png",
       "imageHint": "app home"
     },
     {
       "id": "losmo-app-4",
       "description": "Losmo App Concept 4",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/raw/6563242256d3756fbb722b0b6e5d2f92b180bd27/woody.png",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/6563242256d3756fbb722b0b6e5d2f92b180bd27/woody.png",
       "imageHint": "app woody"
     },
     {
       "id": "losmo-app-5",
       "description": "Losmo App Concept 5",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/raw/6563242256d3756fbb722b0b6e5d2f92b180bd27/floral.png",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/6563242256d3756fbb722b0b6e5d2f92b180bd27/floral.png",
       "imageHint": "app floral"
     },
     {
       "id": "losmo-app-6",
       "description": "Losmo App Concept 6",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/raw/6563242256d3756fbb722b0b6e5d2f92b180bd27/Attar.png",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/6563242256d3756fbb722b0b6e5d2f92b180bd27/Attar.png",
       "imageHint": "app attar"
     },
     {
       "id": "losmo-app-7",
       "description": "Losmo App Concept 7",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/raw/6563242256d3756fbb722b0b6e5d2f92b180bd27/candles.png",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/6563242256d3756fbb722b0b6e5d2f92b180bd27/candles.png",
       "imageHint": "app candles"
     },
     {
       "id": "losmo-app-8",
       "description": "Losmo App Concept 8",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/raw/6563242256d3756fbb722b0b6e5d2f92b180bd27/product%20page%20(%20woody%20).png",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/6563242256d3756fbb722b0b6e5d2f92b180bd27/product%20page%20(%20woody%20).png",
       "imageHint": "app product"
     },
     {
       "id": "losmo-app-9",
       "description": "Losmo App Concept 9",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/raw/6563242256d3756fbb722b0b6e5d2f92b180bd27/product%20page%20(%20floral%20).png",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/6563242256d3756fbb722b0b6e5d2f92b180bd27/product%20page%20(%20floral%20).png",
       "imageHint": "app product"
     },
     {
       "id": "losmo-app-10",
       "description": "Losmo App Concept 10",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/raw/6563242256d3756fbb722b0b6e5d2f92b180bd27/add%20to%20cart.png",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/6563242256d3756fbb722b0b6e5d2f92b180bd27/add%20to%20cart.png",
       "imageHint": "app cart"
     },
     {
       "id": "losmo-app-11",
       "description": "Losmo App Concept 11",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/raw/6563242256d3756fbb722b0b6e5d2f92b180bd27/order%20summary.png",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/6563242256d3756fbb722b0b6e5d2f92b180bd27/order%20summary.png",
       "imageHint": "app summary"
     },
     {
       "id": "losmo-app-12",
       "description": "Losmo App Concept 12",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/raw/6563242256d3756fbb722b0b6e5d2f92b180bd27/Payment%20page.png",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/6563242256d3756fbb722b0b6e5d2f92b180bd27/Payment%20page.png",
       "imageHint": "app payment"
     },
     {
       "id": "losmo-app-13",
       "description": "Losmo App Concept 13",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/raw/6563242256d3756fbb722b0b6e5d2f92b180bd27/confirmation.png",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/6563242256d3756fbb722b0b6e5d2f92b180bd27/confirmation.png",
       "imageHint": "app confirmed"
     },
     {
       "id": "losmo-app-14",
       "description": "Losmo App Concept 14",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/raw/6563242256d3756fbb722b0b6e5d2f92b180bd27/continue.png",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/6563242256d3756fbb722b0b6e5d2f92b180bd27/continue.png",
       "imageHint": "app continue"
     }
   ]

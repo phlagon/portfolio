@@ -22,7 +22,7 @@ import {
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 
-// Dynamically import PDF components to ensure polyfills are loaded first
+// Dynamically import PDF components to ensure polyfills from root are loaded first
 const Document = dynamic(() => import('react-pdf').then(mod => mod.Document), { 
   ssr: false,
   loading: () => <div className="flex items-center gap-4 text-white font-black uppercase tracking-widest text-xs h-[400px] justify-center"><Loader2 className="animate-spin" /> Preparing Viewer...</div>
@@ -77,6 +77,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
 
   const projectImages = (project.imageIds || []).map(id => placeholderImages.find(img => img.id === id)).filter(Boolean) as any[];
   
+  // Explicitly map Losmo app screens in requested order
   const losmoAppImageIds = Array.from({ length: 14 }, (_, i) => `losmo-app-${i + 1}`);
   const losmoAppImages = losmoAppImageIds.map(id => placeholderImages.find(img => img.id === id)).filter(Boolean) as any[];
 
