@@ -91,6 +91,12 @@
       "imageHint": "app confirmation"
     },
     {
+      "id": "rapido-auto-find",
+      "description": "Rapido Auto Find Details",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/efbcec0b80630deab2eae216d016df43a5ff0482/auto%20find.jpg",
+      "imageHint": "auto search"
+    },
+    {
       "id": "rapido-nav",
       "description": "Rapido Navigation Bar",
       "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/4579872bb707e2449e7cea76118bc4ec33c4c950/nav%20%20home.jpg",

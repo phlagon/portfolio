@@ -37,7 +37,7 @@ import { useToast } from '@/hooks/use-toast';
 type ProjectType = (typeof projects)[0];
 
 export default function ProjectClient({ project, placeholderImages }: { project: ProjectType, placeholderImages: ImagePlaceholder[] }) {
-  const [rapidoScreen, setRapidoScreen] = useState<'ride' | 'travel' | 'offline' | 'live' | 'profile' | 'flight' | 'your-trip' | 'public-transport' | 'stops' | 'confirmation'>('ride');
+  const [rapidoScreen, setRapidoScreen] = useState<'ride' | 'travel' | 'offline' | 'live' | 'profile' | 'flight' | 'your-trip' | 'public-transport' | 'stops' | 'confirmation' | 'auto-find'>('ride');
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
   
@@ -78,6 +78,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
     if (rapidoScreen === 'flight') return placeholderImages.find(img => img.id === 'rapido-flight')?.imageUrl;
     if (rapidoScreen === 'offline') return placeholderImages.find(img => img.id === 'rapido-offline')?.imageUrl;
     if (rapidoScreen === 'confirmation') return placeholderImages.find(img => img.id === 'rapido-confirmation')?.imageUrl;
+    if (rapidoScreen === 'auto-find') return placeholderImages.find(img => img.id === 'rapido-auto-find')?.imageUrl;
     if (rapidoScreen === 'profile') return placeholderImages.find(img => img.id === 'rapido-profile')?.imageUrl;
     if (rapidoScreen === 'live') return placeholderImages.find(img => img.id === 'rapido-live')?.imageUrl;
     if (rapidoScreen === 'travel') return placeholderImages.find(img => img.id === 'rapido-travel')?.imageUrl;
@@ -95,7 +96,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
     { id: 'profile', label: 'Profile', icon: User },
   ];
 
-  const isStaticScreen = ['flight', 'your-trip', 'public-transport', 'stops', 'confirmation'].includes(rapidoScreen);
+  const isStaticScreen = ['flight', 'your-trip', 'public-transport', 'stops', 'confirmation', 'auto-find'].includes(rapidoScreen);
 
   return (
     <div className="container py-12 md:py-24">
@@ -178,7 +179,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
 
                             {rapidoScreen === 'offline' && (
                               <button 
-                                onClick={() => setRapidoScreen('confirmation')}
+                                onClick={() => setRapidoScreen('auto-find')}
                                 className="absolute top-[38%] left-[22%] w-[20%] h-[12%] bg-transparent cursor-pointer z-[95]"
                                 title="Select Auto"
                               />
@@ -314,7 +315,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                           const Icon = tab.icon;
                           const isActive = tab.id === 'ride' ? (rapidoScreen === 'ride' || rapidoScreen === 'profile') : 
                                          tab.id === 'travel' ? (rapidoScreen === 'travel' || rapidoScreen === 'flight') :
-                                         tab.id === 'offline' ? (rapidoScreen === 'offline' || rapidoScreen === 'confirmation') :
+                                         tab.id === 'offline' ? (rapidoScreen === 'offline' || rapidoScreen === 'confirmation' || rapidoScreen === 'auto-find') :
                                          tab.id === 'live' ? (rapidoScreen === 'live' || rapidoScreen === 'your-trip' || rapidoScreen === 'public-transport' || rapidoScreen === 'stops') :
                                          rapidoScreen === tab.id;
                           
