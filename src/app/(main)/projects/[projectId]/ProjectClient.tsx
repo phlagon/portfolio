@@ -37,7 +37,7 @@ import { useToast } from '@/hooks/use-toast';
 type ProjectType = (typeof projects)[0];
 
 export default function ProjectClient({ project, placeholderImages }: { project: ProjectType, placeholderImages: ImagePlaceholder[] }) {
-  const [rapidoScreen, setRapidoScreen] = useState<'ride' | 'travel' | 'offline' | 'live' | 'profile' | 'flight' | 'your-trip' | 'public-transport' | 'stops' | 'confirmation' | 'auto-find'>('ride');
+  const [rapidoScreen, setRapidoScreen] = useState<'ride' | 'travel' | 'offline' | 'live' | 'profile' | 'flight' | 'your-trip' | 'public-transport' | 'stops' | 'confirmation' | 'auto-find' | 'gps-confirm'>('ride');
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
   
@@ -51,6 +51,16 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   useEffect(() => {
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollTop = 0;
+    }
+  }, [rapidoScreen]);
+
+  // Automated transition from auto-find to gps-confirm
+  useEffect(() => {
+    if (rapidoScreen === 'auto-find') {
+      const timer = setTimeout(() => {
+        setRapidoScreen('gps-confirm');
+      }, 1500);
+      return () => clearTimeout(timer);
     }
   }, [rapidoScreen]);
 
@@ -79,6 +89,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
     if (rapidoScreen === 'offline') return placeholderImages.find(img => img.id === 'rapido-offline')?.imageUrl;
     if (rapidoScreen === 'confirmation') return placeholderImages.find(img => img.id === 'rapido-confirmation')?.imageUrl;
     if (rapidoScreen === 'auto-find') return placeholderImages.find(img => img.id === 'rapido-auto-find')?.imageUrl;
+    if (rapidoScreen === 'gps-confirm') return placeholderImages.find(img => img.id === 'rapido-gps-confirm')?.imageUrl;
     if (rapidoScreen === 'profile') return placeholderImages.find(img => img.id === 'rapido-profile')?.imageUrl;
     if (rapidoScreen === 'live') return placeholderImages.find(img => img.id === 'rapido-live')?.imageUrl;
     if (rapidoScreen === 'travel') return placeholderImages.find(img => img.id === 'rapido-travel')?.imageUrl;
@@ -96,7 +107,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
     { id: 'profile', label: 'Profile', icon: User },
   ];
 
-  const isStaticScreen = ['flight', 'your-trip', 'public-transport', 'stops', 'confirmation', 'auto-find'].includes(rapidoScreen);
+  const isStaticScreen = ['flight', 'your-trip', 'public-transport', 'stops', 'confirmation', 'auto-find', 'gps-confirm'].includes(rapidoScreen);
 
   return (
     <div className="container py-12 md:py-24">
@@ -315,7 +326,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                           const Icon = tab.icon;
                           const isActive = tab.id === 'ride' ? (rapidoScreen === 'ride' || rapidoScreen === 'profile') : 
                                          tab.id === 'travel' ? (rapidoScreen === 'travel' || rapidoScreen === 'flight') :
-                                         tab.id === 'offline' ? (rapidoScreen === 'offline' || rapidoScreen === 'confirmation' || rapidoScreen === 'auto-find') :
+                                         tab.id === 'offline' ? (rapidoScreen === 'offline' || rapidoScreen === 'confirmation' || rapidoScreen === 'auto-find' || rapidoScreen === 'gps-confirm') :
                                          tab.id === 'live' ? (rapidoScreen === 'live' || rapidoScreen === 'your-trip' || rapidoScreen === 'public-transport' || rapidoScreen === 'stops') :
                                          rapidoScreen === tab.id;
                           
