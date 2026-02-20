@@ -170,16 +170,16 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                     setRapidoScreen('public-transport');
                                     setTransitResults(null);
                                   }}
-                                  className="absolute top-[17.2%] left-[5%] w-[45%] h-[10%] bg-transparent cursor-pointer z-[95]"
-                                  title="Public Transport"
+                                  className="absolute top-[17.2%] left-[5%] w-[15%] h-[7%] bg-transparent cursor-pointer z-[95]"
+                                  title="Bus / Public Transport"
                                 />
                                 <button 
                                   onClick={() => {
                                     setRapidoScreen('flight');
                                     setTransitResults(null);
                                   }}
-                                  className="absolute top-[17.2%] left-[58%] w-[35%] h-[7%] bg-transparent cursor-pointer z-[95]"
-                                  title="Flight Booking"
+                                  className="absolute top-[17.2%] left-[60%] w-[28%] h-[7%] bg-transparent cursor-pointer z-[95]"
+                                  title="Flight"
                                 />
                               </>
                             )}
@@ -193,11 +193,26 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             )}
 
                             {rapidoScreen === 'your-trip' && (
-                              <button 
-                                onClick={() => setRapidoScreen('public-transport')}
-                                className="absolute top-[65%] left-[5%] w-[90%] h-[15%] bg-transparent cursor-pointer z-[95]"
-                                title="Switch to Public Transport"
-                              />
+                              <>
+                                <button 
+                                  onClick={() => setRapidoScreen('public-transport')}
+                                  className="absolute top-[65%] left-[5%] w-[30%] h-[15%] bg-transparent cursor-pointer z-[95]"
+                                  title="Public Transport Tab"
+                                />
+                                <button 
+                                  onClick={() => setRapidoScreen('flight')}
+                                  className="absolute top-[65%] left-[35%] w-[30%] h-[15%] bg-transparent cursor-pointer z-[95]"
+                                  title="Flight Tab"
+                                />
+                              </>
+                            )}
+
+                            {rapidoScreen === 'public-transport' && (
+                                <button 
+                                  onClick={() => setRapidoScreen('flight')}
+                                  className="absolute top-[15%] left-[35%] w-[30%] h-[10%] bg-transparent cursor-pointer z-[95]"
+                                  title="Flight Tab"
+                                />
                             )}
                         </div>
 
