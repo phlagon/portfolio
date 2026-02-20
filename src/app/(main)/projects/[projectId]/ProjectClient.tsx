@@ -3,7 +3,23 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, Plane, MapPin, Luggage, Gem, Sparkles, Crown, ChevronLeft, ChevronRight, RotateCcw } from 'lucide-react';
+import { 
+  ArrowLeft, 
+  Plane, 
+  MapPin, 
+  Luggage, 
+  Gem, 
+  Sparkles, 
+  Crown, 
+  ChevronLeft, 
+  ChevronRight, 
+  RotateCcw,
+  Bike,
+  Navigation,
+  CloudOff,
+  Zap,
+  User
+} from 'lucide-react';
 
 import type { ImagePlaceholder } from '@/lib/placeholder-images';
 import type { projects } from '@/lib/projects';
@@ -50,11 +66,9 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   };
 
   const getRapidoImage = () => {
-    const id = rapidoScreen === 'ride' ? 'rapido-home' 
-             : rapidoScreen === 'travel' ? 'rapido-travel' 
-             : rapidoScreen === 'flight' ? 'rapido-flight'
-             : 'rapido-home';
-    return placeholderImages.find(img => img.id === id);
+    if (rapidoScreen === 'flight') return placeholderImages.find(img => img.id === 'rapido-flight');
+    if (rapidoScreen === 'travel') return placeholderImages.find(img => img.id === 'rapido-travel');
+    return placeholderImages.find(img => img.id === 'rapido-home');
   };
 
   return (
@@ -67,7 +81,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
       </div>
 
       <header className="mb-16 text-center space-y-6">
-        <h1 className="text-5xl md:text-7xl font-bold font-headline text-white uppercase tracking-tighter leading-none">{project.title}</h1>
+        <h1 className="text-5xl md:text-7xl font-bold text-white uppercase tracking-tighter leading-none">{project.title}</h1>
         <div className="flex justify-center flex-wrap gap-3">
           {project.tags.map((tag) => (
             <Badge key={tag} variant="outline" className="text-[10px] uppercase tracking-[0.2em] font-black border-primary/20 text-primary px-4 py-1">{tag}</Badge>
@@ -113,51 +127,71 @@ export default function ProjectClient({ project, placeholderImages }: { project:
         <div className="w-full">
           {isRapido ? (
             <div className="flex flex-col items-center gap-12">
-              <div className="relative mx-auto border-[#0a0a0a] bg-[#0a0a0a] border-[12px] rounded-[3rem] h-[680px] w-[340px] shadow-[0_60px_120px_-30px_rgba(0,0,0,1)] overflow-hidden">
+              <div className="relative mx-auto border-[#0a0a0a] bg-[#0a0a0a] border-[12px] rounded-[3.5rem] h-[720px] w-[360px] shadow-[0_60px_120px_-30px_rgba(0,0,0,1)] overflow-hidden">
                   {/* Dynamic Island Notch */}
-                  <div className="w-[120px] h-[34px] bg-black top-4 rounded-[1.2rem] left-1/2 -translate-x-1/2 absolute z-50 flex items-center justify-center">
+                  <div className="w-[120px] h-[34px] bg-black top-4 rounded-[1.2rem] left-1/2 -translate-x-1/2 absolute z-[70] flex items-center justify-center">
                     <div className="w-2 h-2 rounded-full bg-white/10 ml-auto mr-4" />
                   </div>
                   
-                  {/* Phone Screen */}
-                  <div className="w-full h-full bg-black relative flex flex-col">
-                      <div className="flex-1 overflow-y-auto scrollbar-hide pb-[90px]">
+                  {/* Phone Screen Container */}
+                  <div className="w-full h-full bg-[#050505] relative flex flex-col">
+                      {/* Scrollable Content Area */}
+                      <div className="flex-1 overflow-y-auto scrollbar-hide pb-[80px]">
                         {getRapidoImage() && (
                           <div className="relative w-full">
                             <Image
                               src={getRapidoImage()!.imageUrl}
-                              alt={`Rapido ${rapidoScreen}`}
-                              width={340}
+                              alt={`Rapido Screen`}
+                              width={360}
                               height={1200}
                               className="w-full h-auto block"
                               priority
                             />
                             
-                            {/* Contextual Hotspots */}
+                            {/* Interactive Hotspot for Flight (Only on Travel Screen) */}
                             {rapidoScreen === 'travel' && (
                               <button 
                                 onClick={() => setRapidoScreen('flight')}
-                                className="absolute top-[28%] left-0 w-[33%] h-[10%] bg-transparent cursor-pointer z-40"
+                                className="absolute top-[28%] left-0 w-[33%] h-[12%] bg-transparent cursor-pointer z-[40]"
+                                title="Go to Flights"
                               />
                             )}
                           </div>
                         )}
                       </div>
 
-                      {/* Fixed Navigation Tabs - Fully Transparent Overlay */}
-                      <div className="absolute bottom-0 left-0 w-full h-[90px] flex z-50">
-                        <button onClick={() => setRapidoScreen('ride')} className="flex-1 h-full bg-transparent" title="Ride" />
-                        <button onClick={() => setRapidoScreen('travel')} className="flex-1 h-full bg-transparent" title="Travel" />
-                        <button onClick={() => setRapidoScreen('offline')} className="flex-1 h-full bg-transparent" title="Offline" />
-                        <button onClick={() => setRapidoScreen('live')} className="flex-1 h-full bg-transparent" title="Live" />
-                        <button onClick={() => setRapidoScreen('profile')} className="flex-1 h-full bg-transparent" title="Profile" />
+                      {/* Fixed Navigation Bar - Stick to Bottom */}
+                      <div className="absolute bottom-0 left-0 w-full h-[80px] bg-black/95 backdrop-blur-xl border-t border-white/5 flex items-center justify-around px-4 z-[60] pb-2">
+                        {[
+                          { id: 'ride', label: 'Ride', icon: Bike },
+                          { id: 'travel', label: 'Travel', icon: Navigation },
+                          { id: 'offline', label: 'Offline', icon: CloudOff },
+                          { id: 'live', label: 'Live', icon: Zap },
+                          { id: 'profile', label: 'Profile', icon: User },
+                        ].map((tab) => {
+                          const Icon = tab.icon;
+                          const isActive = rapidoScreen === tab.id || (tab.id === 'travel' && rapidoScreen === 'flight');
+                          return (
+                            <button
+                              key={tab.id}
+                              onClick={() => setRapidoScreen(tab.id as any)}
+                              className={cn(
+                                "flex flex-col items-center gap-1 transition-all duration-300",
+                                isActive ? "text-primary scale-110" : "text-white/30 hover:text-white/60"
+                              )}
+                            >
+                              <Icon className="h-5 w-5" />
+                              <span className="text-[9px] font-black uppercase tracking-widest">{tab.label}</span>
+                            </button>
+                          );
+                        })}
                       </div>
 
                       {/* Floating Return Button */}
-                      {rapidoScreen !== 'ride' && (
+                      {rapidoScreen === 'flight' && (
                         <button 
-                          onClick={() => setRapidoScreen('ride')}
-                          className="absolute bottom-28 right-6 w-12 h-12 rounded-full bg-primary text-black flex items-center justify-center z-[60] shadow-2xl hover:scale-110 transition-transform"
+                          onClick={() => setRapidoScreen('travel')}
+                          className="absolute bottom-24 right-6 w-12 h-12 rounded-full bg-primary text-black flex items-center justify-center z-[80] shadow-2xl hover:scale-110 transition-transform"
                         >
                           <RotateCcw className="h-5 w-5" />
                         </button>
@@ -165,8 +199,8 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                   </div>
               </div>
               <div className="flex flex-col items-center gap-3">
-                <p className="text-[10px] text-primary font-black uppercase tracking-[0.4em]">Interactive Prototype</p>
-                <p className="text-[10px] text-foreground/30 uppercase tracking-[0.2em]">Vertical Scroll Enabled • Fixed Navigation Tabs</p>
+                <p className="text-[10px] text-primary font-black uppercase tracking-[0.4em]">Interactive Mobile Prototype</p>
+                <p className="text-[10px] text-foreground/30 uppercase tracking-[0.2em]">Vertical Scroll • Fixed Bottom Navigation</p>
               </div>
             </div>
           ) : isTypeSpecimen ? (

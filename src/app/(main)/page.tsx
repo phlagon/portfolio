@@ -70,6 +70,10 @@ export default function Home() {
     return () => clearInterval(timer);
   }, []);
 
+  const scrollToContact = () => {
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   if (showLoader) {
     return <Loading progress={progress} />;
   }
@@ -94,14 +98,14 @@ export default function Home() {
                 </p>
                 
                 <div className="flex flex-wrap gap-6 pt-6">
-                  <Button size="lg" className="rounded-none px-12 h-16 text-xs uppercase tracking-[0.3em] font-black bg-white text-black hover:bg-primary hover:text-white transition-all duration-500 shadow-2xl">
+                  <Button size="lg" onClick={scrollToContact} className="rounded-none px-12 h-16 text-xs uppercase tracking-[0.3em] font-black bg-white text-black hover:bg-primary hover:text-white transition-all duration-500 shadow-2xl">
                     Get in Touch
                   </Button>
                   <Button 
                     size="lg" 
                     variant="outline" 
                     className="rounded-none px-12 h-16 text-xs uppercase tracking-[0.3em] font-black border-white/10 text-white hover:border-primary hover:text-primary transition-all duration-500"
-                    onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                    onClick={scrollToContact}
                   >
                     Let's Talk
                   </Button>
