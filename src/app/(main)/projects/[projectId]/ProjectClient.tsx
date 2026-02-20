@@ -517,7 +517,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                   "self-end md:mr-32"
                 ];
                 const alignClass = alignments[index % alignments.length];
-                const isVideo = image.imageUrl.endsWith('.mp4');
+                const isVideo = image.imageUrl.toLowerCase().endsWith('.mp4');
                 
                 return (
                   <Reveal 
@@ -527,7 +527,10 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                       alignClass
                     )}
                   >
-                    <div className="relative group overflow-hidden aspect-video md:aspect-auto">
+                    <div className={cn(
+                      "relative group overflow-hidden",
+                      isVideo ? "aspect-auto" : "aspect-video md:aspect-auto"
+                    )}>
                       {isVideo ? (
                         <video 
                           src={image.imageUrl}
@@ -535,7 +538,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                           loop
                           muted
                           playsInline
-                          className="w-full h-auto block grayscale hover:grayscale-0 scale-100 hover:scale-110 transition-all duration-[1.5s] ease-out"
+                          className="w-full h-auto block grayscale hover:grayscale-0 scale-100 hover:scale-105 transition-all duration-[1.5s] ease-out"
                         />
                       ) : (
                         <Image 

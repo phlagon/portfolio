@@ -34,7 +34,7 @@ export const projects = [
     longDescription: "This collection features meticulous redesigns for brands like Air India, Café Coffee Day, and Medimix. Each project was an exercise in balancing heritage with contemporary visual trends, ensuring that the brand identity remains recognizable while feeling fresh, dynamic, and future-proof. The focus was on clarity, scalability, and emotional resonance.",
     tags: ["Logo redesign", "Case Study"],
     thumbnailId: "redesign-air-india",
-    imageIds: ["redesign-air-india", "redesign-ccd-1", "redesign-ccd-2", "redesign-download", "redesign-indigo", "redesign-medimix-1", "redesign-medimix-2"],
+    imageIds: ["redesign-air-india", "redesign-ccd-1", "redesign-ccd-2", "redesign-indigo", "redesign-medimix-1", "redesign-medimix-2"],
   },
   {
     id: "project-5",
@@ -43,7 +43,7 @@ export const projects = [
     longDescription: "Packaging is the first physical touchpoint a customer has with a brand. This project focused on creating a memorable unboxing experience through stunning package design. We worked to ensure the packaging not only protected the product but also captured the brand's essence, turning a simple box into a powerful marketing tool and a delightful customer experience.",
     tags: ["Packaging", "Branding", "Product Design"],
     thumbnailId: "project-5-thumb",
-    imageIds: [],
+    imageIds: ["project-5-thumb"],
   },
   {
     id: "project-packaging-redesign",
