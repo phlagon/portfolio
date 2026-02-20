@@ -429,30 +429,48 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                </div>
             </Reveal>
           ) : isPackageDesign ? (
-            <Reveal className="w-full max-w-6xl mx-auto">
-               <div className="relative aspect-video bg-black/20 rounded-none overflow-hidden border border-white/5 shadow-2xl group">
-                  <video 
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"
-                    autoPlay 
-                    loop 
-                    muted 
-                    playsInline
-                  >
-                    <source src="https://raw.githubusercontent.com/phlagon/purr-folio/1e86a7d646b793222feceec9ded448cbd3a24335/medmix%20packaging.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
-                  <div className="absolute bottom-12 left-12 flex items-center gap-6">
-                      <div className="h-12 w-12 rounded-full border border-primary/40 flex items-center justify-center animate-pulse">
-                         <PlayCircle className="h-6 w-6 text-primary" />
-                      </div>
-                      <div className="space-y-1">
-                        <p className="text-[10px] font-black uppercase tracking-[0.4em] text-primary">Now Playing</p>
-                        <p className="text-sm font-bold text-white uppercase tracking-widest">MedMix Packaging Process</p>
-                      </div>
-                  </div>
-               </div>
-            </Reveal>
+            <div className="w-full max-w-6xl mx-auto space-y-24">
+               <Reveal className="w-full">
+                 <div className="relative aspect-video bg-black/20 rounded-none overflow-hidden border border-white/5 shadow-2xl group">
+                    <video 
+                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"
+                      autoPlay 
+                      loop 
+                      muted 
+                      playsInline
+                    >
+                      <source src="https://raw.githubusercontent.com/phlagon/purr-folio/1e86a7d646b793222feceec9ded448cbd3a24335/medmix%20packaging.mp4" type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
+                    <div className="absolute bottom-12 left-12 flex items-center gap-6">
+                        <div className="h-12 w-12 rounded-full border border-primary/40 flex items-center justify-center animate-pulse">
+                           <PlayCircle className="h-6 w-6 text-primary" />
+                        </div>
+                        <div className="space-y-1">
+                          <p className="text-[10px] font-black uppercase tracking-[0.4em] text-primary">Now Playing</p>
+                          <p className="text-sm font-bold text-white uppercase tracking-widest">MedMix Packaging Process</p>
+                        </div>
+                    </div>
+                 </div>
+               </Reveal>
+
+               {projectImages.map((image, index) => (
+                 <Reveal key={index} className="w-full">
+                    <div className="relative aspect-video border border-white/5 shadow-2xl bg-white/5">
+                      {image && (
+                        <Image
+                          src={image.imageUrl}
+                          alt={`${project.title} design ${index + 1}`}
+                          fill
+                          className="object-contain grayscale hover:grayscale-0 transition-all duration-700"
+                          unoptimized
+                        />
+                      )}
+                    </div>
+                 </Reveal>
+               ))}
+            </div>
           ) : (
             <Reveal className="p-1 bg-white/5 border border-white/10 shadow-2xl w-full max-w-6xl mx-auto">
               <Carousel className="w-full group">
