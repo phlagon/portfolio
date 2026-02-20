@@ -170,15 +170,15 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                     setRapidoScreen('public-transport');
                                     setTransitResults(null);
                                   }}
-                                  className="absolute top-[17.2%] left-[5%] w-[15%] h-[7%] bg-transparent cursor-pointer z-[95]"
-                                  title="Bus / Public Transport"
+                                  className="absolute top-[17%] left-[10%] w-[20%] h-[10%] bg-transparent cursor-pointer z-[95]"
+                                  title="Public Transport"
                                 />
                                 <button 
                                   onClick={() => {
                                     setRapidoScreen('flight');
                                     setTransitResults(null);
                                   }}
-                                  className="absolute top-[45.2%] left-[5%] w-[28%] h-[7%] bg-transparent cursor-pointer z-[95]"
+                                  className="absolute top-[45.2%] left-[5%] w-[30%] h-[10%] bg-transparent cursor-pointer z-[95]"
                                   title="Flight"
                                 />
                               </>
