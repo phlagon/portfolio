@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -5,8 +6,8 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { href: "/#home", label: "Home" },
-  { href: "/#about", label: "About" },
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
   { href: "/#projects", label: "Portfolio" },
   { href: "/#contact", label: "Contact" },
 ];
@@ -27,7 +28,7 @@ export function Header() {
               href={link.href}
               className={cn(
                 "transition-colors hover:text-primary",
-                (pathname === link.href || (link.href.startsWith('/#') && pathname === '/')) ? "text-primary" : "text-foreground/70"
+                pathname === link.href ? "text-primary" : "text-foreground/70"
               )}
             >
               {link.label}
