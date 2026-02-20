@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect } from "react";
@@ -147,15 +146,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
-        
-        <div className="absolute inset-0 pointer-events-none opacity-[0.02] -z-10">
-          <div className="h-full w-px bg-white absolute left-1/4" />
-          <div className="h-full w-px bg-white absolute left-2/4" />
-          <div className="h-full w-px bg-white absolute left-3/4" />
-          <div className="w-full h-px bg-white absolute top-1/4" />
-          <div className="w-full h-px bg-white absolute top-2/4" />
-          <div className="w-full h-px bg-white absolute top-3/4" />
         </div>
       </section>
 
