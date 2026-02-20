@@ -1,6 +1,22 @@
 
 'use client';
 
+// Polyfill for Promise.withResolvers which is required by newer versions of PDF.js
+if (typeof Promise.withResolvers === 'undefined') {
+  if (typeof window !== 'undefined') {
+    // @ts-expect-error - Polyfilling modern JS feature
+    Promise.withResolvers = function <T>() {
+      let resolve!: (value: T | PromiseLike<T>) => void;
+      let reject!: (reason?: any) => void;
+      const promise = new Promise<T>((res, rej) => {
+        resolve = res;
+        reject = rej;
+      });
+      return { promise, resolve, reject };
+    };
+  }
+}
+
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -21,7 +37,7 @@ import { Document, Page, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 
-// Set up the PDF.js worker
+// Set up the PDF.js worker using a compatible version from CDN
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 import type { ImagePlaceholder } from '@/lib/placeholder-images';
@@ -337,24 +353,24 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                   </div>
 
                   {/* Tactile Navigation Buttons */}
-                  <div className="absolute inset-y-0 left-0 w-24 flex items-center justify-center z-[100] opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="absolute inset-y-0 left-0 w-24 flex items-center justify-center z-[100] group">
                     <Button 
                       variant="ghost" 
                       size="icon" 
                       onClick={prevPage}
                       disabled={currentPage === 1 || isTurning}
-                      className="h-16 w-16 rounded-full bg-black/40 backdrop-blur-md text-white hover:bg-primary hover:text-black disabled:opacity-0"
+                      className="h-16 w-16 rounded-full bg-black/40 backdrop-blur-md text-white hover:bg-primary hover:text-black disabled:opacity-0 transition-all opacity-0 group-hover:opacity-100"
                     >
                       <ChevronLeft className="h-10 w-10" />
                     </Button>
                   </div>
-                  <div className="absolute inset-y-0 right-0 w-24 flex items-center justify-center z-[100] opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="absolute inset-y-0 right-0 w-24 flex items-center justify-center z-[100] group">
                     <Button 
                       variant="ghost" 
                       size="icon" 
                       onClick={nextPage}
                       disabled={(numPages ? currentPage === numPages : false) || isTurning}
-                      className="h-16 w-16 rounded-full bg-black/40 backdrop-blur-md text-white hover:bg-primary hover:text-black disabled:opacity-0"
+                      className="h-16 w-16 rounded-full bg-black/40 backdrop-blur-md text-white hover:bg-primary hover:text-black disabled:opacity-0 transition-all opacity-0 group-hover:opacity-100"
                     >
                       <ChevronRight className="h-10 w-10" />
                     </Button>
