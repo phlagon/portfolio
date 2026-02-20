@@ -484,7 +484,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               src={image.imageUrl}
                               alt={`${project.title} image ${index + 1}`}
                               fill
-                              className="object-contain grayscale"
+                              className="object-contain grayscale hover:grayscale-0 transition-all duration-700"
                               unoptimized
                             />
                           )}
