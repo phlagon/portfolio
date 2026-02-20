@@ -42,7 +42,7 @@ export const projects = [
     longDescription: "Packaging is the first physical touchpoint a customer has with a brand. This project focused on creating a memorable unboxing experience through stunning package design. We worked to ensure the packaging not only protected the product but also captured the brand's essence, turning a simple box into a powerful marketing tool and a delightful customer experience.",
     tags: ["Packaging", "Branding", "Product Design"],
     thumbnailId: "project-5-thumb",
-    imageIds: ["project-5-thumb"],
+    imageIds: [],
   },
   {
     id: "project-packaging-redesign",
