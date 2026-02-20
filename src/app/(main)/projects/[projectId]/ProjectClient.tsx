@@ -178,7 +178,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                     setRapidoScreen('flight');
                                     setTransitResults(null);
                                   }}
-                                  className="absolute top-[35.2%] left-[60%] w-[28%] h-[7%] bg-transparent cursor-pointer z-[95]"
+                                  className="absolute top-[45.2%] left-[60%] w-[28%] h-[7%] bg-transparent cursor-pointer z-[95]"
                                   title="Flight"
                                 />
                               </>
@@ -210,7 +210,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             {rapidoScreen === 'public-transport' && (
                                 <button 
                                   onClick={() => setRapidoScreen('flight')}
-                                  className="absolute top-[22%] left-[35%] w-[30%] h-[10%] bg-transparent cursor-pointer z-[95]"
+                                  className="absolute top-[35%] left-[35%] w-[30%] h-[10%] bg-transparent cursor-pointer z-[95]"
                                   title="Flight Tab"
                                 />
                             )}
