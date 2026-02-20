@@ -40,8 +40,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   
   const [pickupLocation, setPickupLocation] = useState('');
   const [dropLocation, setDropLocation] = useState('');
-  const [departDate, setDepartDate] = useState('');
-  const [returnDate, setReturnDate] = useState('');
   
   const [transitResults, setTransitResults] = useState<TransitSearchOutput | null>(null);
   const [isSearching, setIsSearching] = useState(false);
@@ -172,7 +170,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                     setRapidoScreen('public-transport');
                                     setTransitResults(null);
                                   }}
-                                  className="absolute top-[15%] left-[5%] w-[45%] h-[10%] bg-transparent cursor-pointer z-[95]"
+                                  className="absolute top-[17.2%] left-[5%] w-[45%] h-[10%] bg-transparent cursor-pointer z-[95]"
                                   title="Public Transport"
                                 />
                                 <button 
@@ -180,7 +178,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                     setRapidoScreen('flight');
                                     setTransitResults(null);
                                   }}
-                                  className="absolute top-[17.2%] left-[60%] w-[28%] h-[7%] bg-transparent cursor-pointer z-[95]"
+                                  className="absolute top-[17.2%] left-[58%] w-[35%] h-[7%] bg-transparent cursor-pointer z-[95]"
                                   title="Flight Booking"
                                 />
                               </>
@@ -261,7 +259,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
 
                                           <div className="flex items-center justify-between">
                                             <div className="space-y-1">
-                                              <p className="text-[11px] font-black text-black">{option.departureTime} <span className="text-black/40 font-bold">{option.departureDate}</span></p>
+                                              <p className="text-[11px] font-black text-black">{option.departureTime} <span className="text-black/40 font-bold">Fri, 23 Jan</span></p>
                                               <p className="text-[9px] font-black text-black/60 uppercase">{option.origin}</p>
                                             </div>
                                             
@@ -274,7 +272,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                             </div>
 
                                             <div className="text-right space-y-1">
-                                              <p className="text-[11px] font-black text-black">{option.arrivalTime} <span className="text-black/40 font-bold">{option.arrivalDate}</span></p>
+                                              <p className="text-[11px] font-black text-black">{option.arrivalTime} <span className="text-black/40 font-bold">Fri, 23 Jan</span></p>
                                               <p className="text-[9px] font-black text-black/60 uppercase">{option.destination}</p>
                                             </div>
                                           </div>
