@@ -85,6 +85,12 @@
       "imageHint": "bus stops"
     },
     {
+      "id": "rapido-confirmation",
+      "description": "Rapido Offline Confirmation",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/7689f6f4943e0910157634f86371425735791383/confirmation.jpg",
+      "imageHint": "app confirmation"
+    },
+    {
       "id": "rapido-nav",
       "description": "Rapido Navigation Bar",
       "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/4579872bb707e2449e7cea76118bc4ec33c4c950/nav%20%20home.jpg",
