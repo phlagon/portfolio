@@ -55,6 +55,18 @@
       "imageHint": "perfume branding"
     },
     {
+      "id": "losmo-collection",
+      "description": "Losmo Collection Showcase",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/03a81adc9b5a450a2134b7ec38e6ad8d1df28473/losmo%20collection%204.jpeg",
+      "imageHint": "luxury collection"
+    },
+    {
+      "id": "losmo-candles",
+      "description": "Losmo Candles Detail",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/03a81adc9b5a450a2134b7ec38e6ad8d1df28473/candles%205.jpg",
+      "imageHint": "candle branding"
+    },
+    {
       "id": "rapido-home",
       "description": "Rapido Home Page (Ride)",
       "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/92a13efe52f877af083d2af307f50753e3a5c6d2/home%20page.jpg",
