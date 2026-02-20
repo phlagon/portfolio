@@ -12,12 +12,17 @@ import {z} from 'genkit';
 
 const TransitOptionSchema = z.object({
   type: z.enum(['Train', 'Bus', 'Flight', 'Taxi']),
-  provider: z.string().describe('Name of the service provider, e.g., "Indigo", "Shatabdi Express", "RedBus"'),
-  departureTime: z.string().describe('Format: HH:MM AM/PM'),
-  arrivalTime: z.string().describe('Format: HH:MM AM/PM'),
-  duration: z.string().describe('e.g., "2h 30m"'),
+  number: z.string().describe('Identification number, e.g., "16595", "AI-102"'),
+  provider: z.string().describe('Name of the service provider, e.g., "PANCHAGANGA EXP", "IndiGo"'),
+  departureTime: z.string().describe('Format: HH:MM'),
+  departureDate: z.string().describe('Format: Day, Date Month'),
+  arrivalTime: z.string().describe('Format: HH:MM'),
+  arrivalDate: z.string().describe('Format: Day, Date Month'),
+  duration: z.string().describe('e.g., "09 h 26 min"'),
   price: z.string().describe('Estimated price in INR, e.g., "₹1,200"'),
-  status: z.string().optional().describe('e.g., "On time", "2 mins late"'),
+  origin: z.string().describe('Short origin name'),
+  destination: z.string().describe('Short destination name'),
+  status: z.string().optional().describe('e.g., "On time"'),
 });
 
 const TransitSearchInputSchema = z.object({
@@ -43,11 +48,9 @@ const transitSearchFlow = ai.defineFlow(
   },
   async (input) => {
     const {output} = await ai.generate({
-      prompt: `You are a Google Maps transit assistant specializing in travel within India. 
-      Provide 4-5 realistic transit options (Train, Bus, Flight, Taxi) between ${input.pickup} and ${input.drop}. 
-      Return a list of options with provider names, departure/arrival times, duration, and estimated price in INR. 
-      If the distance is short (e.g., within a city), prefer Taxis and Buses. If long distance, include Flights and Trains. 
-      Make the times and status updates look realistic.`,
+      prompt: `You are a transit assistant. Provide 3 realistic transit options (exactly one Train, one Flight, and one Bus) between ${input.pickup} and ${input.drop}. 
+      Return a list of options with realistic identification numbers, provider names, precise departure/arrival times, duration, and prices. 
+      Format the dates like 'Fri, 23 Jan'. Ensure origin and destination are short codes or names.`,
       output: {schema: TransitSearchOutputSchema},
     });
     return output!;

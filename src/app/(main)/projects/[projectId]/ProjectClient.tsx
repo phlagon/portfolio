@@ -93,10 +93,8 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   const handleSearchTransit = async () => {
     if (!pickupLocation || !dropLocation) return;
     setIsSearching(true);
-    setTransitResults(null);
     try {
       const results = await getTransitOptions({ pickup: pickupLocation, drop: dropLocation });
-      // Sort results by Train, then Flight, then Bus as requested
       const order = { 'Train': 1, 'Flight': 2, 'Bus': 3, 'Taxi': 4 };
       const sortedOptions = [...results.options].sort((a, b) => 
         (order[a.type] || 99) - (order[b.type] || 99)
@@ -134,35 +132,19 @@ export default function ProjectClient({ project, placeholderImages }: { project:
       </header>
       
       <div className="flex flex-col gap-24 items-center">
-        {isPackageProject && (
-          <div className="w-full max-w-6xl mx-auto">
-             <div className="p-1 bg-white/5 border border-white/10 shadow-2xl overflow-hidden">
-                <video
-                    src="https://raw.githubusercontent.com/phlagon/purr-folio/9cdfabedb3d405c90563cc732aaa3532d718a5bb/medmix%20packaging.mp4"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-full h-auto grayscale"
-                >
-                    Your browser does not support the video tag.
-                </video>
-             </div>
-          </div>
-        )}
-
         <div className="w-full">
           {isRapido ? (
             <div className="flex flex-col items-center gap-12">
-              <div className="relative mx-auto border-[#0a0a0a] bg-[#0a0a0a] border-[12px] rounded-[3.5rem] h-[720px] w-[360px] shadow-[0_60px_120px_-30px_rgba(0,0,0,1)] overflow-hidden">
+              <div className="relative mx-auto border-[#0a0a0a] bg-[#f8f9fa] border-[12px] rounded-[3.5rem] h-[720px] w-[360px] shadow-[0_60px_120px_-30px_rgba(0,0,0,1)] overflow-hidden">
+                  {/* Dynamic Island */}
                   <div className="w-[120px] h-[34px] bg-black top-4 rounded-[1.2rem] left-1/2 -translate-x-1/2 absolute z-[100] flex items-center justify-center">
                     <div className="w-2 h-2 rounded-full bg-white/10 ml-auto mr-4" />
                   </div>
                   
-                  <div className="w-full h-full bg-white relative flex flex-col">
+                  <div className="w-full h-full relative flex flex-col bg-white">
                       <div className="flex-1 overflow-y-auto scrollbar-hide pb-[84px] relative bg-white">
-                        {!transitResults && !isSearching ? (
-                          <div className="relative w-full">
+                        <div className="relative w-full">
+                            {/* Main Background Image (Ride or Travel) */}
                             <Image
                               src={getRapidoImage() || ''}
                               alt={`Rapido Screen`}
@@ -173,6 +155,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               unoptimized
                             />
                             
+                            {/* Transparent Input Overlays */}
                             {(rapidoScreen === 'ride' || rapidoScreen === 'travel' || rapidoScreen === 'flight') && (
                               <>
                                   <input 
@@ -191,10 +174,10 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                       autoComplete="off"
                                       placeholder=""
                                   />
-                                  {/* Clickable Search area in the image */}
+                                  {/* Clickable Search area in the image (The Yellow Search Button) */}
                                   <button 
                                     onClick={handleSearchTransit}
-                                    className="absolute top-[15%] left-[15%] w-[70%] h-[6%] bg-transparent cursor-pointer z-[90] flex items-center justify-center"
+                                    className="absolute top-[18.2%] left-[1/2] -translate-x-1/2 w-[70%] h-[5%] bg-transparent cursor-pointer z-[90] left-1/2"
                                   />
                               </>
                             )}
@@ -220,15 +203,18 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               </>
                             )}
 
+                            {/* Trigger Search logic on Travel screen as requested */}
                             {rapidoScreen === 'travel' && (
                               <button 
                                 onClick={() => setRapidoScreen('flight')}
                                 className="absolute top-[18%] left-0 w-[40%] h-[15%] bg-transparent cursor-pointer z-[40]"
                               />
                             )}
-                          </div>
-                        ) : isSearching ? (
-                          <div className="h-full flex flex-col items-center justify-center p-12 text-center space-y-6 animate-in fade-in zoom-in duration-500 bg-white">
+                        </div>
+
+                        {/* Loading State Overlay */}
+                        {isSearching && (
+                          <div className="absolute inset-0 bg-white/90 z-[95] flex flex-col items-center justify-center p-12 text-center space-y-6">
                              <div className="relative">
                                <Loader2 className="h-16 w-16 text-[#F9D915] animate-spin" />
                                <div className="absolute inset-0 flex items-center justify-center">
@@ -240,75 +226,97 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                <p className="text-[10px] text-black/40 uppercase font-bold">Integrating Google Maps Data...</p>
                              </div>
                           </div>
-                        ) : (
-                          <div className="h-full bg-white flex flex-col animate-in slide-in-from-bottom duration-500">
-                            {/* Header Section */}
-                            <div className="bg-[#F9D915] p-6 pt-12 space-y-4">
-                               <button onClick={resetTransit} className="p-1 -ml-1 hover:bg-black/5 rounded-full transition-colors">
-                                  <ChevronLeft className="h-5 w-5 text-black" />
-                               </button>
-                               <div className="space-y-1">
-                                 <h2 className="text-2xl font-black text-black leading-tight uppercase tracking-tighter">Travel Details</h2>
-                                 <p className="text-[9px] font-bold text-black/60 uppercase tracking-widest flex items-center gap-2">
-                                   {pickupLocation} <ArrowRight className="h-2 w-2" /> {dropLocation}
-                                 </p>
-                               </div>
-                            </div>
-                            
-                            {/* Detailed Results Section */}
-                            <div className="flex-1 p-5 space-y-5 overflow-y-auto scrollbar-hide">
-                              {transitResults?.options.map((option, idx) => {
-                                let Icon = Navigation;
-                                if (option.type === 'Train') Icon = Train;
-                                if (option.type === 'Bus') Icon = Bus;
-                                if (option.type === 'Flight') Icon = Plane;
-                                if (option.type === 'Taxi') Icon = Car;
+                        )}
 
-                                return (
-                                  <div key={idx} className="bg-white border-b border-black/5 pb-5 last:border-0">
-                                    <div className="flex items-center justify-between mb-4">
-                                      <div className="flex items-center gap-3">
-                                        <div className="h-8 w-8 rounded-lg bg-[#F9D915] flex items-center justify-center shadow-sm">
-                                          <Icon className="h-4 w-4 text-black" />
-                                        </div>
-                                        <div className="space-y-0.5">
-                                          <p className="text-[11px] font-black text-black uppercase tracking-tight">{option.provider}</p>
-                                          <p className="text-[9px] font-bold text-black/40 uppercase">{option.type} • {option.duration}</p>
-                                        </div>
+                        {/* Results Section - Integrated directly as shown in image */}
+                        {transitResults && (
+                          <div className="bg-[#F8F9FA] min-h-[400px] animate-in slide-in-from-bottom duration-500 pb-12">
+                             {/* Results Container */}
+                             <div className="space-y-4 pt-4">
+                                {transitResults.options.map((option, idx) => {
+                                  let Icon = Train;
+                                  if (option.type === 'Flight') Icon = Plane;
+                                  if (option.type === 'Bus') Icon = Bus;
+
+                                  return (
+                                    <div key={idx} className="flex px-4">
+                                      {/* Left Category Column */}
+                                      <div className="w-[60px] flex flex-col items-center pt-8 space-y-2 shrink-0">
+                                         <div className="h-10 w-10 flex items-center justify-center">
+                                            <Icon className="h-6 w-6 text-black/80" />
+                                         </div>
+                                         <span className="text-[11px] font-black uppercase tracking-tight text-black">{option.type}</span>
                                       </div>
-                                      <div className="text-right">
-                                        <p className="text-xs font-black text-black">{option.price}</p>
-                                        <p className="text-[8px] font-black text-[#F9D915] uppercase tracking-widest">{option.status || 'ON TIME'}</p>
+
+                                      {/* Right Card Column */}
+                                      <div className="flex-1 bg-white border border-black/5 shadow-sm p-4 relative">
+                                        {/* Yellow side highlight for Train */}
+                                        {option.type === 'Train' && <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#F9D915]" />}
+                                        
+                                        <div className="space-y-4">
+                                          {/* ID and Name */}
+                                          <div className="space-y-1">
+                                            <p className="text-[10px] text-black/40 font-bold uppercase tracking-widest">{option.number}</p>
+                                            <h3 className="text-[13px] font-black text-black uppercase">{option.provider}</h3>
+                                          </div>
+
+                                          {/* Times and Locations */}
+                                          <div className="flex items-center justify-between">
+                                            <div className="space-y-1">
+                                              <p className="text-[11px] font-black text-black">{option.departureTime} <span className="text-black/40 font-bold">{option.departureDate}</span></p>
+                                              <p className="text-[9px] font-black text-black/60 uppercase">{option.origin}</p>
+                                            </div>
+                                            
+                                            <div className="flex flex-col items-center px-2 flex-1 mx-2">
+                                               <p className="text-[8px] font-bold text-black/30 uppercase mb-1">{option.duration}</p>
+                                               <div className="w-full h-[1px] bg-black/5 relative">
+                                                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-black/10" />
+                                               </div>
+                                               <p className="text-[8px] font-black text-[#4ADE80] uppercase mt-1 tracking-tighter">M T W T F S S</p>
+                                            </div>
+
+                                            <div className="text-right space-y-1">
+                                              <p className="text-[11px] font-black text-black">{option.arrivalDate} <span className="text-black/40 font-bold">{option.arrivalTime}</span></p>
+                                              <p className="text-[9px] font-black text-black/60 uppercase">{option.destination}</p>
+                                            </div>
+                                          </div>
+
+                                          {/* Classes and Buttons */}
+                                          <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-hide">
+                                            {['SL', '3E', '3A', '2A', '1A'].map(cls => (
+                                              <Badge key={cls} variant="outline" className="text-[8px] font-black h-7 min-w-[32px] justify-center bg-black/5 border-none text-black/40 rounded-sm">
+                                                {cls}
+                                              </Badge>
+                                            ))}
+                                            <button className="ml-auto text-[9px] font-black text-[#4F46E5] bg-[#E0E7FF] px-3 py-2 rounded-full uppercase tracking-tight whitespace-nowrap">
+                                               See Availability
+                                            </button>
+                                          </div>
+
+                                          {/* Final Select Button */}
+                                          <button className="w-full bg-[#F9D915] text-black text-[11px] font-black uppercase tracking-widest py-3 rounded-full shadow-sm hover:scale-[0.98] transition-transform">
+                                            Select
+                                          </button>
+                                        </div>
                                       </div>
                                     </div>
-                                    
-                                    <div className="bg-[#f8f9fa] p-4 rounded-xl flex items-center justify-between">
-                                      <div className="space-y-1">
-                                        <p className="text-[10px] font-black text-black">{option.departureTime}</p>
-                                        <p className="text-[8px] font-bold text-black/40 uppercase">Departure</p>
-                                      </div>
-                                      <div className="flex-1 mx-4 relative flex items-center justify-center">
-                                         <div className="w-full h-[1px] bg-black/10 border-dashed border-t" />
-                                         <Clock className="h-3 w-3 text-black/10 absolute bg-[#f8f9fa] px-0.5" />
-                                      </div>
-                                      <div className="text-right space-y-1">
-                                        <p className="text-[10px] font-black text-black">{option.arrivalTime}</p>
-                                        <p className="text-[8px] font-bold text-black/40 uppercase">Arrival</p>
-                                      </div>
-                                    </div>
-                                  </div>
-                                );
-                              })}
-                            </div>
+                                  );
+                                })}
+                             </div>
 
-                            <div className="p-6">
-                               <button 
-                                 onClick={resetTransit}
-                                 className="w-full py-4 bg-black text-[#F9D915] text-[10px] font-black uppercase tracking-[0.3em] rounded-xl shadow-xl hover:scale-[0.98] transition-transform"
-                               >
-                                 RE-SEARCH ROUTE
-                               </button>
-                            </div>
+                             {/* Branding Footer */}
+                             <div className="mt-12 py-8 flex flex-col items-center space-y-4">
+                                <div className="flex items-center gap-4 w-full px-8">
+                                   <div className="h-px bg-black/10 flex-1" />
+                                   <span className="text-[10px] font-bold text-black/30 uppercase tracking-[0.2em]">Powered by</span>
+                                   <div className="h-px bg-black/10 flex-1" />
+                                </div>
+                                <div className="flex items-center justify-center gap-8 opacity-40 grayscale">
+                                   <p className="text-xs font-black uppercase text-black tracking-tighter">goibibo</p>
+                                   <p className="text-xs font-black uppercase text-black tracking-tighter">redBus</p>
+                                   <p className="text-xs font-black uppercase text-black tracking-tighter">Confirmtkt</p>
+                                </div>
+                             </div>
                           </div>
                         )}
                       </div>
@@ -344,6 +352,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                         })}
                       </div>
 
+                      {/* Reset Control */}
                       {(rapidoScreen === 'flight' || transitResults) && (
                         <button 
                           onClick={() => {
@@ -358,70 +367,8 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                   </div>
               </div>
               <div className="flex flex-col items-center gap-3">
-                <p className="text-[10px] text-primary font-black uppercase tracking-[0.4em]">Interactive Mobile Prototype</p>
-                <p className="text-[10px] text-foreground/30 uppercase tracking-[0.2em]">Transit Search Integrated via Genkit AI</p>
-              </div>
-            </div>
-          ) : isTypeSpecimen ? (
-            <div className="w-full max-w-5xl mx-auto">
-              <div className="relative perspective-3000 h-[80vh] w-full flex items-center justify-center">
-                {projectImages.map((image, idx) => {
-                  const isCurrent = idx === currentPage;
-                  const isNext = idx === currentPage + 1 && isAnimating;
-                  const isVisible = isCurrent || isNext;
-                  
-                  if (!isVisible) return null;
-
-                  return (
-                    <div 
-                      key={idx}
-                      className={cn(
-                        "absolute inset-0 page-base",
-                        isCurrent 
-                          ? (isAnimating ? "page-folding" : "page-active") 
-                          : "page-visible-under"
-                      )}
-                    >
-                      <Card className="h-full w-full overflow-hidden border-none bg-background shadow-2xl relative">
-                        <CardContent className="p-0 h-full flex items-center justify-center relative">
-                          <Image
-                            src={image.imageUrl}
-                            alt={`Page ${idx + 1}`}
-                            fill
-                            className="object-contain p-12 grayscale"
-                          />
-                          
-                          {isCurrent && isAnimating && <div className="fold-shadow" />}
-
-                          <div className="absolute inset-y-0 left-0 w-px bg-white/5 pointer-events-none z-10" />
-                          
-                          <div className="absolute bottom-6 right-10 text-[10px] text-white/20 font-black tracking-widest uppercase">
-                            Plate {idx + 1}
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </div>
-                  );
-                })}
-                
-                <button 
-                  onClick={handlePrevPage}
-                  className={cn(
-                    "absolute left-4 z-40 p-4 rounded-full bg-black/80 hover:bg-primary hover:text-black transition-all border border-white/10",
-                    (currentPage === 0 || isAnimating) && "opacity-0 pointer-events-none"
-                  )}
-                >
-                  <ChevronLeft className="h-6 w-6" />
-                </button>
-                <button 
-                  onClick={handleNextPage}
-                  className={cn(
-                    "absolute right-4 z-40 p-4 rounded-full bg-black/80 hover:bg-primary hover:text-black transition-all border border-white/10",
-                    (currentPage === projectImages.length - 1 || isAnimating) && "opacity-0 pointer-events-none"
-                  )}
-                >
-                  <ChevronRight className="h-6 w-6" />
-                </button>
+                <p className="text-[10px] text-primary font-black uppercase tracking-[0.4em]">Integrated Transit Engine</p>
+                <p className="text-[10px] text-foreground/30 uppercase tracking-[0.2em]">Figma Mockup x Genkit AI Integration</p>
               </div>
             </div>
           ) : (
@@ -458,37 +405,18 @@ export default function ProjectClient({ project, placeholderImages }: { project:
               {project.longDescription}
             </p>
             <div className="flex flex-wrap items-center justify-center gap-16 pt-12 text-primary text-[10px] font-black uppercase tracking-[0.4em] opacity-40">
-                {isRapido ? (
-                    <>
-                        <div className="flex items-center gap-3">
-                            <Plane className="h-5 w-5"/>
-                            <span>Seamless</span>
-                        </div>
-                        <div className="flex items-center gap-3">
-                            <MapPin className="h-5 w-5"/>
-                            <span>Intuitive</span>
-                        </div>
-                        <div className="flex items-center gap-3">
-                            <Luggage className="h-5 w-5"/>
-                            <span>Premium</span>
-                        </div>
-                    </>
-                ) : (
-                    <>
-                        <div className="flex items-center gap-3">
-                            <Gem className="h-5 w-5"/>
-                            <span>Artisanal</span>
-                        </div>
-                        <div className="flex items-center gap-3">
-                            <Sparkles className="h-5 w-5"/>
-                            <span>Impactful</span>
-                        </div>
-                        <div className="flex items-center gap-3">
-                            <Crown className="h-5 w-5"/>
-                            <span>Elite</span>
-                        </div>
-                    </>
-                )}
+                <div className="flex items-center gap-3">
+                    <Plane className="h-5 w-5"/>
+                    <span>Seamless</span>
+                </div>
+                <div className="flex items-center gap-3">
+                    <MapPin className="h-5 w-5"/>
+                    <span>Intuitive</span>
+                </div>
+                <div className="flex items-center gap-3">
+                    <Luggage className="h-5 w-5"/>
+                    <span>Premium</span>
+                </div>
             </div>
         </div>
       </div>
