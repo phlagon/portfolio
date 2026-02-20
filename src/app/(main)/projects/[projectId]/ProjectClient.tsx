@@ -17,7 +17,7 @@ import {
   Loader2,
   RotateCcw,
   PlayCircle,
-  ArrowRight
+  Monitor
 } from 'lucide-react';
 
 import type { ImagePlaceholder } from '@/lib/placeholder-images';
@@ -62,6 +62,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   const isRapido = project.id === 'project-1';
   const isLosmo = project.id === 'project-2';
   const isLogoProject = project.id === 'project-3' || project.id === 'project-logo-redesign';
+  const isPackageProject = project.id === 'project-5' || project.id === 'project-packaging-redesign';
   const isPackageDesign = project.id === 'project-5';
   const isTypeSpecimen = project.id === 'project-6';
   
@@ -157,6 +158,31 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                 )}
               >
                 Logo Redesign
+              </Link>
+            </nav>
+          </Reveal>
+        )}
+
+        {isPackageProject && (
+          <Reveal delay={50}>
+            <nav className="flex items-center justify-center gap-12 mt-8 mb-4">
+              <Link 
+                href="/projects/project-5/"
+                className={cn(
+                  "transition-all uppercase tracking-[0.4em] text-[10px] font-black pb-2 border-b-2",
+                  project.id === 'project-5' ? "text-primary border-primary" : "text-foreground/20 border-transparent hover:text-foreground/60"
+                )}
+              >
+                Packaging Design
+              </Link>
+              <Link 
+                href="/projects/project-packaging-redesign/"
+                className={cn(
+                  "transition-all uppercase tracking-[0.4em] text-[10px] font-black pb-2 border-b-2",
+                  project.id === 'project-packaging-redesign' ? "text-primary border-primary" : "text-foreground/20 border-transparent hover:text-foreground/60"
+                )}
+              >
+                Packaging Redesign
               </Link>
             </nav>
           </Reveal>
@@ -424,13 +450,17 @@ export default function ProjectClient({ project, placeholderImages }: { project:
           ) : isLosmo ? (
             <Reveal className="w-full max-w-5xl mx-auto">
               <div className="relative w-full group">
-                <div className="relative bg-[#000] rounded-[3rem] p-4 pt-4 pb-16 shadow-[0_100px_100px_-50px_rgba(0,0,0,0.8)] border-[6px] border-[#333] overflow-hidden">
+                <div className="relative bg-[#222] rounded-[3rem] p-4 pt-4 pb-16 shadow-[0_100px_100px_-50px_rgba(0,0,0,0.8)] border-[6px] border-[#333] overflow-hidden">
+                   <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-6 bg-[#333] rounded-b-2xl z-50 flex items-center justify-center">
+                      <div className="w-2 h-2 rounded-full bg-black/40" />
+                   </div>
+                   
                    <div className="relative aspect-video bg-[#111] rounded-[1.5rem] overflow-hidden border-2 border-white/5">
                     <Carousel className="w-full h-full">
                       <CarouselContent className="-ml-0 h-full">
                         {projectImages.map((image, index) => (
                           <CarouselItem key={index} className="pl-0 h-full">
-                            <div className="relative w-full h-full overflow-y-auto scrollbar-hide bg-black/40 flex flex-col">
+                            <div className="relative w-full h-full overflow-y-auto scrollbar-hide bg-[#050505] flex flex-col">
                                  {image && (
                                    <Image
                                      src={image.imageUrl}
@@ -449,16 +479,13 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                       <CarouselNext className="right-4 h-10 w-10 bg-black/40 backdrop-blur-md border-white/5 text-white hover:bg-primary hover:text-black transition-all z-50 rounded-full" />
                     </Carousel>
                    </div>
-                   <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-40">
-                      <div className="w-6 h-6 rounded-full border border-white/20 flex items-center justify-center">
-                        <div className="w-1.5 h-1.5 bg-white/40 rounded-full" />
-                      </div>
-                   </div>
                 </div>
-                <div className="relative mx-auto w-32 h-24 bg-gradient-to-b from-[#222] to-[#111] mt-[-2px] rounded-b-xl shadow-2xl overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20" />
+                
+                <div className="relative mx-auto w-48 h-12 bg-gradient-to-b from-[#333] to-[#111] mt-[-2px] rounded-b-xl shadow-2xl flex items-center justify-center">
+                   <div className="w-24 h-1 bg-black/40 rounded-full" />
                 </div>
-                <div className="relative mx-auto w-56 h-3 bg-black/60 blur-xl rounded-full mt-[-8px]" />
+                <div className="relative mx-auto w-64 h-4 bg-gradient-to-b from-[#222] to-transparent mt-[-1px] rounded-b-full opacity-50" />
+                <div className="relative mx-auto w-80 h-3 bg-black/60 blur-xl rounded-full mt-2" />
               </div>
             </Reveal>
           ) : isLogoProject ? (
@@ -630,8 +657,8 @@ export default function ProjectClient({ project, placeholderImages }: { project:
             </p>
             <div className="flex flex-wrap items-center justify-center gap-16 pt-12 text-primary text-[10px] font-black uppercase tracking-widest opacity-40">
                 <div className="flex items-center gap-3">
-                    <Plane className="h-5 w-5"/>
-                    <span>Seamless</span>
+                    <Monitor className="h-5 w-5"/>
+                    <span>Immersive</span>
                 </div>
                 <div className="flex items-center gap-3">
                     <MapPin className="h-5 w-5"/>
