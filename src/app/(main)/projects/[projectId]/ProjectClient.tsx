@@ -413,14 +413,14 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               {projectImages.map((image, idx) => (
                                 <CarouselItem key={idx} className="pl-0 h-full relative">
                                   {/* Vertical Scrolling Container */}
-                                  <div className="absolute inset-0 h-full overflow-y-auto scrollbar-hide bg-white">
+                                  <div className="absolute inset-0 h-full overflow-y-auto scrollbar-hide bg-white z-10">
                                     {image && (
-                                      <div className="w-full">
+                                      <div className="w-full relative">
                                         <Image 
                                           src={image.imageUrl} 
                                           alt={`Losmo Screen ${idx + 1}`} 
                                           width={1200} 
-                                          height={2000} 
+                                          height={3000} 
                                           className="w-full h-auto block" 
                                           priority={idx === 0}
                                           unoptimized
