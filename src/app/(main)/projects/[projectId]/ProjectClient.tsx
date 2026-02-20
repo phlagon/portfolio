@@ -15,13 +15,12 @@ import {
   ChevronRight, 
   RotateCcw,
   Bike,
-  Navigation,
-  Download,
-  Zap,
-  User,
+  ArrowDownToLine,
   Activity,
+  User,
   Globe,
-  UserCircle
+  Navigation,
+  Suitcase
 } from 'lucide-react';
 
 import type { ImagePlaceholder } from '@/lib/placeholder-images';
@@ -119,7 +118,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                     loop
                     muted
                     playsInline
-                    className="w-full h-auto grayscale hover:grayscale-0 transition-all duration-1000"
+                    className="w-full h-auto grayscale"
                 >
                     Your browser does not support the video tag.
                 </video>
@@ -139,7 +138,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                   {/* Phone Screen Container */}
                   <div className="w-full h-full bg-[#050505] relative flex flex-col">
                       {/* Scrollable Content Area */}
-                      <div className="flex-1 overflow-y-auto scrollbar-hide pb-[80px]">
+                      <div className="flex-1 overflow-y-auto scrollbar-hide pb-[84px]">
                         {getRapidoImage() && (
                           <div className="relative w-full">
                             <Image
@@ -164,13 +163,13 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                       </div>
 
                       {/* Fixed Navigation Bar - Stick to Bottom */}
-                      <div className="absolute bottom-0 left-0 w-full h-[84px] bg-black/95 backdrop-blur-2xl border-t border-white/10 flex items-center justify-around px-4 z-[60] pb-4 shadow-[0_-20px_40px_rgba(0,0,0,0.5)]">
+                      <div className="absolute bottom-0 left-0 w-full h-[84px] bg-black/95 backdrop-blur-2xl border-t border-white/10 flex items-center justify-around px-2 z-[60] pb-4 shadow-[0_-20px_40px_rgba(0,0,0,0.5)]">
                         {[
                           { id: 'ride', label: 'Ride', icon: Bike },
-                          { id: 'travel', label: 'Travel', icon: Globe },
-                          { id: 'offline', label: 'Offline', icon: Download },
+                          { id: 'travel', label: 'Travel', icon: Suitcase },
+                          { id: 'offline', label: 'Offline', icon: ArrowDownToLine },
                           { id: 'live', label: 'Live', icon: Activity },
-                          { id: 'profile', label: 'Profile', icon: UserCircle },
+                          { id: 'profile', label: 'Profile', icon: User },
                         ].map((tab) => {
                           const Icon = tab.icon;
                           const isActive = rapidoScreen === tab.id || (tab.id === 'travel' && rapidoScreen === 'flight');
@@ -183,7 +182,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                 isActive ? "text-[#F9D915] scale-105" : "text-white/40 hover:text-white/70"
                               )}
                             >
-                              <Icon className={cn("h-6 w-6", isActive && "drop-shadow-[0_0_8px_rgba(249,217,21,0.5)]")} />
+                              <Icon className={cn("h-5 w-5", isActive && "drop-shadow-[0_0_8px_rgba(249,217,21,0.5)]")} />
                               <span className="text-[8px] font-black uppercase tracking-[0.2em]">{tab.label}</span>
                             </button>
                           );
@@ -281,7 +280,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               src={image.imageUrl}
                               alt={`${project.title} image ${index + 1}`}
                               fill
-                              className="object-contain grayscale hover:grayscale-0 transition-all duration-1000"
+                              className="object-contain grayscale"
                             />
                           )}
                         </CardContent>
