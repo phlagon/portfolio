@@ -1,12 +1,12 @@
-
 'use client';
 import Image from 'next/image';
+import { Reveal } from '@/components/ui/reveal';
 
 export function AboutSection() {
   return (
     <section id="about" className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-background py-24">
       <div className="container z-10 grid grid-cols-1 md:grid-cols-5 items-center gap-16">
-        <div className="relative md:col-span-2">
+        <Reveal className="relative md:col-span-2">
            <div 
              className="drop-shadow-[0_20px_30px_hsl(var(--primary)/0.15)] rounded-2xl overflow-hidden"
              style={{ maskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)' }}
@@ -21,8 +21,8 @@ export function AboutSection() {
               priority
              />
            </div>
-        </div>
-        <div className="space-y-8 text-center md:text-left md:col-span-3">
+        </Reveal>
+        <Reveal delay={200} className="space-y-8 text-center md:text-left md:col-span-3">
           <h2 className="text-6xl md:text-8xl font-bold text-white/10 uppercase tracking-tighter leading-none mb-[-2rem]">
             Hello!
           </h2>
@@ -39,7 +39,7 @@ export function AboutSection() {
               I design things that work for the people who use them.
             </p>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

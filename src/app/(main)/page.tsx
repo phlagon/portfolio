@@ -21,6 +21,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { Reveal } from "@/components/ui/reveal";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -54,11 +55,11 @@ export default function Home() {
 
   return (
     <main className="bg-background">
-      {/* Hero Section - Focused on Golden Animation */}
+      {/* Hero Section */}
       <section id="home" className="relative min-h-screen flex flex-col justify-center px-4 md:px-16 overflow-hidden border-b border-white/5">
         <div className="container max-w-7xl mx-auto z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-12">
+            <Reveal className="space-y-12">
               <div className="space-y-6">
                 <p className="text-primary font-black tracking-[0.5em] uppercase text-[10px]">India • Remote • Available</p>
                 <h1 className="text-7xl md:text-[10rem] font-bold tracking-tighter text-white leading-[0.85] uppercase">
@@ -97,15 +98,15 @@ export default function Home() {
                   <Linkedin className="h-4 w-4" />
                 </Link>
               </div>
-            </div>
+            </Reveal>
 
-            <div className="flex justify-center items-center">
+            <Reveal delay={200} className="flex justify-center items-center">
               <div className="relative w-[300px] h-[300px] md:w-[550px] md:h-[550px] flex items-center justify-center">
                 <div className="absolute inset-0 z-0">
                   <HeroGraphic />
                 </div>
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -116,7 +117,7 @@ export default function Home() {
       <section id="contact" className="py-40 bg-card/40 border-t border-white/5">
         <div className="container max-w-6xl mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-32">
-            <div className="space-y-16">
+            <Reveal className="space-y-16">
               <div className="space-y-6">
                 <p className="text-primary font-black tracking-[0.4em] uppercase text-[10px]">Open for collaboration</p>
                 <h2 className="text-6xl md:text-8xl font-bold tracking-tighter uppercase leading-[0.9]">Start a <br /> Project.</h2>
@@ -134,9 +135,9 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-            </div>
+            </Reveal>
 
-            <div className="bg-card p-12 rounded-none border border-white/5 shadow-2xl">
+            <Reveal delay={300} className="bg-card p-12 rounded-none border border-white/5 shadow-2xl">
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-10">
                   <FormField
@@ -183,7 +184,7 @@ export default function Home() {
                   </Button>
                 </form>
               </Form>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
