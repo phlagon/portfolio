@@ -32,12 +32,14 @@ import {
 import { Card, CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import { getTransitOptions, type TransitSearchOutput } from '@/ai/flows/transit-search-flow';
+import { useToast } from '@/hooks/use-toast';
 
 type ProjectType = (typeof projects)[0];
 
 export default function ProjectClient({ project, placeholderImages }: { project: ProjectType, placeholderImages: ImagePlaceholder[] }) {
   const [rapidoScreen, setRapidoScreen] = useState<'ride' | 'travel' | 'offline' | 'live' | 'profile' | 'flight' | 'your-trip' | 'public-transport'>('ride');
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const { toast } = useToast();
   
   const [pickupLocation, setPickupLocation] = useState('');
   const [dropLocation, setDropLocation] = useState('');
@@ -190,6 +192,19 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                   title="Public Transport Tab"
                                 />
                               </>
+                            )}
+
+                            {rapidoScreen === 'public-transport' && (
+                              <button 
+                                onClick={() => {
+                                  toast({
+                                    title: "Bus Stop Details",
+                                    description: "Viewing nearby transportation hubs."
+                                  });
+                                }}
+                                className="absolute top-[52%] left-[5%] w-[90%] h-[12%] bg-transparent cursor-pointer z-[95]"
+                                title="Nearby Bus Stop"
+                              />
                             )}
                         </div>
 
