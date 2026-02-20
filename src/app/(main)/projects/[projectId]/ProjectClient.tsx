@@ -17,9 +17,7 @@ import {
   Bus,
   Loader2,
   RotateCcw,
-  PlayCircle,
-  ChevronLeft,
-  ChevronRight
+  PlayCircle
 } from 'lucide-react';
 
 import type { ImagePlaceholder } from '@/lib/placeholder-images';
@@ -94,19 +92,22 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   };
 
   const getRapidoImage = () => {
-    if (rapidoScreen === 'flight') return placeholderImages.find(img => img.id === 'rapido-flight')?.imageUrl;
-    if (rapidoScreen === 'offline') return placeholderImages.find(img => img.id === 'rapido-offline')?.imageUrl;
-    if (rapidoScreen === 'confirmation') return placeholderImages.find(img => img.id === 'rapido-confirmation')?.imageUrl;
-    if (rapidoScreen === 'auto-find') return placeholderImages.find(img => img.id === 'rapido-auto-find')?.imageUrl;
-    if (rapidoScreen === 'gps-confirm') return placeholderImages.find(img => img.id === 'rapido-gps-confirm')?.imageUrl;
-    if (rapidoScreen === 'profile') return placeholderImages.find(img => img.id === 'rapido-profile')?.imageUrl;
-    if (rapidoScreen === 'live') return placeholderImages.find(img => img.id === 'rapido-live')?.imageUrl;
-    if (rapidoScreen === 'travel') return placeholderImages.find(img => img.id === 'rapido-travel')?.imageUrl;
-    if (rapidoScreen === 'your-trip') return placeholderImages.find(img => img.id === 'rapido-your-trip')?.imageUrl;
-    if (rapidoScreen === 'your-trip' || rapidoScreen === 'public-transport') return placeholderImages.find(img => img.id === 'rapido-public-transport')?.imageUrl;
-    if (rapidoScreen === 'stops') return placeholderImages.find(img => img.id === 'rapido-stops')?.imageUrl;
-    if (rapidoScreen === 'weather') return placeholderImages.find(img => img.id === 'rapido-weather')?.imageUrl;
-    return placeholderImages.find(img => img.id === 'rapido-home')?.imageUrl;
+    const screens: Record<string, string | undefined> = {
+      flight: 'rapido-flight',
+      offline: 'rapido-offline',
+      confirmation: 'rapido-confirmation',
+      'auto-find': 'rapido-auto-find',
+      'gps-confirm': 'rapido-gps-confirm',
+      profile: 'rapido-profile',
+      live: 'rapido-live',
+      travel: 'rapido-travel',
+      'your-trip': 'rapido-your-trip',
+      'public-transport': 'rapido-public-transport',
+      stops: 'rapido-stops',
+      weather: 'rapido-weather',
+    };
+    const id = screens[rapidoScreen] || 'rapido-home';
+    return placeholderImages.find(img => img.id === id)?.imageUrl;
   };
 
   const navTabs = [
@@ -401,88 +402,44 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                   </div>
               </div>
             </Reveal>
-          ) : isLosmo ? (
-            <Reveal className="relative mx-auto w-full max-w-5xl group">
-               {/* iMac Monitor Mockup */}
-               <div className="relative bg-[#f5f5f7] p-2 md:p-4 rounded-t-[2rem] shadow-2xl border-x border-t border-white/10">
-                  <div className="bg-[#0a0a0a] p-1.5 md:p-2.5 rounded-[1.2rem] overflow-hidden shadow-inner relative">
-                      {/* Screen Viewport */}
-                      <div className="bg-white aspect-video rounded-sm overflow-hidden relative">
-                          <Carousel className="w-full h-full" opts={{ loop: true }}>
-                            <CarouselContent className="-ml-0 h-full">
-                              {projectImages.map((image, idx) => (
-                                <CarouselItem key={idx} className="pl-0 h-full relative">
-                                  {/* Vertical Scrolling Container */}
-                                  <div className="absolute inset-0 h-full overflow-y-auto scrollbar-hide bg-white z-10">
-                                    {image && (
-                                      <div className="w-full relative">
-                                        <Image 
-                                          src={image.imageUrl} 
-                                          alt={`Losmo Screen ${idx + 1}`} 
-                                          width={1200} 
-                                          height={3000} 
-                                          className="w-full h-auto block" 
-                                          priority={idx === 0}
-                                          unoptimized
-                                        />
-                                      </div>
-                                    )}
-                                  </div>
-                                </CarouselItem>
-                              ))}
-                            </CarouselContent>
-                            {/* Navigation Buttons positioned over the monitor screen */}
-                            <CarouselPrevious className="left-4 opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 text-white border-none hover:bg-black/70 z-50 h-10 w-10" />
-                            <CarouselNext className="right-4 opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 text-white border-none hover:bg-black/70 z-50 h-10 w-10" />
-                          </Carousel>
-                      </div>
-                  </div>
-               </div>
-               {/* iMac Stand */}
-               <div className="h-12 md:h-16 bg-gradient-to-b from-[#e2e2e2] to-[#c1c1c1] rounded-b-[2rem] relative flex items-center justify-center shadow-xl">
-                  <div className="w-8 h-8 opacity-20 bg-black/20 rounded-full flex items-center justify-center">
-                    <div className="w-3 h-3 bg-black/40 rounded-full" />
-                  </div>
-               </div>
-               <div className="mx-auto w-32 h-20 md:w-48 md:h-28 bg-[#d1d1d1] rounded-b-2xl relative -mt-1 z-[-1] shadow-2xl">
-                  <div className="absolute inset-x-0 top-0 h-2 bg-black/10" />
-               </div>
-            </Reveal>
-          ) : isPackageDesign ? (
+          ) : isLosmo || isPackageDesign ? (
             <div className="w-full max-w-6xl mx-auto space-y-24">
-               <Reveal className="w-full">
-                 <div className="relative aspect-video bg-black/20 rounded-none overflow-hidden border border-white/5 shadow-2xl group">
-                    <video 
-                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"
-                      autoPlay 
-                      loop 
-                      muted 
-                      playsInline
-                    >
-                      <source src="https://raw.githubusercontent.com/phlagon/purr-folio/1e86a7d646b793222feceec9ded448cbd3a24335/medmix%20packaging.mp4" type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
-                    <div className="absolute bottom-12 left-12 flex items-center gap-6">
-                        <div className="h-12 w-12 rounded-full border border-primary/40 flex items-center justify-center animate-pulse">
-                           <PlayCircle className="h-6 w-6 text-primary" />
-                        </div>
-                        <div className="space-y-1">
-                          <p className="text-[10px] font-black uppercase tracking-[0.4em] text-primary">Now Playing</p>
-                          <p className="text-sm font-bold text-white uppercase tracking-widest">MedMix Packaging Process</p>
-                        </div>
-                    </div>
-                 </div>
-               </Reveal>
+               {isPackageDesign && (
+                 <Reveal className="w-full">
+                   <div className="relative aspect-video bg-black/20 rounded-none overflow-hidden border border-white/5 shadow-2xl group">
+                      <video 
+                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"
+                        autoPlay 
+                        loop 
+                        muted 
+                        playsInline
+                      >
+                        <source src="https://raw.githubusercontent.com/phlagon/purr-folio/1e86a7d646b793222feceec9ded448cbd3a24335/medmix%20packaging.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
+                      <div className="absolute bottom-12 left-12 flex items-center gap-6">
+                          <div className="h-12 w-12 rounded-full border border-primary/40 flex items-center justify-center animate-pulse">
+                             <PlayCircle className="h-6 w-6 text-primary" />
+                          </div>
+                          <div className="space-y-1">
+                            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-primary">Now Playing</p>
+                            <p className="text-sm font-bold text-white uppercase tracking-widest">MedMix Packaging Process</p>
+                          </div>
+                      </div>
+                   </div>
+                 </Reveal>
+               )}
                {projectImages.map((image, index) => (
                  <Reveal key={index} className="w-full">
-                    <div className="relative aspect-video border border-white/5 shadow-2xl bg-white/5">
+                    <div className="relative w-full border border-white/5 shadow-2xl bg-white/5 overflow-hidden">
                       {image && (
                         <Image
                           src={image.imageUrl}
                           alt={`${project.title} design ${index + 1}`}
-                          fill
-                          className="object-contain grayscale hover:grayscale-0 transition-all duration-700"
+                          width={1400}
+                          height={2000}
+                          className="w-full h-auto block grayscale hover:grayscale-0 transition-all duration-700"
                           unoptimized
                         />
                       )}
