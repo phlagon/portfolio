@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -199,7 +198,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             {rapidoScreen === 'gps-confirm' && (
                               <button 
                                 onClick={() => setRapidoScreen('confirmation')}
-                                className="absolute top-[68%] left-[45%] w-[30%] h-[8%] bg-transparent cursor-pointer z-[95]"
+                                className="absolute top-[68%] left-[25%] w-[30%] h-[8%] bg-transparent cursor-pointer z-[95]"
                                 title="Confirm Yes"
                               />
                             )}
