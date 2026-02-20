@@ -16,10 +16,8 @@ export function Reveal({ children, className, delay = 0 }: RevealProps) {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
+        // Toggle visibility based on intersection state to allow re-triggering
+        setIsVisible(entry.isIntersecting);
       },
       { 
         threshold: 0.15,
