@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -139,7 +138,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               unoptimized
                             />
                             
-                            {/* Inputs and Search only on main interactive screens */}
                             {(rapidoScreen === 'ride' || rapidoScreen === 'travel') && (
                               <>
                                   <input 
@@ -174,7 +172,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                 />
                                 <button 
                                   onClick={() => setRapidoScreen('flight')}
-                                  className="absolute top-[45.2%] left-[60%] w-[30%] h-[10%] bg-transparent cursor-pointer z-[95]"
+                                  className="absolute top-[45.2%] left-[5%] w-[30%] h-[10%] bg-transparent cursor-pointer z-[95]"
                                   title="Flight Icon"
                                 />
                               </>
@@ -197,7 +195,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                 />
                                 <button 
                                   onClick={() => setRapidoScreen('flight')}
-                                  className="absolute top-[45%] left-[35%] w-[30%] h-[10%] bg-transparent cursor-pointer z-[95]"
+                                  className="absolute top-[45%] left-[5%] w-[30%] h-[10%] bg-transparent cursor-pointer z-[95]"
                                   title="Flight Tab"
                                 />
                               </>
