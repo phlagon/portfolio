@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useRef, useState, useEffect } from 'react';
@@ -10,8 +9,10 @@ import { placeholderImages } from '@/lib/placeholder-images';
 import { Reveal } from '@/components/ui/reveal';
 import { cn } from '@/lib/utils';
 
-const DISTANCE_LIMIT = 150;
-const MAGNIFICATION = 1.8;
+// Increased limits for a much larger, bolder dock
+const DISTANCE_LIMIT = 250;
+const MAGNIFICATION = 2.5;
+const BASE_WIDTH = 180; // Larger base icon size
 
 export function ProjectsSection() {
   const displayProjects = projects.filter(p => 
@@ -36,8 +37,7 @@ export function ProjectsSection() {
     return () => window.removeEventListener('resize', updateWidths);
   }, []);
 
-  // Calculate auto-scroll based on mouse position
-  const dockX = useSpring(0, { stiffness: 60, damping: 20 });
+  const dockX = useSpring(0, { stiffness: 40, damping: 20 });
 
   const handleMouseMove = (e: React.MouseEvent) => {
     mouseX.set(e.pageX);
@@ -47,11 +47,9 @@ export function ProjectsSection() {
     const relativeX = e.clientX - rect.left;
     const percentage = relativeX / containerWidth;
     
-    // Determine scroll amount (if content is wider than container)
     if (contentWidth > containerWidth) {
       const maxScroll = contentWidth - containerWidth;
-      // We add some padding/inset for the scroll trigger
-      const edgeThreshold = 0.2; // 20% from edges
+      const edgeThreshold = 0.2;
       let targetX = 0;
       
       if (percentage < edgeThreshold) {
@@ -59,7 +57,6 @@ export function ProjectsSection() {
       } else if (percentage > (1 - edgeThreshold)) {
         targetX = -maxScroll;
       } else {
-        // Linear mapping in the center
         const normalized = (percentage - edgeThreshold) / (1 - 2 * edgeThreshold);
         targetX = -normalized * maxScroll;
       }
@@ -72,11 +69,11 @@ export function ProjectsSection() {
   };
 
   return (
-    <section id="projects" className="bg-background py-40 overflow-hidden relative">
-      <div className="container max-w-6xl mx-auto px-4 mb-24">
-        <Reveal className="text-center space-y-6">
-          <p className="text-primary font-black tracking-[0.5em] uppercase text-[10px]">Work</p>
-          <h2 className="text-6xl md:text-8xl font-black text-white uppercase tracking-tighter leading-none">Selected.</h2>
+    <section id="projects" className="bg-background py-60 overflow-hidden relative">
+      <div className="container max-w-7xl mx-auto px-4 mb-32">
+        <Reveal className="text-center space-y-8">
+          <p className="text-primary font-black tracking-[0.6em] uppercase text-[12px]">Portfolio</p>
+          <h2 className="text-8xl md:text-[12rem] font-black text-white uppercase tracking-tighter leading-none">Curated.</h2>
         </Reveal>
       </div>
 
@@ -84,12 +81,12 @@ export function ProjectsSection() {
         ref={containerRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="w-full relative flex items-center justify-center py-20 px-4 md:px-0"
+        className="w-full relative flex items-center justify-center py-40 px-4 md:px-0"
       >
         <motion.div 
           ref={scrollRef}
           style={{ x: dockX }}
-          className="flex items-end gap-4 p-6 bg-white/5 backdrop-blur-2xl rounded-[3rem] border border-white/10 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.8)] h-[180px] min-w-fit"
+          className="flex items-end gap-10 p-12 bg-white/5 backdrop-blur-3xl rounded-[4rem] border border-white/10 shadow-[0_60px_150px_-30px_rgba(0,0,0,1)] h-[400px] min-w-fit"
         >
           {displayProjects.map((project) => (
             <DockItem 
@@ -101,13 +98,10 @@ export function ProjectsSection() {
         </motion.div>
       </div>
       
-      {/* Visual Indicator of Scroll Availability */}
-      {contentWidth > containerWidth && (
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-2 opacity-20 group">
-          <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-          <span className="text-[8px] font-black uppercase tracking-[0.6em] text-white">Scroll to Explore</span>
-        </div>
-      )}
+      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-30 group animate-bounce">
+        <div className="w-2 h-2 rounded-full bg-primary" />
+        <span className="text-[10px] font-black uppercase tracking-[0.8em] text-white">Scroll to Explore</span>
+      </div>
     </section>
   );
 }
@@ -118,18 +112,23 @@ function DockItem({ project, mouseX, }: { project: any, mouseX: any }) {
 
   const distance = useTransform(mouseX, (val: number) => {
     const bounds = ref.current?.getBoundingClientRect() || { x: 0, width: 0 };
-    return val - bounds.x - bounds.width / 2;
+    return val - (bounds.x + bounds.width / 2);
   });
 
-  const widthSync = useTransform(distance, [-DISTANCE_LIMIT, 0, DISTANCE_LIMIT], [80, 80 * MAGNIFICATION, 80]);
-  const width = useSpring(widthSync, { stiffness: 200, damping: 25, mass: 0.1 });
+  const widthSync = useTransform(
+    distance, 
+    [-DISTANCE_LIMIT, 0, DISTANCE_LIMIT], 
+    [BASE_WIDTH, BASE_WIDTH * MAGNIFICATION, BASE_WIDTH]
+  );
+  
+  const width = useSpring(widthSync, { stiffness: 180, damping: 25, mass: 0.1 });
 
   const projectImage = placeholderImages.find(p => p.id === project.thumbnailId);
 
   return (
     <Link 
       href={`/projects/${project.id}`}
-      className="relative group"
+      className="relative group flex flex-col items-center justify-end"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -137,11 +136,11 @@ function DockItem({ project, mouseX, }: { project: any, mouseX: any }) {
         {isHovered && (
           <motion.div
             initial={{ opacity: 0, y: 10, scale: 0.8 }}
-            animate={{ opacity: 1, y: -45, scale: 1 }}
+            animate={{ opacity: 1, y: -80, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.8 }}
-            className="absolute top-0 left-1/2 -translate-x-1/2 px-4 py-2 bg-black/90 backdrop-blur-md rounded-xl border border-white/10 pointer-events-none z-50 whitespace-nowrap"
+            className="absolute top-0 left-1/2 -translate-x-1/2 px-8 py-4 bg-black/95 backdrop-blur-xl rounded-2xl border border-white/20 pointer-events-none z-50 whitespace-nowrap shadow-2xl"
           >
-            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-primary">{project.title}</p>
+            <p className="text-[14px] font-black uppercase tracking-[0.5em] text-primary">{project.title}</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -149,18 +148,18 @@ function DockItem({ project, mouseX, }: { project: any, mouseX: any }) {
       <motion.div
         ref={ref}
         style={{ width, height: width }}
-        className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/5 bg-[#111] transition-shadow hover:shadow-[0_0_40px_rgba(var(--primary-rgb),0.3)] cursor-none"
+        className="relative rounded-[2.5rem] overflow-hidden shadow-[0_40px_100px_-20px_rgba(0,0,0,0.8)] border border-white/10 bg-[#111] transition-shadow hover:shadow-[0_0_60px_rgba(var(--primary-rgb),0.4)] cursor-none"
       >
         {projectImage && (
           <Image
             src={projectImage.imageUrl}
             alt={project.title}
             fill
-            className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+            className="object-cover grayscale group-hover:grayscale-0 transition-all duration-[1s] ease-in-out"
             unoptimized
           />
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
       </motion.div>
     </Link>
   );
