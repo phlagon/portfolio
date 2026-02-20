@@ -32,7 +32,11 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground selection:bg-primary selection:text-primary-foreground antialiased;
+    @apply bg-background text-foreground selection:bg-primary selection:text-primary-foreground antialiased cursor-none;
+  }
+  
+  a, button, input, textarea, [role="button"] {
+    @apply cursor-none;
   }
 }
 
