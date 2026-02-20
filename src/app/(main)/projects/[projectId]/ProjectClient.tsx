@@ -1,6 +1,8 @@
+
 'use client';
 
 // Polyfill for Promise.withResolvers which is required by newer versions of PDF.js
+// MUST run before react-pdf import
 if (typeof Promise.withResolvers === 'undefined') {
   if (typeof window !== 'undefined') {
     // @ts-expect-error - Polyfilling modern JS feature
@@ -323,9 +325,9 @@ export default function ProjectClient({ project, placeholderImages }: { project:
           ) : isTypeSpecimen ? (
             <div className="w-full max-w-6xl mx-auto py-12 px-4">
               <Reveal className="relative flex flex-col items-center gap-12">
-                <div className="book-container w-full max-w-5xl relative min-h-[1200px] md:min-h-[1400px]">
+                <div className="book-container w-full max-w-5xl relative min-h-[1400px] md:min-h-[1800px]">
                   <div className="absolute inset-0 bg-white/5 border border-white/10 shadow-2xl rounded-sm overflow-hidden h-fit">
-                    <div className="w-full h-full relative z-10 flex items-center justify-center bg-white min-h-[1200px] md:min-h-[1400px]">
+                    <div className="w-full h-full relative z-10 flex items-center justify-center bg-white min-h-[1400px] md:min-h-[1800px]">
                       <Document
                         file={PDF_URL}
                         onLoadSuccess={onDocumentLoadSuccess}
@@ -342,7 +344,8 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                         )}>
                           <Page 
                             pageNumber={currentPage} 
-                            width={window.innerWidth > 768 ? 1000 : 400}
+                            width={window.innerWidth > 768 ? 1200 : 400}
+                            scale={1}
                             renderAnnotationLayer={false}
                             renderTextLayer={false}
                           />
