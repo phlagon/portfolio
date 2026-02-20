@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -33,7 +34,7 @@ export function ProjectsSection() {
                               src={projectImage.imageUrl}
                               alt={project.title}
                               fill
-                              className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                              className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
                               data-ai-hint={projectImage.imageHint}
                           />
                         </div>
