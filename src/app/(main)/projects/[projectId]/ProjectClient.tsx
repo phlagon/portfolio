@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -33,6 +32,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import { getTransitOptions, type TransitSearchOutput } from '@/ai/flows/transit-search-flow';
 import { useToast } from '@/hooks/use-toast';
+import { Reveal } from '@/components/ui/reveal';
 
 type ProjectType = (typeof projects)[0];
 
@@ -47,14 +47,12 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   const [transitResults, setTransitResults] = useState<TransitSearchOutput | null>(null);
   const [isSearching, setIsSearching] = useState(false);
 
-  // Reset scroll to top when screen changes
   useEffect(() => {
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollTop = 0;
     }
   }, [rapidoScreen]);
 
-  // Automated transition from auto-find to gps-confirm
   useEffect(() => {
     if (rapidoScreen === 'auto-find') {
       const timer = setTimeout(() => {
@@ -113,26 +111,26 @@ export default function ProjectClient({ project, placeholderImages }: { project:
 
   return (
     <div className="container py-12 md:py-24">
-      <div className="mb-12">
+      <Reveal className="mb-12">
         <Link href="/#projects" className="inline-flex items-center text-xs uppercase tracking-widest font-black text-primary hover:opacity-70 transition-opacity">
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back to Portfolio
         </Link>
-      </div>
+      </Reveal>
 
-      <header className="mb-16 text-center space-y-6">
+      <Reveal className="mb-16 text-center space-y-6">
         <h1 className="text-5xl md:text-[10rem] font-black text-white uppercase tracking-tighter leading-none">{project.title}</h1>
         <div className="flex justify-center flex-wrap gap-3">
           {project.tags.map((tag) => (
             <Badge key={tag} variant="outline" className="text-[10px] uppercase tracking-[0.2em] font-black border-primary/20 text-primary px-4 py-1">{tag}</Badge>
           ))}
         </div>
-      </header>
+      </Reveal>
       
       <div className="flex flex-col gap-24 items-center">
         <div className="w-full">
           {isRapido ? (
-            <div className="flex flex-col items-center gap-12">
+            <Reveal className="flex flex-col items-center gap-12">
               <div className="relative mx-auto border-[#0a0a0a] bg-[#f8f9fa] border-[12px] rounded-[3.5rem] h-[720px] w-[360px] shadow-[0_60px_120px_-30px_rgba(0,0,0,1)] overflow-hidden">
                   <div className="w-[120px] h-[34px] bg-black top-4 rounded-[1.2rem] left-1/2 -translate-x-1/2 absolute z-[100] flex items-center justify-center">
                     <div className="w-2 h-2 rounded-full bg-white/10 ml-auto mr-4" />
@@ -386,14 +384,11 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                       )}
                   </div>
               </div>
-            </div>
+            </Reveal>
           ) : isLosmo ? (
-            <div className="relative mx-auto w-full max-w-5xl group perspective-3000">
-               {/* iMac Top Frame */}
+            <Reveal className="relative mx-auto w-full max-w-5xl group perspective-3000">
                <div className="relative bg-[#f5f5f7] p-3 md:p-5 rounded-t-[2.5rem] shadow-2xl border-x-[1px] border-t-[1px] border-white/20">
-                  {/* Black Screen Bezel */}
                   <div className="bg-[#0a0a0a] p-2 md:p-3 rounded-[1.5rem] overflow-hidden shadow-inner">
-                      {/* Actual Screen Content */}
                       <div className="bg-white aspect-video overflow-y-auto scrollbar-hide rounded-lg shadow-2xl">
                           <div className="flex flex-col">
                               {projectImages.map((image, idx) => (
@@ -416,21 +411,19 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                   </div>
                </div>
                
-               {/* Aluminum Bottom Chin */}
                <div className="h-16 md:h-20 bg-gradient-to-b from-[#e2e2e2] to-[#c1c1c1] rounded-b-[2.5rem] relative flex items-center justify-center shadow-xl border-x-[1px] border-b-[2px] border-gray-400/30">
                   <div className="w-8 h-8 md:w-10 md:h-10 opacity-20 bg-black/20 rounded-full flex items-center justify-center">
                     <div className="w-3 h-3 md:w-4 md:h-4 bg-black/40 rounded-full" />
                   </div>
                </div>
 
-               {/* iMac Stand */}
                <div className="mx-auto w-40 h-24 md:w-56 md:h-32 bg-gradient-to-b from-[#d1d1d1] to-[#b1b1b1] rounded-b-2xl relative -mt-1 z-[-1] shadow-2xl transform-gpu origin-top">
                   <div className="absolute inset-x-0 top-0 h-4 bg-black/10" />
                   <div className="absolute bottom-0 inset-x-0 h-[2px] bg-black/5" />
                </div>
-            </div>
+            </Reveal>
           ) : (
-            <div className="p-1 bg-white/5 border border-white/10 shadow-2xl w-full max-w-6xl mx-auto">
+            <Reveal className="p-1 bg-white/5 border border-white/10 shadow-2xl w-full max-w-6xl mx-auto">
               <Carousel className="w-full group">
                 <CarouselContent>
                   {projectImages.map((image, index) => (
@@ -454,11 +447,11 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                 <CarouselPrevious className="left-6 bg-black/80 border-white/10" />
                 <CarouselNext className="right-6 bg-black/80 border-white/10" />
               </Carousel>
-            </div>
+            </Reveal>
           )}
         </div>
         
-        <div className="space-y-8 max-w-3xl mx-auto text-center pb-24">
+        <Reveal className="space-y-8 max-w-3xl mx-auto text-center pb-24">
             <h2 className="text-[11px] font-black uppercase tracking-[0.5em] text-primary">Concept Narrative</h2>
             <p className="text-sm text-foreground/50 leading-loose uppercase tracking-[0.2em] px-12">
               {project.longDescription}
@@ -477,7 +470,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                     <span>Premium</span>
                 </div>
             </div>
-        </div>
+        </Reveal>
       </div>
     </div>
   );
