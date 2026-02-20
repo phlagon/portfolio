@@ -82,9 +82,11 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   };
 
   const togglePageFold = (index: number) => {
-    if (foldedPages.includes(index)) {
-      setFoldedPages(prev => prev.filter(i => i !== index));
-    } else {
+    if (foldedPages.length === projectImages.length) {
+      setFoldedPages([]);
+      return;
+    }
+    if (!foldedPages.includes(index)) {
       setFoldedPages(prev => [...prev, index]);
     }
   };
@@ -470,34 +472,25 @@ export default function ProjectClient({ project, placeholderImages }: { project:
             </div>
           ) : isTypeSpecimen ? (
             <div className="w-full max-w-5xl mx-auto py-12">
-               <Reveal className="relative perspective-3000 aspect-[4/3] w-full">
-                  <div className="absolute inset-0 bg-white/5 border border-white/10 flex items-center justify-center">
-                    <div className="text-center space-y-4">
-                      <BookOpen className="h-12 w-12 text-primary mx-auto opacity-20" />
-                      <p className="text-[10px] font-black uppercase tracking-[0.4em] opacity-40">End of Specimen</p>
-                      <button 
-                        onClick={() => setFoldedPages([])}
-                        className="text-xs font-black uppercase text-primary tracking-widest hover:underline"
-                      >
-                        Reset Book
-                      </button>
-                    </div>
-                  </div>
-
+               <Reveal className="relative perspective-3000 aspect-[4/3] w-full" onClick={() => foldedPages.length === projectImages.length && setFoldedPages([])}>
                   {projectImages.map((image, index) => {
                     const isFolded = foldedPages.includes(index);
-                    const isTop = index === (projectImages.length - 1 - foldedPages.length);
+                    const isTop = index === foldedPages.length;
                     
                     return (
                       <div 
                         key={index}
                         className={cn(
                           "absolute inset-0 page-base bg-white shadow-2xl overflow-hidden cursor-none",
-                          isFolded && "page-folding",
-                          !isFolded && "page-active"
+                          isFolded ? "page-turned-static" : "z-20",
+                          // Use a temporary animation class when a page is turned
+                          index === foldedPages[foldedPages.length - 1] && "page-turning"
                         )}
                         style={{ zIndex: projectImages.length - index }}
-                        onClick={() => togglePageFold(index)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (!isFolded) togglePageFold(index);
+                        }}
                       >
                         <Image
                           src={image.imageUrl}
@@ -506,16 +499,30 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                           className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
                           unoptimized
                         />
-                        <div className="fold-shadow" />
+                        <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity pointer-events-none" />
                         
                         {isTop && !isFolded && (
-                          <div className="absolute bottom-8 right-8 bg-black/80 text-white px-4 py-2 text-[10px] font-black uppercase tracking-widest flex items-center gap-3">
-                            Click to turn page <ArrowLeft className="h-3 w-3 rotate-180" />
+                          <div className="absolute bottom-8 right-8 bg-black/80 text-white px-4 py-2 text-[10px] font-black uppercase tracking-widest flex items-center gap-3 animate-pulse">
+                            Turn Page <ArrowLeft className="h-3 w-3 rotate-180" />
                           </div>
                         )}
                       </div>
                     );
-                  }).reverse()}
+                  })}
+
+                  {foldedPages.length === projectImages.length && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/5 animate-in fade-in duration-700 z-[100]">
+                       <button 
+                         onClick={() => setFoldedPages([])}
+                         className="flex flex-col items-center gap-6 group"
+                       >
+                         <div className="h-20 w-20 rounded-full border border-primary/20 flex items-center justify-center group-hover:scale-110 group-hover:bg-primary group-hover:border-primary transition-all duration-500">
+                            <RotateCcw className="h-8 w-8 text-primary group-hover:text-black transition-colors" />
+                         </div>
+                         <span className="text-[11px] font-black uppercase tracking-[0.5em] text-primary">Restart Specimen</span>
+                       </button>
+                    </div>
+                  )}
                </Reveal>
             </div>
           ) : (
