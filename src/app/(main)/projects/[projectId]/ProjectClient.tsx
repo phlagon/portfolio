@@ -21,8 +21,9 @@ import {
   Train,
   Bus,
   Car,
-  Search,
-  Loader2
+  Loader2,
+  Clock,
+  ArrowRight
 } from 'lucide-react';
 
 import type { ImagePlaceholder } from '@/lib/placeholder-images';
@@ -36,7 +37,6 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { getTransitOptions, type TransitSearchOutput } from '@/ai/flows/transit-search-flow';
 
@@ -78,7 +78,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
 
   const getRapidoImage = () => {
     if (rapidoScreen === 'flight') return placeholderImages.find(img => img.id === 'rapido-flight')?.imageUrl;
-    if (rapidoScreen === 'travel') return "https://raw.githubusercontent.com/phlagon/purr-folio/d65df9b43e62721b4bff28ad3c0c65f1b90e3396/travel%202.jpg";
+    if (rapidoScreen === 'travel' || rapidoScreen === 'ride') return placeholderImages.find(img => img.id === (rapidoScreen === 'travel' ? 'rapido-travel' : 'rapido-home'))?.imageUrl;
     return placeholderImages.find(img => img.id === 'rapido-home')?.imageUrl;
   };
 
@@ -96,7 +96,12 @@ export default function ProjectClient({ project, placeholderImages }: { project:
     setTransitResults(null);
     try {
       const results = await getTransitOptions({ pickup: pickupLocation, drop: dropLocation });
-      setTransitResults(results);
+      // Sort results by Train, then Flight, then Bus as requested
+      const order = { 'Train': 1, 'Flight': 2, 'Bus': 3, 'Taxi': 4 };
+      const sortedOptions = [...results.options].sort((a, b) => 
+        (order[a.type] || 99) - (order[b.type] || 99)
+      );
+      setTransitResults({ options: sortedOptions });
     } catch (error) {
       console.error("Failed to fetch transit options", error);
     } finally {
@@ -150,12 +155,12 @@ export default function ProjectClient({ project, placeholderImages }: { project:
           {isRapido ? (
             <div className="flex flex-col items-center gap-12">
               <div className="relative mx-auto border-[#0a0a0a] bg-[#0a0a0a] border-[12px] rounded-[3.5rem] h-[720px] w-[360px] shadow-[0_60px_120px_-30px_rgba(0,0,0,1)] overflow-hidden">
-                  <div className="w-[120px] h-[34px] bg-black top-4 rounded-[1.2rem] left-1/2 -translate-x-1/2 absolute z-[70] flex items-center justify-center">
+                  <div className="w-[120px] h-[34px] bg-black top-4 rounded-[1.2rem] left-1/2 -translate-x-1/2 absolute z-[100] flex items-center justify-center">
                     <div className="w-2 h-2 rounded-full bg-white/10 ml-auto mr-4" />
                   </div>
                   
                   <div className="w-full h-full bg-white relative flex flex-col">
-                      <div className="flex-1 overflow-y-auto scrollbar-hide pb-[84px] relative">
+                      <div className="flex-1 overflow-y-auto scrollbar-hide pb-[84px] relative bg-white">
                         {!transitResults && !isSearching ? (
                           <div className="relative w-full">
                             <Image
@@ -186,15 +191,12 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                       autoComplete="off"
                                       placeholder=""
                                   />
+                                  {/* Clickable Search area in the image */}
+                                  <button 
+                                    onClick={handleSearchTransit}
+                                    className="absolute top-[15%] left-[15%] w-[70%] h-[6%] bg-transparent cursor-pointer z-[90] flex items-center justify-center"
+                                  />
                               </>
-                            )}
-
-                            {pickupLocation && dropLocation && (rapidoScreen === 'ride' || rapidoScreen === 'travel') && (
-                              <button 
-                                onClick={handleSearchTransit}
-                                className="absolute top-[15%] left-[15%] w-[70%] h-[6%] bg-transparent cursor-pointer z-[90] flex items-center justify-center"
-                                title="Click to Search"
-                              />
                             )}
 
                             {rapidoScreen === 'flight' && (
@@ -222,12 +224,11 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               <button 
                                 onClick={() => setRapidoScreen('flight')}
                                 className="absolute top-[18%] left-0 w-[40%] h-[15%] bg-transparent cursor-pointer z-[40]"
-                                title="Go to Flights"
                               />
                             )}
                           </div>
                         ) : isSearching ? (
-                          <div className="h-full flex flex-col items-center justify-center p-12 text-center space-y-6 animate-in fade-in zoom-in duration-500">
+                          <div className="h-full flex flex-col items-center justify-center p-12 text-center space-y-6 animate-in fade-in zoom-in duration-500 bg-white">
                              <div className="relative">
                                <Loader2 className="h-16 w-16 text-[#F9D915] animate-spin" />
                                <div className="absolute inset-0 flex items-center justify-center">
@@ -240,18 +241,22 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                              </div>
                           </div>
                         ) : (
-                          <div className="h-full bg-[#f8f9fa] flex flex-col animate-in slide-in-from-bottom duration-500">
-                            <div className="bg-[#F9D915] p-8 pt-12 space-y-4 shadow-lg">
-                               <button onClick={resetTransit} className="p-2 -ml-2 hover:bg-black/5 rounded-full transition-colors">
-                                  <ChevronLeft className="h-6 w-6 text-black" />
+                          <div className="h-full bg-white flex flex-col animate-in slide-in-from-bottom duration-500">
+                            {/* Header Section */}
+                            <div className="bg-[#F9D915] p-6 pt-12 space-y-4">
+                               <button onClick={resetTransit} className="p-1 -ml-1 hover:bg-black/5 rounded-full transition-colors">
+                                  <ChevronLeft className="h-5 w-5 text-black" />
                                </button>
                                <div className="space-y-1">
-                                 <h2 className="text-2xl font-black text-black leading-tight uppercase tracking-tighter">Transit Results</h2>
-                                 <p className="text-[10px] font-bold text-black/60 uppercase tracking-widest">{pickupLocation} to {dropLocation}</p>
+                                 <h2 className="text-2xl font-black text-black leading-tight uppercase tracking-tighter">Travel Details</h2>
+                                 <p className="text-[9px] font-bold text-black/60 uppercase tracking-widest flex items-center gap-2">
+                                   {pickupLocation} <ArrowRight className="h-2 w-2" /> {dropLocation}
+                                 </p>
                                </div>
                             </div>
                             
-                            <div className="flex-1 p-4 space-y-3">
+                            {/* Detailed Results Section */}
+                            <div className="flex-1 p-5 space-y-5 overflow-y-auto scrollbar-hide">
                               {transitResults?.options.map((option, idx) => {
                                 let Icon = Navigation;
                                 if (option.type === 'Train') Icon = Train;
@@ -260,18 +265,35 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                 if (option.type === 'Taxi') Icon = Car;
 
                                 return (
-                                  <div key={idx} className="bg-white p-4 rounded-2xl shadow-sm border border-black/5 flex items-center gap-4 hover:border-[#F9D915] transition-all cursor-pointer group">
-                                    <div className="h-12 w-12 rounded-xl bg-[#F9D915]/10 flex items-center justify-center group-hover:bg-[#F9D915] transition-colors">
-                                      <Icon className="h-6 w-6 text-black" />
-                                    </div>
-                                    <div className="flex-1 min-w-0">
-                                      <div className="flex items-center justify-between mb-0.5">
-                                        <p className="text-xs font-black text-black truncate">{option.provider}</p>
-                                        <p className="text-xs font-black text-black">{option.price}</p>
+                                  <div key={idx} className="bg-white border-b border-black/5 pb-5 last:border-0">
+                                    <div className="flex items-center justify-between mb-4">
+                                      <div className="flex items-center gap-3">
+                                        <div className="h-8 w-8 rounded-lg bg-[#F9D915] flex items-center justify-center shadow-sm">
+                                          <Icon className="h-4 w-4 text-black" />
+                                        </div>
+                                        <div className="space-y-0.5">
+                                          <p className="text-[11px] font-black text-black uppercase tracking-tight">{option.provider}</p>
+                                          <p className="text-[9px] font-bold text-black/40 uppercase">{option.type} • {option.duration}</p>
+                                        </div>
                                       </div>
-                                      <div className="flex items-center justify-between">
-                                        <p className="text-[10px] font-bold text-black/40">{option.departureTime} — {option.arrivalTime}</p>
-                                        <p className="text-[10px] font-bold text-[#F9D915] uppercase">{option.status || 'On Time'}</p>
+                                      <div className="text-right">
+                                        <p className="text-xs font-black text-black">{option.price}</p>
+                                        <p className="text-[8px] font-black text-[#F9D915] uppercase tracking-widest">{option.status || 'ON TIME'}</p>
+                                      </div>
+                                    </div>
+                                    
+                                    <div className="bg-[#f8f9fa] p-4 rounded-xl flex items-center justify-between">
+                                      <div className="space-y-1">
+                                        <p className="text-[10px] font-black text-black">{option.departureTime}</p>
+                                        <p className="text-[8px] font-bold text-black/40 uppercase">Departure</p>
+                                      </div>
+                                      <div className="flex-1 mx-4 relative flex items-center justify-center">
+                                         <div className="w-full h-[1px] bg-black/10 border-dashed border-t" />
+                                         <Clock className="h-3 w-3 text-black/10 absolute bg-[#f8f9fa] px-0.5" />
+                                      </div>
+                                      <div className="text-right space-y-1">
+                                        <p className="text-[10px] font-black text-black">{option.arrivalTime}</p>
+                                        <p className="text-[8px] font-bold text-black/40 uppercase">Arrival</p>
                                       </div>
                                     </div>
                                   </div>
@@ -282,16 +304,17 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             <div className="p-6">
                                <button 
                                  onClick={resetTransit}
-                                 className="w-full py-4 bg-black text-[#F9D915] text-[10px] font-black uppercase tracking-[0.3em] rounded-2xl shadow-xl hover:scale-[0.98] transition-transform"
+                                 className="w-full py-4 bg-black text-[#F9D915] text-[10px] font-black uppercase tracking-[0.3em] rounded-xl shadow-xl hover:scale-[0.98] transition-transform"
                                >
-                                 New Search
+                                 RE-SEARCH ROUTE
                                </button>
                             </div>
                           </div>
                         )}
                       </div>
 
-                      <div className="absolute bottom-0 left-0 w-full h-[84px] z-[60] bg-white border-t border-black/5 flex items-center justify-around px-2 pb-4 shadow-[0_-10px_30px_rgba(0,0,0,0.05)]">
+                      {/* Navigation Bar */}
+                      <div className="absolute bottom-0 left-0 w-full h-[84px] z-[60] bg-white border-t border-black/5 flex items-center justify-around px-2 pb-4">
                         {navTabs.map((tab) => {
                           const Icon = tab.icon;
                           const isActive = rapidoScreen === tab.id || (tab.id === 'travel' && rapidoScreen === 'flight');
@@ -327,16 +350,16 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             setRapidoScreen('travel');
                             setTransitResults(null);
                           }}
-                          className="absolute bottom-24 right-6 w-12 h-12 rounded-full bg-[#F9D915] text-black flex items-center justify-center z-[80] shadow-2xl hover:scale-110 transition-transform"
+                          className="absolute bottom-24 right-6 w-10 h-10 rounded-full bg-[#F9D915] text-black flex items-center justify-center z-[80] shadow-2xl hover:scale-110 transition-transform"
                         >
-                          <RotateCcw className="h-5 w-5" />
+                          <RotateCcw className="h-4 w-4" />
                         </button>
                       )}
                   </div>
               </div>
               <div className="flex flex-col items-center gap-3">
                 <p className="text-[10px] text-primary font-black uppercase tracking-[0.4em]">Interactive Mobile Prototype</p>
-                <p className="text-[10px] text-foreground/30 uppercase tracking-[0.2em]">Transit Search Integrated via AI API</p>
+                <p className="text-[10px] text-foreground/30 uppercase tracking-[0.2em]">Transit Search Integrated via Genkit AI</p>
               </div>
             </div>
           ) : isTypeSpecimen ? (
