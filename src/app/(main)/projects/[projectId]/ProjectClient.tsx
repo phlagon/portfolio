@@ -402,21 +402,24 @@ export default function ProjectClient({ project, placeholderImages }: { project:
               </div>
             </Reveal>
           ) : isLosmo ? (
-            <Reveal className="relative mx-auto w-full max-w-5xl group perspective-3000">
-               <div className="relative bg-[#f5f5f7] p-3 md:p-5 rounded-t-[2.5rem] shadow-2xl border-x-[1px] border-t-[1px] border-white/20">
-                  <div className="bg-[#0a0a0a] p-2 md:p-3 rounded-[1.5rem] overflow-hidden shadow-inner relative group/monitor">
-                      <div className="bg-white aspect-video rounded-lg shadow-2xl overflow-hidden relative">
-                          <Carousel className="w-full h-full">
+            <Reveal className="relative mx-auto w-full max-w-5xl group">
+               {/* iMac Monitor Mockup */}
+               <div className="relative bg-[#f5f5f7] p-2 md:p-4 rounded-t-[2rem] shadow-2xl border-x border-t border-white/10">
+                  <div className="bg-[#0a0a0a] p-1.5 md:p-2.5 rounded-[1.2rem] overflow-hidden shadow-inner relative">
+                      {/* Screen Viewport */}
+                      <div className="bg-white aspect-video rounded-sm overflow-hidden relative">
+                          <Carousel className="w-full h-full" opts={{ loop: true }}>
                             <CarouselContent className="-ml-0 h-full">
                               {projectImages.map((image, idx) => (
                                 <CarouselItem key={idx} className="pl-0 h-full relative">
-                                  <div className="absolute inset-0 h-full overflow-y-auto scrollbar-hide z-10 bg-white">
+                                  {/* Vertical Scrolling Container */}
+                                  <div className="absolute inset-0 h-full overflow-y-auto scrollbar-hide bg-white">
                                     {image && (
-                                      <div className="relative w-full h-fit min-h-full">
+                                      <div className="w-full">
                                         <Image 
                                           src={image.imageUrl} 
-                                          alt={`Losmo Section ${idx + 1}`} 
-                                          width={1920} 
+                                          alt={`Losmo Screen ${idx + 1}`} 
+                                          width={1200} 
                                           height={2000} 
                                           className="w-full h-auto block" 
                                           priority={idx === 0}
@@ -428,24 +431,21 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                 </CarouselItem>
                               ))}
                             </CarouselContent>
-                            <CarouselPrevious className="left-4 opacity-0 group-hover/monitor:opacity-100 transition-opacity bg-black/50 text-white border-none hover:bg-black/70 flex items-center justify-center z-50">
-                              <ChevronLeft className="h-8 w-8" />
-                            </CarouselPrevious>
-                            <CarouselNext className="right-4 opacity-0 group-hover/monitor:opacity-100 transition-opacity bg-black/50 text-white border-none hover:bg-black/70 flex items-center justify-center z-50">
-                              <ChevronRight className="h-8 w-8" />
-                            </CarouselNext>
+                            {/* Navigation Buttons positioned over the monitor screen */}
+                            <CarouselPrevious className="left-4 opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 text-white border-none hover:bg-black/70 z-50 h-10 w-10" />
+                            <CarouselNext className="right-4 opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 text-white border-none hover:bg-black/70 z-50 h-10 w-10" />
                           </Carousel>
                       </div>
                   </div>
                </div>
-               <div className="h-16 md:h-20 bg-gradient-to-b from-[#e2e2e2] to-[#c1c1c1] rounded-b-[2.5rem] relative flex items-center justify-center shadow-xl border-x-[1px] border-b-[2px] border-gray-400/30">
-                  <div className="w-8 h-8 md:w-10 md:h-10 opacity-20 bg-black/20 rounded-full flex items-center justify-center">
-                    <div className="w-3 h-3 md:w-4 md:h-4 bg-black/40 rounded-full" />
+               {/* iMac Stand */}
+               <div className="h-12 md:h-16 bg-gradient-to-b from-[#e2e2e2] to-[#c1c1c1] rounded-b-[2rem] relative flex items-center justify-center shadow-xl">
+                  <div className="w-8 h-8 opacity-20 bg-black/20 rounded-full flex items-center justify-center">
+                    <div className="w-3 h-3 bg-black/40 rounded-full" />
                   </div>
                </div>
-               <div className="mx-auto w-40 h-24 md:w-56 md:h-32 bg-gradient-to-b from-[#d1d1d1] to-[#b1b1b1] rounded-b-2xl relative -mt-1 z-[-1] shadow-2xl transform-gpu origin-top">
-                  <div className="absolute inset-x-0 top-0 h-4 bg-black/10" />
-                  <div className="absolute bottom-0 inset-x-0 h-[2px] bg-black/5" />
+               <div className="mx-auto w-32 h-20 md:w-48 md:h-28 bg-[#d1d1d1] rounded-b-2xl relative -mt-1 z-[-1] shadow-2xl">
+                  <div className="absolute inset-x-0 top-0 h-2 bg-black/10" />
                </div>
             </Reveal>
           ) : isPackageDesign ? (
