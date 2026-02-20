@@ -37,58 +37,22 @@
       "imageHint": "typography design"
     },
     {
-      "id": "losmo-woody-2",
-      "description": "Losmo Woody Detail 2",
+      "id": "losmo-homepage",
+      "description": "Losmo Homepage Design",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/7d846666761113685e8352a00d38999dfced7458/homepage%201.jpg",
+      "imageHint": "perfume website"
+    },
+    {
+      "id": "losmo-woody",
+      "description": "Losmo Woody Detail",
       "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/ffa0ff4b417ecf6b41df4d523a9589af72ddb663/woody%202.jpg",
       "imageHint": "perfume showcase"
     },
     {
-      "id": "losmo-1",
-      "description": "Losmo Brand Identity Section 1",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/3b5ade78949bc7e2bb844b4f36532c942e7245dd/losmo-1.png",
-      "imageHint": "luxury branding"
-    },
-    {
-      "id": "losmo-2",
-      "description": "Losmo Brand Identity Section 2",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/3b5ade78949bc7e2bb844b4f36532c942e7245dd/losmo-2.png",
-      "imageHint": "luxury perfume"
-    },
-    {
-      "id": "losmo-3",
-      "description": "Losmo Brand Identity Section 3",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/3b5ade78949bc7e2bb844b4f36532c942e7245dd/losmo-3.png",
-      "imageHint": "perfume logo"
-    },
-    {
-      "id": "losmo-4",
-      "description": "Losmo Brand Identity Section 4",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/3b5ade78949bc7e2bb844b4f36532c942e7245dd/losmo-4.png",
-      "imageHint": "perfume bottle"
-    },
-    {
-      "id": "losmo-5",
-      "description": "Losmo Brand Identity Section 5",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/3b5ade78949bc7e2bb844b4f36532c942e7245dd/losmo-5.png",
-      "imageHint": "luxury layout"
-    },
-    {
-      "id": "losmo-6",
-      "description": "Losmo Brand Identity Section 6",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/3b5ade78949bc7e2bb844b4f36532c942e7245dd/losmo-6.png",
-      "imageHint": "branding mockup"
-    },
-    {
-      "id": "losmo-7",
-      "description": "Losmo Brand Identity Section 7",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/3b5ade78949bc7e2bb844b4f36532c942e7245dd/losmo-7.png",
-      "imageHint": "luxury typography"
-    },
-    {
-      "id": "losmo-8",
-      "description": "Losmo Brand Identity Section 8",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/3b5ade78949bc7e2bb844b4f36532c942e7245dd/losmo-8.png",
-      "imageHint": "perfume identity"
+      "id": "losmo-floral",
+      "description": "Losmo Floral Detail",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/7d846666761113685e8352a00d38999dfced7458/floral%203.jpg",
+      "imageHint": "perfume branding"
     },
     {
       "id": "rapido-home",

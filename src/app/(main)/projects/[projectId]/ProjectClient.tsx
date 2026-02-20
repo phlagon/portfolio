@@ -118,10 +118,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
 
   const isStaticScreen = ['flight', 'your-trip', 'public-transport', 'stops', 'confirmation', 'auto-find', 'gps-confirm', 'weather'].includes(rapidoScreen);
 
-  // For LOSMO project, we ensure the homepage-splash is the first image
-  const losmoFirstImage = placeholderImages.find(img => img.id === 'homepage-splash');
-  const losmoImages = isLosmo && losmoFirstImage ? [losmoFirstImage, ...projectImages] : projectImages;
-
   return (
     <div className="container py-12 md:py-24">
       <Reveal className="mb-12">
@@ -411,7 +407,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                       <div className="bg-white aspect-video rounded-lg shadow-2xl overflow-hidden relative">
                           <Carousel className="w-full h-full">
                             <CarouselContent className="-ml-0 h-full">
-                              {losmoImages.map((image, idx) => (
+                              {projectImages.map((image, idx) => (
                                 <CarouselItem key={idx} className="pl-0 h-full relative">
                                   <div className="absolute inset-0 h-full overflow-y-auto scrollbar-hide">
                                     {image && (
@@ -431,10 +427,10 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                 </CarouselItem>
                               ))}
                             </CarouselContent>
-                            <CarouselPrevious className="left-4 opacity-0 group-hover/monitor:opacity-100 transition-opacity bg-black/50 text-white border-none hover:bg-black/70 flex items-center justify-center">
+                            <CarouselPrevious className="left-4 opacity-0 group-hover/monitor:opacity-100 transition-opacity bg-black/50 text-white border-none hover:bg-black/70 flex items-center justify-center z-50">
                               <ChevronLeft className="h-8 w-8" />
                             </CarouselPrevious>
-                            <CarouselNext className="right-4 opacity-0 group-hover/monitor:opacity-100 transition-opacity bg-black/50 text-white border-none hover:bg-black/70 flex items-center justify-center">
+                            <CarouselNext className="right-4 opacity-0 group-hover/monitor:opacity-100 transition-opacity bg-black/50 text-white border-none hover:bg-black/70 flex items-center justify-center z-50">
                               <ChevronRight className="h-8 w-8" />
                             </CarouselNext>
                           </Carousel>
