@@ -17,7 +17,6 @@ import {
   Bus,
   Loader2,
   RotateCcw,
-  PlayCircle,
   Monitor
 } from 'lucide-react';
 
@@ -504,7 +503,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                 </div>
               </div>
             </Reveal>
-          ) : (isLogoProject || isPackageRedesign) ? (
+          ) : (isLogoProject || isPackageRedesign || isPackageDesign) ? (
             <div className="flex flex-col gap-40 py-24 max-w-6xl mx-auto px-4">
               {projectImages.map((image, index) => {
                 const alignments = [
@@ -554,25 +553,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                   </Reveal>
                 );
               })}
-            </div>
-          ) : isPackageDesign ? (
-            <div className="w-full max-w-6xl mx-auto space-y-24">
-               {projectImages.map((image, index) => (
-                 <Reveal key={index} className="w-full">
-                    <div className="relative w-full border border-white/5 shadow-2xl bg-white/5 overflow-hidden">
-                      {image && (
-                        <Image
-                          src={image.imageUrl}
-                          alt={`${project.title} design ${index + 1}`}
-                          width={1400}
-                          height={2000}
-                          className="w-full h-auto block grayscale hover:grayscale-0 transition-all duration-700"
-                          unoptimized
-                        />
-                      )}
-                    </div>
-                 </Reveal>
-               ))}
             </div>
           ) : isTypeSpecimen ? (
             <div className="w-full max-w-5xl mx-auto py-12">

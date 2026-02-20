@@ -27,7 +27,7 @@
     {
       "id": "project-5-thumb",
       "description": "Crafting memorable unboxing experiences with stunning package designs and redesigns that capture brand essence.",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/012c8876302ae167d1412807b3f4871f26a3510b/box.png",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/36d578310f1e623afee304a6e28efc08aae5b14a/bag.png",
       "imageHint": "package design"
     },
     {
@@ -269,6 +269,42 @@
       "description": "Packaging Redesign Video",
       "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/012c8876302ae167d1412807b3f4871f26a3510b/medmix%20packaging.mp4",
       "imageHint": "packaging video"
+    },
+    {
+      "id": "pkg-design-bag",
+      "description": "Packaging Design - Bag",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/36d578310f1e623afee304a6e28efc08aae5b14a/bag.png",
+      "imageHint": "shopping bag"
+    },
+    {
+      "id": "pkg-design-box-floral",
+      "description": "Packaging Design - Box Floral",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/36d578310f1e623afee304a6e28efc08aae5b14a/box%20floral.jpg",
+      "imageHint": "floral box"
+    },
+    {
+      "id": "pkg-design-box-main",
+      "description": "Packaging Design - Box Main",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/36d578310f1e623afee304a6e28efc08aae5b14a/box%401.25x.png",
+      "imageHint": "package layout"
+    },
+    {
+      "id": "pkg-design-candle",
+      "description": "Packaging Design - Candle Box",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/36d578310f1e623afee304a6e28efc08aae5b14a/candle%20box.jpg",
+      "imageHint": "candle packaging"
+    },
+    {
+      "id": "pkg-design-gift-1",
+      "description": "Packaging Design - Gift 1",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/36d578310f1e623afee304a6e28efc08aae5b14a/gift%201.jpg",
+      "imageHint": "gift box"
+    },
+    {
+      "id": "pkg-design-gift-2",
+      "description": "Packaging Design - Gift 2",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/36d578310f1e623afee304a6e28efc08aae5b14a/gft.png",
+      "imageHint": "luxury gift"
     }
   ]
 }
