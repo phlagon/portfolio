@@ -37,7 +37,7 @@ import { useToast } from '@/hooks/use-toast';
 type ProjectType = (typeof projects)[0];
 
 export default function ProjectClient({ project, placeholderImages }: { project: ProjectType, placeholderImages: ImagePlaceholder[] }) {
-  const [rapidoScreen, setRapidoScreen] = useState<'ride' | 'travel' | 'offline' | 'live' | 'profile' | 'flight' | 'your-trip' | 'public-transport'>('ride');
+  const [rapidoScreen, setRapidoScreen] = useState<'ride' | 'travel' | 'offline' | 'live' | 'profile' | 'flight' | 'your-trip' | 'public-transport' | 'stops'>('ride');
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
   
@@ -82,6 +82,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
     if (rapidoScreen === 'travel') return placeholderImages.find(img => img.id === 'rapido-travel')?.imageUrl;
     if (rapidoScreen === 'your-trip') return placeholderImages.find(img => img.id === 'rapido-your-trip')?.imageUrl;
     if (rapidoScreen === 'public-transport') return placeholderImages.find(img => img.id === 'rapido-public-transport')?.imageUrl;
+    if (rapidoScreen === 'stops') return placeholderImages.find(img => img.id === 'rapido-stops')?.imageUrl;
     return placeholderImages.find(img => img.id === 'rapido-home')?.imageUrl;
   };
 
@@ -93,7 +94,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
     { id: 'profile', label: 'Profile', icon: User },
   ];
 
-  const isStaticScreen = ['flight', 'your-trip', 'public-transport'].includes(rapidoScreen);
+  const isStaticScreen = ['flight', 'your-trip', 'public-transport', 'stops'].includes(rapidoScreen);
 
   return (
     <div className="container py-12 md:py-24">
@@ -169,7 +170,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             {rapidoScreen === 'travel' && (
                               <button 
                                 onClick={() => setRapidoScreen('flight')}
-                                className="absolute top-[45.2%] left-[5%] w-[30%] h-[10%] bg-transparent cursor-pointer z-[95]"
+                                className="absolute top-[45.2%] left-[38%] w-[25%] h-[10%] bg-transparent cursor-pointer z-[95]"
                                 title="Flight Booking"
                               />
                             )}
@@ -192,12 +193,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
 
                             {rapidoScreen === 'public-transport' && (
                               <button 
-                                onClick={() => {
-                                  toast({
-                                    title: "Bus Stop Details",
-                                    description: "Viewing nearby transportation hubs."
-                                  });
-                                }}
+                                onClick={() => setRapidoScreen('stops')}
                                 className="absolute top-[28%] left-[7.5%] w-[85%] h-[8%] bg-transparent cursor-pointer z-[95]"
                                 title="Nearby Bus Stop"
                               />
@@ -309,7 +305,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                           const Icon = tab.icon;
                           const isActive = tab.id === 'ride' ? (rapidoScreen === 'ride' || rapidoScreen === 'offline' || rapidoScreen === 'profile') : 
                                          tab.id === 'travel' ? (rapidoScreen === 'travel' || rapidoScreen === 'flight') :
-                                         tab.id === 'live' ? (rapidoScreen === 'live' || rapidoScreen === 'your-trip' || rapidoScreen === 'public-transport') :
+                                         tab.id === 'live' ? (rapidoScreen === 'live' || rapidoScreen === 'your-trip' || rapidoScreen === 'public-transport' || rapidoScreen === 'stops') :
                                          rapidoScreen === tab.id;
                           
                           return (

@@ -79,6 +79,12 @@
       "imageHint": "app transport"
     },
     {
+      "id": "rapido-stops",
+      "description": "Rapido Bus Stops Details",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/be497e41a0e85cecc32a0865496460c7e121e657/stops.jpg",
+      "imageHint": "bus stops"
+    },
+    {
       "id": "rapido-nav",
       "description": "Rapido Navigation Bar",
       "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/4579872bb707e2449e7cea76118bc4ec33c4c950/nav%20%20home.jpg",
