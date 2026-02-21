@@ -134,13 +134,13 @@ export default function Home() {
               
               <div className="space-y-8 max-w-xl">
                 <div className="flex flex-wrap gap-6 pt-6">
-                  <Button size="lg" onClick={scrollToContact} className="rounded-none px-12 h-16 text-xs uppercase tracking-[0.3em] font-black bg-white text-black hover:bg-primary hover:text-white transition-all duration-500 shadow-2xl">
+                  <Button size="lg" onClick={scrollToContact} className="rounded-none px-12 h-16 text-xs uppercase tracking-[0.3em] font-black bg-white text-black hover:bg-primary hover:text-white transition-all duration-[500ms] shadow-2xl">
                     Get in Touch
                   </Button>
                   <Button 
                     size="lg" 
                     variant="outline" 
-                    className="rounded-none px-12 h-16 text-xs uppercase tracking-[0.3em] font-black border-white/10 text-white hover:border-primary hover:text-primary transition-all duration-500"
+                    className="rounded-none px-12 h-16 text-xs uppercase tracking-[0.3em] font-black border-white/10 text-white hover:border-primary hover:text-primary transition-all duration-[500ms]"
                     onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
                   >
                     View Work
@@ -231,7 +231,7 @@ export default function Home() {
                       </FormItem>
                     )}
                   />
-                  <Button type="submit" size="lg" className="w-full rounded-none h-20 bg-white text-black font-black uppercase tracking-[0.4em] text-xs hover:bg-primary hover:text-white transition-all duration-500 mt-6">
+                  <Button type="submit" size="lg" className="w-full rounded-none h-20 bg-white text-black font-black uppercase tracking-[0.4em] text-xs hover:bg-primary hover:text-white transition-all duration-[500ms] mt-6">
                     Send Inquiry
                   </Button>
                 </form>
