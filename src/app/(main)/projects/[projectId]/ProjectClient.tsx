@@ -307,7 +307,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               <>
                                 <button 
                                   onClick={() => setRapidoScreen('auto-find')}
-                                  className="absolute top-[21%] left-1/2 -translate-x-1/2 w-[60%] h-[5%] bg-transparent cursor-pointer z-[90]"
+                                  className="absolute top-[8%] left-1/2 -translate-x-1/2 w-[60%] h-[5%] bg-transparent cursor-pointer z-[90]"
                                   aria-label="YES - Confirm Offline"
                                 />
                                 <button 
