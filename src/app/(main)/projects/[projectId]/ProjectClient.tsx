@@ -333,7 +333,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             {rapidoScreen === 'your-trip' && (
                               <button 
                                 onClick={() => setRapidoScreen('public-transport')}
-                                className="absolute top-[28%] left-0 w-[50%] h-[10%] bg-transparent cursor-pointer z-[90]"
+                                className="absolute top-[21%] left-0 w-[50%] h-[10%] bg-transparent cursor-pointer z-[90]"
                                 aria-label="Explore Public Transport"
                               />
                             )}
