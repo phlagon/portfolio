@@ -323,11 +323,18 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             )}
 
                             {rapidoScreen === 'live' && (
-                              <button 
-                                onClick={() => setRapidoScreen('your-trip')}
-                                className="absolute top-[12%] left-0 w-[50%] h-[10%] bg-transparent cursor-pointer z-[90]"
-                                aria-label="Your Trip Details"
-                              />
+                              <>
+                                <button 
+                                  onClick={() => setRapidoScreen('your-trip')}
+                                  className="absolute top-[12%] left-0 w-[50%] h-[10%] bg-transparent cursor-pointer z-[90]"
+                                  aria-label="Your Trip Details"
+                                />
+                                <button 
+                                  onClick={() => setRapidoScreen('weather')}
+                                  className="absolute top-[5%] left-0 w-[50%] h-[5%] bg-transparent cursor-pointer z-[90]"
+                                  aria-label="Weather"
+                                />
+                              </>
                             )}
 
                             {rapidoScreen === 'your-trip' && (
