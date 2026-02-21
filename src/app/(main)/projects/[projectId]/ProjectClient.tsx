@@ -293,7 +293,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             {rapidoScreen === 'offline' && (
                               <button 
                                 onClick={() => setRapidoScreen('auto-find')}
-                                className="absolute top-[48%] left-[34%] w-[32%] h-[12%] bg-transparent cursor-pointer z-[90]"
+                                className="absolute top-[48%] left-0 w-[40%] h-[12%] bg-transparent cursor-pointer z-[90]"
                                 aria-label="Auto booking"
                               />
                             )}
