@@ -84,7 +84,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollTop = 0;
     }
-  }, [rapidoScreen, losmoTab]);
+  }, [rapidoScreen, losmoTab, losmoWebIndex]);
 
   const projectImages = (project.imageIds || []).map(id => placeholderImages.find(img => img.id === id)).filter(Boolean) as any[];
   
@@ -304,11 +304,18 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             )}
 
                             {rapidoScreen === 'offline' && (
-                              <button 
-                                onClick={() => setRapidoScreen('auto-find')}
-                                className="absolute top-[75%] left-1/2 -translate-x-1/2 w-[80%] h-[10%] bg-transparent cursor-pointer z-[90]"
-                                aria-label="YES - Confirm Offline"
-                              />
+                              <>
+                                <button 
+                                  onClick={() => setRapidoScreen('auto-find')}
+                                  className="absolute top-[75%] left-1/2 -translate-x-1/2 w-[80%] h-[10%] bg-transparent cursor-pointer z-[90]"
+                                  aria-label="YES - Confirm Offline"
+                                />
+                                <button 
+                                  onClick={() => setRapidoScreen('auto-find')}
+                                  className="absolute top-[35%] left-0 w-[40%] h-[15%] bg-transparent cursor-pointer z-[90]"
+                                  aria-label="Auto"
+                                />
+                              </>
                             )}
 
                             {rapidoScreen === 'gps-confirm' && (
