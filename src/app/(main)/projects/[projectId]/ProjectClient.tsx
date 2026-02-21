@@ -3,7 +3,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import Link from 'next/navigation';
 import dynamic from 'next/dynamic';
 import { 
   ArrowLeft, 
@@ -142,6 +142,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
 
   const getRapidoImage = () => {
     const screens: Record<string, string | undefined> = {
+      ride: 'rapido-home',
       flight: 'rapido-flight',
       offline: 'rapido-offline',
       confirmation: 'rapido-confirmation',
@@ -156,7 +157,8 @@ export default function ProjectClient({ project, placeholderImages }: { project:
       weather: 'rapido-weather',
     };
     const id = screens[rapidoScreen] || 'rapido-home';
-    return placeholderImages.find(img => img.id === id)?.imageUrl;
+    const found = placeholderImages.find(img => img.id === id);
+    return found?.imageUrl;
   };
 
   const navTabs = [
@@ -249,7 +251,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                       <div 
                         ref={scrollContainerRef}
                         className={cn(
-                          "flex-1 relative bg-white pb-[32px]",
+                          "flex-1 relative bg-white pb-0",
                           isStaticScreen ? "overflow-hidden" : "overflow-y-auto scrollbar-hide"
                         )}
                       >
@@ -307,7 +309,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             {rapidoScreen === 'offline' && (
                               <button 
                                 onClick={() => setRapidoScreen('auto-find')}
-                                className="absolute top-[48%] left-0 w-[45%] h-[12%] bg-transparent cursor-pointer z-[90]"
+                                className="absolute top-[48%] left-0 w-[40%] h-[12%] bg-transparent cursor-pointer z-[90]"
                                 aria-label="Auto booking"
                               />
                             )}
@@ -315,7 +317,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             {rapidoScreen === 'gps-confirm' && (
                               <button 
                                 onClick={() => setRapidoScreen('confirmation')}
-                                className="absolute top-[48%] left-0 w-[40%] h-[10%] bg-transparent cursor-pointer z-[90]"
+                                className="absolute top-[35%] left-0 w-[40%] h-[15%] bg-transparent cursor-pointer z-[90]"
                                 aria-label="Confirm GPS"
                               />
                             )}
@@ -327,10 +329,18 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                 aria-label="Your Trip Details"
                               />
                             )}
+
+                            {rapidoScreen === 'your-trip' && (
+                              <button 
+                                onClick={() => setRapidoScreen('public-transport')}
+                                className="absolute top-[40%] left-0 w-[50%] h-[10%] bg-transparent cursor-pointer z-[90]"
+                                aria-label="Explore Public Transport"
+                              />
+                            )}
                         </div>
                       </div>
 
-                      <div className="absolute bottom-0 left-0 w-full h-[64px] z-[60] bg-white border-t border-black/5 flex items-center justify-around px-2 pb-1">
+                      <div className="absolute bottom-0 left-0 w-full h-[64px] z-[60] bg-white border-t border-black/5 flex items-center justify-around px-2 pb-0">
                         {navTabs.map((tab) => {
                           const Icon = tab.icon;
                           const isActive = tab.id === 'ride' ? (rapidoScreen === 'ride' || rapidoScreen === 'profile') : 
