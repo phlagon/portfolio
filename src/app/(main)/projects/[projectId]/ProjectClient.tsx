@@ -396,31 +396,23 @@ export default function ProjectClient({ project, placeholderImages }: { project:
             <Reveal className="w-full max-w-7xl mx-auto px-4">
               <div className="relative w-full">
                   {losmoTab === 'web' ? (
-                    <div className="relative bg-[#0a0a0a] rounded-[2.5rem] p-[1rem] pb-[4rem] shadow-[0_100px_100px_-50px_rgba(0,0,0,0.8)] border-[2px] border-[#333] w-full aspect-[16/10.5] overflow-hidden">
-                      <div className="relative w-full h-full bg-[#111] rounded-[1.5rem] overflow-hidden border border-white/5">
-                        <Carousel className="w-full h-full">
-                          <CarouselContent className="-ml-0 h-full">
-                            {projectImages.map((image, index) => (
-                              <CarouselItem key={index} className="pl-0 h-full">
-                                <div className="w-full h-full overflow-y-auto bg-[#050505]">
-                                     {image && (
-                                       <Image
-                                         src={image.imageUrl}
-                                         alt={`${project.title} design ${index + 1}`}
-                                         width={1400}
-                                         height={3000}
-                                         className="w-full h-auto block grayscale hover:grayscale-0 transition-all duration-700"
-                                         unoptimized
-                                       />
-                                     )}
-                                </div>
-                              </CarouselItem>
-                            ))}
-                          </CarouselContent>
-                          <CarouselPrevious className="left-4 h-10 w-10 bg-black/40 backdrop-blur-md border-white/5 text-white hover:bg-primary hover:text-black transition-all z-50 rounded-full" />
-                          <CarouselNext className="right-4 h-10 w-10 bg-black/40 backdrop-blur-md border-white/5 text-white hover:bg-primary hover:text-black transition-all z-50 rounded-full" />
-                        </Carousel>
-                      </div>
+                    <div className="flex flex-col gap-24 py-12 max-w-6xl mx-auto">
+                      {projectImages.map((image, index) => (
+                        <Reveal key={index} className="w-full overflow-hidden shadow-2xl bg-white/5 border border-white/5">
+                          <div className="relative group">
+                            {image && (
+                              <Image 
+                                src={image.imageUrl} 
+                                alt={`${project.title} design ${index + 1}`} 
+                                width={1400} 
+                                height={1000} 
+                                className="w-full h-auto block grayscale hover:grayscale-0 transition-all duration-700"
+                                unoptimized
+                              />
+                            )}
+                          </div>
+                        </Reveal>
+                      ))}
                     </div>
                   ) : (
                     <div className="relative mx-auto w-full max-w-3xl py-12">
