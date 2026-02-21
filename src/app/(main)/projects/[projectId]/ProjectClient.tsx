@@ -16,7 +16,8 @@ import {
   ChevronRight,
   Luggage,
   Loader2,
-  Smartphone
+  Smartphone,
+  ArrowUpRight
 } from 'lucide-react';
 
 import 'react-pdf/dist/Page/AnnotationLayer.css';
@@ -274,6 +275,20 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                     className="absolute top-[19.2%] left-1/2 -translate-x-1/2 w-[75%] h-[5%] bg-transparent cursor-pointer z-[90]"
                                   />
                               </>
+                            )}
+                            {rapidoScreen === 'travel' && (
+                              <button 
+                                onClick={() => setRapidoScreen('flight')}
+                                className="absolute top-[38%] left-1/2 -translate-x-1/2 w-[85%] h-[8%] bg-white/10 backdrop-blur-md border border-black/5 rounded-2xl flex items-center px-6 transition-all hover:bg-white/20 active:scale-95 z-[90] shadow-xl group"
+                              >
+                                <div className="flex flex-col items-start">
+                                  <span className="text-[8px] font-black uppercase tracking-[0.3em] text-black/30 group-hover:text-primary transition-colors">Premium Option</span>
+                                  <span className="text-[11px] font-black uppercase tracking-widest text-black">Explore Luxury Flights</span>
+                                </div>
+                                <div className="ml-auto bg-[#F9D915] p-2 rounded-full">
+                                  <ArrowUpRight className="h-3 w-3 text-black" />
+                                </div>
+                              </button>
                             )}
                         </div>
                       </div>
