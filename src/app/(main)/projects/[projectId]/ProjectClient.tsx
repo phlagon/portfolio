@@ -402,7 +402,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                           <CarouselContent className="-ml-0 h-full">
                             {projectImages.map((image, index) => (
                               <CarouselItem key={index} className="pl-0 h-full">
-                                <div className="relative w-full h-full overflow-y-auto scrollbar-hide bg-[#050505] flex flex-col">
+                                <div className="relative w-full h-full overflow-y-auto scrollbar-hide bg-[#050505]">
                                      {image && (
                                        <Image
                                          src={image.imageUrl}
