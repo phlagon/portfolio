@@ -53,6 +53,7 @@ const PDF_URL = "https://raw.githubusercontent.com/phlagon/purr-folio/3dea7a623a
 export default function ProjectClient({ project, placeholderImages }: { project: ProjectType, placeholderImages: ImagePlaceholder[] }) {
   const [rapidoScreen, setRapidoScreen] = useState<'ride' | 'travel' | 'offline' | 'live' | 'profile' | 'flight' | 'your-trip' | 'public-transport' | 'stops' | 'confirmation' | 'auto-find' | 'gps-confirm' | 'weather'>('ride');
   const [losmoTab, setLosmoTab] = useState<'web' | 'app'>('web');
+  const [losmoWebIndex, setLosmoWebIndex] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [numPages, setNumPages] = useState<number | null>(null);
   const [isTurning, setIsTurning] = useState(false);
@@ -322,7 +323,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               <>
                                 <button 
                                   onClick={() => setRapidoScreen('your-trip')}
-                                  className="absolute top-[12%] left-0 w-[50%] h-[10%] bg-transparent cursor-pointer z-[90]"
+                                  className="absolute top-[21%] left-0 w-[50%] h-[10%] bg-transparent cursor-pointer z-[90]"
                                   aria-label="Your Trip Details"
                                 />
                                 <button 
@@ -400,21 +401,46 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/50" />
                           </div>
                           
-                          <div className="h-[600px] overflow-y-auto scrollbar-hide bg-black">
-                            {projectImages.map((image, index) => (
-                              <div key={index} className="w-full relative">
-                                {image && (
-                                  <Image 
-                                    src={image.imageUrl} 
-                                    alt={`Webpage section ${index + 1}`} 
-                                    width={1400} 
-                                    height={1000} 
-                                    className="w-full h-auto block grayscale hover:grayscale-0 transition-all duration-700"
-                                    unoptimized
-                                  />
-                                )}
-                              </div>
-                            ))}
+                          <div className="relative h-[600px] bg-black overflow-hidden flex items-center justify-center">
+                            {projectImages[losmoWebIndex] && (
+                              <Image 
+                                src={projectImages[losmoWebIndex].imageUrl} 
+                                alt={`Webpage section ${losmoWebIndex + 1}`} 
+                                width={1400} 
+                                height={1000} 
+                                className="w-full h-auto block grayscale hover:grayscale-0 transition-all duration-700"
+                                unoptimized
+                              />
+                            )}
+
+                            {/* Manual Controls for Webpage Sections */}
+                            <div className="absolute inset-y-0 left-4 flex items-center">
+                              <Button 
+                                variant="ghost" 
+                                size="icon" 
+                                onClick={() => setLosmoWebIndex(prev => Math.max(0, prev - 1))}
+                                disabled={losmoWebIndex === 0}
+                                className="h-12 w-12 rounded-full bg-black/40 backdrop-blur-md text-white hover:bg-primary hover:text-black disabled:opacity-30 transition-all"
+                              >
+                                <ChevronLeft className="h-8 w-8" />
+                              </Button>
+                            </div>
+                            <div className="absolute inset-y-0 right-4 flex items-center">
+                              <Button 
+                                variant="ghost" 
+                                size="icon" 
+                                onClick={() => setLosmoWebIndex(prev => Math.min(projectImages.length - 1, prev + 1))}
+                                disabled={losmoWebIndex === projectImages.length - 1}
+                                className="h-12 w-12 rounded-full bg-black/40 backdrop-blur-md text-white hover:bg-primary hover:text-black disabled:opacity-30 transition-all"
+                              >
+                                <ChevronRight className="h-8 w-8" />
+                              </Button>
+                            </div>
+
+                            {/* Progress indicator */}
+                            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 bg-black/60 backdrop-blur-md rounded-full text-[10px] font-black uppercase tracking-widest text-primary/80">
+                              {losmoWebIndex + 1} / {projectImages.length}
+                            </div>
                           </div>
                       </div>
                       <div className="relative mx-auto w-40 h-4 bg-[#0a0a0a] rounded-b-lg" />
