@@ -107,7 +107,7 @@ export default function Home() {
       >
         {/* Spline 3D Scene - Full Background Layer */}
         <div 
-          className="absolute inset-0 z-0 transition-opacity duration-500 pointer-events-none"
+          className="absolute inset-0 z-0 transition-opacity duration-[500ms] pointer-events-none"
           style={{
             opacity: isHovering ? 1 : 0,
             maskImage: `radial-gradient(circle 350px at ${spotlightPos.x}px ${spotlightPos.y}px, black 0%, transparent 100%)`,

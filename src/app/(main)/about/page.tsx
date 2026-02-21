@@ -1,4 +1,3 @@
-
 "use client";
 
 import { AboutSection } from "@/components/home/about-section";
