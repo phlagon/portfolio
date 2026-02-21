@@ -330,7 +330,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               <>
                                 <button 
                                   onClick={() => setRapidoScreen('your-trip')}
-                                  className="absolute top-[21%] left-0 w-[50%] h-[10%] bg-transparent cursor-pointer z-[90]"
+                                  className="absolute top-[12%] left-0 w-[50%] h-[10%] bg-transparent cursor-pointer z-[90]"
                                   aria-label="Your Trip Details"
                                 />
                                 <button 
