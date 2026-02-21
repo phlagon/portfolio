@@ -306,15 +306,15 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             {rapidoScreen === 'offline' && (
                               <button 
                                 onClick={() => setRapidoScreen('auto-find')}
-                                className="absolute top-[48%] left-0 w-[40%] h-[12%] bg-transparent cursor-pointer z-[90]"
-                                aria-label="Auto booking"
+                                className="absolute top-[75%] left-1/2 -translate-x-1/2 w-[80%] h-[10%] bg-transparent cursor-pointer z-[90]"
+                                aria-label="YES - Confirm Offline"
                               />
                             )}
 
                             {rapidoScreen === 'gps-confirm' && (
                               <button 
                                 onClick={() => setRapidoScreen('confirmation')}
-                                className="absolute top-[12%] left-0 w-[40%] h-[15%] bg-transparent cursor-pointer z-[90]"
+                                className="absolute top-[75%] left-1/2 -translate-x-1/2 w-[80%] h-[10%] bg-transparent cursor-pointer z-[90]"
                                 aria-label="Confirm GPS"
                               />
                             )}
