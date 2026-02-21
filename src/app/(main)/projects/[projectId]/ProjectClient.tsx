@@ -47,7 +47,7 @@ import { Button } from '@/components/ui/button';
 
 type ProjectType = (typeof projects)[0];
 
-const PDF_URL = "https://raw.githubusercontent.com/phlagon/purr-folio/3dea7a623a7b346182ae83d184f86bfa8883b84d/recusive%20final_compressed.pdf";
+const PDF_URL = "https://raw.githubusercontent.com/phlagon/purr-folio/6563242256d3756fbb722b0b6e5d2f92b180bd27/recusive%20final_compressed.pdf";
 
 export default function ProjectClient({ project, placeholderImages }: { project: ProjectType, placeholderImages: ImagePlaceholder[] }) {
   const [rapidoScreen, setRapidoScreen] = useState<'ride' | 'travel' | 'offline' | 'live' | 'profile' | 'flight' | 'your-trip' | 'public-transport' | 'stops' | 'confirmation' | 'auto-find' | 'gps-confirm' | 'weather'>('ride');
@@ -496,7 +496,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
             <div className="w-full max-w-6xl mx-auto py-12 px-4">
               <Reveal className="relative flex flex-col items-center gap-12">
                 <div className="book-container w-full max-w-5xl relative">
-                  <div className="bg-white/5 border border-white/10 shadow-2xl rounded-sm overflow-hidden h-auto">
+                  <div className="border border-white/10 shadow-2xl rounded-sm overflow-hidden h-auto">
                     <div className="w-full relative z-10 flex items-center justify-center">
                       <Document
                         file={PDF_URL}
@@ -598,7 +598,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                           loop
                           muted
                           playsInline
-                          className="w-full h-auto block grayscale hover:grayscale-0 scale-100 hover:scale-105 transition-all duration-[1.5s] ease-out"
+                          className="w-full h-auto block grayscale hover:grayscale-0 scale-100 hover:scale-105 transition-all duration-[1500ms] ease-out"
                         />
                       ) : (
                         <Image 
@@ -606,7 +606,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                           alt={`Design ${index + 1}`} 
                           width={1400} 
                           height={1000} 
-                          className="w-full h-auto block grayscale hover:grayscale-0 scale-100 hover:scale-110 transition-all duration-[1.5s] ease-out"
+                          className="w-full h-auto block grayscale hover:grayscale-0 scale-100 hover:scale-110 transition-all duration-[1500ms] ease-out"
                           unoptimized
                         />
                       )}

@@ -155,7 +155,7 @@ function DockItem({ project, mouseX, }: { project: any, mouseX: any }) {
             src={projectImage.imageUrl}
             alt={project.title}
             fill
-            className="object-cover grayscale group-hover:grayscale-0 transition-all duration-[1s] ease-in-out"
+            className="object-cover grayscale group-hover:grayscale-0 transition-all duration-[1000ms] ease-in-out"
             unoptimized
           />
         )}
