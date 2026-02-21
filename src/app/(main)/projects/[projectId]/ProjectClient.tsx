@@ -402,7 +402,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                           </div>
                           
                           <div className="relative h-[600px] bg-black overflow-hidden">
-                            {/* Scrollable Container with Index Key to reset scroll on slide change */}
                             <div 
                               key={losmoWebIndex}
                               className="w-full h-full overflow-y-auto scrollbar-hide"
@@ -419,7 +418,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               )}
                             </div>
 
-                            {/* Manual Controls for Webpage Sections - Outside scrollable area */}
                             <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none z-20">
                               <Button 
                                 variant="ghost" 
@@ -443,7 +441,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               </Button>
                             </div>
 
-                            {/* Progress indicator - Outside scrollable area */}
                             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 bg-black/60 backdrop-blur-md rounded-full text-[10px] font-black uppercase tracking-widest text-primary/80 z-20">
                               {losmoWebIndex + 1} / {projectImages.length}
                             </div>
