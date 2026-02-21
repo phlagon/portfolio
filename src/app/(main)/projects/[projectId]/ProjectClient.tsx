@@ -32,7 +32,7 @@ const Document = dynamic(() => import('react-pdf').then(mod => mod.Document), {
 const Page = dynamic(() => import('react-pdf').then(mod => mod.Page), { ssr: false });
 
 import type { ImagePlaceholder } from '@/lib/placeholder-images';
-import type { projects } from '@/lib/projects';
+import { projects } from '@/lib/projects';
 import {
   Carousel,
   CarouselContent,
@@ -249,7 +249,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                       <div 
                         ref={scrollContainerRef}
                         className={cn(
-                          "flex-1 relative bg-white pb-[64px]",
+                          "flex-1 relative bg-white pb-[32px]",
                           isStaticScreen ? "overflow-hidden" : "overflow-y-auto scrollbar-hide"
                         )}
                       >
@@ -322,7 +322,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
 
                             {rapidoScreen === 'live' && (
                               <button 
-                                onClick={() => setRapidoScreen('public-transport')}
+                                onClick={() => setRapidoScreen('your-trip')}
                                 className="absolute top-[12%] left-0 w-[50%] h-[10%] bg-transparent cursor-pointer z-[90]"
                                 aria-label="Your Trip Details"
                               />
@@ -604,4 +604,3 @@ export default function ProjectClient({ project, placeholderImages }: { project:
     </div>
   );
 }
-

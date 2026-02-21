@@ -123,7 +123,7 @@
     {
       "id": "rapido-your-trip",
       "description": "Rapido Your Trip Details",
-      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/693f8a1ad34cefd7d56d46534716393c7700c63f/Your%20trip%202.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/6563242256d3756fbb722b0b6e5d2f92b180bd27/Your%20trip%202.jpg",
       "imageHint": "app trip"
     },
     {
@@ -377,6 +377,12 @@
       "description": "Losmo App Concept 14",
       "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/6563242256d3756fbb722b0b6e5d2f92b180bd27/continue.png",
       "imageHint": "app continue"
+    },
+    {
+      "id": "typespec-1",
+      "description": "Recursive Type Specimen 1",
+      "imageUrl": "https://raw.githubusercontent.com/phlagon/purr-folio/3dea7a623a7b346182ae83d184f86bfa8883b84d/specimen/1.jpg",
+      "imageHint": "type specimen"
     }
   ]
 }
