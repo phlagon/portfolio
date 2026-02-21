@@ -71,6 +71,16 @@ export default function ProjectClient({ project, placeholderImages }: { project:
     });
   }, []);
 
+  // Auto-transition for Finding auto nearby screen
+  useEffect(() => {
+    if (rapidoScreen === 'auto-find') {
+      const timer = setTimeout(() => {
+        setRapidoScreen('gps-confirm');
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [rapidoScreen]);
+
   useEffect(() => {
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollTop = 0;
@@ -297,10 +307,17 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                 aria-label="Auto booking"
                               />
                             )}
+                            {rapidoScreen === 'gps-confirm' && (
+                              <button 
+                                onClick={() => setRapidoScreen('confirmation')}
+                                className="absolute top-[68%] left-0 w-[40%] h-[10%] bg-transparent cursor-pointer z-[90]"
+                                aria-label="Confirm GPS"
+                              />
+                            )}
                         </div>
                       </div>
 
-                      <div className="absolute bottom-0 left-0 w-full h-[84px] z-[60] bg-white border-t border-black/5 flex items-center justify-around px-2 pb-4">
+                      <div className="absolute bottom-0 left-0 w-full h-[84px] z-[60] bg-white border-t border-black/5 flex items-center justify-around px-2 pb-2">
                         {navTabs.map((tab) => {
                           const Icon = tab.icon;
                           const isActive = tab.id === 'ride' ? (rapidoScreen === 'ride' || rapidoScreen === 'profile') : 
@@ -316,7 +333,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                 setRapidoScreen(tab.id as any);
                                 setTransitResults(null);
                               }}
-                              className="flex flex-col items-center justify-center gap-1.5 h-full flex-1 transition-all duration-300"
+                              className="flex flex-col items-center justify-center gap-1 h-full flex-1 transition-all duration-300"
                             >
                               <Icon 
                                 className={cn(
