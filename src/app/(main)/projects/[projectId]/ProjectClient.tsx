@@ -496,7 +496,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
             <div className="w-full max-w-6xl mx-auto py-12 px-4">
               <Reveal className="relative flex flex-col items-center gap-12">
                 <div className="book-container w-full max-w-5xl relative">
-                  <div className="border border-white/10 shadow-2xl rounded-sm overflow-hidden h-auto">
+                  <div className="shadow-2xl rounded-sm overflow-hidden h-auto">
                     <div className="w-full relative z-10 flex items-center justify-center">
                       <Document
                         file={PDF_URL}
