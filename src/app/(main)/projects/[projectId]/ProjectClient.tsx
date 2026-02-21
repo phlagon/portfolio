@@ -307,7 +307,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               <>
                                 <button 
                                   onClick={() => setRapidoScreen('auto-find')}
-                                  className="absolute top-[70%] left-1/2 -translate-x-1/2 w-[65%] h-[6%] bg-transparent cursor-pointer z-[90]"
+                                  className="absolute top-[77%] left-1/2 -translate-x-1/2 w-[60%] h-[5%] bg-transparent cursor-pointer z-[90]"
                                   aria-label="YES - Confirm Offline"
                                 />
                                 <button 
@@ -401,7 +401,9 @@ export default function ProjectClient({ project, placeholderImages }: { project:
               <div className="relative w-full">
                   {losmoTab === 'web' ? (
                     <div className="w-full max-w-6xl mx-auto py-12 px-4">
+                      {/* Premium Desktop Mockup */}
                       <div className="relative mx-auto border-[#0a0a0a] bg-[#1a1a1a] border-[8px] rounded-[1rem] shadow-[0_60px_120px_-30px_rgba(0,0,0,1)] overflow-hidden">
+                          {/* Browser header */}
                           <div className="w-full h-8 bg-[#1a1a1a] flex items-center px-4 gap-1.5 border-b border-white/5">
                               <div className="w-2.5 h-2.5 rounded-full bg-red-500/50" />
                               <div className="w-2.5 h-2.5 rounded-full bg-amber-500/50" />
@@ -409,6 +411,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                           </div>
                           
                           <div className="relative h-[600px] bg-black overflow-hidden">
+                            {/* Scrollable Viewport */}
                             <div 
                               key={losmoWebIndex}
                               className="w-full h-full overflow-y-auto scrollbar-hide"
@@ -425,6 +428,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               )}
                             </div>
 
+                            {/* Floating Navigation Controls */}
                             <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none z-20">
                               <Button 
                                 variant="ghost" 
@@ -448,11 +452,13 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               </Button>
                             </div>
 
+                            {/* Page Indicator */}
                             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 bg-black/60 backdrop-blur-md rounded-full text-[10px] font-black uppercase tracking-widest text-primary/80 z-20">
                               {losmoWebIndex + 1} / {projectImages.length}
                             </div>
                           </div>
                       </div>
+                      {/* Stand base */}
                       <div className="relative mx-auto w-40 h-4 bg-[#0a0a0a] rounded-b-lg" />
                       <div className="relative mx-auto w-64 h-2 bg-[#0a0a0a] rounded-t-lg shadow-2xl" />
                     </div>
