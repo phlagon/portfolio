@@ -401,44 +401,50 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/50" />
                           </div>
                           
-                          <div className="relative h-[600px] bg-black overflow-hidden flex items-center justify-center">
-                            {projectImages[losmoWebIndex] && (
-                              <Image 
-                                src={projectImages[losmoWebIndex].imageUrl} 
-                                alt={`Webpage section ${losmoWebIndex + 1}`} 
-                                width={1400} 
-                                height={1000} 
-                                className="w-full h-auto block grayscale hover:grayscale-0 transition-all duration-700"
-                                unoptimized
-                              />
-                            )}
+                          <div className="relative h-[600px] bg-black overflow-hidden">
+                            {/* Scrollable Container with Index Key to reset scroll on slide change */}
+                            <div 
+                              key={losmoWebIndex}
+                              className="w-full h-full overflow-y-auto scrollbar-hide"
+                            >
+                              {projectImages[losmoWebIndex] && (
+                                <Image 
+                                  src={projectImages[losmoWebIndex].imageUrl} 
+                                  alt={`Webpage section ${losmoWebIndex + 1}`} 
+                                  width={1400} 
+                                  height={2000} 
+                                  className="w-full h-auto block grayscale hover:grayscale-0 transition-all duration-700"
+                                  unoptimized
+                                />
+                              )}
+                            </div>
 
-                            {/* Manual Controls for Webpage Sections */}
-                            <div className="absolute inset-y-0 left-4 flex items-center">
+                            {/* Manual Controls for Webpage Sections - Outside scrollable area */}
+                            <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none z-20">
                               <Button 
                                 variant="ghost" 
                                 size="icon" 
                                 onClick={() => setLosmoWebIndex(prev => Math.max(0, prev - 1))}
                                 disabled={losmoWebIndex === 0}
-                                className="h-12 w-12 rounded-full bg-black/40 backdrop-blur-md text-white hover:bg-primary hover:text-black disabled:opacity-30 transition-all"
+                                className="h-12 w-12 rounded-full bg-black/40 backdrop-blur-md text-white hover:bg-primary hover:text-black disabled:opacity-30 transition-all pointer-events-auto"
                               >
                                 <ChevronLeft className="h-8 w-8" />
                               </Button>
                             </div>
-                            <div className="absolute inset-y-0 right-4 flex items-center">
+                            <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none z-20">
                               <Button 
                                 variant="ghost" 
                                 size="icon" 
                                 onClick={() => setLosmoWebIndex(prev => Math.min(projectImages.length - 1, prev + 1))}
                                 disabled={losmoWebIndex === projectImages.length - 1}
-                                className="h-12 w-12 rounded-full bg-black/40 backdrop-blur-md text-white hover:bg-primary hover:text-black disabled:opacity-30 transition-all"
+                                className="h-12 w-12 rounded-full bg-black/40 backdrop-blur-md text-white hover:bg-primary hover:text-black disabled:opacity-30 transition-all pointer-events-auto"
                               >
                                 <ChevronRight className="h-8 w-8" />
                               </Button>
                             </div>
 
-                            {/* Progress indicator */}
-                            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 bg-black/60 backdrop-blur-md rounded-full text-[10px] font-black uppercase tracking-widest text-primary/80">
+                            {/* Progress indicator - Outside scrollable area */}
+                            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 bg-black/60 backdrop-blur-md rounded-full text-[10px] font-black uppercase tracking-widest text-primary/80 z-20">
                               {losmoWebIndex + 1} / {projectImages.length}
                             </div>
                           </div>
