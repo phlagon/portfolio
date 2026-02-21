@@ -71,7 +71,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
     });
   }, []);
 
-  // Auto-transition for Finding auto nearby screen
+  // Auto-transition for Finding auto nearby screen (exactly 1 second)
   useEffect(() => {
     if (rapidoScreen === 'auto-find') {
       const timer = setTimeout(() => {
@@ -249,7 +249,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                       <div 
                         ref={scrollContainerRef}
                         className={cn(
-                          "flex-1 relative bg-white pb-[84px]",
+                          "flex-1 relative bg-white pb-[64px]",
                           isStaticScreen ? "overflow-hidden" : "overflow-y-auto scrollbar-hide"
                         )}
                       >
@@ -269,7 +269,9 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                 />
                               );
                             })()}
-                            {(rapidoScreen === 'ride' || rapidoScreen === 'travel') && (
+                            
+                            {/* Interactive Hotspots */}
+                            {rapidoScreen === 'ride' && (
                               <>
                                   <input 
                                       type="text"
@@ -293,6 +295,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                   />
                               </>
                             )}
+
                             {rapidoScreen === 'travel' && (
                               <button 
                                 onClick={() => setRapidoScreen('flight')}
@@ -300,24 +303,34 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                 aria-label="Explore flights"
                               />
                             )}
+
                             {rapidoScreen === 'offline' && (
                               <button 
                                 onClick={() => setRapidoScreen('auto-find')}
-                                className="absolute top-[48%] left-0 w-[40%] h-[12%] bg-transparent cursor-pointer z-[90]"
+                                className="absolute top-[48%] left-0 w-[45%] h-[12%] bg-transparent cursor-pointer z-[90]"
                                 aria-label="Auto booking"
                               />
                             )}
+
                             {rapidoScreen === 'gps-confirm' && (
                               <button 
                                 onClick={() => setRapidoScreen('confirmation')}
-                                className="absolute top-[68%] left-0 w-[40%] h-[10%] bg-transparent cursor-pointer z-[90]"
+                                className="absolute top-[48%] left-0 w-[40%] h-[10%] bg-transparent cursor-pointer z-[90]"
                                 aria-label="Confirm GPS"
+                              />
+                            )}
+
+                            {rapidoScreen === 'live' && (
+                              <button 
+                                onClick={() => setRapidoScreen('public-transport')}
+                                className="absolute top-[12%] left-0 w-[50%] h-[10%] bg-transparent cursor-pointer z-[90]"
+                                aria-label="Your Trip Details"
                               />
                             )}
                         </div>
                       </div>
 
-                      <div className="absolute bottom-0 left-0 w-full h-[84px] z-[60] bg-white border-t border-black/5 flex items-center justify-around px-2 pb-2">
+                      <div className="absolute bottom-0 left-0 w-full h-[64px] z-[60] bg-white border-t border-black/5 flex items-center justify-around px-2 pb-1">
                         {navTabs.map((tab) => {
                           const Icon = tab.icon;
                           const isActive = tab.id === 'ride' ? (rapidoScreen === 'ride' || rapidoScreen === 'profile') : 
@@ -337,12 +350,12 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             >
                               <Icon 
                                 className={cn(
-                                  "h-6 w-6 transition-colors",
+                                  "h-5 w-5 transition-colors",
                                   isActive ? "text-[#F9D915]" : "text-black/40"
                                 )} 
                               />
                               <span className={cn(
-                                "text-[10px] font-bold tracking-tight transition-colors",
+                                "text-[9px] font-bold tracking-tight transition-colors",
                                 isActive ? "text-[#F9D915]" : "text-black"
                               )}>
                                 {tab.label}
@@ -591,3 +604,4 @@ export default function ProjectClient({ project, placeholderImages }: { project:
     </div>
   );
 }
+
