@@ -307,7 +307,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               <>
                                 <button 
                                   onClick={() => setRapidoScreen('auto-find')}
-                                  className="absolute top-[75%] left-1/2 -translate-x-1/2 w-[80%] h-[10%] bg-transparent cursor-pointer z-[90]"
+                                  className="absolute top-[70%] left-1/2 -translate-x-1/2 w-[65%] h-[6%] bg-transparent cursor-pointer z-[90]"
                                   aria-label="YES - Confirm Offline"
                                 />
                                 <button 
@@ -488,7 +488,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
               </div>
             </Reveal>
           ) : isTypeSpecimen ? (
-            <div className="w-full max-w-6xl mx-auto py-12 px-4">
+            <div className="w-full max-6xl mx-auto py-12 px-4">
               <Reveal className="relative flex flex-col items-center gap-12">
                 <div className="book-container w-full max-w-5xl relative min-h-[1400px] md:min-h-[1800px]">
                   <div className="absolute inset-0 bg-white/5 border border-white/10 shadow-2xl rounded-sm overflow-hidden h-fit">
