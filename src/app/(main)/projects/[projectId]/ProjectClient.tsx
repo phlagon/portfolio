@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -243,17 +244,21 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                         )}
                       >
                         <div className="relative w-full">
-                            {getRapidoImage() && (
-                              <Image
-                                src={getRapidoImage()!}
-                                alt={`Rapido Screen`}
-                                width={360}
-                                height={1200}
-                                className="w-full h-auto block"
-                                priority
-                                unoptimized
-                              />
-                            )}
+                            {(() => {
+                              const img = getRapidoImage();
+                              if (!img) return null;
+                              return (
+                                <Image
+                                  src={img}
+                                  alt={`Rapido Screen`}
+                                  width={360}
+                                  height={1200}
+                                  className="w-full h-auto block"
+                                  priority
+                                  unoptimized
+                                />
+                              );
+                            })()}
                             {(rapidoScreen === 'ride' || rapidoScreen === 'travel') && (
                               <>
                                   <input 
@@ -283,6 +288,13 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                 onClick={() => setRapidoScreen('flight')}
                                 className="absolute top-[35%] left-0 w-[40%] h-[15%] bg-transparent cursor-pointer z-[90]"
                                 aria-label="Explore flights"
+                              />
+                            )}
+                            {rapidoScreen === 'offline' && (
+                              <button 
+                                onClick={() => setRapidoScreen('auto-find')}
+                                className="absolute top-[48%] left-[34%] w-[32%] h-[12%] bg-transparent cursor-pointer z-[90]"
+                                aria-label="Auto booking"
                               />
                             )}
                         </div>
