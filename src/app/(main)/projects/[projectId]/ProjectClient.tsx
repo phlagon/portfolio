@@ -26,7 +26,7 @@ import 'react-pdf/dist/Page/TextLayer.css';
 // Dynamically import PDF components
 const Document = dynamic(() => import('react-pdf').then(mod => mod.Document), { 
   ssr: false,
-  loading: () => <div className="flex items-center gap-4 text-white font-black uppercase tracking-widest text-xs h-[400px] justify-center"><Loader2 className="animate-spin" /> Preparing Viewer...</div>
+  loading: () => <div className="flex items-center gap-4 text-white font-black uppercase tracking-widest text-xs h-auto py-20 justify-center"><Loader2 className="animate-spin" /> Preparing Viewer...</div>
 });
 const Page = dynamic(() => import('react-pdf').then(mod => mod.Page), { ssr: false });
 
@@ -41,7 +41,6 @@ import {
 } from "@/components/ui/carousel";
 import { Card, CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
-import { getTransitOptions, type TransitSearchOutput } from '@/ai/flows/transit-search-flow';
 import { Reveal } from '@/components/ui/reveal';
 import { Button } from '@/components/ui/button';
 
@@ -61,7 +60,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   const [pickupLocation, setPickupLocation] = useState('');
   const [dropLocation, setDropLocation] = useState('');
   
-  const [transitResults, setTransitResults] = useState<TransitSearchOutput | null>(null);
+  const [transitResults, setTransitResults] = useState<any | null>(null);
   const [isSearching, setIsSearching] = useState(false);
 
   useEffect(() => {
@@ -99,18 +98,17 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   const handleSearchTransit = async () => {
     if (!pickupLocation || !dropLocation) return;
     setIsSearching(true);
-    try {
-      const results = await getTransitOptions({ pickup: pickupLocation, drop: dropLocation });
-      const order = { 'Train': 1, 'Flight': 2, 'Bus': 3, 'Taxi': 4 };
-      const sortedOptions = [...results.options].sort((a, b) => 
-        (order[a.type as keyof typeof order] || 99) - (order[b.type as keyof typeof order] || 99)
-      );
-      setTransitResults({ options: sortedOptions });
-    } catch (error) {
-      console.error("Failed to fetch transit options", error);
-    } finally {
+    // Static mock for GitHub Pages compatibility
+    setTimeout(() => {
+      setTransitResults({
+        options: [
+          { type: 'Train', number: '16595', provider: 'PANCHAGANGA EXP', departureTime: '18:50', departureDate: 'Fri, 23 Jan', arrivalTime: '04:15', arrivalDate: 'Sat, 24 Jan', duration: '09 h 25 min', price: '₹1,200', origin: 'SBC', destination: 'UD' },
+          { type: 'Flight', number: '6E-2134', provider: 'IndiGo', departureTime: '14:20', departureDate: 'Fri, 23 Jan', arrivalTime: '15:45', arrivalDate: 'Fri, 23 Jan', duration: '01 h 25 min', price: '₹3,450', origin: 'BLR', destination: 'IXE' },
+          { type: 'Bus', number: 'KSR-998', provider: 'KSRTC Ambaari', departureTime: '22:30', departureDate: 'Fri, 23 Jan', arrivalTime: '06:00', arrivalDate: 'Sat, 24 Jan', duration: '07 h 30 min', price: '₹850', origin: 'MBS', destination: 'UD' }
+        ]
+      });
       setIsSearching(false);
-    }
+    }, 1500);
   };
 
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
@@ -179,7 +177,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
 
       <div className="mb-16 text-center space-y-6">
         <Reveal>
-          <h1 className="text-5xl md:text-[10rem] font-black text-white uppercase tracking-tighter leading-none hover:text-primary transition-all duration-1000 select-none">
+          <h1 className="text-5xl md:text-[10rem] font-black text-white uppercase tracking-tighter leading-none hover:text-primary transition-all duration-[1000ms] select-none">
             {project.title}
           </h1>
         </Reveal>
@@ -374,7 +372,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                 setRapidoScreen(tab.id as any);
                                 setTransitResults(null);
                               }}
-                              className="flex flex-col items-center justify-center gap-1 h-full flex-1 transition-all duration-300"
+                              className="flex flex-col items-center justify-center gap-1 h-full flex-1 transition-all duration-[300ms]"
                             >
                               <Icon 
                                 className={cn(
@@ -421,7 +419,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                   alt={`Webpage section ${losmoWebIndex + 1}`} 
                                   width={1400} 
                                   height={2000} 
-                                  className="w-full h-auto block grayscale hover:grayscale-0 transition-all duration-700"
+                                  className="w-full h-auto block grayscale hover:grayscale-0 transition-all duration-[1000ms]"
                                   unoptimized
                                 />
                               )}
@@ -474,7 +472,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                                     alt={`Losmo App Screen ${index + 1}`}
                                     width={360}
                                     height={1200}
-                                    className="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]"
+                                    className="w-full h-auto block transition-transform duration-[1000ms] group-hover:scale-[1.02]"
                                     priority={index < 3}
                                     unoptimized
                                   />
@@ -496,15 +494,15 @@ export default function ProjectClient({ project, placeholderImages }: { project:
             <div className="w-full max-w-6xl mx-auto py-12 px-4">
               <Reveal className="relative flex flex-col items-center gap-12">
                 <div className="book-container w-full max-w-5xl relative">
-                  <div className="rounded-sm overflow-hidden h-auto">
-                    <div className="w-full relative z-10 flex items-center justify-center">
+                  <div className="rounded-sm overflow-hidden bg-transparent">
+                    <div className="w-full relative z-10 flex items-center justify-center bg-transparent">
                       <Document
                         file={PDF_URL}
                         onLoadSuccess={onDocumentLoadSuccess}
-                        className="flex flex-col items-center"
+                        className="flex flex-col items-center !bg-transparent !border-none"
                       >
                         <div className={cn(
-                          "page-base relative",
+                          "page-base relative !bg-transparent",
                           !isTurning && "page-active",
                           isTurning && "page-turning"
                         )}>
@@ -513,6 +511,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             width={typeof window !== 'undefined' ? (window.innerWidth > 1024 ? 1000 : window.innerWidth > 768 ? 800 : 350) : 350}
                             renderAnnotationLayer={false}
                             renderTextLayer={false}
+                            className="!bg-transparent"
                           />
                         </div>
                       </Document>
@@ -583,7 +582,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                   <Reveal 
                     key={index} 
                     className={cn(
-                      "w-full md:w-[85%] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] bg-white/5 border border-white/5 transition-all duration-1000",
+                      "w-full md:w-[85%] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] bg-white/5 border border-white/5 transition-all duration-[1500ms]",
                       alignClass
                     )}
                   >
@@ -627,7 +626,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             src={image.imageUrl}
                             alt={`${project.title} image ${index + 1}`}
                             fill
-                            className="object-contain grayscale hover:grayscale-0 transition-all duration-700"
+                            className="object-contain grayscale hover:grayscale-0 transition-all duration-[1000ms]"
                             unoptimized
                           />
                         )}
