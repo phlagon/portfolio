@@ -16,7 +16,7 @@ export function AboutSection() {
               alt="Benzitta"
               width={800}
               height={800}
-              className="mx-auto w-full h-auto grayscale hover:grayscale-0 transition-all duration-700"
+              className="mx-auto w-full h-auto grayscale hover:grayscale-0 transition-all duration-[1000ms]"
               data-ai-hint="portrait"
               priority
              />

@@ -23,7 +23,7 @@ import {
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 
-// Dynamically import PDF components to ensure polyfills from root are loaded first
+// Dynamically import PDF components
 const Document = dynamic(() => import('react-pdf').then(mod => mod.Document), { 
   ssr: false,
   loading: () => <div className="flex items-center gap-4 text-white font-black uppercase tracking-widest text-xs h-[400px] justify-center"><Loader2 className="animate-spin" /> Preparing Viewer...</div>
@@ -179,7 +179,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
 
       <div className="mb-16 text-center space-y-6">
         <Reveal>
-          <h1 className="text-5xl md:text-[10rem] font-black text-white uppercase tracking-tighter leading-none hover:text-primary transition-all duration-500 select-none">
+          <h1 className="text-5xl md:text-[10rem] font-black text-white uppercase tracking-tighter leading-none hover:text-primary transition-all duration-1000 select-none">
             {project.title}
           </h1>
         </Reveal>
@@ -496,7 +496,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
             <div className="w-full max-w-6xl mx-auto py-12 px-4">
               <Reveal className="relative flex flex-col items-center gap-12">
                 <div className="book-container w-full max-w-5xl relative">
-                  <div className="shadow-2xl rounded-sm overflow-hidden h-auto">
+                  <div className="rounded-sm overflow-hidden h-auto">
                     <div className="w-full relative z-10 flex items-center justify-center">
                       <Document
                         file={PDF_URL}
