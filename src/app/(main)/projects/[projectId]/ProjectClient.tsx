@@ -317,7 +317,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             {rapidoScreen === 'gps-confirm' && (
                               <button 
                                 onClick={() => setRapidoScreen('confirmation')}
-                                className="absolute top-[35%] left-0 w-[40%] h-[15%] bg-transparent cursor-pointer z-[90]"
+                                className="absolute top-[12%] left-0 w-[40%] h-[15%] bg-transparent cursor-pointer z-[90]"
                                 aria-label="Confirm GPS"
                               />
                             )}
@@ -333,7 +333,7 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                             {rapidoScreen === 'your-trip' && (
                               <button 
                                 onClick={() => setRapidoScreen('public-transport')}
-                                className="absolute top-[40%] left-0 w-[50%] h-[10%] bg-transparent cursor-pointer z-[90]"
+                                className="absolute top-[28%] left-0 w-[50%] h-[10%] bg-transparent cursor-pointer z-[90]"
                                 aria-label="Explore Public Transport"
                               />
                             )}
