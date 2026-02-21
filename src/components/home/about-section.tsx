@@ -39,6 +39,18 @@ export function AboutSection() {
               I design things that work for the people who use them.
             </p>
           </div>
+
+          <div className="pt-8 space-y-4">
+            <h3 className="text-[10px] font-black uppercase tracking-[0.5em] text-primary/60">Software Arsenal</h3>
+            <div className="flex flex-wrap gap-x-8 gap-y-3 text-[11px] font-bold uppercase tracking-widest text-foreground/40 justify-center md:justify-start">
+              <span>Adobe Illustrator</span>
+              <span>Adobe Photoshop</span>
+              <span>Adobe InDesign</span>
+              <span>Canva</span>
+              <span>Wordpress</span>
+              <span>Figma</span>
+            </div>
+          </div>
         </Reveal>
       </div>
     </section>

@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -494,18 +493,18 @@ export default function ProjectClient({ project, placeholderImages }: { project:
               </div>
             </Reveal>
           ) : isTypeSpecimen ? (
-            <div className="w-full max-6xl mx-auto py-12 px-4">
+            <div className="w-full max-w-6xl mx-auto py-12 px-4">
               <Reveal className="relative flex flex-col items-center gap-12">
-                <div className="book-container w-full max-w-5xl relative min-h-[1400px] md:min-h-[1800px]">
-                  <div className="absolute inset-0 bg-white/5 border border-white/10 shadow-2xl rounded-sm overflow-hidden h-fit">
-                    <div className="w-full h-full relative z-10 flex items-center justify-center bg-white min-h-[1400px] md:min-h-[1800px]">
+                <div className="book-container w-full max-w-5xl relative">
+                  <div className="bg-white/5 border border-white/10 shadow-2xl rounded-sm overflow-hidden h-auto">
+                    <div className="w-full relative z-10 flex items-center justify-center">
                       <Document
                         file={PDF_URL}
                         onLoadSuccess={onDocumentLoadSuccess}
                         className="flex flex-col items-center"
                       >
                         <div className={cn(
-                          "page-base",
+                          "page-base relative",
                           !isTurning && "page-active",
                           isTurning && "page-turning"
                         )}>
