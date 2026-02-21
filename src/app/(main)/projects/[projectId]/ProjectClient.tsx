@@ -65,13 +65,11 @@ export default function ProjectClient({ project, placeholderImages }: { project:
   const [isSearching, setIsSearching] = useState(false);
 
   useEffect(() => {
-    // Configure worker inside useEffect to ensure it only runs on client
     import('react-pdf').then(pdfjs => {
       pdfjs.pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.pdfjs.version}/build/pdf.worker.min.mjs`;
     });
   }, []);
 
-  // Auto-transition for Finding auto nearby screen (exactly 1 second)
   useEffect(() => {
     if (rapidoScreen === 'auto-find') {
       const timer = setTimeout(() => {
@@ -89,7 +87,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
 
   const projectImages = (project.imageIds || []).map(id => placeholderImages.find(img => img.id === id)).filter(Boolean) as any[];
   
-  // Explicitly map Losmo app screens in requested order
   const losmoAppImageIds = Array.from({ length: 14 }, (_, i) => `losmo-app-${i + 1}`);
   const losmoAppImages = losmoAppImageIds.map(id => placeholderImages.find(img => img.id === id)).filter(Boolean) as any[];
 
@@ -272,7 +269,6 @@ export default function ProjectClient({ project, placeholderImages }: { project:
                               );
                             })()}
                             
-                            {/* Interactive Hotspots */}
                             {rapidoScreen === 'ride' && (
                               <>
                                   <input 
@@ -396,23 +392,33 @@ export default function ProjectClient({ project, placeholderImages }: { project:
             <Reveal className="w-full max-w-7xl mx-auto px-4">
               <div className="relative w-full">
                   {losmoTab === 'web' ? (
-                    <div className="flex flex-col gap-24 py-12 max-w-6xl mx-auto">
-                      {projectImages.map((image, index) => (
-                        <Reveal key={index} className="w-full overflow-hidden shadow-2xl bg-white/5 border border-white/5">
-                          <div className="relative group">
-                            {image && (
-                              <Image 
-                                src={image.imageUrl} 
-                                alt={`${project.title} design ${index + 1}`} 
-                                width={1400} 
-                                height={1000} 
-                                className="w-full h-auto block grayscale hover:grayscale-0 transition-all duration-700"
-                                unoptimized
-                              />
-                            )}
+                    <div className="w-full max-w-6xl mx-auto py-12 px-4">
+                      <div className="relative mx-auto border-[#0a0a0a] bg-[#1a1a1a] border-[8px] rounded-[1rem] shadow-[0_60px_120px_-30px_rgba(0,0,0,1)] overflow-hidden">
+                          <div className="w-full h-8 bg-[#1a1a1a] flex items-center px-4 gap-1.5 border-b border-white/5">
+                              <div className="w-2.5 h-2.5 rounded-full bg-red-500/50" />
+                              <div className="w-2.5 h-2.5 rounded-full bg-amber-500/50" />
+                              <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/50" />
                           </div>
-                        </Reveal>
-                      ))}
+                          
+                          <div className="h-[600px] overflow-y-auto scrollbar-hide bg-black">
+                            {projectImages.map((image, index) => (
+                              <div key={index} className="w-full relative">
+                                {image && (
+                                  <Image 
+                                    src={image.imageUrl} 
+                                    alt={`Webpage section ${index + 1}`} 
+                                    width={1400} 
+                                    height={1000} 
+                                    className="w-full h-auto block grayscale hover:grayscale-0 transition-all duration-700"
+                                    unoptimized
+                                  />
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                      </div>
+                      <div className="relative mx-auto w-40 h-4 bg-[#0a0a0a] rounded-b-lg" />
+                      <div className="relative mx-auto w-64 h-2 bg-[#0a0a0a] rounded-t-lg shadow-2xl" />
                     </div>
                   ) : (
                     <div className="relative mx-auto w-full max-w-3xl py-12">
